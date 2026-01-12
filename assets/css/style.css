@@ -153,7 +153,7 @@ input, textarea{
   width:100%; padding:10px 12px; border:1px solid var(--border); border-radius:10px; font:inherit;
 }
 
-/* ====== Service Tabs (dipakai di services & stations) ====== */
+/* ====== Service Tabs (digunakan di services & stations) ====== */
 .service-tabs{
   display:flex; gap:14px; justify-content:center; align-items:center;
   flex-wrap:wrap; margin:0 0 18px;
@@ -178,7 +178,7 @@ input, textarea{
 /* Panels */
 .tab-panel{ display:block; }
 .tab-panel[hidden]{ display:none !important; }
-/* Layout konten: gambar + teks */
+/* Layout konten: gambar + teks (untuk services) */
 .service-layout{ display:grid; grid-template-columns:1.15fr 1fr; gap:24px; align-items:start; }
 .service-image{
   width:100%; height:auto; border-radius:16px; border:1px solid var(--border);
@@ -194,25 +194,50 @@ input, textarea{
   .service-copy{ order:2; }
 }
 
-/* ====== Stations page ====== */
-.count-badge{
-  display:inline-block; margin-left:8px; padding:2px 8px;
-  font-size:.85em; border-radius:999px;
-  border:2px solid var(--brand-red); color:var(--brand-red); background:#fff;
+/* ====== Intro ajakan & hero image (services) ====== */
+.service-intro{
+  background: var(--brand-red); color:#fff; border-radius:16px;
+  padding:18px 16px; box-shadow: var(--shadow); margin-bottom:16px;
 }
-.service-tabs .tab.is-active .count-badge{
-  border-color:#fff; color:var(--brand-red); background:#fff;
+.service-intro h3{ margin:0 0 6px; font-size:clamp(20px,4.5vw,26px); }
+.service-intro p{ margin:0; line-height:1.6; }
+.service-hero{ margin:16px 0 22px; display:grid; gap:8px; }
+.service-hero img{ width:100%; height:auto; border-radius:14px; border:1px solid var(--border); box-shadow:var(--shadow); }
+.service-hero figcaption{ font-size:14px; color:var(--muted); }
+
+/* ===== Service card gaya merah ===== */
+.service-card{ background:#b5121b; color:#fff; border-radius:16px; overflow:hidden; box-shadow:var(--shadow); }
+.service-card .card-head{ padding:14px 16px 8px; }
+.service-card .card-head h3{
+  display:inline-block; margin:0; padding:8px 14px; background:#fff; color:#b5121b; border-radius:12px; font-weight:800;
 }
-.station-list{
-  display:grid; grid-template-columns: repeat(2, 1fr); gap:16px; margin-top:10px;
-}
-.station-item{
-  background:#fff; border:1px solid var(--border); border-radius:12px; padding:14px; box-shadow: var(--shadow);
-}
+.service-card .card-body{ padding:10px 16px 16px; }
+.service-card .card-body p{ margin:0 0 12px; line-height:1.7; }
+.service-card .card-image{ margin:8px 0 14px; }
+.service-card .card-image img{ width:100%; height:auto; border-radius:12px; border:1px solid var(--border); }
+
+/* meta tiga kolom */
+.service-meta{ display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin:14px 0 10px; padding:10px 0 0; border-top:1px solid rgba(255,255,255,.35); }
+.meta-block h4{ margin:0 0 6px; font-size:16px; color:#fff; text-transform:uppercase; letter-spacing:.3px; }
+.meta-block p{ margin:0; color:#fff; }
+
+/* CTA tombol di setiap card */
+.service-card .btn{ margin-top:6px; border-color:#fff; color:#fff; background:transparent; }
+.service-card .btn:hover{ background:rgba(255,255,255,.12); }
+
+/* ===== Final CTA (services) ===== */
+.final-cta{ text-align:center; margin-top:24px; }
+.final-cta .final-note{ color:var(--muted); margin:0 0 8px; }
+.final-cta .final-title{ color:var(--brand-red); margin:0 0 10px; font-size:clamp(18px,4.2vw,24px); }
+.final-cta .btn{ display:inline-flex; gap:10px; font-size:16px; border-color:var(--brand-red); color:#fff; background:var(--brand-red); }
+
+/* ===== Stations page ===== */
+.count-badge{ display:inline-block; margin-left:8px; padding:2px 8px; font-size:.85em; border-radius:999px; border:2px solid var(--brand-red); color:var(--brand-red); background:#fff; }
+.service-tabs .tab.is-active .count-badge{ border-color:#fff; color:var(--brand-red); background:#fff; }
+.station-list{ display:grid; grid-template-columns: repeat(2, 1fr); gap:16px; margin-top:10px; }
+.station-item{ background:#fff; border:1px solid var(--border); border-radius:12px; padding:14px; box-shadow: var(--shadow); }
 .station-item h4{ margin:0 0 6px; font-size:16px; color:var(--brand-red); }
 .station-item p{ margin:0 0 8px; color:var(--text); }
-.station-item a.link{
-  display:inline-flex; align-items:center; min-height:44px; color:var(--brand-red); font-weight:700; text-decoration:none;
-}
+.station-item a.link{ display:inline-flex; align-items:center; min-height:44px; color:var(--brand-red); font-weight:700; text-decoration:none; }
 .station-item a.link:hover{ text-decoration:underline; }
 @media (max-width:768px){ .station-list{ grid-template-columns:1fr; } }
