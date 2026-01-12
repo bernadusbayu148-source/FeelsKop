@@ -241,3 +241,41 @@ input, textarea{
 .station-item a.link{ display:inline-flex; align-items:center; min-height:44px; color:var(--brand-red); font-weight:700; text-decoration:none; }
 .station-item a.link:hover{ text-decoration:underline; }
 @media (max-width:768px){ .station-list{ grid-template-columns:1fr; } }
+
+
+/* ===== Menu cards (products) ===== */
+.menu-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:16px;
+}
+.menu-card{
+  background:#fff;
+  border:1px solid var(--border);
+  border-radius:14px;
+  overflow:hidden;
+  box-shadow:var(--shadow);
+  display:flex; flex-direction:column;
+}
+.menu-card img{
+  width:100%; height:180px; object-fit:cover; display:block;
+}
+.menu-info{ padding:14px; display:flex; flex-direction:column; gap:8px; }
+.menu-info h3{ margin:0; font-size:18px; color:var(--brand-red); }
+.menu-sub{ margin:0; color:var(--muted); font-weight:600; }
+.menu-desc{ margin:0; color:var(--text); line-height:1.6; }
+.menu-card .btn{ align-self:flex-start; }
+
+.menu-sub .addon{
+  font-weight:700; color:#b5121b; /* menonjolkan add-on */
+}
+
+@media (max-width:992px){
+  .menu-grid{ grid-template-columns:repeat(2,1fr); }
+  .menu-card img{ height:160px; }
+}
+@media (max-width:576px){
+  .menu-grid{ grid-template-columns:1fr; }
+  .menu-card img{ height:180px; }
+}
+
