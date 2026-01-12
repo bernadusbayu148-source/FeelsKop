@@ -7,34 +7,32 @@
 
   <title>Kopi Feeling — Brand Kopi Gerobak #1 di Banjarmasin</title>
   <meta name="description" content="Kopi Feeling, brand kopi gerobak nomor 1 di Banjarmasin. Rasa mantap, harga bersahabat, pengantaran tepat waktu.">
-
-  <!-- Canonical -->
-  <link rel="canonical" href="https://bernadusbayu148-source.github.io/KopiFeeling/" />
+  <link rel="canonical" href="https://bernadusbayu148-source.github.io/KopiFeeling/">
 
   <!-- Fonts & Icons -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
 
   <!-- Main CSS -->
-  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="stylesheet" href="assets/css/style.css">
 
   <!-- Open Graph -->
-  <meta property="og:type" content="website" />
-  <meta property="og:title" content="Kopi Feeling — Brand Kopi Gerobak #1 di Banjarmasin" />
-  <meta property="og:description" content="Rasa mantap, harga bersahabat, pengantaran tepat waktu." />
-  <meta property="og:url" content="https://bernadusbayu148-source.github.io/KopiFeeling/" />
-  <meta property="og:image" content="https://bernadusbayu148-source.github.io/KopiFeeling/assets/img/og-cover.jpg" />
-  <meta property="og:locale" content="id_ID" />
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Kopi Feeling — Brand Kopi Gerobak #1 di Banjarmasin">
+  <meta property="og:description" content="Rasa mantap, harga bersahabat, pengantaran tepat waktu.">
+  <meta property="og:url" content="https://bernadusbayu148-source.github.io/KopiFeeling/">
+  <meta property="og:image" content="https://bernadusbayu148-source.github.io/KopiFeeling/assets/img/og-cover.jpg">
+  <meta property="og:locale" content="id_ID">
 
   <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Kopi Feeling — Brand Kopi Gerobak #1 di Banjarmasin" />
-  <meta name="twitter:description" content="Rasa mantap, harga bersahabat, pengantaran tepat waktu." />
-  <meta name="twitter:image" content="https://bernadusbayu148-source.github.io/KopiFeeling/assets/img/og-cover.jpg" />
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Kopi Feeling — Brand Kopi Gerobak #1 di Banjarmasin">
+  <meta name="twitter:description" content="Rasa mantap, harga bersahabat, pengantaran tepat waktu.">
+  <meta name="twitter:image" content="https://bernadusbayu148-source.github.io/KopiFeeling/assets/img/og-cover.jpg">
 
-  <!-- Structured Data -->
+  <!-- Structured Data: CafeOrCoffeeShop -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -57,11 +55,11 @@
 </head>
 <body>
 
-  <!-- HEADER -->
+  <!-- HEADER / NAVBAR -->
   <header class="site-header" id="siteHeader">
     <div class="container nav-container">
-      <a href="index.html" class="brand" aria-label="Halaman utama">
-        <img src="assets/img/logo-oval.svg" alt="Logo Kopi Feeling" class="logo" />
+      <a class="brand" href="index.html" aria-label="Halaman utama">
+        <img src="assets/img/logo-oval.svg" alt="Logo Kopi Feeling" class="logo">
         <span class="brand-name">Kopi Feeling</span>
       </a>
 
@@ -96,23 +94,37 @@
           <h1 class="hero-title">Kopi Gerobak, Rasa Juara</h1>
           <p class="hero-subtitle">Biji pilihan • Racikan konsisten • Harga bersahabat</p>
           <div class="hero-actions">
-            <a class="btn btn-primary" href="products.html#coffee">Lihat Menu</a>
-            <a class="btn btn-outline" href="contact.html#quote">Pesan Sekarang</a>
+            <a class="btn btn-primary" href="products.html">Lihat Menu</a>
+            <a class="btn btn-outline" href="contact.html">Pesan Sekarang</a>
           </div>
         </div>
       </div>
-
       <!-- Slide 2 -->
       <div class="slide" style="--bg:url('assets/img/hero-2.jpg')">
         <div class="slide-content">
           <h1 class="hero-title">Siap Antar ke Lokasi Anda</h1>
           <p class="hero-subtitle">Pengantaran cepat area Banjarmasin & sekitarnya</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="stations.html">Lokasi & Coverage</a>
+          </div>
         </div>
       </div>
 
       <button class="slider-btn prev" aria-label="Slide sebelumnya"><i class="fa-solid fa-chevron-left"></i></button>
       <button class="slider-btn next" aria-label="Slide berikutnya"><i class="fa-solid fa-chevron-right"></i></button>
       <div class="slider-dots" aria-hidden="true"></div>
+    </div>
+  </section>
+
+  <!-- LEADERBOARD (opsional) -->
+  <section class="section" id="leaderboard-host">
+    <div class="container">
+      <h2 class="section-title">Feeling Leaderboard</h2>
+      <div class="leaderboard-card">
+        <div class="leaderboard-frame-wrap">
+          <iframe src="leaderboard/index.html" id="leaderboardFrame" loading="lazy" title="Leaderboard" sandbox="allow-scripts allow-same-origin" referrerpolicy="no-referrer"></iframe>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -143,27 +155,29 @@
       <h2 class="section-title">Menu Unggulan</h2>
       <div class="product-grid">
         <article class="product-card">
-          <img src="assets/img/menu-espresso.jpg" alt="Espresso / Americano" width="960" height="540" loading="lazy" decoding="async" />
+          <img src="assets/img/menu-espresso.jpg" alt="Espresso/Americano" loading="lazy" decoding="async" width="800" height="450">
           <div class="product-info">
             <h3>Espresso / Americano</h3>
             <p>Racikan konsisten • Pilihan kekuatan rasa</p>
-            <a class="link" href="products.html#coffee">Lihat detail →</a>
+            <a class="link" href="products.html#espresso">Detail & Harga →</a>
           </div>
         </article>
+
         <article class="product-card">
-          <img src="assets/img/menu-milk.jpg" alt="Milk-Based" width="960" height="540" loading="lazy" decoding="async" />
+          <img src="assets/img/menu-milk.jpg" alt="Minuman Milk-Based" loading="lazy" decoding="async" width="800" height="450">
           <div class="product-info">
             <h3>Milk-Based</h3>
             <p>Latte • Cappuccino • Mochaccino</p>
-            <a class="link" href="products.html#coffee">Lihat detail →</a>
+            <a class="link" href="products.html#milk">Detail & Harga →</a>
           </div>
         </article>
+
         <article class="product-card">
-          <img src="assets/img/menu-special.jpg" alt="Signature Feeling" width="960" height="540" loading="lazy" decoding="async" />
+          <img src="assets/img/menu-special.jpg" alt="Signature Feeling" loading="lazy" decoding="async" width="800" height="450">
           <div class="product-info">
             <h3>Signature Feeling</h3>
             <p>Kopi gula aren • Kopi jahe • Seasonal</p>
-            <a class="link" href="products.html#coffee">Lihat detail →</a>
+            <a class="link" href="products.html#signature">Detail & Harga →</a>
           </div>
         </article>
       </div>
@@ -185,13 +199,20 @@
   <footer class="site-footer">
     <div class="container footer-grid">
       <div class="footer-about">
-        <img src="assets/img/logo-oval.svg" alt="Logo Kopi Feeling" class="footer-logo" />
+        <img src="assets/img/logo-oval.svg" alt="Logo Kopi Feeling" class="footer-logo">
         <p>Kopi Feeling adalah brand kopi gerobak nomor 1 di Banjarmasin—siap menemani harian & acara Anda.</p>
       </div>
       <div class="footer-contact">
         <h4>Alamat & Kontak</h4>
-        <p><i class="fa-solid fa-location-dot" aria-hidden="true"></i> JL.Irigasi No.08, RT.001/RW.003, Mentaos, Kec. Banjarbaru Utara, Kota Banjar Baru, Kalimantan Selatan 70711</p>
-        <p><i class="fa-solid fa-phone" aria-hidden="true"></i> <a href="tel:+6281254913064">+62 812-5491-3064</a></p>
+        <p><i class="fa-solid fa-location-dot" aria-hidden="true"></i>
+          JL.Irigasi No.08, RT.001/RW.003, Mentaos, Kec. Banjarbaru Utara, Kota Banjar Baru, Kalimantan Selatan 70711
+        </p>
+        <p><i class="fa-solid fa-phone" aria-hidden="true"></i>
+          <a class="link" href="tel:+6281254913064">+62 812-5491-3064</a>
+        </p>
+        <p><i class="fa-solid fa-envelope" aria-hidden="true"></i>
+          <a class="link" href="mailto:order@kopifeeling.id">order@kopifeeling.id</a>
+        </p>
       </div>
       <div class="footer-menu">
         <h4>Menu Cepat</h4>
@@ -203,7 +224,6 @@
         </ul>
       </div>
     </div>
-
     <div class="footer-bottom">
       <p>© <span id="year"></span> Kopi Feeling. All rights reserved.</p>
       <div class="socials">
@@ -214,7 +234,6 @@
     </div>
   </footer>
 
-  <!-- Script utama -->
   <script src="assets/js/main.js" defer></script>
   <noscript>Website ini bekerja lebih optimal dengan JavaScript diaktifkan.</noscript>
 </body>
