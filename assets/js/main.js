@@ -66,19 +66,7 @@ window.addEventListener('scroll', () => {
   } catch (e) {}
 })();
 
-// ==== Leaderboard: tinggi iframe via postMessage ====
-(function listenLeaderboardHeight() {
-  const iframe = document.getElementById('leaderboardFrame');
-  if (!iframe) return;
-  window.addEventListener('message', (event) => {
-    const data = event.data;
-    if (data && data.type === 'LB_HEIGHT' && typeof data.height === 'number') {
-      iframe.style.height = (data.height + 20) + 'px';
-    }
-  });
-})();
-
-// ==== Service Tabs (generic: dipakai di services & stations) ====
+// ==== Service Tabs (generic: dipakai di services & stations & products) ====
 (function initServiceTabs() {
   const tabsWrap = document.querySelector('.service-tabs');
   const tabs = document.querySelectorAll('.service-tabs .tab');
@@ -120,3 +108,4 @@ window.addEventListener('scroll', () => {
     if (keys.includes(key)) setActive(key);
   });
 })();
+``
