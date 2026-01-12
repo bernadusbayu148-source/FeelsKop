@@ -72,9 +72,8 @@ window.addEventListener('scroll', () => {
   if (!iframe) return;
   window.addEventListener('message', (event) => {
     const data = event.data;
-    if (data && (data.type === 'LB_HEIGHT' || data.type === 'LB_HEIGHT')) {
-      const h = Number(data.height);
-      if (!Number.isNaN(h)) iframe.style.height = (h + 20) + 'px';
+    if (data && data.type === 'LB_HEIGHT' && typeof data.height === 'number') {
+      iframe.style.height = (data.height + 20) + 'px';
     }
   });
 })();
@@ -121,4 +120,3 @@ window.addEventListener('scroll', () => {
     if (keys.includes(key)) setActive(key);
   });
 })();
-``
