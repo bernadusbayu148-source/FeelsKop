@@ -40,7 +40,6 @@ window.addEventListener('scroll', () => {
     index = i;
   };
 
-  // Dots
   slides.forEach((_, i) => {
     const dot = document.createElement('button');
     dot.className = 'dot';
@@ -50,11 +49,10 @@ window.addEventListener('scroll', () => {
   });
   setActive(index);
 
-  // Navigasi
   btnPrev?.addEventListener('click', () => setActive((index - 1 + slides.length) % slides.length));
   btnNext?.addEventListener('click', () => setActive((index + 1) % slides.length));
 
-  // Auto-rotate (pause di background)
+  // Auto-rotate (pause saat tab tidak aktif)
   let timer = setInterval(() => setActive((index + 1) % slides.length), 6000);
   document.addEventListener('visibilitychange', () => {
     if (document.hidden) clearInterval(timer);
@@ -66,4 +64,59 @@ window.addEventListener('scroll', () => {
     const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (prefersReduced) clearInterval(timer);
   } catch (e) {}
+})();
+
+// ==== Leaderboard: tinggi iframe via postMessage ====
+(function listenLeaderboardHeight() {
+  const iframe = document.getElementById('leaderboardFrame');
+  if (!iframe) return;
+  window.addEventListener('message', (event) => {
+    const data = event.data;
+    if (data && data.type === 'LB_HEIGHT' && typeof data.height === 'number') {
+      iframe.style.height = (data.height + 20) + 'px';
+    }
+  });
+})();
+
+// ==== Service Tabs (generic: dipakai di services & stations) ====
+(function initServiceTabs() {
+  const tabsWrap = document.querySelector('.service-tabs');
+  const tabs = document.querySelectorAll('.service-tabs .tab');
+  const panels = document.querySelectorAll('.tab-panel');
+  if (!tabsWrap || !tabs.length || !panels.length) return;
+
+  const getKey = (btn) => btn?.dataset?.tab || '';
+  const setActive = (key) => {
+    tabs.forEach(t => {
+      const active = getKey(t) === key;
+      t.classList.toggle('is-active', active);
+      t.setAttribute('aria-selected', active ? 'true' : 'false');
+    });
+    panels.forEach(p => {
+      const active = p.id === `panel-${key}`;
+      p.classList.toggle('is-active', active);
+      if (active) p.removeAttribute('hidden'); else p.setAttribute('hidden', '');
+    });
+    if (key) history.replaceState(null, '', `#${key}`);
+  };
+
+  // init dari hash (jika ada)
+  const keys = Array.from(tabs).map(getKey);
+  const initial = (location.hash || '').replace('#', '');
+  const startKey = keys.includes(initial) ? initial : getKey(tabs[0]);
+  setActive(startKey);
+
+  // handler click & keyboard
+  tabs.forEach(btn => {
+    btn.addEventListener('click', (e) => { e.preventDefault(); setActive(getKey(btn)); });
+    btn.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setActive(getKey(btn)); }
+    });
+  });
+
+  // hashchange
+  window.addEventListener('hashchange', () => {
+    const key = (location.hash || '').replace('#', '');
+    if (keys.includes(key)) setActive(key);
+  });
 })();
