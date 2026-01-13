@@ -2,12 +2,8 @@
 /* =========================
  Tema Dasar & Reset
  ========================= */
-
-/* Font baru yang clean tetapi tetap tegas (tanpa ubah data/markup) */
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&display=swap');
-
 :root{
-  --brand-red:#b5121b;           /* warna brand tetap */
+  --brand-red:#b5121b;
   --brand-dark:#1f1f1f;
   --text:#333;
   --muted:#6b7280;
@@ -16,28 +12,22 @@
   --border:#eaeaea;
   --shadow:0 8px 24px rgba(0,0,0,.08);
 
-  /* Leaderboard theme baru */
+  /* Leaderboard theme */
   --lb-bg:#fff;
   --lb-card:#ffffff;
   --lb-border:#e7e7ea;
-  --lb-soft:#f6f7fb;
+  --lb-soft:#f8f9fb;
   --lb-chip:#ffffff;
   --lb-chip-border:#eaeaea;
-
-  /* Aksen peringkat */
   --gold:#f5b942;
   --silver:#cfd3da;
   --bronze:#d48957;
-
-  /* Gradien brand */
-  --grad-brand: linear-gradient(90deg,#D21F3C,#F75353);
 }
-
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{
   margin:0;
-  font-family:Outfit,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+  font-family:Poppins,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
   color:var(--text);
   background:var(--bg);
 }
@@ -47,7 +37,7 @@ body{
  ========================= */
 .container{max-width:1140px;margin-inline:auto;padding:0 16px;}
 .section{padding:64px 0;}
-.section-title{font-size:clamp(24px,4.6vw,32px);font-weight:800;text-align:center;margin:0 0 24px;letter-spacing:-.01em;}
+.section-title{font-size:clamp(22px,4vw,28px);font-weight:700;text-align:center;margin:0 0 24px;}
 .link{color:var(--brand-red);font-weight:600;text-decoration:none;}
 .link:hover{text-decoration:underline}
 .btn{
@@ -107,7 +97,7 @@ body.nav-open{overflow:hidden;touch-action:none;}
   background-size:cover;background-position:center;
 }
 .slide-content{max-width:820px;padding:0 16px}
-.hero-title{font-size:clamp(30px,5vw,44px);font-weight:800;margin:0 0 10px;letter-spacing:-.02em;}
+.hero-title{font-size:clamp(28px,5vw,42px);font-weight:700;margin:0 0 10px}
 .hero-subtitle{font-size:clamp(16px,3.2vw,18px);margin:0 0 18px;opacity:.95}
 .slider-btn{
   position:absolute;top:50%;transform:translateY(-50%);background:#fff;border:1px solid var(--border);
@@ -117,14 +107,14 @@ body.nav-open{overflow:hidden;touch-action:none;}
 .slider-dots{position:absolute;bottom:16px;left:50%;transform:translateX(-50%);display:flex;gap:8px}
 .slider-dots .dot{width:10px;height:10px;border-radius:50%;background:#fff;opacity:.7;cursor:pointer}
 .slider-dots .dot.active{background:var(--brand-red);opacity:1}
-@media (max-width:576px){.hero-title{font-size:clamp(26px,6vw,34px)}.slide{min-height:380px}}
+@media (max-width:576px){.hero-title{font-size:clamp(24px,6vw,32px)}.slide{min-height:380px}}
 
 /* =========================
  Features Grid
  ========================= */
 .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
 .feature{
-  background:#fff;border:1px solid var(--border);border-radius:16px;padding:18px;text-align:center;box-shadow:var(--shadow);
+  background:#fff;border:1px solid var(--border);border-radius:14px;padding:18px;text-align:center;box-shadow:var(--shadow);
 }
 .feature i{color:var(--brand-red);font-size:28px;margin-bottom:8px}
 @media (max-width:768px){.grid-3{grid-template-columns:1fr}}
@@ -133,7 +123,7 @@ body.nav-open{overflow:hidden;touch-action:none;}
  Product Grid (highlight)
  ========================= */
 .product-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-.product-card{background:#fff;border:1px solid var(--border);border-radius:16px;overflow:hidden;box-shadow:var(--shadow)}
+.product-card{background:#fff;border:1px solid var(--border);border-radius:14px;overflow:hidden;box-shadow:var(--shadow)}
 .product-card img{width:100%;height:auto;display:block}
 .product-info{padding:14px}
 .product-info h3{margin:0 0 6px;font-size:18px}
@@ -177,7 +167,8 @@ input,textarea{
  Service Tabs
  ========================= */
 .service-tabs{
-  display:flex;gap:14px;justify-content:center;align-items:center;flex-wrap:wrap;margin:0 0 18px;
+  display:flex;gap:14px;justify-content:center;align-items:center;
+  flex-wrap:wrap;margin:0 0 18px;
   overflow-x:auto;scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch;
 }
 .service-tabs .tab{
@@ -242,12 +233,12 @@ input,textarea{
 @media (max-width:768px){.station-list{grid-template-columns:1fr}}
 
 /* =========================
- Products Page
+ Products Page — Menu Cards
  ========================= */
 .menu-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
 .menu-card{
   background:#fff;border:1px solid var(--border);
-  border-radius:16px;overflow:hidden;box-shadow:var(--shadow);display:flex;flex-direction:column;
+  border-radius:14px;overflow:hidden;box-shadow:var(--shadow);display:flex;flex-direction:column;
 }
 .menu-card img{width:100%;height:180px;object-fit:cover;display:block;}
 .menu-info{padding:14px;display:flex;flex-direction:column;gap:8px;}
@@ -260,65 +251,59 @@ input,textarea{
 @media (max-width:576px){.menu-grid{grid-template-columns:1fr}.menu-card img{height:180px}}
 
 /* =========================================================
-   LEADERBOARD — Redesign eksklusif (namespace: #leaderboard-host)
-   ========================================================= */
-
-/* Host card: glass-soft + inner shadow */
+ LEADERBOARD (Redesign penuh, namespace: #leaderboard-host)
+ ========================================================= */
+/* Host card */
 #leaderboard-host .leaderboard-card{
-  background:linear-gradient(180deg,#fff 0%,#fafcff 100%);
+  background:var(--lb-card);
   border:1px solid var(--lb-border);
-  border-radius:22px;
-  box-shadow:
-    inset 0 1px 0 #fff,
-    0 14px 36px rgba(0,0,0,.08);
+  border-radius:18px;
+  box-shadow:0 10px 28px rgba(0,0,0,.08);
   padding:18px;
 }
-
-/* Header judul */
+/* Header */
 #leaderboard-host .lb-header .lb-title{
-  margin:0 0 10px;font-weight:800;font-size:clamp(28px,5.2vw,40px);
-  letter-spacing:-.02em;background:var(--grad-brand);
+  margin:0 0 8px;font-weight:800;font-size:clamp(26px,4.6vw,38px);
+  letter-spacing:-.02em;background:linear-gradient(90deg,#D21F3C,#F75353);
   -webkit-background-clip:text;background-clip:text;color:transparent;
 }
 #leaderboard-host .lb-sub{margin:0 0 18px;color:var(--muted)}
-
-/* Controls: pill + grad brand untuk tombol */
+/* Controls (pill) */
 #leaderboard-host .controls{
-  display:grid;grid-template-columns:1fr minmax(140px,180px) auto;gap:10px;align-items:center;margin-bottom:16px;
+  display:grid;grid-template-columns:1fr minmax(140px,180px) auto;gap:10px;align-items:center;margin-bottom:14px;
 }
 #leaderboard-host .controls input,#leaderboard-host .controls select{
   background:#fff;color:var(--text);border:1px solid var(--lb-border);
-  border-radius:999px;padding:12px 16px;height:44px;outline:none;font-weight:600;
+  border-radius:999px;padding:10px 14px;height:42px;outline:none;
 }
-#leaderboard-host .controls input::placeholder{color:#9aa0a6}
+#leaderboard-host .controls input::placeholder{color:#888}
 #leaderboard-host .btn.btn-primary{
-  border:none;border-radius:999px;background:var(--grad-brand);color:#fff;
-  height:44px;padding:10px 18px;box-shadow:0 8px 20px rgba(210,31,60,.25);
+  border:none;border-radius:999px;background:linear-gradient(90deg,#D21F3C,#F75353);color:#fff;
+  height:42px;padding:10px 18px;
 }
 @media (max-width:640px){
-  #leaderboard-host .controls{grid-template-columns:minmax(150px,1fr) minmax(120px,160px) auto;gap:8px}
-  #leaderboard-host .controls input,#leaderboard-host .controls select{height:42px}
-  #leaderboard-host .btn.btn-primary{height:42px;padding:8px 14px}
+  #leaderboard-host .controls{grid-template-columns:minmax(140px,1fr) minmax(110px,140px) auto;gap:8px}
+  #leaderboard-host .controls input,#leaderboard-host .controls select{height:40px}
+  #leaderboard-host .btn.btn-primary{height:40px;padding:8px 14px}
 }
-
-/* Stat tiles: soft + progress */
+/* Stats tiles */
 #leaderboard-host .stats{
-  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin:12px 0 18px;
+  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:12px 0 16px;
 }
 #leaderboard-host .stat-card{
-  background:#fff;border:1px solid var(--lb-border);border-radius:18px;padding:16px;box-shadow:0 10px 22px rgba(0,0,0,.06);
+  background:#fff;border:1px solid var(--lb-border);border-radius:16px;padding:16px;box-shadow:0 8px 18px rgba(0,0,0,.06);
 }
 #leaderboard-host .stat-title{color:#8a8a8a;margin:0 0 6px;font-size:.95rem}
-#leaderboard-host .stat-value{font-weight:800;font-size:clamp(22px,3.8vw,26px);margin:0;letter-spacing:.2px}
+#leaderboard-host .stat-value{font-weight:800;font-size:clamp(20px,3.6vw,24px);margin:0}
 #leaderboard-host .stat-bar{margin-top:10px;width:100%;height:10px;border-radius:999px;background:#ffe1e5;overflow:hidden;border:1px solid #ffd1d8}
-#leaderboard-host .stat-bar .fill{height:100%;background:var(--grad-brand);width:0%;transition:width .6s ease}
-
+#leaderboard-host .stat-bar .fill{height:100%;background:linear-gradient(90deg,#D21F3C,#F75353);width:0%;transition:width .6s ease}
+@media (max-width:360px){#leaderboard-host .stats{gap:8px}}
 /* Search info */
 #leaderboard-host .search-info{
-  margin:6px 0 12px;padding:12px;border:1px solid var(--lb-border);border-radius:16px;background:linear-gradient(180deg,#fff 0%,#f9fafc 100%);color:var(--text);box-shadow:0 8px 18px rgba(0,0,0,.06);display:none;
+  margin:6px 0 12px;padding:12px;border:1px solid var(--lb-border);border-radius:14px;background:linear-gradient(180deg,#fff 0%,#fafbff 100%);color:var(--text);box-shadow:0 8px 18px rgba(0,0,0,.06);display:none;
 }
 #leaderboard-host .search-item{
-  display:grid;grid-template-columns:110px 1fr 140px 180px;gap:10px;padding:10px;border:1px solid var(--lb-border);border-radius:14px;background:#fff;align-items:center;
+  display:grid;grid-template-columns:96px 1fr 140px 180px;gap:10px;padding:10px;border:1px solid var(--lb-border);border-radius:12px;background:#fff;align-items:center;
 }
 #leaderboard-host .search-item .rank{font-weight:800;color:#D21F3C}
 #leaderboard-host .search-item .name{font-weight:700}
@@ -326,119 +311,154 @@ input,textarea{
 #leaderboard-host .search-item .points,#leaderboard-host .search-item .gap{font-variant-numeric:tabular-nums;font-feature-settings:"tnum"}
 #leaderboard-host .search-item .gap{color:#D21F3C;font-weight:700}
 @media (max-width:900px){#leaderboard-host .search-item{grid-template-columns:90px 1fr}#leaderboard-host .search-item .points,#leaderboard-host .search-item .gap{margin-top:6px}}
-
-/* =========================
-   PODIUM (Top 3) — benar-benar terpisah & eksklusif
-   ========================= */
+/* Podium (top 3) */
 #leaderboard-host .podium{
-  margin:16px 0 22px;padding:20px;border-radius:22px;
-  background:linear-gradient(180deg,#fff 0%,#f5f7fb 100%);border:1px solid var(--lb-border);
+  margin:14px 0 20px;padding:16px;border-radius:18px;background:linear-gradient(180deg,#fff 0%,#f9fafc 100%);border:1px solid var(--lb-border);
 }
-
-/* Jarak antar pemuncak diperbesar agar terasa terpisah */
 #leaderboard-host .podium-wrap{
-  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;align-items:start;
+  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;align-items:stretch;
 }
-
-/* Kartu podium: ring gradien + pedestal peringkat */
 #leaderboard-host .podium-card{
-  position:relative;background:var(--lb-card);border:1px solid var(--lb-border);border-radius:22px;
-  padding:18px 16px 52px; /* ruang bawah untuk chip poin + pedestal */
-  text-align:center;box-shadow:0 16px 34px rgba(0,0,0,.08);
-  min-width:0;overflow:visible;display:flex;flex-direction:column;align-items:center;
+  position:relative;background:var(--lb-card);border:1px solid var(--lb-border);border-radius:18px;
+  padding:16px;text-align:center;box-shadow:0 8px 24px rgba(0,0,0,.06);min-width:0;overflow:visible;
+  display:flex;flex-direction:column;align-items:center;
 }
-
-/* Outline berbeda-beda untuk eksklusivitas */
-#leaderboard-host .podium-card.first{box-shadow:0 0 0 3px var(--gold) inset, 0 18px 38px rgba(0,0,0,.10)}
-#leaderboard-host .podium-card.second{box-shadow:0 0 0 3px var(--silver) inset,0 18px 38px rgba(0,0,0,.10)}
-#leaderboard-host .podium-card.third{box-shadow:0 0 0 3px var(--bronze) inset,0 18px 38px rgba(0,0,0,.10)}
-
-/* Ribbon peringkat (lingkaran tebal) */
-#leaderboard-host .podium-badge{
-  position:absolute;top:-14px;right:-14px;padding:10px 14px;border-radius:999px;font-weight:800;
-  background:#fff;border:2px solid var(--lb-border);box-shadow:0 10px 22px rgba(0,0,0,.12);
-  font-size:clamp(12px,3.2vw,14px);
-}
-
-/* Aura belakang avatar */
-#leaderboard-host .podium-card::before{
-  content:"";position:absolute;top:18px;left:50%;transform:translateX(-50%);
-  width:120px;height:120px;border-radius:999px;
-  background:radial-gradient(ellipse at center, rgba(247,83,83,.22) 0%, rgba(255,255,255,0) 62%);
-}
-
-/* Avatar & teks */
+#leaderboard-host .podium-card.first{outline:3px solid var(--gold)}
+#leaderboard-host .podium-card.second{outline:3px solid var(--silver)}
+#leaderboard-host .podium-card.third{outline:3px solid var(--bronze)}
 #leaderboard-host .podium-avatar{
-  width:90px;height:90px;margin:0 auto 12px;border-radius:18px;
+  width:84px;height:84px;margin:0 auto 10px;border-radius:16px;
   background:linear-gradient(135deg,#ffe4ea,#D21F3C 60%,#F75353);
-  border:1px solid #ffd6dc;box-shadow:0 10px 22px rgba(210,31,60,.18);
+  border:1px solid #ffd6dc;box-shadow:0 8px 20px rgba(210,31,60,.15);
 }
-#leaderboard-host .podium-name{margin:6px 0 4px;font-weight:800;font-size:clamp(16px,4vw,18px);letter-spacing:.2px}
-#leaderboard-host .podium-member{margin:0 0 14px;color:var(--muted);font-size:clamp(12px,3.2vw,13px)}
-
-/* Chip poin (absolute di tengah bawah) */
+#leaderboard-host .podium-name{margin:6px 0 2px;font-weight:800;font-size:clamp(14px,3.6vw,16px);}
+#leaderboard-host .podium-member{margin:0 0 10px;color:var(--muted);font-size:clamp(12px,3.2vw,13px);}
 #leaderboard-host .podium-trophy{
-  position:absolute;left:50%;bottom:16px;transform:translateX(-50%);
+  position:absolute;left:50%;bottom:12px;transform:translateX(-50%);
   display:inline-flex;align-items:center;gap:8px;
-  padding:8px 12px;min-height:30px;border-radius:999px;background:var(--lb-chip);border:1px solid var(--lb-chip-border);
-  box-shadow:0 10px 22px rgba(0,0,0,.10);white-space:nowrap;font-size:14px;line-height:1.2;
+  padding:6px 12px;min-height:30px;border-radius:999px;background:var(--lb-chip);border:1px solid var(--lb-chip-border);
+  box-shadow:0 8px 18px rgba(0,0,0,.08);white-space:nowrap;font-size:14px;line-height:1.2;
 }
 #leaderboard-host .podium-trophy .trophy-icon{font-size:18px;transform:translateY(1px)}
-
-/* Pedestal (alas) terpisah — tinggi berbeda per peringkat */
-#leaderboard-host .podium-card::after{
-  content:"";position:absolute;left:50%;transform:translateX(-50%);
-  bottom:-12px;width:68%;height:14px;border-radius:10px;box-shadow:0 10px 22px rgba(0,0,0,.12);
+#leaderboard-host .podium-badge{
+  position:absolute;top:-10px;right:-10px;padding:8px 12px;border-radius:999px;font-weight:800;
+  background:#fff;border:1px solid var(--lb-border);box-shadow:0 6px 14px rgba(0,0,0,.12);
 }
-#leaderboard-host .podium-card.first::after{background:linear-gradient(90deg,#eac14a,#f5b942);}
-#leaderboard-host .podium-card.second::after{background:linear-gradient(90deg,#dfe3ea,#cfd3da);}
-#leaderboard-host .podium-card.third::after{background:linear-gradient(90deg,#e2a27a,#d48957);}
-
-/* Smartphone: skala kompak namun layout tetap sama */
 @media (max-width:640px){
-  #leaderboard-host .podium-wrap{gap:16px}
-  #leaderboard-host .podium-card{padding:14px 12px 44px}
-  #leaderboard-host .podium-avatar{width:68px;height:68px}
-  #leaderboard-host .podium-name{font-size:clamp(14px,3.8vw,16px)}
-  #leaderboard-host .podium-member{font-size:clamp(11px,3.2vw,12px)}
-  #leaderboard-host .podium-badge{padding:8px 12px;top:-12px;right:-12px}
-  #leaderboard-host .podium-trophy{bottom:12px;font-size:13px;padding:6px 10px;gap:6px;min-height:28px}
+  #leaderboard-host .podium-wrap{gap:10px}
+  #leaderboard-host .podium-card{padding:12px 10px 38px}
+  #leaderboard-host .podium-avatar{width:60px;height:60px}
+  #leaderboard-host .podium-name{font-size:clamp(12px,3.6vw,14px)}
+  #leaderboard-host .podium-member{font-size:clamp(10px,3.2vw,12px)}
+  #leaderboard-host .podium-trophy{bottom:10px;font-size:13px;padding:4px 10px;gap:6px;min-height:28px}
   #leaderboard-host .podium-trophy .trophy-icon{font-size:16px}
-  #leaderboard-host .podium-card::before{width:96px;height:96px}
-  #leaderboard-host .podium-card::after{width:72%;height:12px}
 }
 @media (max-width:360px){
-  #leaderboard-host .podium-trophy{font-size:12px;padding:5px 8px;gap:5px;min-height:26px}
-  #leaderboard-host .podium-avatar{width:60px;height:60px}
-  #leaderboard-host .podium-card::before{width:88px;height:88px}
+  #leaderboard-host .podium-trophy{font-size:12px;padding:3px 8px;gap:5px;min-height:26px}
+  #leaderboard-host .podium-avatar{width:56px;height:56px}
 }
-
-/* Podium meta */
-#leaderboard-host .podium-meta{margin-top:18px;color:var(--muted);font-size:.95rem;text-align:center}
-
-/* =========================
-   Table Leaderboard
-   ========================= */
-#leaderboard-host .card{
-  background:#fff;border:1px solid var(--lb-border);
-  border-radius:22px;box-shadow:0 12px 28px rgba(0,0,0,.08);
-  padding:12px;margin-top:18px
-}
-#leaderboard-host .table-accent{height:6px;border-radius:999px;background:var(--grad-brand);opacity:.22;margin:0 6px 8px}
+#leaderboard-host .podium-meta{margin-top:8px;color:var(--muted);font-size:.95rem}
+/* Table */
+#leaderboard-host .card{background:var(--lb-card);border:1px solid var(--lb-border);border-radius:18px;box-shadow:0 8px 18px rgba(0,0,0,.06);padding:12px;margin-top:12px}
+#leaderboard-host .table-accent{height:6px;border-radius:999px;background:linear-gradient(90deg,#D21F3C,#F75353);opacity:.22;margin:0 6px 8px}
 #leaderboard-host #board{width:100%;border-collapse:collapse}
 #leaderboard-host #board thead th{
-  background:#f6f7f9;text-align:left;padding:12px;border-bottom:1px solid var(--lb-border);
-  font-weight:800;letter-spacing:.25px;color:#3b3b3b
+  background:#f6f7f9;text-align:left;padding:12px;border-bottom:1px solid var(--lb-border);font-weight:800;letter-spacing:.2px;
 }
 #leaderboard-host #board tbody td{padding:12px;border-bottom:1px solid var(--lb-border)}
 #leaderboard-host #board tbody tr:hover{background:#fafbff}
 #leaderboard-host .rank-badge{
   display:inline-block;padding:6px 10px;border-radius:999px;font-weight:800;font-size:.9rem;
-  background:#fff;border:1px solid var(--lb-border);box-shadow:0 4px 10px rgba(0,0,0,.06)
+  background:#fff;border:1px solid var(--lb-border);box-shadow:0 4px 10px rgba(0,0,0,.06);
 }
 #leaderboard-host .mono{font-variant-numeric:tabular-nums;font-feature-settings:"tnum"}
 #leaderboard-host .empty{text-align:center;color:#888;padding:20px}
 #leaderboard-host .footer{color:#888;font-size:.9rem;margin-top:8px}
+
+/* =========================
+ Kontak — Pesanan Dinamis & Modal
+ ========================= */
+.contact-subtitle{
+  font-weight:800;font-size:clamp(18px,4vw,22px);margin:10px 0 12px;letter-spacing:-.01em;
+}
+.contact-grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px;
+}
+@media (max-width:768px){
+  .contact-grid{grid-template-columns:1fr}
+}
+.order-list{display:flex;flex-direction:column;gap:12px;margin:8px 0 10px}
+.order-row{
+  display:grid;grid-template-columns:1.4fr 110px 36px;gap:10px;
+  background:#fff;border:1px solid var(--border);border-radius:14px;
+  padding:10px;align-items:center;box-shadow:0 6px 16px rgba(0,0,0,.06);
+}
+.menu-picker{
+  display:flex;justify-content:space-between;align-items:center;gap:10px;
+  width:100%;padding:12px 14px;border:1px solid var(--border);border-radius:12px;background:#fafafa;color:var(--text);
+  cursor:pointer;transition:.15s;
+}
+.menu-picker:hover{filter:brightness(.98)}
+.menu-label{font-weight:700;color:var(--brand-red)}
+.menu-value{font-weight:600;color:#444}
+.qty-box{display:flex;align-items:center}
+.qty-input{
+  width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:12px;
+  text-align:center;font-weight:700;letter-spacing:.02em;
+}
+.row-remove{
+  width:36px;height:36px;border:1px solid var(--border);border-radius:10px;background:#fff;color:#d00;font-weight:800;cursor:pointer;
+}
+.row-remove:hover{background:#ffecec}
+.order-actions{margin:6px 0 12px}
+.order-actions .btn{min-height:40px}
+.address-box{margin:10px 0}
+.address-box textarea{
+  width:100%;padding:12px 14px;border:1px solid var(--border);border-radius:12px;resize:vertical;
+}
+.send-actions{display:flex;align-items:center;gap:12px;margin-top:10px}
+.send-actions .send-hint{color:#888}
+
+/* Modal */
+.modal[hidden]{display:none}
+.modal{position:fixed;inset:0;z-index:1000}
+.modal-backdrop{position:absolute;inset:0;background:rgba(0,0,0,.35)}
+.modal-dialog{
+  position:relative;margin:40px auto;background:#fff;border-radius:16px;border:1px solid var(--border);
+  max-width:720px;width:92%;box-shadow:0 18px 40px rgba(0,0,0,.18);overflow:hidden;
+}
+.modal-header,.modal-footer{padding:12px 14px;background:#fafafa;border-bottom:1px solid var(--border)}
+.modal-footer{border-top:1px solid var(--border);border-bottom:none}
+.modal-header h4{margin:0;font-weight:800}
+.modal-close{
+  position:absolute;right:10px;top:10px;width:34px;height:34px;border:1px solid var(--border);
+  background:#fff;border-radius:10px;font-weight:800;color:#d00;cursor:pointer;
+}
+.modal-body{padding:12px 14px}
+.modal-search{margin:0 0 10px}
+.modal-search input{
+  width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:12px
+}
+.menu-grid{
+  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px
+}
+@media (min-width:640px){
+  .menu-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+}
+.menu-item{
+  padding:12px 14px;border:1px solid var(--border);border-radius:12px;background:#fff;cursor:pointer;font-weight:700;
+  box-shadow:0 6px 14px rgba(0,0,0,.06);transition:.15s
+}
+.menu-item:hover{filter:brightness(.98);border-color:#dcdcdc}
+.menu-item:active{transform:scale(.98)}
+/* Aksesibilitas visual */
+.menu-item:focus-visible,.menu-picker:focus-visible,.qty-input:focus-visible,.modal-close:focus-visible{
+  outline:2px solid #1e90ff;outline-offset:2px
+}
+/* Screen reader only */
+.sr-only{
+  position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0
+}
 
 /* Motion preference */
 @media (prefers-reduced-motion:reduce){
