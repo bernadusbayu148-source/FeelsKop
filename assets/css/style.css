@@ -78,7 +78,7 @@ body.nav-open {
   .nav{
     display:none;
     position:fixed;
-    inset:64px 0 0 0;                 /* top = tinggi header, bawah 0 */
+    inset:64px 0 0 0;                 /* top = tinggi header, sesuaikan jika berubah */
     height:calc(100vh - 64px);        /* penuh viewport minus header */
     background:#fff;
     border-top:1px solid var(--border);
@@ -137,15 +137,19 @@ body.nav-open {
 
 /* >>> Perbaikan: hindari tinggi statis yang memicu scrollbar internal <<< */
 #leaderboardFrame{
-  width:100%; max-width:920px; 
+  width:100%;
+  max-width:920px;
   height:1px;                 /* awal minimal; akan dioverride oleh JS */
-  min-height:300px;           /* fallback agar tidak kosong */
-  border:none; background:transparent;
+  min-height:300px;           /* fallback agar tidak kosong sebelum pesan */
+  border:none;
+  background:transparent;
 }
-@media (max-width:992px){ #leaderboardFrame{ max-width:860px; } }
+@media (max-width:992px){
+  #leaderboardFrame{ max-width:860px; }
+}
 @media (max-width:576px){
   #leaderboard-host .leaderboard-card{ padding:8px; }
-  #leaderboardFrame{ max-width:100%; min-height:360px; } /* hapus height:1100px */
+  #leaderboardFrame{ max-width:100%; min-height:360px; } /* (hapus height:1100px) */
 }
 
 /* =========================
