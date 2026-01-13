@@ -26,6 +26,7 @@ async function fetchSheet(){
   if (await tryFetchCsv()) return;
   el.body.innerHTML = `<tr><td colspan="4" class="empty">Gagal memuat data. Pastikan Sheet dibagikan publik dan sudah <b>Publish to the web</b>.</td></tr>`;
   el.meta.textContent = `Fetch gagal • ${new Date().toLocaleString('id-ID')}`;
+  window.requestHeight && window.requestHeight();
 }
 
 async function tryFetchGviz(){
@@ -125,6 +126,8 @@ function applyAndRender(rows, headers, source){
   render();
 
   el.meta.textContent = `Sumber: ${source} • ${state.filtered.length} baris • ${new Date().toLocaleString('id-ID')}`;
+  // >>> Kirim ulang tinggi ke parent segera setelah render
+  window.requestHeight && window.requestHeight();
 }
 
 function applyFilter(){
@@ -182,6 +185,7 @@ function render(){
 
   if (slice.length===0){
     el.body.innerHTML = `<tr><td colspan="4" class="empty">Tidak ada data.</td></tr>`;
+    window.requestHeight && window.requestHeight();
     return;
   }
 
@@ -198,6 +202,7 @@ function render(){
   }).join('');
 
   el.body.innerHTML = rowsHtml;
+  window.requestHeight && window.requestHeight();
 }
 
 function renderPodium(sortedRows){
@@ -241,13 +246,48 @@ el.refresh.addEventListener('click',()=>{ fetchSheet(); });
 /* Mulai fetch */
 fetchSheet();
 
+/* >>> Perbaikan auto-height yang robust (debounced + retry) <<< */
+(function autoHeight() {
+  function getDocHeight() {
+    const b = document.body, d = document.documentElement;
+    return Math.max(
+      b.scrollHeight, b.offsetHeight, b.clientHeight,
+      d.scrollHeight, d.offsetHeight, d.clientHeight
+    );
+  }
 
-(function postHeightToParent(){
-  const send = () => {
-    const h = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight);
-    window.parent?.postMessage({ type: 'LB_HEIGHT', height: h }, '*');
-  };
-  window.addEventListener('load', send);
-  window.addEventListener('resize', send);
-  new MutationObserver(send).observe(document.body, { childList:true, subtree:true, attributes:true });
+  function send(immediate = false) {
+    const doSend = () => {
+      const h = getDocHeight() + 8; // margin kecil
+      window.parent?.postMessage({ type: 'LB_HEIGHT', height: h }, '*');
+    };
+    if (immediate) {
+      doSend();
+    } else {
+      clearTimeout(send._t);
+      send._t = setTimeout(doSend, 120);
+    }
+  }
+
+  // Ekspose agar bisa dipanggil setelah render
+  window.requestHeight = () => send(true);
+
+  window.addEventListener('DOMContentLoaded', () => send(true));
+  window.addEventListener('load', () => {
+    send(true);
+    setTimeout(() => send(true), 250);
+    setTimeout(() => send(true), 1000);
+  });
+  window.addEventListener('resize', () => send());
+
+  const obs = new MutationObserver(() => send());
+  obs.observe(document.body, { childList:true, subtree:true });
+
+  document.querySelectorAll('img').forEach(img => {
+    if (!img.complete) img.addEventListener('load', () => send());
+  });
+
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(() => send(true));
+  }
 })();
