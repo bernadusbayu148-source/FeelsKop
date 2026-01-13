@@ -77,7 +77,7 @@ body.nav-open {
   .nav{
     display:none;
     position:fixed;
-    inset:64px 0 0 0;                 /* top = tinggi header, sesuaikan jika berubah */
+    inset:64px 0 0 0;                 /* top = tinggi header */
     height:calc(100vh - 64px);        /* penuh viewport minus header */
     background:#fff;
     border-top:1px solid var(--border);
@@ -328,7 +328,7 @@ input, textarea{
 #leaderboard-host .leaderboard-card{
   background:#fff; border:1px solid var(--border);
   border-radius:16px; box-shadow:var(--shadow); padding:12px;
-  overflow:visible; /* pastikan tidak membuat scroll internal */
+  overflow:visible;
 }
 #leaderboard-host .lb-header .lb-title{
   margin:0 0 8px; font-weight:800; font-size:clamp(24px,4vw,36px);
@@ -394,11 +394,14 @@ input, textarea{
   #leaderboard-host .search-item .points, #leaderboard-host .search-item .gap{margin-top:6px}
 }
 
+/* —— Desktop & tablet default podium —— */
 #leaderboard-host .podium{
   margin:12px 0 20px; padding:16px; border-radius:16px;
   background:linear-gradient(180deg,#fff 0%,#fafafa 100%); border:1px solid #efefef;
 }
-#leaderboard-host .podium-wrap{display:grid; gap:14px; grid-template-columns:1fr 1.2fr 1fr; grid-template-areas:"second first third"; align-items:stretch; min-width:0}
+#leaderboard-host .podium-wrap{
+  display:grid; grid-template-columns:1fr 1.2fr 1fr; gap:14px; align-items:stretch;
+}
 #leaderboard-host .podium-card.first{grid-area:first}
 #leaderboard-host .podium-card.second{grid-area:second}
 #leaderboard-host .podium-card.third{grid-area:third}
@@ -412,30 +415,34 @@ input, textarea{
 }
 #leaderboard-host .podium-name{margin:6px 0 2px; font-weight:700}
 #leaderboard-host .podium-member{margin:0 0 10px; color:var(--muted); font-size:.95rem}
+
+/* Chip poin (desktop default) */
 #leaderboard-host .podium-trophy{
-  display:inline-flex; align-items:center; gap:8px; padding:8px 12px; border-radius:999px; background:#fff; border:1px solid #efefef; color:var(--text); margin:8px auto 0;
+  display:inline-flex; align-items:center; gap:8px; padding:8px 12px; min-height:32px;
+  border-radius:999px; background:#fff; border:1px solid #efefef; color:var(--text);
+  margin:8px auto 0; box-shadow:0 8px 18px rgba(0,0,0,.08);
 }
-#leaderboard-host .podium-card.first{transform:translateY(-8px); box-shadow:0 12px 30px rgba(0,0,0,.10)}
-#leaderboard-host .podium-badge{position:absolute; top:-10px; right:-10px; padding:8px 12px; border-radius:999px; font-weight:800; box-shadow:0 2px 6px rgba(0,0,0,.15)}
+#leaderboard-host .podium-trophy .trophy-icon{
+  font-size:18px; line-height:1; display:inline-block; transform:translateY(1px);
+}
+
+/* #1 lebih menonjol di desktop */
 @media (min-width:641px){
   #leaderboard-host .podium-card.first{transform:translateY(-10px) scale(1.04); z-index:2;}
   #leaderboard-host .podium-card.second, #leaderboard-host .podium-card.third{transform:none}
 }
 
-/* ======== PATCH MOBILE: chip 'poin' terpusat & DIPERKECIL ======== */
+/* ======== SMARTPHONE (≤ 640px): posisi & ukuran chip poin seragam ======== */
 @media (max-width:640px){
   #leaderboard-host .podium-wrap{
     grid-template-columns:repeat(3,minmax(0,1fr));
-    grid-template-areas:"second first third";
     gap:8px;
   }
   #leaderboard-host .podium-card{
-    position:relative;
     padding:10px;
-    padding-bottom:36px;           /* ruang chip (diperkecil dari 42px) */
+    padding-bottom:36px;           /* ruang chip poin (diperkecil) */
     overflow:visible;
   }
-  /* Chip poin: kecil & kompak */
   #leaderboard-host .podium-trophy{
     position:absolute;
     left:50%;
@@ -458,21 +465,16 @@ input, textarea{
     border:1px solid #efefef;
     box-shadow:0 4px 10px rgba(0,0,0,.08);
   }
-  /* Ukuran ikon piala diperkecil */
   #leaderboard-host .podium-trophy .trophy-icon{
     font-size:16px;
-    line-height:1;
-    display:inline-block;
     transform:translateY(1px);
   }
-  /* #1 tetap menonjol namun tidak berlebihan */
   #leaderboard-host .podium-card.first{
     transform:none;
-    transform:scale(1.04);         /* dari 1.06 → 1.04 */
+    transform:scale(1.04);         /* kalem agar seragam visual */
     z-index:3;
     box-shadow:0 14px 34px rgba(0,0,0,.12);
   }
-  /* Avatar & teks agar tidak berdesakan */
   #leaderboard-host .podium-avatar{ width:60px; height:60px; }
   #leaderboard-host .podium-name{
     font-size:clamp(12px,3.5vw,14px);
@@ -485,7 +487,7 @@ input, textarea{
   #leaderboard-host .podium-badge{ z-index:6; }
 }
 
-/* Ponsel sangat kecil (≤360px): kompres lebih agresif */
+/* ======== VERY SMALL (≤ 360px): kompres lebih agresif ======== */
 @media (max-width:360px){
   #leaderboard-host .podium-trophy{
     font-size:12px;
