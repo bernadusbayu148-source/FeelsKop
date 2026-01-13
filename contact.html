@@ -2,15 +2,20 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>Kontak — Kopi Feeling</title>
   <meta name="description" content="Hubungi Kopi Feeling: pemesanan menu, catering, paket acara, kemitraan.">
   <link rel="canonical" href="https://bernadusbayu148-source.github.io/KopiFeeling/contact.html">
 
+  <!-- Fonts & Icons -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+
+  <!-- Main CSS -->
   <link rel="stylesheet" href="assets/css/style.css">
 
+  <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="Kontak — Kopi Feeling">
   <meta property="og:description" content="Pemesanan menu, catering, paket acara, kemitraan.">
@@ -18,16 +23,27 @@
   <meta property="og:image" content="https://bernadusbayu148-source.github.io/KopiFeeling/assets/img/og-cover.jpg">
   <meta property="og:locale" content="id_ID">
 
+  <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Kontak — Kopi Feeling">
   <meta name="twitter:description" content="Pemesanan menu, catering, paket acara, kemitraan.">
   <meta name="twitter:image" content="https://bernadusbayu148-source.github.io/KopiFeeling/assets/img/og-cover.jpg">
 </head>
 <body>
+  <!-- HEADER / NAVBAR -->
   <header class="site-header" id="siteHeader">
     <div class="container nav-container">
-      <a href="index.html" class="brand"><img src="assets/img/logo-oval.svg" class="logo" alt="Logo Kopi Feeling"><span class="brand-name">Kopi Feeling</span></a>
-      <button class="nav-toggle" aria-label="Buka menu" aria-expanded="false" aria-controls="primaryNav"><span class="nav-toggle-bar"></span><span class="nav-toggle-bar"></span><span class="nav-toggle-bar"></span></button>
+      <a href="index.html" class="brand">
+        <img src="assets/img/logo-oval.svg" class="logo" alt="Logo Kopi Feeling">
+        <span class="brand-name">Kopi Feeling</span>
+      </a>
+
+      <button class="nav-toggle" aria-label="Buka menu" aria-expanded="false" aria-controls="primaryNav">
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+      </button>
+
       <nav class="nav" id="primaryNav" aria-label="Navigasi utama">
         <ul class="nav-list">
           <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
@@ -37,55 +53,309 @@
           <li class="nav-item"><a href="contact.html" class="nav-link active">Kontak</a></li>
         </ul>
       </nav>
+
       <a class="btn btn-outline btn-wa" href="https://wa.me/6281254913064?text=Halo%20Kopi%20Feeling,%20saya%20ingin%20bertanya%20tentang%20menu%20&%20pemesanan." target="_blank" rel="noopener">
         <i class="fa-brands fa-whatsapp"></i> WhatsApp
       </a>
     </div>
   </header>
 
-  <main class="section container" id="quote">
+  <!-- MAIN -->
+  <main class="section container" id="contactPage">
     <h2 class="section-title">Hubungi Kami / Pesan Kopi</h2>
-    <form class="contact-form" onsubmit="return openWA(this)">
-      <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px">
-        <div><label for="nama">Nama</label><input id="nama" name="nama" type="text" required autocomplete="name"></div>
-        <div><label for="perusahaan">Instansi/Komunitas</label><input id="perusahaan" name="perusahaan" type="text" autocomplete="organization"></div>
-        <div><label for="email">Email</label><input id="email" name="email" type="email" autocomplete="email"></div>
-        <div><label for="hp">Nomor HP</label><input id="hp" name="hp" type="tel" required inputmode="tel" pattern="\+?\d{9,15}" autocomplete="tel"></div>
-        <div style="grid-column:1/-1">
-          <label for="spesifikasi">Menu / Qty / Lokasi Pengantaran</label>
-          <textarea id="spesifikasi" name="spesifikasi" rows="4" placeholder="Contoh: 10 Latte, 5 Americano, alamat: Jl. .... Banjarmasin, jam 10:00"></textarea>
+
+    <!-- FORM KONTAK -->
+    <form class="contact-form" id="contactForm" onsubmit="return false;">
+      <!-- Info dasar -->
+      <div class="contact-grid">
+        <div>
+          <label for="name">Nama</label>
+          <input id="name" name="name" type="text" required autocomplete="name" />
+        </div>
+        <div>
+          <label for="organization">Instansi/Komunitas</label>
+          <input id="organization" name="organization" type="text" autocomplete="organization" />
+        </div>
+        <div>
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" autocomplete="email" />
+        </div>
+        <div>
+          <label for="phone">Nomor HP</label>
+          <input id="phone" name="phone" type="tel" required inputmode="tel" pattern="\+?\d{9,15}" autocomplete="tel" />
         </div>
       </div>
-      <div style="margin-top:12px">
-        <button class="btn btn-primary" type="submit"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Kirim via WhatsApp</button>
-      </div>
+
+      <!-- PESANAN DINAMIS -->
+      <section id="orderSection" aria-label="Detail Pesanan">
+        <h3 class="contact-subtitle">Detail Pesanan</h3>
+
+        <!-- Daftar baris pesanan -->
+        <div id="orderList" class="order-list">
+          <!-- Baris 0 (default) -->
+          <div class="order-row" data-index="0">
+            <!-- PILIH MENU -->
+            <button type="button" class="menu-picker" data-target="menuModal" aria-haspopup="dialog">
+              <span class="menu-label">Pilih Menu</span>
+              <span class="menu-value" aria-live="polite">Belum dipilih</span>
+            </button>
+
+            <!-- QTY -->
+            <div class="qty-box">
+              <label for="qty-0" class="sr-only">Jumlah</label>
+              <input id="qty-0" class="qty-input" type="number" min="1" step="1" placeholder="Qty" inputmode="numeric" />
+            </div>
+
+            <!-- HAPUS -->
+            <button type="button" class="row-remove" aria-label="Hapus baris">&times;</button>
+          </div>
+        </div>
+
+        <!-- TAMBAH BARIS -->
+        <div class="order-actions">
+          <button type="button" id="addRowBtn" class="btn btn-outline">+ Tambah Menu</button>
+        </div>
+
+        <!-- ALAMAT / LOKASI -->
+        <div class="address-box">
+          <label for="deliveryAddress">Alamat / Lokasi Pengantaran</label>
+          <textarea id="deliveryAddress" rows="3" placeholder="Tulis alamat lengkap & catatan waktu pengantaran (opsional)"></textarea>
+        </div>
+
+        <!-- KIRIM VIA WHATSAPP -->
+        <div class="send-actions">
+          <a id="waSendBtn" class="btn btn-primary" href="#" target="_blank" rel="noopener">
+            <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Kirim via WhatsApp
+          </a>
+          <small class="send-hint">Pesan akan dirangkum otomatis ke format WhatsApp.</small>
+        </div>
+      </section>
     </form>
 
-    <script>
-      const WA_NUMBER = '6281254913064';
-      function openWA(form) {
-        const nama = encodeURIComponent(form.nama.value || '');
-        const perusahaan = encodeURIComponent(form.perusahaan.value || '');
-        const email = encodeURIComponent(form.email.value || '');
-        const hp = encodeURIComponent(form.hp.value || '');
-        const spesifikasi = encodeURIComponent(form.spesifikasi.value || '');
-        const text =
-          `Halo Kopi Feeling,%0A` +
-          `Nama: ${nama}%0AInstansi/Komunitas: ${perusahaan}%0A` +
-          `Email: ${email}%0AHP: ${hp}%0A` +
-          `Detail Pesanan: ${spesifikasi}%0A`;
-        window.open(`https://wa.me/${WA_NUMBER}?text=${text}`, '_blank');
-        return false;
-      }
-    </script>
+    <!-- MODAL PILIH MENU -->
+    <div id="menuModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="menuModalTitle" hidden>
+      <div class="modal-backdrop" data-close="menuModal"></div>
+      <div class="modal-dialog" role="document">
+        <header class="modal-header">
+          <h4 id="menuModalTitle">Pilih Menu</h4>
+          <button type="button" class="modal-close" data-close="menuModal" aria-label="Tutup">&times;</button>
+        </header>
 
+        <div class="modal-body">
+          <!-- Pencarian (opsional) -->
+          <div class="modal-search">
+            <input id="menuSearch" type="search" placeholder="Cari menu…" aria-label="Cari menu" />
+          </div>
+
+          <!-- Grid pilihan menu -->
+          <div id="menuGrid" class="menu-grid" role="listbox" aria-label="Daftar menu Kopi Feeling">
+            <button class="menu-item" data-value="Be Carefeels">Be Carefeels</button>
+            <button class="menu-item" data-value="Our Feeling">Our Feeling</button>
+            <button class="menu-item" data-value="Happy Feels">Happy Feels</button>
+            <button class="menu-item" data-value="Mocafeels">Mocafeels</button>
+            <button class="menu-item" data-value="Rushfeels">Rushfeels</button>
+            <button class="menu-item" data-value="Vanfeels">Vanfeels</button>
+            <button class="menu-item" data-value="Nutfeels">Nutfeels</button>
+            <button class="menu-item" data-value="Blackfeels">Blackfeels</button>
+            <button class="menu-item" data-value="Chocofeels">Chocofeels</button>
+            <button class="menu-item" data-value="Greenfeels">Greenfeels</button>
+            <button class="menu-item" data-value="Red Deveels">Red Deveels</button>
+          </div>
+        </div>
+
+        <footer class="modal-footer">
+          <button type="button" class="btn btn-outline" data-close="menuModal">Batal</button>
+        </footer>
+      </div>
+    </div>
+
+    <!-- Alamat perusahaan -->
     <div class="section" style="padding-top:32px">
       <h3>Alamat Main Office</h3>
       <p>JL.Irigasi No.08, RT.001/RW.003, Mentaos, Kec. Banjarbaru Utara, Kota Banjar Baru, Kalimantan Selatan 70711</p>
     </div>
   </main>
 
-  <footer class="site-footer"><div class="footer-bottom"><p>© <span id="year"></span> Kopi Feeling.</p></div></footer>
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="footer-bottom">
+      <p>© <span id="year"></span> Kopi Feeling.</p>
+    </div>
+  </footer>
+
+  <!-- SCRIPTS -->
   <script src="assets/js/main.js" defer></script>
+
+  <!-- Inline JS untuk kontak: pesanan dinamis & WhatsApp -->
+  <script>
+  (function(){
+    const WA_NUMBER = '6281254913064';
+
+    const orderList     = document.getElementById('orderList');
+    const addRowBtn     = document.getElementById('addRowBtn');
+    const waSendBtn     = document.getElementById('waSendBtn');
+    const addressEl     = document.getElementById('deliveryAddress');
+
+    const menuModal     = document.getElementById('menuModal');
+    const menuGrid      = document.getElementById('menuGrid');
+    const menuSearch    = document.getElementById('menuSearch');
+
+    let activeRowIndex  = 0;
+
+    /* Helpers */
+    const qs  = (sel, root=document) => root.querySelector(sel);
+    const qsa = (sel, root=document) => Array.from(root.querySelectorAll(sel));
+
+    function openModal(){
+      menuModal.removeAttribute('hidden');
+      menuSearch.value = '';
+      filterMenu('');
+    }
+    function closeModal(){
+      menuModal.setAttribute('hidden','');
+    }
+    function filterMenu(term){
+      const t = String(term||'').toLowerCase();
+      qsa('.menu-item', menuGrid).forEach(btn=>{
+        btn.style.display = btn.textContent.toLowerCase().includes(t) ? '' : 'none';
+      });
+    }
+
+    function addRow(){
+      const idx = qsa('.order-row', orderList).length;
+      const row = document.createElement('div');
+      row.className = 'order-row';
+      row.dataset.index = idx;
+      row.innerHTML = `
+        <button type="button" class="menu-picker" data-target="menuModal" aria-haspopup="dialog">
+          <span class="menu-label">Pilih Menu</span>
+          <span class="menu-value" aria-live="polite">Belum dipilih</span>
+        </button>
+        <div class="qty-box">
+          <label for="qty-${idx}" class="sr-only">Jumlah</label>
+          <input id="qty-${idx}" class="qty-input" type="number" min="1" step="1" placeholder="Qty" inputmode="numeric" />
+        </div>
+        <button type="button" class="row-remove" aria-label="Hapus baris">&times;</button>
+      `;
+      orderList.appendChild(row);
+    }
+
+    function removeRow(rowEl){
+      if (!rowEl) return;
+      const rows = qsa('.order-row', orderList);
+      if (rows.length <= 1){
+        qs('.menu-value', rowEl).textContent = 'Belum dipilih';
+        qs('.qty-input', rowEl).value = '';
+        return;
+      }
+      rowEl.remove();
+      // reindex id qty agar unik
+      qsa('.order-row', orderList).forEach((r,i)=>{
+        r.dataset.index = i;
+        qs('.qty-input', r).id = `qty-${i}`;
+      });
+      updateWaLink();
+    }
+
+    function getOrders(){
+      return qsa('.order-row', orderList).map(r=>{
+        const menu = qs('.menu-value', r).textContent.trim();
+        const qty  = Number(qs('.qty-input', r).value || 0);
+        return {menu, qty};
+      }).filter(o => !!o.menu && o.menu !== 'Belum dipilih' && o.qty > 0);
+    }
+
+    function buildWaMessage(){
+      const name   = (qs('#name')?.value ?? '').trim();
+      const org    = (qs('#organization')?.value ?? '').trim();
+      const email  = (qs('#email')?.value ?? '').trim();
+      const phone  = (qs('#phone')?.value ?? '').trim();
+      const addr   = (addressEl?.value ?? '').trim();
+
+      const orders = getOrders();
+      const lines  = [];
+
+      lines.push('*Pesan Kopi Feeling*');
+      if (name)  lines.push(`Nama: ${name}`);
+      if (org)   lines.push(`Instansi/Komunitas: ${org}`);
+      if (email) lines.push(`Email: ${email}`);
+      if (phone) lines.push(`Nomor HP: ${phone}`);
+
+      if (orders.length){
+        lines.push('Pesanan:');
+        orders.forEach((o,i)=> lines.push(`  ${i+1}. ${o.menu} × ${o.qty}`));
+      } else {
+        lines.push('Pesanan: (belum terisi)');
+      }
+
+      if (addr) lines.push(`Alamat Pengantaran: ${addr}`);
+
+      lines.push('');
+      lines.push('Terima kasih 🙏');
+
+      return lines.join('\n');
+    }
+
+    function updateWaLink(){
+      const msg = buildWaMessage();
+      waSendBtn.href = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`;
+    }
+
+    /* Bindings */
+    addRowBtn.addEventListener('click', addRow);
+
+    orderList.addEventListener('click', (e)=>{
+      const picker = e.target.closest('.menu-picker');
+      const remover= e.target.closest('.row-remove');
+
+      if (picker){
+        const row = e.target.closest('.order-row');
+        activeRowIndex = Number(row?.dataset?.index ?? 0);
+        openModal();
+      }
+      if (remover){
+        removeRow(e.target.closest('.order-row'));
+      }
+    });
+
+    orderList.addEventListener('input', (e)=>{
+      if (e.target.classList.contains('qty-input')){
+        updateWaLink();
+      }
+    });
+
+    menuGrid.addEventListener('click', (e)=>{
+      const btn = e.target.closest('.menu-item');
+      if (!btn) return;
+      const val = btn.dataset.value || btn.textContent.trim();
+
+      const row = qsa('.order-row', orderList)[activeRowIndex];
+      if (row){
+        qs('.menu-value', row).textContent = val;
+        qs('.qty-input', row).focus();
+      }
+      closeModal();
+      updateWaLink();
+    });
+
+    menuModal.addEventListener('click', (e)=>{
+      const closeBtn = e.target.closest('[data-close="menuModal"]');
+      if (closeBtn) closeModal();
+    });
+
+    document.addEventListener('keydown', (e)=>{
+      if (e.key === 'Escape' && !menuModal.hasAttribute('hidden')) closeModal();
+    });
+
+    menuSearch.addEventListener('input', (e)=> filterMenu(e.target.value));
+
+    addressEl.addEventListener('input', updateWaLink);
+
+    // Init
+    updateWaLink();
+  })();
+  </script>
+
+  <noscript>Halaman ini bekerja optimal dengan JavaScript diaktifkan.</noscript>
 </body>
 </html>
