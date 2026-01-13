@@ -276,3 +276,80 @@ input, textarea{
 }
 .service-card .btn:hover{ background:rgba(255,255,255,.12); }
 /* Services — Final CTA */
+.final-cta{ text-align:center; margin-top:24px; }
+.final-cta .final-note{ color:var(--muted); margin:0 0 8px; }
+.final-cta .final-title{ color:var(--brand-red); margin:0 0 10px; font-size:clamp(18px,4.2vw,24px); }
+.final-cta .btn{
+  display:inline-flex; gap:10px; font-size:16px;
+  border-color:var(--brand-red); color:#fff; background:var(--brand-red);
+}
+/* Responsif untuk services */
+@media (max-width:992px){
+  .service-meta{ grid-template-columns:1fr; }
+}
+@media (max-width:576px){
+  .service-intro{ padding:14px 12px; }
+  .service-card .card-head h3{ font-size:18px; }
+}
+
+/* =========================
+ Stations Page
+ ========================= */
+.count-badge{
+  display:inline-block; margin-left:8px; padding:2px 8px;
+  font-size:.85em; border-radius:999px;
+  border:2px solid var(--brand-red); color:var(--brand-red); background:#fff;
+}
+.service-tabs .tab.is-active .count-badge{
+  border-color:#fff; color:var(--brand-red); background:#fff;
+}
+.station-list{
+  display:grid; grid-template-columns: repeat(2, 1fr);
+  gap:16px; margin-top:10px;
+}
+.station-item{
+  background:#fff; border:1px solid var(--border);
+  border-radius:12px; padding:14px; box-shadow: var(--shadow);
+}
+.station-item h4{ margin:0 0 6px; font-size:16px; color:var(--brand-red); }
+.station-item p{ margin:0 0 8px; color:var(--text); }
+.station-item a.link{
+  display:inline-flex; align-items:center; min-height:44px;
+  color:var(--brand-red); font-weight:700; text-decoration:none;
+}
+.station-item a.link:hover{ text-decoration:underline; }
+@media (max-width:768px){
+  .station-list{ grid-template-columns:1fr; }
+}
+
+/* =========================
+ Products Page — Menu Cards
+ ========================= */
+.menu-grid{
+  display:grid; grid-template-columns:repeat(3,1fr);
+  gap:16px;
+}
+.menu-card{
+  background:#fff; border:1px solid var(--border);
+  border-radius:14px; overflow:hidden; box-shadow:var(--shadow);
+  display:flex; flex-direction:column;
+}
+.menu-card img{
+  width:100%; height:180px; object-fit:cover; display:block;
+}
+.menu-info{ padding:14px; display:flex; flex-direction:column; gap:8px; }
+.menu-info h3{ margin:0; font-size:18px; color:var(--brand-red); }
+.menu-sub{ margin:0; color:var(--muted); font-weight:600; }
+.menu-desc{ margin:0; color:var(--text); line-height:1.6; }
+.menu-card .btn{ align-self:flex-start; }
+.menu-sub .addon{
+  font-weight:700; color:#b5121b; /* menonjolkan add-on */
+}
+@media (max-width:992px){
+  .menu-grid{ grid-template-columns:repeat(2,1fr); }
+  .menu-card img{ height:160px; }
+}
+@media (max-width:576px){
+  .menu-grid{ grid-template-columns:1fr; }
+  .menu-card img{ height:180px; }
+}
