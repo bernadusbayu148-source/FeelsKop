@@ -67,14 +67,13 @@ body{
 }
 .nav-toggle-bar{display:block; width:22px; height:2px; background:#333; margin:4px 0}
 
-/* >>> Perbaikan: kunci body saat nav mobile terbuka <<< */
+/* Lock body saat menu mobile terbuka */
 body.nav-open {
   overflow: hidden;       /* mencegah scroll background */
   touch-action: none;     /* cegah inertial scroll pada mobile */
 }
 
 @media (max-width:992px){
-  /* >>> Perbaikan: jadikan overlay nav scroll internal & pas tinggi viewport <<< */
   .nav{
     display:none;
     position:fixed;
@@ -121,35 +120,6 @@ body.nav-open {
 @media (max-width:576px){
   .hero-title{font-size:clamp(24px,6vw,32px)}
   .slide{min-height:380px}
-}
-
-/* =========================
- Leaderboard Host
- ========================= */
-#leaderboard-host{ isolation:isolate; }
-#leaderboard-host .leaderboard-card{
-  background:#fff; border:1px solid var(--border);
-  border-radius:16px; box-shadow:var(--shadow); padding:12px;
-}
-#leaderboard-host .leaderboard-frame-wrap{
-  display:flex; justify-content:center; align-items:flex-start;
-}
-
-/* >>> Perbaikan: hindari tinggi statis yang memicu scrollbar internal <<< */
-#leaderboardFrame{
-  width:100%;
-  max-width:920px;
-  height:1px;                 /* awal minimal; akan dioverride oleh JS */
-  min-height:300px;           /* fallback agar tidak kosong sebelum pesan */
-  border:none;
-  background:transparent;
-}
-@media (max-width:992px){
-  #leaderboardFrame{ max-width:860px; }
-}
-@media (max-width:576px){
-  #leaderboard-host .leaderboard-card{ padding:8px; }
-  #leaderboardFrame{ max-width:100%; min-height:360px; } /* (hapus height:1100px) */
 }
 
 /* =========================
@@ -222,13 +192,11 @@ input, textarea{
   background:var(--brand-red); color:#fff;
   box-shadow:0 8px 18px rgba(181,18,27,.25);
 }
-/* Garis tipis dekoratif */
 .service-tabs::after{
   content:""; display:block; width:100%; max-width:880px; height:2px;
   margin:8px auto 0; background:linear-gradient(90deg, var(--brand-red) 30%, transparent 30% 70%, var(--brand-red) 70%);
   opacity:.35;
 }
-/* Panels */
 .tab-panel{ display:block; }
 .tab-panel[hidden]{ display:none !important; }
 
@@ -266,7 +234,6 @@ input, textarea{
 .service-card .card-image img{
   width:100%; height:auto; border-radius:12px; border:1px solid var(--border);
 }
-/* meta tiga kolom */
 .service-meta{
   display:grid; grid-template-columns:repeat(3,1fr); gap:12px;
   margin:14px 0 10px; padding:10px 0 0;
@@ -274,12 +241,10 @@ input, textarea{
 }
 .meta-block h4{ margin:0 0 6px; font-size:16px; color:#fff; text-transform:uppercase; letter-spacing:.3px; }
 .meta-block p{ margin:0; color:#fff; }
-/* CTA tombol di setiap card */
 .service-card .btn{
   margin-top:6px; border-color:#fff; color:#fff; background:transparent;
 }
 .service-card .btn:hover{ background:rgba(255,255,255,.12); }
-/* Services — Final CTA */
 .final-cta{ text-align:center; margin-top:24px; }
 .final-cta .final-note{ color:var(--muted); margin:0 0 8px; }
 .final-cta .final-title{ color:var(--brand-red); margin:0 0 10px; font-size:clamp(18px,4.2vw,24px); }
@@ -287,7 +252,6 @@ input, textarea{
   display:inline-flex; gap:10px; font-size:16px;
   border-color:var(--brand-red); color:#fff; background:var(--brand-red);
 }
-/* Responsif untuk services */
 @media (max-width:992px){
   .service-meta{ grid-template-columns:1fr; }
 }
@@ -357,3 +321,124 @@ input, textarea{
   .menu-grid{ grid-template-columns:1fr; }
   .menu-card img{ height:180px; }
 }
+
+/* =========================================================
+   Leaderboard (embedded langsung) — NAMESPACE: #leaderboard-host
+   ========================================================= */
+#leaderboard-host .leaderboard-card{
+  background:#fff; border:1px solid var(--border);
+  border-radius:16px; box-shadow:var(--shadow); padding:12px;
+  overflow:visible; /* pastikan tidak membuat scroll internal */
+}
+#leaderboard-host .lb-header .lb-title{
+  margin:0 0 8px; font-weight:800; font-size:clamp(24px,4vw,36px);
+  letter-spacing:-.02em; background:linear-gradient(90deg,#D21F3C,#F75353);
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+}
+#leaderboard-host .lb-sub{margin:0 0 18px; color:var(--muted)}
+
+#leaderboard-host .controls{
+  display:grid; grid-template-columns:1fr minmax(120px,180px) auto;
+  gap:10px; align-items:center; margin-bottom:12px;
+}
+#leaderboard-host .controls input,
+#leaderboard-host .controls select{
+  background:#fff; color:var(--text);
+  border:1px solid #C33F3C; border-radius:10px; padding:10px 12px; outline:none; height:40px;
+}
+#leaderboard-host .controls input::placeholder{color:#888}
+#leaderboard-host .btn{border-radius:10px; padding:10px 14px; cursor:pointer; font-weight:700}
+#leaderboard-host .btn-primary{color:#fff; border:none; background:linear-gradient(90deg,#D21F3C,#F75353)}
+#leaderboard-host #refreshBtn{white-space:nowrap; justify-self:end}
+@media (max-width:640px){
+  #leaderboard-host .controls{
+    grid-template-columns:minmax(140px,1fr) minmax(110px,140px) auto; gap:8px;
+  }
+  #leaderboard-host #refreshBtn{padding:8px 12px; font-size:.95rem}
+  #leaderboard-host .controls input, #leaderboard-host .controls select{height:38px}
+}
+
+#leaderboard-host .stats{
+  display:grid; grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:12px; margin:12px 0 16px;
+}
+#leaderboard-host .stat-card{
+  background:#fff; border:1px solid var(--border); border-radius:14px; padding:16px;
+  box-shadow:0 6px 16px rgba(0,0,0,.06);
+}
+#leaderboard-host .stat-title{color:#8a8a8a; margin:0 0 6px; font-size:.95rem}
+#leaderboard-host .stat-value{font-weight:800; font-size:1.4rem; margin:0}
+#leaderboard-host .stat-bar{margin-top:10px; width:100%; height:10px; border-radius:999px; background:#ffdfe3; overflow:hidden; border:1px solid #ffccd2}
+#leaderboard-host .stat-bar .fill{height:100%; background:linear-gradient(90deg,#D21F3C,#F75353); width:0%; transition:width .6s ease}
+@media (max-width:360px){
+  #leaderboard-host .stats{gap:8px}
+}
+
+#leaderboard-host .search-info{
+  margin:6px 0 12px; padding:12px; border:1px solid #C33F3C; border-radius:12px;
+  background:linear-gradient(180deg,#fff 0%,#ffecee 100%); color:var(--text);
+  box-shadow:0 8px 18px rgba(0,0,0,.06); display:none;
+}
+#leaderboard-host .search-item{
+  display:grid; grid-template-columns:100px 1fr 140px 180px; gap:8px;
+  padding:8px 10px; border:1px solid var(--border); border-radius:10px; background:#fff; align-items:center;
+}
+#leaderboard-host .search-item .rank{font-weight:800; color:#C33F3C}
+#leaderboard-host .search-item .name{font-weight:700}
+#leaderboard-host .search-item .member{color:var(--muted); font-weight:600}
+#leaderboard-host .search-item .points,
+#leaderboard-host .search-item .gap{font-variant-numeric:tabular-nums; font-feature-settings:"tnum"}
+#leaderboard-host .search-item .gap{color:#D21F3C; font-weight:700}
+@media (max-width:900px){
+  #leaderboard-host .search-item{grid-template-columns:90px 1fr}
+  #leaderboard-host .search-item .points, #leaderboard-host .search-item .gap{margin-top:6px}
+}
+
+#leaderboard-host .podium{
+  margin:12px 0 20px; padding:16px; border-radius:16px;
+  background:linear-gradient(180deg,#fff 0%,#fafafa 100%); border:1px solid #efefef;
+}
+#leaderboard-host .podium-wrap{display:grid; gap:14px; grid-template-columns:1fr 1.2fr 1fr; grid-template-areas:"second first third"; align-items:stretch; min-width:0}
+#leaderboard-host .podium-card.first{grid-area:first}
+#leaderboard-host .podium-card.second{grid-area:second}
+#leaderboard-host .podium-card.third{grid-area:third}
+#leaderboard-host .podium-card{
+  position:relative; background:#fff; border:1px solid #efefef; border-radius:16px; padding:16px; text-align:center;
+  box-shadow:0 8px 24px rgba(0,0,0,.06); min-width:0; overflow:visible;
+}
+#leaderboard-host .podium-avatar{
+  width:84px; height:84px; margin:0 auto 10px; border-radius:12px;
+  background:linear-gradient(135deg,#ffd1d8,#D21F3C 60%,#F75353); border:1px solid #ffd6dc; max-width:100%;
+}
+#leaderboard-host .podium-name{margin:6px 0 2px; font-weight:700}
+#leaderboard-host .podium-member{margin:0 0 10px; color:var(--muted); font-size:.95rem}
+#leaderboard-host .podium-trophy{
+  display:inline-flex; align-items:center; gap:8px; padding:8px 12px; border-radius:999px; background:#fff; border:1px solid #efefef; color:var(--text); margin:8px auto 0;
+}
+#leaderboard-host .podium-card.first{transform:translateY(-8px); box-shadow:0 12px 30px rgba(0,0,0,.10)}
+#leaderboard-host .podium-badge{position:absolute; top:-10px; right:-10px; padding:8px 12px; border-radius:999px; font-weight:800; box-shadow:0 2px 6px rgba(0,0,0,.15)}
+@media (min-width:641px){
+  #leaderboard-host .podium-card.first{transform:translateY(-10px) scale(1.04); z-index:2;}
+  #leaderboard-host .podium-card.second, #leaderboard-host .podium-card.third{transform:none}
+}
+@media (max-width:640px){
+  #leaderboard-host .podium-wrap{grid-template-columns:repeat(3,minmax(0,1fr)); grid-template-areas:"second first third"; gap:8px}
+  #leaderboard-host .podium-card{padding:10px}
+  #leaderboard-host .podium-card.first{transform:none; transform:scale(1.06); z-index:3; box-shadow:0 14px 34px rgba(0,0,0,.12)}
+  #leaderboard-host .podium-card.second, #leaderboard-host .podium-card.third{transform:none; z-index:1}
+  #leaderboard-host .podium-avatar{width:60px; height:60px}
+  #leaderboard-host .podium-name{font-size:clamp(12px,3.5vw,14px)}
+  #leaderboard-host .podium-member{font-size:clamp(10px,3vw,12px)}
+  #leaderboard-host .podium-trophy{justify-content:center}
+}
+
+#leaderboard-host .card{background:#fff; border:1px solid var(--border); border-radius:16px; box-shadow:0 6px 16px rgba(0,0,0,.06); padding:12px; margin-top:12px}
+#leaderboard-host .table-accent{height:6px; border-radius:999px; background:linear-gradient(90deg,#D21F3C,#F75353); opacity:.2; margin:0 6px 8px}
+#leaderboard-host #board{width:100%; border-collapse:collapse}
+#leaderboard-host #board thead th{background:#f5f5f5; text-align:left; padding:10px; border-bottom:1px solid var(--border); font-weight:700}
+#leaderboard-host #board tbody td{padding:10px; border-bottom:1px solid var(--border)}
+#leaderboard-host #board tbody tr:hover{background:#fafafa}
+#leaderboard-host .rank-badge{display:inline-block; padding:6px 10px; border-radius:999px; font-weight:800; font-size:.9rem}
+#leaderboard-host .mono{font-variant-numeric:tabular-nums; font-feature-settings:"tnum"}
+#leaderboard-host .empty{text-align:center; color:#888; padding:20px}
+#leaderboard-host .footer{color:#888; font-size:.9rem; margin-top:8px}
