@@ -1,342 +1,184 @@
 
-/* =========================
-   Tema Dasar & Reset
-   ========================= */
-:root{
-  --brand-red:#b5121b; /* warna brand tetap */
-  --brand-dark:#1f1f1f;
-  --text:#333;
-  --muted:#6b7280;
-  --bg:#ffffff;
-  --bg-soft:#f7f7f8;
-  --border:#eaeaea;
-  --shadow:0 8px 24px rgba(0,0,0,.08);
+/* ========= Reset & Base ========= */
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html {
+  /* Hindari tinggi paksa, biarkan natural berdasarkan konten */
+  height: auto;
+  scroll-behavior: smooth;
 }
 
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{
-  margin:0;
-  font-family:Poppins,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
-  color:var(--text);
-  background:var(--bg);
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Inter", "Segoe UI", Roboto, Arial, sans-serif;
+  color: #1f2937; /* slate-800 */
+  background: #ffffff;
+  line-height: 1.6;
+  overflow-x: hidden; /* cegah scroll horizontal */
 }
 
-/* =========================
-   Utilities
-   ========================= */
-.container{max-width:1140px; margin-inline:auto; padding:0 16px;}
-.section{padding:64px 0;}
-.section-title{font-size:clamp(22px,4vw,28px); font-weight:700; text-align:center; margin:0 0 24px;}
-.link{color:var(--brand-red); font-weight:600; text-decoration:none;}
-.link:hover{text-decoration:underline}
-
-/* Buttons */
-.btn{
-  display:inline-flex; align-items:center; gap:8px;
-  padding:12px 18px; border-radius:999px;
-  font-weight:700; text-decoration:none; transition:.2s;
-  border:2px solid transparent; cursor:pointer;
-  min-height:44px; /* min tap size mobile */
-}
-.btn-primary{background:var(--brand-red); color:#fff;}
-.btn-primary:hover{filter:brightness(.95); transform:translateY(-1px);}
-.btn-outline{background:#fff; color:var(--brand-red); border-color:var(--brand-red);}
-.btn-outline:hover{filter:brightness(.97);}
-
-/* =========================
-   Header / Navbar
-   ========================= */
-.site-header{
-  position:sticky; top:0; z-index:1000;
-  background:#fff; border-bottom:1px solid var(--border);
-  padding-top:env(safe-area-inset-top);
-}
-.site-header.scrolled{box-shadow:var(--shadow)}
-.nav-container{display:flex; align-items:center; gap:16px; padding:8px 0;}
-.brand{display:flex; align-items:center; gap:10px; text-decoration:none; color:var(--brand-dark); font-weight:700;}
-.logo{height:38px; width:auto}
-.brand-name{white-space:nowrap}
-.nav{margin-left:auto}
-.nav-list{display:flex; align-items:center; gap:24px; list-style:none; margin:0; padding:0;}
-.nav-link{color:var(--brand-red); font-weight:700; text-decoration:none; padding:12px 4px; display:inline-flex; align-items:center; gap:6px;}
-.nav-link:hover, .nav-link.active{opacity:.85}
-.btn-wa{margin-left:8px}
-
-/* Mobile nav */
-.nav-toggle{
-  display:none; margin-left:auto; background:#fff; border:1px solid var(--border);
-  padding:10px; border-radius:8px; cursor:pointer;
-}
-.nav-toggle-bar{display:block; width:22px; height:2px; background:#333; margin:4px 0}
-@media (max-width:992px){
-  .nav{display:none; position:fixed; inset:64px 0 auto 0; background:#fff; border-top:1px solid var(--border);}
-  .nav.open{display:block}
-  .nav-list{flex-direction:column; align-items:flex-start; padding:12px}
-  .btn-wa{display:none}
-  .nav-toggle{display:block}
+/* Kontainer umum */
+.container {
+  width: 100%;
+  max-width: 1100px;
+  margin-inline: auto;
+  padding: 0 20px;
 }
 
-/* Focus ring (aksesibilitas) */
-.nav .nav-link:focus-visible,
-.btn:focus-visible,
-.dropdown-toggle:focus-visible{ outline:2px solid #1e90ff; outline-offset:2px; }
+img { max-width: 100%; height: auto; display: block; }
 
-/* =========================
-   Hero Slider
-   ========================= */
-.hero{position:relative; background:var(--bg-soft)}
-.slider{position:relative}
-.slide{
-  min-height:480px; display:grid; place-items:center; text-align:center; color:#fff;
-  background-image:linear-gradient(rgba(0,0,0,.35), rgba(0,0,0,.35)), var(--bg);
-  background-size:cover; background-position:center;
-}
-.slide-content{max-width:820px; padding:0 16px}
-.hero-title{font-size:clamp(28px,5vw,42px); font-weight:700; margin:0 0 10px}
-.hero-subtitle{font-size:clamp(16px,3.2vw,18px); margin:0 0 18px; opacity:.95}
-.slider-btn{
-  position:absolute; top:50%; transform:translateY(-50%); background:#fff; border:1px solid var(--border);
-  width:40px; height:40px; border-radius:50%; display:grid; place-items:center; cursor:pointer;
-}
-.slider-btn.prev{left:16px}
-.slider-btn.next{right:16px}
-.slider-dots{position:absolute; bottom:16px; left:50%; transform:translateX(-50%); display:flex; gap:8px}
-.slider-dots .dot{width:10px; height:10px; border-radius:50%; background:#fff; opacity:.7; cursor:pointer}
-.slider-dots .dot.active{background:var(--brand-red); opacity:1}
-@media (max-width:576px){
-  .hero-title{font-size:clamp(24px,6vw,32px)}
-  .slide{min-height:380px}
-}
+/* Fokus terlihat untuk aksesibilitas */
+:focus-visible { outline: 3px solid #00BFA5; outline-offset: 2px; }
 
-/* =========================
-   Leaderboard Host
-   ========================= */
-#leaderboard-host{ isolation:isolate; }
-#leaderboard-host .leaderboard-card{
-  background:#fff; border:1px solid var(--border);
-  border-radius:16px; box-shadow:var(--shadow); padding:12px;
+/* ========= Header ========= */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(255,255,255,0.85);
+  backdrop-filter: saturate(120%) blur(8px);
+  border-bottom: 1px solid #e5e7eb; /* slate-200 */
 }
-#leaderboard-host .leaderboard-frame-wrap{
-  display:flex; justify-content:center; align-items:flex-start;
+.site-header .container {
+  display: flex; align-items: center; justify-content: space-between;
+  min-height: 64px;
 }
-#leaderboardFrame{
-  width:100%; max-width:920px; height:900px; border:none; background:transparent;
+.brand {
+  font-weight: 700; letter-spacing: 0.2px; color: #111827; text-decoration: none;
 }
-@media (max-width:992px){ #leaderboardFrame{ max-width:860px; } }
-@media (max-width:576px){
-  #leaderboard-host .leaderboard-card{ padding:8px; }
-  #leaderboardFrame{ max-width:100%; height:1100px; }
+.nav a {
+  color: #374151; text-decoration: none; margin-left: 16px;
 }
+.nav a:hover { color: #111827; }
 
-/* =========================
-   Features Grid
-   ========================= */
-.grid-3{display:grid; grid-template-columns:repeat(3,1fr); gap:20px;}
-.feature{ background:#fff; border:1px solid var(--border); border-radius:14px; padding:18px; text-align:center; box-shadow:var(--shadow); }
-.feature i{color:var(--brand-red); font-size:28px; margin-bottom:8px}
-@media (max-width:768px){ .grid-3{grid-template-columns:1fr} }
-
-/* =========================
-   Product Grid (highlight)
-   ========================= */
-.product-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:20px}
-.product-card{background:#fff; border:1px solid var(--border); border-radius:14px; overflow:hidden; box-shadow:var(--shadow)}
-.product-card img{width:100%; height:auto; display:block}
-.product-info{padding:14px}
-.product-info h3{margin:0 0 6px; font-size:18px}
-@media (max-width:992px){ .product-grid{grid-template-columns:repeat(2,1fr)} }
-@media (max-width:576px){ .product-grid{grid-template-columns:1fr} }
-
-/* =========================
-   CTA Strip
-   ========================= */
-.cta-strip{background:#fbeaed; padding:28px 0; border-top:1px solid var(--border); border-bottom:1px solid var(--border)}
-.cta-content{display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap}
-.cta-content h3{margin:0}
-.cta-content p{margin:0; color:var(--muted)}
-
-/* =========================
-   Footer
-   ========================= */
-.site-footer{background:#8f0e22; color:#fff; margin-top:40px}
-.footer-grid{display:grid; grid-template-columns:2fr 1.5fr 1fr; gap:24px; padding:28px 16px}
-.footer-logo{height:42px; margin-bottom:8px}
-.footer-menu ul{list-style:none; padding:0; margin:0}
-.footer-menu a{color:#fff; text-decoration:none}
-.footer-menu a:hover{text-decoration:underline}
-.footer-bottom{
-  border-top:1px solid rgba(255,255,255,.3);
-  display:flex; align-items:center; justify-content:space-between;
-  padding:14px 16px; font-size:14px;
+/* ========= Buttons ========= */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  height: 44px; padding: 0 18px;
+  border-radius: 10px; text-decoration: none; font-weight: 600; cursor: pointer;
+  transition: transform .08s ease, box-shadow .2s ease, background-color .2s ease;
 }
-.socials a{color:#fff; margin-left:12px}
-@media (max-width:768px){ .footer-grid{grid-template-columns:1fr} }
+.btn:active { transform: translateY(1px); }
+.btn-primary { background: #00BFA5; color: #ffffff; }
+.btn-primary:hover { background: #00a390; }
+.btn-secondary { background: #111827; color: #ffffff; }
+.btn-secondary:hover { background: #0b1221; }
+.btn-outline { border: 1px solid #111827; color: #111827; }
+.btn-outline:hover { background: #111827; color: #fff; }
 
-/* =========================
-   Form (contact)
-   ========================= */
-label{display:block; font-weight:600; margin-bottom:6px}
-input, textarea{
-  width:100%; padding:10px 12px; border:1px solid var(--border); border-radius:10px; font:inherit;
+/* ========= Hero (aman untuk mobile) ========= */
+:root { --vh: 1vh; }
+
+.hero {
+  position: relative;
+  /* gunakan svh/dvh agar sesuai tinggi viewport di mobile */
+  min-height: 100svh; /* supported di browser modern */
+  min-height: 100dvh; /* dynamic viewport height */
+  min-height: calc(var(--vh) * 100); /* fallback */
+  display: grid;
+  place-items: center;
+  isolation: isolate;
+  overflow: hidden; /* cegah konten dekoratif melebar */
 }
 
-/* =========================
-   Service Tabs (dipakai di services & stations)
-   ========================= */
-.service-tabs{
-  display:flex; gap:14px; justify-content:center; align-items:center;
-  flex-wrap:wrap; margin:0 0 18px;
-  overflow-x:auto; scroll-snap-type:x proximity; -webkit-overflow-scrolling:touch;
-}
-.service-tabs .tab{
-  appearance:none; border:2px solid var(--brand-red); background:#fff; color:var(--brand-red);
-  padding:12px 18px; border-radius:999px; font-weight:700; cursor:pointer; transition:.2s;
-  box-shadow:0 2px 8px rgba(0,0,0,.06); min-height:44px; scroll-snap-align:start;
-}
-.service-tabs .tab:hover{ filter:brightness(.97); }
-.service-tabs .tab.is-active{
-  background:var(--brand-red); color:#fff;
-  box-shadow:0 8px 18px rgba(181,18,27,.25);
-}
-/* Garis tipis dekoratif */
-.service-tabs::after{
-  content:""; display:block; width:100%; max-width:880px; height:2px;
-  margin:8px auto 0; background:linear-gradient(90deg, var(--brand-red) 30%, transparent 30% 70%, var(--brand-red) 70%);
-  opacity:.35;
-}
-/* Panels */
-.tab-panel{ display:block; }
-.tab-panel[hidden]{ display:none !important; }
-
-/* =========================
-   Services — Intro & Hero Image
-   ========================= */
-.service-intro{
-  background: var(--brand-red); color:#fff; border-radius:16px;
-  padding:18px 16px; box-shadow: var(--shadow); margin-bottom:16px;
-}
-.service-intro h3{ margin:0 0 6px; font-size:clamp(20px,4.5vw,26px); }
-.service-intro p{ margin:0; line-height:1.6; }
-.service-hero{ margin:16px 0 22px; display:grid; gap:8px; }
-.service-hero img{
-  width:100%; height:auto; border-radius:14px;
-  border:1px solid var(--border); box-shadow:var(--shadow);
-}
-.service-hero figcaption{ font-size:14px; color:var(--muted); }
-
-/* =========================
-   Services — Card gaya merah
-   ========================= */
-.service-card{
-  background:#b5121b; color:#fff;
-  border-radius:16px; overflow:hidden; box-shadow:var(--shadow);
-}
-.service-card .card-head{ padding:14px 16px 8px; }
-.service-card .card-head h3{
-  display:inline-block; margin:0; padding:8px 14px;
-  background:#fff; color:#b5121b; border-radius:12px; font-weight:800;
-}
-.service-card .card-body{ padding:10px 16px 16px; }
-.service-card .card-body p{ margin:0 0 12px; line-height:1.7; }
-.service-card .card-image{ margin:8px 0 14px; }
-.service-card .card-image img{
-  width:100%; height:auto; border-radius:12px; border:1px solid var(--border);
+/* Background aman: tanpa attachment fixed */
+.parallax-safe .hero__bg {
+  position: absolute; inset: 0;
+  background-image: url("../img/hero.webp");
+  background-size: cover; background-position: center;
+  /* BUKAN background-attachment: fixed */
+  will-change: transform; /* kalau nanti mau animasi ringan */
+  transform: translateZ(0);
 }
 
-/* meta tiga kolom */
-.service-meta{
-  display:grid; grid-template-columns:repeat(3,1fr); gap:12px;
-  margin:14px 0 10px; padding:10px 0 0;
-  border-top:1px solid rgba(255,255,255,.35);
-}
-.meta-block h4{ margin:0 0 6px; font-size:16px; color:#fff; text-transform:uppercase; letter-spacing:.3px; }
-.meta-block p{ margin:0; color:#fff; }
-
-/* CTA tombol di setiap card */
-.service-card .btn{
-  margin-top:6px; border-color:#fff; color:#fff; background:transparent;
-}
-.service-card .btn:hover{ background:rgba(255,255,255,.12); }
-
-/* Services — Final CTA */
-.final-cta{ text-align:center; margin-top:24px; }
-.final-cta .final-note{ color:var(--muted); margin:0 0 8px; }
-.final-cta .final-title{ color:var(--brand-red); margin:0 0 10px; font-size:clamp(18px,4.2vw,24px); }
-.final-cta .btn{
-  display:inline-flex; gap:10px; font-size:16px;
-  border-color:var(--brand-red); color:#fff; background:var(--brand-red);
+/* Overlay dekoratif, dibatasi agar tidak menambah tinggi halaman */
+.hero__overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.15) 40%, rgba(0,0,0,0.35) 100%);
+  pointer-events: none;
 }
 
-/* Responsif untuk services */
-@media (max-width:992px){
-  .service-meta{ grid-template-columns:1fr; }
+.hero__content {
+  position: relative; z-index: 1;
+  text-align: center; color: #ffffff;
+  max-width: 800px; padding: 24px;
 }
-@media (max-width:576px){
-  .service-intro{ padding:14px 12px; }
-  .service-card .card-head h3{ font-size:18px; }
+.hero__title { font-size: clamp(28px, 5vw, 56px); margin: 0 0 8px; }
+.hero__subtitle { font-size: clamp(16px, 2.4vw, 22px); margin: 0 0 18px; }
+.hero__cta { display: inline-flex; gap: 12px; flex-wrap: wrap; }
+
+/* ========= Section umum ========= */
+.section { padding: 64px 0; }
+.section-alt { background: #f9fafb; } /* slate-50 */
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0,1fr));
+  gap: 20px;
+}
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0,1fr));
+  gap: 20px;
 }
 
-/* =========================
-   Stations Page
-   ========================= */
-.count-badge{
-  display:inline-block; margin-left:8px; padding:2px 8px;
-  font-size:.85em; border-radius:999px;
-  border:2px solid var(--brand-red); color:var(--brand-red); background:#fff;
+.card {
+  background: #fff; border: 1px solid #e5e7eb; border-radius: 12px;
+  padding: 16px; box-shadow: 0 2px 6px rgba(0,0,0,0.04);
 }
-.service-tabs .tab.is-active .count-badge{
-  border-color:#fff; color:var(--brand-red); background:#fff;
-}
-.station-list{
-  display:grid; grid-template-columns: repeat(2, 1fr);
-  gap:16px; margin-top:10px;
-}
-.station-item{
-  background:#fff; border:1px solid var(--border);
-  border-radius:12px; padding:14px; box-shadow: var(--shadow);
-}
-.station-item h4{ margin:0 0 6px; font-size:16px; color:var(--brand-red); }
-.station-item p{ margin:0 0 8px; color:var(--text); }
-.station-item a.link{
-  display:inline-flex; align-items:center; min-height:44px;
-  color:var(--brand-red); font-weight:700; text-decoration:none;
-}
-.station-item a.link:hover{ text-decoration:underline; }
-@media (max-width:768px){
-  .station-list{ grid-template-columns:1fr; }
+.card h2 { margin: 10px 0 6px; font-size: 20px; }
+
+.quote {
+  background: #fff; border: 1px solid #e5e7eb; border-radius: 12px;
+  padding: 20px; font-size: 18px;
 }
 
-/* =========================
-   Products Page — Menu Cards
-   ========================= */
-.menu-grid{
-  display:grid; grid-template-columns:repeat(3,1fr);
-  gap:16px;
-}
-.menu-card{
-  background:#fff; border:1px solid var(--border);
-  border-radius:14px; overflow:hidden; box-shadow:var(--shadow);
-  display:flex; flex-direction:column;
-}
-.menu-card img{
-  width:100%; height:180px; object-fit:cover; display:block;
-}
-.menu-info{ padding:14px; display:flex; flex-direction:column; gap:8px; }
-.menu-info h3{ margin:0; font-size:18px; color:var(--brand-red); }
-.menu-sub{ margin:0; color:var(--muted); font-weight:600; }
-.menu-desc{ margin:0; color:var(--text); line-height:1.6; }
-.menu-card .btn{ align-self:flex-start; }
+/* ========= CTA ========= */
+.cta { text-align: center; }
+.cta__actions { margin-top: 14px; display: inline-flex; gap: 12px; flex-wrap: wrap; }
 
-.menu-sub .addon{
-  font-weight:700; color:#b5121b; /* menonjolkan add-on */
+/* ========= Footer ========= */
+.site-footer {
+  border-top: 1px solid #e5e7eb; background: #ffffff;
+  padding: 28px 0; color: #374151;
+}
+.footer__grid {
+  display: grid; gap: 20px;
+  grid-template-columns: repeat(3, minmax(0,1fr));
+}
+.footer__nav a { display: inline-block; margin-right: 12px; color: #374151; text-decoration: none;}
+.footer__nav a:hover { color: #111827; }
+.footer__brand { text-align: right; }
+
+/* ========= Mobile ========= */
+@media (max-width: 991.98px) {
+  /* Jangan pernah gunakan background-attachment: fixed di mobile */
+  .parallax-safe .hero__bg { background-attachment: scroll !important; }
+
+  .grid-3 { grid-template-columns: 1fr; }
+  .grid-2 { grid-template-columns: 1fr; }
+  .footer__grid { grid-template-columns: 1fr; }
 }
 
-@media (max-width:992px){
-  .menu-grid{ grid-template-columns:repeat(2,1fr); }
-  .menu-card img{ height:160px; }
+/* ========= Pencegahan Overflow Tak Terbatas ========= */
+/* Batasi pseudo-element dekoratif (jika dipakai di komponen lain) */
+.section::before,
+.section::after,
+.hero::before,
+.hero::after {
+  max-height: 100svh;
+  max-height: 100dvh;
+  overflow: hidden;
 }
-@media (max-width:576px){
-  .menu-grid{ grid-template-columns:1fr; }
-  .menu-card img{ height:180px; }
+
+/* Jika ada komponen sticky dari library, stabilkan posisinya */
+.sticky,
+[data-sticky] {
+  position: sticky;
+  top: 0; /* hindari bottom negatif atau nilai yang menambah tinggi dokumen */
 }
+
+/* Utility kecil */
+.hidden { display: none !important; }
