@@ -126,7 +126,7 @@ function applyAndRender(rows, headers, source){
   render();
 
   el.meta.textContent = `Sumber: ${source} • ${state.filtered.length} baris • ${new Date().toLocaleString('id-ID')}`;
-  // >>> Kirim ulang tinggi ke parent segera setelah render
+  // Kirim ulang tinggi ke parent segera setelah render
   window.requestHeight && window.requestHeight();
 }
 
@@ -281,7 +281,7 @@ fetchSheet();
   window.addEventListener('resize', () => send());
 
   const obs = new MutationObserver(() => send());
-  obs.observe(document.body, { childList:true, subtree:true });
+  obs.observe(document.body, { childList:true, subtree:true, attributes:true });
 
   document.querySelectorAll('img').forEach(img => {
     if (!img.complete) img.addEventListener('load', () => send());
