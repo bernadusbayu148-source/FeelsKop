@@ -32,12 +32,14 @@ window.addEventListener('scroll', () => {
   const dotsWrap = slider.querySelector('.slider-dots');
   let index = slides.findIndex(s => s.classList.contains('is-active'));
   if (index < 0) index = 0;
+
   const setActive = (i) => {
     slides.forEach(s => s.classList.remove('is-active'));
     slides[i].classList.add('is-active');
     dotsWrap.querySelectorAll('.dot').forEach((d, di) => d.classList.toggle('active', di === i));
     index = i;
   };
+
   slides.forEach((_, i) => {
     const dot = document.createElement('button');
     dot.className = 'dot';
@@ -45,32 +47,23 @@ window.addEventListener('scroll', () => {
     dot.addEventListener('click', () => setActive(i));
     dotsWrap.appendChild(dot);
   });
+
   setActive(index);
   btnPrev?.addEventListener('click', () => setActive((index - 1 + slides.length) % slides.length));
   btnNext?.addEventListener('click', () => setActive((index + 1) % slides.length));
+
   // Auto-rotate (pause saat tab tidak aktif)
   let timer = setInterval(() => setActive((index + 1) % slides.length), 6000);
   document.addEventListener('visibilitychange', () => {
     if (document.hidden) clearInterval(timer);
     else timer = setInterval(() => setActive((index + 1) % slides.length), 6000);
   });
+
   // Respect reduced motion
   try {
     const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (prefersReduced) clearInterval(timer);
   } catch (e) {}
-})();
-
-// ==== Leaderboard: tinggi iframe via postMessage ====
-(function listenLeaderboardHeight() {
-  const iframe = document.getElementById('leaderboardFrame');
-  if (!iframe) return;
-  window.addEventListener('message', (event) => {
-    const data = event.data;
-    if (data && data.type === 'LB_HEIGHT' && typeof data.height === 'number') {
-      iframe.style.height = (data.height + 20) + 'px';
-    }
-  });
 })();
 
 // ==== Service Tabs (generic: dipakai di services & stations) ====
@@ -79,6 +72,7 @@ window.addEventListener('scroll', () => {
   const tabs = document.querySelectorAll('.service-tabs .tab');
   const panels = document.querySelectorAll('.tab-panel');
   if (!tabsWrap || !tabs.length || !panels.length) return;
+
   const getKey = (btn) => btn?.dataset?.tab ?? '';
   const setActive = (key) => {
     tabs.forEach(t => {
@@ -93,22 +87,21 @@ window.addEventListener('scroll', () => {
     });
     if (key) history.replaceState(null, '', `#${key}`);
   };
-  // init dari hash (jika ada)
+
   const keys = Array.from(tabs).map(getKey);
   const initial = (location.hash ?? '').replace('#', '');
   const startKey = keys.includes(initial) ? initial : getKey(tabs[0]);
   setActive(startKey);
-  // handler click & keyboard
+
   tabs.forEach(btn => {
     btn.addEventListener('click', (e) => { e.preventDefault(); setActive(getKey(btn)); });
     btn.addEventListener('keydown', (e) => {
       if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setActive(getKey(btn)); }
     });
   });
-  // hashchange
+
   window.addEventListener('hashchange', () => {
     const key = (location.hash ?? '').replace('#', '');
     if (keys.includes(key)) setActive(key);
   });
 })();
-``
