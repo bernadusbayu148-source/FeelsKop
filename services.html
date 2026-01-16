@@ -652,10 +652,14 @@
 
       const lines = [];
       lines.push(`*${serviceName}*`);
-      if(name)  lines.push(`Nama: ${name}`);
-      if(org)   lines.push(`Instansi/Komunitas: ${org}`);
-      if(email) lines.push(`Email: ${email}`);
-      if(phone) lines.push(`Nomor HP: ${phone}`);
+      
+      if (name)  lines.push(`Nama: ${name}`);
+      if (orgOrCouple) {
+        const labelOrg = (key==='wedding') ? 'Nama Mempelai' : 'Instansi/Komunitas';
+        lines.push(`${labelOrg}: ${orgOrCouple}`);
+      }
+      if (email) lines.push(`Email: ${email}`);
+      if (phone) lines.push(`Nomor HP: ${phone}`);
       if(tanggal) lines.push(tanggal);
 
       lines.push('Pesanan:');
