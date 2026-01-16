@@ -622,10 +622,20 @@
       }
 
       // Rangkai pesan WA
-      const name = qs(`#${key==='toyo'?'toyo':'party'===key?'party':key==='everyday'?'every':'wed'}-name`)?.value || qs(`#${key}-name`)?.value || '';
-      const org  = qs(`#${key==='toyo'?'toyo':'party'===key?'party':key==='everyday'?'every':'wed'}-org`)?.value || qs(`#${key}-org`)?.value || '';
-      const email= qs(`#${key==='toyo'?'toyo':'party'===key?'party':key==='everyday'?'every':'wed'}-email`)?.value || qs(`#${key}-email`)?.value || '';
-      const phone= qs(`#${key==='toyo'?'toyo':'party'===key?'party':key==='everyday'?'every':'wed'}-phone`)?.value || qs(`#${key}-phone`)?.value || '';
+      
+      const baseId = (key==='toyo') ? 'toyo'
+                   : (key==='party') ? 'party'
+                   : (key==='everyday') ? 'every'
+                   : 'wed';
+      
+      const name  = qs(`#${baseId}-name`)?.value  || qs(`#${key}-name`)?.value  || '';
+      // Wedding pakai field khusus 'wed-couple', selain itu tetap 'org'
+      const orgOrCouple = (key==='wedding')
+        ? (qs('#wed-couple')?.value || '')
+        : (qs(`#${baseId}-org`)?.value || qs(`#${key}-org`)?.value || '');
+      
+      const email = qs(`#${baseId}-email`)?.value || qs(`#${key}-email`)?.value || '';
+      const phone = qs(`#${baseId}-phone`)?.value || qs(`#${key}-phone`)?.value || '';
 
       let tanggal = '';
       if(widget.dataset.datemode === 'range'){
