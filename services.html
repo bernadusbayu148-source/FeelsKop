@@ -14,7 +14,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="assets/css/style.css" />
-
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Layanan — Kopi Feeling" />
   <meta property="og:description" content="4 layanan: Feeling To You., Feeling Party., Feeling Everyday., Feeling Di Wedding. Pesan sekarang — gratis ongkir!" />
@@ -92,7 +91,7 @@
         <div class="card-body">
           <p>
             Bersantai di rumah kini jadi lebih istimewa bersama <strong>Feeling To You.</strong>.
-            Layanan <strong>Pengantaran Gratis</strong> untuk pemesanan mulai dari <strong>9 Cup</strong>.
+            <strong>Pengantaran Gratis</strong> untuk pemesanan mulai dari <strong>9 Cup</strong>.
           </p>
           <div class="card-image"><img src="assets/img/service-toyo.jpg" alt="Feeling To You." loading="lazy" decoding="async" width="1200" height="675" /></div>
 
@@ -138,7 +137,7 @@
             <small class="send-hint" id="toyo-hint" style="color:#888">Pesan akan dirangkum otomatis ke format WhatsApp.</small>
 
             <div class="send-actions">
-              <a class="btn btn-primary wa-send" href="#" target="_blank" rel="noopener">
+              <a class="btn btn-primary wa-send" href="#" target="_blank" rel="noopener" aria-disabled="true">
                 <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Kirim via WhatsApp
               </a>
             </div>
@@ -200,7 +199,7 @@
             <small class="send-hint" id="party-hint" style="color:#888">Pesan akan dirangkum otomatis ke format WhatsApp.</small>
 
             <div class="send-actions">
-              <a class="btn btn-primary wa-send" href="#" target="_blank" rel="noopener">
+              <a class="btn btn-primary wa-send" href="#" target="_blank" rel="noopener" aria-disabled="true">
                 <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Kirim via WhatsApp
               </a>
             </div>
@@ -266,7 +265,7 @@
             <small class="send-hint" id="every-hint" style="color:#888">Pesan akan dirangkum otomatis ke format WhatsApp.</small>
 
             <div class="send-actions">
-              <a class="btn btn-primary wa-send" href="#" target="_blank" rel="noopener">
+              <a class="btn btn-primary wa-send" href="#" target="_blank" rel="noopener" aria-disabled="true">
                 <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Kirim via WhatsApp
               </a>
             </div>
@@ -328,7 +327,7 @@
             <small class="send-hint" id="wed-hint" style="color:#888">Pesan akan dirangkum otomatis ke format WhatsApp.</small>
 
             <div class="send-actions">
-              <a class="btn btn-primary wa-send" href="#" target="_blank" rel="noopener">
+              <a class="btn btn-primary wa-send" href="#" target="_blank" rel="noopener" aria-disabled="true">
                 <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Kirim via WhatsApp
               </a>
             </div>
@@ -432,7 +431,7 @@
   <!-- SCRIPTS -->
   <script src="assets/js/main.js" defer></script>
 
-  <!-- Inline JS — Order widgets di Layanan (sudah termasuk patch Total Cup) -->
+  <!-- Inline JS — Order widgets di Layanan (termasuk patch Total Cup & pemetaan id) -->
   <script>
   (function(){
     const WA_NUMBER = '6281254913064';
@@ -448,6 +447,9 @@
       } catch(e){ return value; }
     };
 
+    // Pemetaan key -> stem id DOM ('everyday' -> 'every'; 'wedding' -> 'wed')
+    const stem = (key) => key === 'everyday' ? 'every' : key === 'wedding' ? 'wed' : key;
+
     // ===== Modal Menu (shared) =====
     const modal = qs('#serviceMenuModal');
     const menuGrid = qs('#serviceMenuGrid');
@@ -460,11 +462,7 @@
       menuSearch.value = ''; filterMenu('');
       modal.removeAttribute('hidden');
     }
-    function closeModal(){
-      modal.setAttribute('hidden','');
-      // (opsional) bersihkan setelah frame berikut agar aman:
-      // setTimeout(()=>{ activeWidget=null; }, 0);
-    }
+    function closeModal(){ modal.setAttribute('hidden',''); }
     function filterMenu(term){
       const t = String(term||'').toLowerCase();
       qsa('.menu-item', menuGrid).forEach(btn=>{
@@ -480,7 +478,7 @@
       if(e.key==='Escape' && !modal.hasAttribute('hidden')) closeModal();
     });
 
-    // PATCH: refresh dulu, baru tutup modal (+ simpan widgetRef)
+    // Refresh dulu, baru tutup modal (hindari kehilangan referensi widget)
     menuGrid.addEventListener('click', (e)=>{
       const btn = e.target.closest('.menu-item');
       if (!btn || !activeWidget) return;
@@ -526,7 +524,7 @@
         }
       });
 
-      // Delegasi input qty — PATCH: dengarkan input & change
+      // Qty: dengarkan 'input' & 'change'
       widget.addEventListener('input', (e)=>{
         if(e.target.classList.contains('qty-input')) refresh(widget);
       });
@@ -596,10 +594,11 @@
       }).filter(o => !!o.menu && o.menu!=='Belum dipilih' && o.qty>0);
     }
 
-    function sumQty(rows){ return rows.reduce((s,o)=> s + Number(o.qty||0), 0); }
+    const sumQty = (rows) => rows.reduce((s,o)=> s + Number(o.qty||0), 0);
 
     function refresh(widget){
-      const key = widget.dataset.key;
+      const key = widget.dataset.key;         // 'toyo' | 'party' | 'everyday' | 'wedding'
+      const id  = stem(key);                  // 'toyo' | 'party' | 'every' | 'wed'
       const min = Number(widget.dataset.min || 0);
       const serviceName = widget.dataset.service || 'Layanan Kopi Feeling';
       const dateMode = widget.dataset.datemode || 'single';
@@ -607,18 +606,17 @@
       const orders = getOrders(widget);
       const total  = sumQty(orders);
 
-      // Tulis total
-      const totalEl = qs(`#${key}-total`);
+      // Tulis total (pakai id hasil stem)
+      const totalEl = qs(`#${id}-total`);
       if(totalEl) totalEl.textContent = String(total);
 
-      // Ambil identitas
-      const baseId = (key==='toyo') ? 'toyo' : (key==='party') ? 'party' : (key==='everyday') ? 'every' : 'wed';
-      const name   = qs(`#${baseId}-name`)?.value?.trim() || '';
+      // Ambil identitas (pakai stem)
+      const name   = qs(`#${id}-name`)?.value?.trim() || '';
       const orgOrCouple = (key==='wedding')
         ? (qs('#wed-couple')?.value?.trim() || '')
-        : (qs(`#${baseId}-org`)?.value?.trim() || '');
-      const email  = qs(`#${baseId}-email`)?.value?.trim() || '';
-      const phone  = qs(`#${baseId}-phone`)?.value?.trim() || '';
+        : (qs(`#${id}-org`)?.value?.trim() || '');
+      const email  = qs(`#${id}-email`)?.value?.trim() || '';
+      const phone  = qs(`#${id}-phone`)?.value?.trim() || '';
 
       // Tanggal
       let tanggal = '';
@@ -627,12 +625,15 @@
         const d2 = qs('#every-date-end')?.value || '';
         if(d1 || d2) tanggal = `Tanggal: ${fmtDateID(d1)}${(d1&&d2)?' – ':''}${fmtDateID(d2)}`.trim();
       }else{
-        const dId = (key==='toyo')?'toyo-date' : (key==='party')?'party-date' : (key==='wedding')?'wed-date' : '';
+        const dId = key==='toyo' ? 'toyo-date'
+                 : key==='party' ? 'party-date'
+                 : key==='wedding' ? 'wed-date' : '';
         const d = dId ? (qs('#'+dId)?.value || '') : '';
         if(d) tanggal = `Tanggal: ${fmtDateID(d)}`;
       }
 
-      const address = qs(`#${key}-address`)?.value?.trim() || '';
+      // Alamat (pakai stem)
+      const address = qs(`#${id}-address`)?.value?.trim() || '';
 
       // Susun pesan WA
       const lines = [];
@@ -659,9 +660,9 @@
 
       const msg = encodeURIComponent(lines.join('\n'));
 
-      // Validasi minimum & tombol WA
+      // Validasi minimum & tombol WA (pakai stem untuk hint)
       const waBtn = qs('.wa-send', widget);
-      const hint  = qs(`#${key}-hint`);
+      const hint  = qs(`#${id}-hint`);
       const ok    = total >= min;
 
       waBtn.href = ok ? `https://wa.me/${WA_NUMBER}?text=${msg}` : '#';
@@ -680,3 +681,4 @@
   <noscript>Halaman ini bekerja optimal dengan JavaScript diaktifkan.</noscript>
 </body>
 </html>
+``
