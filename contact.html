@@ -42,87 +42,84 @@
 
   <!-- Styles khusus halaman feedback (scoped & mobile-first FIX) -->
   <style>
-    /* ===== Namespace agar tidak mempengaruhi halaman lain ===== */
-    #feedbackPage { /* Hapus pemenggalan agresif yang bikin teks turun per huruf */
-      word-break: normal; overflow-wrap: anywhere; /* only long unbroken strings */
-    }
+    /* Namespace agar aman terhadap halaman lain */
+    #feedbackPage { word-break: normal; overflow-wrap: break-word; }
     #feedbackPage .fb-layout{
-      display:grid;grid-template-columns:1fr;gap:16px;align-items:start;
+      display:grid; grid-template-columns:1fr; gap:16px; align-items:start;
     }
     @media (min-width: 992px){
-      #feedbackPage .fb-layout{grid-template-columns:minmax(0,1fr) 380px}
+      #feedbackPage .fb-layout{ grid-template-columns:minmax(0,1fr) 380px; }
     }
 
     #feedbackPage .fb-card{
-      background:#fff;border:1px solid var(--border);border-radius:16px;padding:16px;
-      box-shadow:var(--shadow);
+      background:#fff; border:1px solid var(--border); border-radius:16px; padding:16px; box-shadow:var(--shadow);
     }
-    #feedbackPage .fb-card h3{margin:0 0 8px;font-size:clamp(18px,4vw,22px);font-weight:800;color:var(--brand-red)}
-    #feedbackPage .fb-card .hint{color:var(--muted);margin:2px 0 10px}
+    #feedbackPage .fb-card h3{ margin:0 0 8px; font-size:clamp(18px,4vw,22px); font-weight:800; color:var(--brand-red) }
+    #feedbackPage .fb-card .hint{ color:var(--muted); margin:2px 0 10px }
 
     /* Field group */
-    #feedbackPage .row-2{display:grid;grid-template-columns:1fr;gap:12px}
-    @media (min-width: 768px){ #feedbackPage .row-2{grid-template-columns:1fr 1fr} }
+    #feedbackPage .row-2{ display:grid; grid-template-columns:1fr; gap:12px; }
+    @media (min-width: 768px){ #feedbackPage .row-2{ grid-template-columns:1fr 1fr; } }
     #feedbackPage input[type="text"],
     #feedbackPage input[type="tel"],
     #feedbackPage input[type="email"]{
-      width:100%;padding:12px 14px;border:1px solid var(--border);border-radius:10px;font:inherit;
+      width:100%; padding:12px 14px; border:1px solid var(--border); border-radius:10px; font:inherit;
     }
     #feedbackPage .select{
-      width:100%;padding:12px 14px;border:1px solid var(--border);border-radius:10px;background:#fff;font:inherit
+      width:100%; padding:12px 14px; border:1px solid var(--border); border-radius:10px; background:#fff; font:inherit;
     }
     #feedbackPage .textarea{
-      width:100%;padding:12px 14px;border:1px solid var(--border);border-radius:12px;min-height:140px;resize:vertical;font:inherit
+      width:100%; padding:12px 14px; border:1px solid var(--border); border-radius:12px; min-height:140px; resize:vertical; font:inherit;
     }
 
     /* Urgensi chip */
-    #feedbackPage .chip-group{display:flex;flex-wrap:wrap;gap:8px}
+    #feedbackPage .chip-group{ display:flex; flex-wrap:wrap; gap:8px; }
     #feedbackPage .chip{
-      display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:999px;
-      border:1.5px solid var(--border);background:#fff;cursor:pointer;font-weight:700;color:#444;transition:.15s;
+      display:inline-flex; align-items:center; gap:8px; padding:8px 12px; border-radius:999px;
+      border:1.5px solid var(--border); background:#fff; cursor:pointer; font-weight:700; color:#444; transition:.15s;
       white-space:nowrap;
     }
-    #feedbackPage .chip input{display:none}
-    #feedbackPage .chip.active{border-color:#b5121b;background:#fff0f2;color:#b5121b}
+    #feedbackPage .chip input{ display:none; }
+    #feedbackPage .chip.active{ border-color:#b5121b; background:#fff0f2; color:#b5121b; }
 
-    /* Meta row (checkbox + keterangan + counter) – FIX mobile wrap rapi */
+    /* === META-ROW FIX: pakai grid agar stabil di desktop & mobile === */
     #feedbackPage .meta-row{
-      display:flex;align-items:flex-start;gap:10px;margin-top:8px;color:#888;font-size:14px;
-      flex-wrap:wrap;
+      display:grid; grid-template-columns: 1fr auto; gap:10px; align-items:center; margin-top:8px; color:#888; font-size:14px;
     }
-    #feedbackPage .meta-row label{
-      display:flex;align-items:flex-start;gap:8px;line-height:1.4;
-      flex:1 1 280px; /* min width agar teks tidak turun per huruf */
-      min-width: 260px;
-      white-space:normal;word-break:normal;
+    @media (max-width: 576px){
+      #feedbackPage .meta-row{ grid-template-columns: 1fr; }
+      #feedbackPage .meta-row .counter{ justify-self:end; }
     }
-    #feedbackPage .meta-row input[type="checkbox"]{margin-top:3px}
-    #feedbackPage .counter{
-      font-variant-numeric:tabular-nums;font-feature-settings:"tnum";
-      flex:0 0 auto;
+    #feedbackPage .consent-wrap{
+      display:flex; align-items:flex-start; gap:8px; min-width: 240px; /* cegah turun per huruf */
+      white-space:normal; word-break:normal; line-height:1.4;
     }
+    #feedbackPage .consent-wrap input{ margin-top:3px; }
 
-    /* CTA row – wrap aman */
+    /* === SEND-ACTIONS FIX: tombol + hint jadi grid rapi === */
     #feedbackPage .send-actions{
-      display:flex;align-items:center;gap:12px;margin-top:12px;flex-wrap:wrap
+      display:grid; grid-template-columns:auto 1fr; gap:12px; align-items:center; margin-top:12px;
+    }
+    @media (max-width: 576px){
+      #feedbackPage .send-actions{ grid-template-columns:1fr; }
+      #feedbackPage .send-actions .btn-wa{ width:100%; justify-content:center; }
     }
     #feedbackPage .send-actions .btn-wa{
-      display:inline-flex;align-items:center;gap:8px;padding:12px 18px;border-radius:999px;
-      background:#b5121b;color:#fff;text-decoration:none;border:2px solid transparent;font-weight:800;min-height:44px;
-      flex:0 0 auto;
+      display:inline-flex; align-items:center; gap:8px; padding:12px 18px; border-radius:999px;
+      background:#b5121b; color:#fff; text-decoration:none; border:2px solid transparent; font-weight:800; min-height:44px;
     }
-    #feedbackPage .send-actions .btn-wa[aria-disabled="true"]{ pointer-events:none;opacity:.6;filter:grayscale(.2) }
-    #feedbackPage .send-actions .send-hint{color:#888;flex:1 1 220px;min-width:200px}
+    #feedbackPage .send-actions .btn-wa[aria-disabled="true"]{ pointer-events:none; opacity:.6; filter:grayscale(.2); }
+    #feedbackPage .send-actions .send-hint{ color:#888; }
 
     /* Section title spacing */
-    #feedbackPage .page-intro{margin:-6px 0 18px;text-align:center}
-    #feedbackPage .page-intro p{color:var(--muted);margin:8px 0 0}
+    #feedbackPage .page-intro{ margin:-6px 0 18px; text-align:center }
+    #feedbackPage .page-intro p{ color:var(--muted); margin:8px 0 0 }
 
     /* Side card list */
-    #feedbackPage .side-card .item{display:flex;gap:12px;align-items:flex-start;padding:10px 0;border-bottom:1px dashed #eee}
-    #feedbackPage .side-card .item:last-child{border-bottom:none}
-    #feedbackPage .side-card .item i{color:#b5121b;font-size:18px;min-width:22px;transform:translateY(3px)}
-    #feedbackPage .side-card .item b{display:block}
+    #feedbackPage .side-card .item{ display:flex; gap:12px; align-items:flex-start; padding:10px 0; border-bottom:1px dashed #eee }
+    #feedbackPage .side-card .item:last-child{ border-bottom:none }
+    #feedbackPage .side-card .item i{ color:#b5121b; font-size:18px; min-width:22px; transform:translateY(3px) }
+    #feedbackPage .side-card .item b{ display:block }
   </style>
 </head>
 <body>
@@ -214,10 +211,10 @@
           <label for="fb-message">Pesan</label>
           <textarea id="fb-message" class="textarea" maxlength="1200" placeholder="Tuliskan pertanyaan, kritik, saran, atau keluhan Anda secara jelas…"></textarea>
           <div class="meta-row">
-            <label for="fb-consent">
+            <div class="consent-wrap">
               <input id="fb-consent" type="checkbox" />
-              <span>Izinkan kami menghubungi kembali untuk menindaklanjuti.</span>
-            </label>
+              <label for="fb-consent" style="margin:0;cursor:pointer;">Izinkan kami menghubungi kembali untuk menindaklanjuti.</label>
+            </div>
             <span class="counter"><span id="charNow">0</span>/1200</span>
           </div>
         </div>
@@ -231,7 +228,7 @@
         </div>
       </section>
 
-      <!-- RIGHT: HELP / FAQ (blok alamat/telepon/email DIHILANGKAN) -->
+      <!-- RIGHT: HELP / FAQ (tanpa blok alamat/telepon/email) -->
       <aside class="fb-card side-card" aria-label="Bantuan & Informasi">
         <h3>Bantuan Cepat</h3>
         <div class="item">
@@ -263,7 +260,7 @@
   <footer class="site-footer">
     <div class="container footer-grid">
       <div class="footer-about">
-        <img src="assets/img/logo-oval.svg" alt="Logo Kopi Feeling" class="footer-logo" />
+        <img src="assets/img/logo-oval.svg" alt="Logo Kopi Feeling" class="footer-logo">
         <p>Kopi Feeling adalah brand kopi gerobak nomor 1 di Banjarmasin—siap menemani harian & acara Anda.</p>
       </div>
       <div class="footer-contact">
@@ -299,7 +296,7 @@
   </footer>
 
   <!-- SCRIPTS tema -->
-  <script defer src="assets/js/main.js"></script>
+  <script src="assets/js/main.js" defer></script>
 
   <!-- Inline JS khusus halaman feedback -->
   <script>
@@ -380,3 +377,4 @@
   <noscript>Halaman ini bekerja optimal dengan JavaScript diaktifkan.</noscript>
 </body>
 </html>
+``
