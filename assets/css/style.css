@@ -468,3 +468,54 @@ input,textarea{
     max-width: 84%;            /* sedikit mengecil di layar kecil */
   }
 }
+
+/* ===== Leaderboard — Logo ukuran proporsional & center ===== */
+#leaderboard-host .lb-header{
+  /* pastikan parent tidak memaksa alignment kiri */
+  text-align: center;
+}
+
+#leaderboard-host .lb-header .lb-title{
+  /* reset style gradient-tekstual bawaan, dan pusatkan */
+  margin: 0 0 12px;
+  font: inherit;                 /* kita pakai image, bukan teks visual */
+  line-height: 1;
+  display: flex;                 /* supaya mudah center */
+  justify-content: center;
+  align-items: center;
+}
+
+/* Logo default (desktop) */
+#leaderboard-host .lb-header .lb-title .lb-logo{
+  display: block;
+  width: 100%;
+  max-width: 440px;              /* <= atur ukuran desktop di sini */
+  height: auto;
+  margin-inline: auto;           /* center secara horizontal */
+}
+
+/* Tablet */
+@media (max-width: 992px){
+  #leaderboard-host .lb-header .lb-title .lb-logo{
+    max-width: 380px;
+  }
+}
+
+/* Mobile besar (<= 640px) */
+@media (max-width: 640px){
+  #leaderboard-host .lb-header .lb-title .lb-logo{
+    max-width: 300px;
+  }
+}
+
+/* Mobile kecil (<= 390px) – mis. iPhone mini */
+@media (max-width: 390px){
+  #leaderboard-host .lb-header .lb-title .lb-logo{
+    max-width: 240px;
+  }
+}
+
+/* (Opsional) jika ingin memberi ruang ekstra bawah dari logo */
+#leaderboard-host .lb-sub{
+  margin-top: 4px;               /* kecilkan bila perlu */
+}
