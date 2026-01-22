@@ -480,3 +480,59 @@ input,textarea{
   .cta-content p  { font-size: 12.5px; }
 }
 
+
+/* ===== SERVICES — Perbaikan input tanggal di mobile & cross-browser ===== */
+
+/* Gaya dasar input tanggal di semua perangkat (agar konsisten) */
+.order-widget input[type="date"]{
+  width: 100%;
+  box-sizing: border-box;
+  appearance: none;
+  -webkit-appearance: none;
+  background-color: #fff;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 10px 12px;
+  min-height: 44px;
+  font: inherit;
+  line-height: 1.2;
+  color: var(--text);
+}
+
+/* Safari/iOS: nilai internal sering ‘mendorong’ lebar, rapikan paddingnya */
+.order-widget input[type="date"]::-webkit-date-and-time-value{
+  text-align: left;
+  padding: 0;            /* hilangkan padding bawaan */
+  min-height: 1.2em;
+}
+
+/* Safari/iOS: indikator kalender kadang memotong/overflow — kecilkan dan pastikan klik */
+.order-widget input[type="date"]::-webkit-calendar-picker-indicator{
+  padding: 0 6px;
+  margin: 0;
+  opacity: .8;
+}
+
+/* Firefox (non-WebKit) menjaga tinggi yang sama */
+@supports (-moz-appearance: none) {
+  .order-widget input[type="date"]{
+    padding-block: 10px;
+  }
+}
+
+/* Layout untuk rentang tanggal (Everyday) agar tidak ‘pecah’ di layar kecil */
+@media (max-width: 768px){
+  /* Pastikan grid dua tanggal menjadi satu kolom rapi */
+  #panel-everyday .contact-grid{
+    grid-template-columns: 1fr;      /* tumpuk vertikal */
+    gap: 8px;                         /* lebih rapat */
+  }
+  /* Kompakkan label & kolom tanggal pada semua panel layanan */
+  .order-widget .contact-grid{
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+  .order-widget label{
+    margin-bottom: 4px;
+  }
+}
