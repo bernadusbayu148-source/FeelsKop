@@ -62,26 +62,37 @@ body{
 .logo{height:38px;width:auto}
 .brand-name{white-space:nowrap}
 .nav{margin-left:auto}
-.nav-list{display:flex;align-items:center;gap:24px;list-style:none;margin:0;padding:0;}
-.nav-link{color:var(--brand-red);font-weight:700;text-decoration:none;padding:12px 4px;display:inline-flex;align-items:center;gap:6px;}
+
+/* NAV-LIST ALWAYS VISIBLE (desktop & mobile) */
+.nav-list{
+  display:flex;align-items:center;gap:24px;list-style:none;margin:0;padding:0;
+  /* mobile-friendly horizontal scroll (tanpa hamburger) */
+  overflow-x:auto;overflow-y:hidden;
+  -webkit-overflow-scrolling:touch;
+  scrollbar-width:thin;
+}
+.nav-list::-webkit-scrollbar{height:6px}
+.nav-list::-webkit-scrollbar-thumb{background:#e4e4e4;border-radius:999px}
+.nav-link{color:var(--brand-red);font-weight:700;text-decoration:none;padding:12px 4px;display:inline-flex;align-items:center;gap:6px;white-space:nowrap}
 .nav-link:hover,.nav-link.active{opacity:.85}
-.btn-wa{margin-left:8px}
-.nav-toggle{
-  display:none;margin-left:auto;background:#fff;border:1px solid var(--border);
-  padding:10px;border-radius:8px;cursor:pointer;
-}
-.nav-toggle-bar{display:block;width:22px;height:2px;background:#333;margin:4px 0}
+.btn-wa{margin-left:8px;white-space:nowrap}
+
+/* HIDE HAMBURGER IN ALL WIDTHS (requested) */
+.nav-toggle{display:none !important;}
+
 body.nav-open{overflow:hidden;touch-action:none;}
-@media (max-width:992px){
-  .nav{
-    display:none;position:fixed;inset:64px 0 0 0;height:calc(100vh - 64px);
-    background:#fff;border-top:1px solid var(--border);overflow-y:auto;-webkit-overflow-scrolling:touch;
-  }
-  .nav.open{display:block}
-  .nav-list{flex-direction:column;align-items:flex-start;padding:12px}
-  .btn-wa{display:none}.nav-toggle{display:block}
-}
+/* A11Y focus */
 .nav .nav-link:focus-visible,.btn:focus-visible,.dropdown-toggle:focus-visible{outline:2px solid #1e90ff;outline-offset:2px;}
+
+/* Responsive tweaks:
+   - On smaller screens, keep the list scrollable horizontally
+   - Reduce gap a bit on very narrow devices
+*/
+@media (max-width:768px){
+  .nav-list{gap:16px}
+  .btn-wa{padding:10px 14px;font-size:14px}
+}
+
 /* =========================
  Hero Slider
  ========================= */
