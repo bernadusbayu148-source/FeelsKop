@@ -539,57 +539,55 @@ input,textarea{
   }
 }
 
-/* ==== Brand inline: ikon + wordmark ==== */
 
-/* Pastikan kontainer brand rapi dan sejajar */
+/* =========================
+   BRAND — Ikon + Wordmark (gambar tulisan)
+   ========================= */
+
+/* Pastikan kontainer brand rapi & sejajar */
 .brand{
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;            /* jarak antara ikon dan tulisan */
-  text-decoration: none;
-  color: inherit;
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  text-decoration:none;
+  color:inherit;
+  min-width:0;
 }
 
-/* Ikon di kiri (logo pictogram) */
+/* Ikon kiri (logo utama) */
 .logo{
-  height: 44px;         /* ukuran desktop: boleh kamu ubah 40–52px */
-  width: auto;
+  height:52px;     /* desktop: 48–60px aman */
+  width:auto;
 }
 
-/* Wordmark (tulisan) yang baru */
+/* Wordmark (tulisan Kopi Feeling) */
 .brand-wordmark{
-  display: block;
-  height: 28px;         /* tinggi tulisan di desktop */
-  width: auto;
+  display:block;
+  height:28px;     /* desktop: 26–34px aman */
+  width:auto;
+  image-rendering:-webkit-optimize-contrast; /* tajam untuk teks bitmap */
 }
 
 /* Tablet */
 @media (max-width: 992px){
-  .logo{ height: 40px; }
-  .brand-wordmark{ height: 26px; }
+  .logo{ height:46px; }
+  .brand-wordmark{ height:26px; }
 }
 
 /* Mobile */
 @media (max-width: 768px){
-  .logo{ height: 36px; }
-  .brand-wordmark{ height: 24px; }
+  .logo{ height:40px; }
+  .brand-wordmark{ height:24px; }
 }
 
-/* Mobile kecil (iPhone mini, dsb.) */
+/* Mobile kecil (mis. iPhone mini) */
 @media (max-width: 390px){
-  .logo{ height: 32px; }
-  .brand-wordmark{ height: 22px; }
+  .logo{ height:36px; }
+  .brand-wordmark{ height:22px; }
 }
 
-/* ==== Logo Tulisan (Wordmark) ==== */
-.wordmark {
-  height: 28px;       /* Ukuran desktop */
-  width: auto;
-}
-
-/* Mobile */
-@media (max-width: 768px) {
-  .wordmark {
-    height: 22px;
-  }
+/* Guard: jika ada rule global yang membatasi tinggi IMG */
+.brand img{
+  max-height:none !important;
+  height:auto;
 }
