@@ -1,0 +1,76 @@
+
+/* =======================================================
+   NAVBAR OVERRIDE (scoped) — tampilkan menu desktop di mobile
+   Tujuan: Menghilangkan hamburger, menampilkan daftar menu
+   tanpa mempengaruhi komponen lain (leaderboard, dsb).
+   ======================================================= */
+
+/* Struktur nav container fleksibel & boleh menyusut */
+.site-header .nav-container{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  position:relative;   /* anchor utk tombol WA absolut di mobile */
+  overflow:hidden;     /* cegah overflow horizontal bar */
+}
+.site-header .brand{flex:0 0 auto; min-width:0;}
+.site-header .nav{flex:1 1 auto; min-width:0;} /* penting utk iOS Safari */
+
+/* Desktop: hamburger memang disembunyikan */
+@media (min-width: 993px){
+  .nav-toggle{ display:none !important; }
+}
+
+/* Mobile (≤ 992px): jadikan navbar seperti desktop */
+@media (max-width: 992px){
+
+  /* Tampilkan .nav sebagai bar biasa (bukan drawer penuh layar) */
+  .site-header .nav{
+    display:block !important;
+    position:static !important;
+    height:auto !important;
+    background:transparent !important;
+    border-top:0 !important;
+    overflow:visible !important;
+    padding-right:120px; /* ruang untuk tombol WA di kanan */
+  }
+
+  /* Daftar menu selalu terlihat, bisa digeser mendatar */
+  .site-header .nav .nav-list{
+    display:flex !important;
+    align-items:center;
+    gap:16px;
+    margin:0;
+    padding:8px 0;
+    overflow-x:auto; overflow-y:hidden;
+    -webkit-overflow-scrolling:touch;
+    scrollbar-width:thin;
+    min-width:0; /* biar boleh shrink */
+  }
+  .site-header .nav .nav-list::-webkit-scrollbar{ height:6px }
+  .site-header .nav .nav-list::-webkit-scrollbar-thumb{ background:#e4e4e4; border-radius:999px }
+
+  /* Sembunyikan hamburger */
+  .nav-toggle{ display:none !important; }
+
+  /* Tombol WA mengambang di kanan agar tak menambah lebar bar */
+  .btn-wa{
+    position:absolute;
+    right:16px;
+    top:50%;
+    transform:translateY(-50%);
+    display:inline-flex !important;
+    white-space:nowrap;
+    z-index:5;
+  }
+
+  /* Jika script toggle sempat mengunci body, paksa normal */
+  body.nav-open{ overflow:auto !important; touch-action:auto !important; }
+}
+
+/* iOS Safari: cegah scroll area menu menggeser <body> */
+@supports (-webkit-touch-callout: none){
+  .site-header .nav .nav-list{
+    overscroll-behavior-x:contain;
+  }
+}
