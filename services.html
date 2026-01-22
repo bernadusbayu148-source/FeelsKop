@@ -35,34 +35,30 @@
         <img src="assets/img/logo-oval.svg" class="logo" alt="Logo Kopi Feeling" />
         <span class="brand-name">Kopi Feeling</span>
       </a>
-
       <button class="nav-toggle" aria-label="Buka menu" aria-expanded="false" aria-controls="primaryNav">
         <span class="nav-toggle-bar"></span>
         <span class="nav-toggle-bar"></span>
         <span class="nav-toggle-bar"></span>
       </button>
-
       <nav class="nav" id="primaryNav" aria-label="Navigasi utama">
         <ul class="nav-list">
           <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
           <li class="nav-item"><a href="products.html" class="nav-link">Menu</a></li>
-          <li class="nav-item"><a href="services.html" class="nav-link active">Layanan</a></li>
+          <li class="nav-item"><a href="services.html" class="nav-link active" aria-current="page">Layanan</a></li>
           <li class="nav-item"><a class="nav-link" href="stations.html">Lokasi & Coverage</a></li>
           <li class="nav-item"><a href="contact.html" class="nav-link">Kontak</a></li>
         </ul>
       </nav>
-
       <a class="btn btn-outline btn-wa"
          href="https://wa.me/6281254913064?text=Halo%20Kopi%20Feeling,%20minta%20info%20layanan."
          target="_blank" rel="noopener">
-        <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> WhatsApp
+         <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> WhatsApp
       </a>
     </div>
   </header>
 
   <main class="section container">
     <h2 class="section-title">Layanan</h2>
-
     <!-- AJAKAN -->
     <section class="service-intro">
       <h3>Kopi Feeling — Dimanapun, Kapanpun!</h3>
@@ -97,20 +93,16 @@
             Bersantai di rumah kini jadi lebih istimewa bersama <strong>Feeling To You.</strong>.
             Layanan <strong>Pengantaran Gratis</strong> untuk pemesanan mulai dari <strong>9 Cup</strong>.
           </p>
-
           <div class="card-image"><img src="assets/img/service-toyo.jpg" alt="Feeling To You." loading="lazy" decoding="async" width="1200" height="675" /></div>
-
           <!-- ORDER WIDGET: TOYO (min 9, single date) -->
           <section class="order-widget" id="ow-toyo" data-key="toyo" data-service="Feeling To You." data-min="9" data-datemode="single" aria-label="Form pemesanan Feeling To You.">
             <h3 class="contact-subtitle">Detail Pemesanan — Feeling To You.</h3>
-
             <div class="contact-grid">
               <div><label for="toyo-name">Nama</label><input id="toyo-name" type="text" autocomplete="name" /></div>
               <div><label for="toyo-org">Instansi/Komunitas</label><input id="toyo-org" type="text" autocomplete="organization" /></div>
               <div><label for="toyo-email">Email</label><input id="toyo-email" type="email" autocomplete="email" /></div>
               <div><label for="toyo-phone">Nomor HP</label><input id="toyo-phone" type="tel" inputmode="tel" pattern="\+?\d{9,15}" autocomplete="tel" /></div>
             </div>
-
             <h4 class="contact-subtitle" style="margin-top:8px">Detail Pesanan</h4>
             <div class="order-list" id="toyo-orderList">
               <div class="order-row" data-index="0">
@@ -126,7 +118,6 @@
               </div>
             </div>
             <div class="order-actions"><button type="button" class="btn btn-outline add-row">+ Tambah Menu</button></div>
-
             <!-- Tanggal (single) + Alamat -->
             <div class="contact-grid">
               <div>
@@ -138,10 +129,8 @@
                 <textarea id="toyo-address" rows="3" placeholder="Tulis alamat lengkap & catatan waktu pengantaran (opsional)"></textarea>
               </div>
             </div>
-
             <p style="margin:8px 0 0;font-weight:700">Total Cup: <span class="total-cup" id="toyo-total">0</span> (Min 9)</p>
             <small class="send-hint" id="toyo-hint" style="color:#888">Pesan akan dirangkum otomatis ke format WhatsApp.</small>
-
             <div class="send-actions">
               <a class="btn btn-primary wa-send" href="#" target="_blank" rel="noopener" aria-disabled="true">
                 <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Kirim via WhatsApp
@@ -161,20 +150,16 @@
             Bawa suasana berbeda ke acara Anda dengan <strong>Feeling Party.</strong>.
             Minimum <strong>150 Cup</strong> termasuk 1 unit gerobak/bajaj + barista lapangan.
           </p>
-
           <div class="card-image"><img src="assets/img/service-party.jpg" alt="Feeling Party." loading="lazy" decoding="async" width="1200" height="675" /></div>
-
           <!-- ORDER WIDGET: PARTY (min 150, single date) -->
           <section class="order-widget" id="ow-party" data-key="party" data-service="Feeling Party." data-min="150" data-datemode="single" aria-label="Form pemesanan Feeling Party.">
             <h3 class="contact-subtitle">Detail Pemesanan — Feeling Party.</h3>
-
             <div class="contact-grid">
               <div><label for="party-name">Nama</label><input id="party-name" type="text" autocomplete="name" /></div>
               <div><label for="party-org">Instansi/Komunitas</label><input id="party-org" type="text" autocomplete="organization" /></div>
               <div><label for="party-email">Email</label><input id="party-email" type="email" autocomplete="email" /></div>
               <div><label for="party-phone">Nomor HP</label><input id="party-phone" type="tel" inputmode="tel" pattern="\+?\d{9,15}" autocomplete="tel" /></div>
             </div>
-
             <h4 class="contact-subtitle" style="margin-top:8px">Detail Pesanan</h4>
             <div class="order-list" id="party-orderList">
               <div class="order-row" data-index="0">
@@ -190,7 +175,6 @@
               </div>
             </div>
             <div class="order-actions"><button type="button" class="btn btn-outline add-row">+ Tambah Menu</button></div>
-
             <div class="contact-grid">
               <div>
                 <label for="party-date">Tanggal Pemesanan</label>
@@ -201,10 +185,8 @@
                 <textarea id="party-address" rows="3" placeholder="Tulis alamat lengkap & catatan waktu pengantaran (opsional)"></textarea>
               </div>
             </div>
-
             <p style="margin:8px 0 0;font-weight:700">Total Cup: <span class="total-cup" id="party-total">0</span> (Min 150)</p>
             <small class="send-hint" id="party-hint" style="color:#888">Pesan akan dirangkum otomatis ke format WhatsApp.</small>
-
             <div class="send-actions">
               <a class="btn btn-primary wa-send" href="#" target="_blank" rel="noopener" aria-disabled="true">
                 <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Kirim via WhatsApp
@@ -223,20 +205,16 @@
           <p>
             Program langganan harian untuk kantor/korporasi. Minimum <strong>8 Cup</strong> per pengantaran, jadwal fleksibel.
           </p>
-
           <div class="card-image"><img src="assets/img/service-everyday.jpg" alt="Feeling Everyday." loading="lazy" decoding="async" width="1200" height="675" /></div>
-
           <!-- ORDER WIDGET: EVERYDAY (min 8, date range) -->
           <section class="order-widget" id="ow-everyday" data-key="everyday" data-service="Feeling Everyday." data-min="8" data-datemode="range" aria-label="Form pemesanan Feeling Everyday.">
             <h3 class="contact-subtitle">Detail Pemesanan — Feeling Everyday.</h3>
-
             <div class="contact-grid">
               <div><label for="every-name">Nama</label><input id="every-name" type="text" autocomplete="name" /></div>
               <div><label for="every-org">Instansi/Komunitas</label><input id="every-org" type="text" autocomplete="organization" /></div>
               <div><label for="every-email">Email</label><input id="every-email" type="email" autocomplete="email" /></div>
               <div><label for="every-phone">Nomor HP</label><input id="every-phone" type="tel" inputmode="tel" pattern="\+?\d{9,15}" autocomplete="tel" /></div>
             </div>
-
             <h4 class="contact-subtitle" style="margin-top:8px">Detail Pesanan</h4>
             <div class="order-list" id="every-orderList">
               <div class="order-row" data-index="0">
@@ -252,7 +230,6 @@
               </div>
             </div>
             <div class="order-actions"><button type="button" class="btn btn-outline add-row">+ Tambah Menu</button></div>
-
             <!-- Rentang tanggal + alamat -->
             <div class="contact-grid">
               <div>
@@ -268,10 +245,8 @@
                 <textarea id="every-address" rows="3" placeholder="Tulis alamat lengkap & catatan waktu pengantaran (opsional)"></textarea>
               </div>
             </div>
-
             <p style="margin:8px 0 0;font-weight:700">Total Cup: <span class="total-cup" id="every-total">0</span> (Min 8)</p>
             <small class="send-hint" id="every-hint" style="color:#888">Pesan akan dirangkum otomatis ke format WhatsApp.</small>
-
             <div class="send-actions">
               <a class="btn btn-primary wa-send" href="#" target="_blank" rel="noopener" aria-disabled="true">
                 <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Kirim via WhatsApp
@@ -291,20 +266,16 @@
             Buat momen pernikahan semakin berkesan dengan <strong>Feeling Di Wedding.</strong> —
             coffee cart eksklusif + <strong>2 barista</strong> untuk tamu Anda. Minimum <strong>200 Cup</strong>.
           </p>
-
           <div class="card-image"><img src="assets/img/service-wedding.jpg" alt="Feeling Di Wedding." loading="lazy" decoding="async" width="1200" height="675" /></div>
-
           <!-- ORDER WIDGET: WEDDING (min 200, single date, “Nama Mempelai”) -->
           <section class="order-widget" id="ow-wedding" data-key="wedding" data-service="Feeling Di Wedding." data-min="200" data-datemode="single" aria-label="Form pemesanan Feeling Di Wedding.">
             <h3 class="contact-subtitle">Detail Pemesanan — Feeling Di Wedding.</h3>
-
             <div class="contact-grid">
               <div><label for="wed-name">Nama</label><input id="wed-name" type="text" autocomplete="name" /></div>
               <div><label for="wed-couple">Nama Mempelai</label><input id="wed-couple" type="text" placeholder="cth: Andi & Siti" /></div>
               <div><label for="wed-email">Email</label><input id="wed-email" type="email" autocomplete="email" /></div>
               <div><label for="wed-phone">Nomor HP</label><input id="wed-phone" type="tel" inputmode="tel" pattern="\+?\d{9,15}" autocomplete="tel" /></div>
             </div>
-
             <h4 class="contact-subtitle" style="margin-top:8px">Detail Pesanan</h4>
             <div class="order-list" id="wed-orderList">
               <div class="order-row" data-index="0">
@@ -320,7 +291,6 @@
               </div>
             </div>
             <div class="order-actions"><button type="button" class="btn btn-outline add-row">+ Tambah Menu</button></div>
-
             <div class="contact-grid">
               <div>
                 <label for="wed-date">Tanggal Pemesanan</label>
@@ -331,10 +301,8 @@
                 <textarea id="wed-address" rows="3" placeholder="Tulis alamat lengkap & catatan waktu pengantaran (opsional)"></textarea>
               </div>
             </div>
-
             <p style="margin:8px 0 0;font-weight:700">Total Cup: <span class="total-cup" id="wed-total">0</span> (Min 200)</p>
             <small class="send-hint" id="wed-hint" style="color:#888">Pesan akan dirangkum otomatis ke format WhatsApp.</small>
-
             <div class="send-actions">
               <a class="btn btn-primary wa-send" href="#" target="_blank" rel="noopener" aria-disabled="true">
                 <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Kirim via WhatsApp
@@ -349,11 +317,10 @@
     <section class="final-cta">
       <p class="final-note">Diskusikan dengan tim kami untuk mengetahui layanan yang paling sesuai dengan kebutuhan Anda.</p>
       <h3 class="final-title">ORDER SEKARANG — GRATIS ONGKIR!</h3>
-      </a>
     </section>
   </main>
 
-  <!-- CTA STRIP (DIUBAH) -->
+  <!-- CTA STRIP -->
   <section class="cta-strip" role="complementary" aria-label="Bantuan pelanggan & keluhan">
     <div class="container cta-content">
       <h3>Ada pertanyaan atau keluhan?</h3>
@@ -437,14 +404,12 @@
 
   <!-- SCRIPTS -->
   <script src="assets/js/main.js" defer></script>
-
-  <!-- Inline JS — Order widgets di Layanan -->
+  <!-- Inline JS — Order widgets di Layanan (tetap sesuai file asli) -->
   <script>
   (function(){
     const WA_NUMBER = '6281254913064';
-
     // Utils
-    const qs  = (sel, root=document) => root.querySelector(sel);
+    const qs = (sel, root=document) => root.querySelector(sel);
     const qsa = (sel, root=document) => Array.from(root.querySelectorAll(sel));
     const fmtDateID = (value) => {
       if(!value) return '';
@@ -453,14 +418,12 @@
         return d.toLocaleDateString('id-ID',{ day:'2-digit', month:'long', year:'numeric' });
       } catch(e){ return value; }
     };
-
     // ===== Modal Menu (shared) =====
     const modal = qs('#serviceMenuModal');
     const menuGrid = qs('#serviceMenuGrid');
     const menuSearch = qs('#serviceMenuSearch');
     let activeWidget = null;
     let activeRowIndex = 0;
-
     function openModal(widgetEl, rowIndex){
       activeWidget = widgetEl; activeRowIndex = rowIndex;
       menuSearch.value = ''; filterMenu('');
@@ -489,17 +452,13 @@
       if(row){ qs('.menu-value', row).textContent = val; qs('.qty-input', row).focus(); }
       closeModal(); refresh(activeWidget);
     });
-
     // ===== Bind semua widget =====
     const widgets = qsa('.order-widget');
     widgets.forEach(w=>{ bindWidget(w); refresh(w); });
-
     function bindWidget(widget){
       const list = qs('.order-list', widget);
       // Tambah baris
-      qs('.add-row', widget).addEventListener('click',()=>{
-        addRow(widget); refresh(widget);
-      });
+      qs('.add-row', widget).addEventListener('click',()=>{ addRow(widget); refresh(widget); });
       // Delegasi click (picker/remove)
       widget.addEventListener('click', (e)=>{
         const picker = e.target.closest('.menu-picker');
@@ -520,18 +479,16 @@
       qsa('input, textarea', widget).forEach(inp=>{
         inp.addEventListener('input', ()=> refresh(widget));
       });
-
       // Cegah klik WA jika disabled (dipasang sekali per widget)
       const waBtn = qs('.wa-send', widget);
       waBtn.addEventListener('click', (e)=>{
         if(waBtn.getAttribute('aria-disabled')==='true'){ e.preventDefault(); e.stopPropagation(); }
       });
     }
-
     function addRow(widget){
       const key = widget.dataset.key;
       const list = qs('.order-list', widget);
-      const idx  = qsa('.order-row', list).length;
+      const idx = qsa('.order-row', list).length;
       const row = document.createElement('div');
       row.className='order-row'; row.dataset.index=String(idx);
       row.innerHTML = `
@@ -547,7 +504,6 @@
       `;
       list.appendChild(row);
     }
-
     function removeRow(widget, rowEl){
       if(!rowEl) return;
       const list = qs('.order-list', widget);
@@ -564,38 +520,31 @@
         qs('.qty-input', r).id = `${key}-qty-${i}`;
       });
     }
-
     function getOrders(widget){
       return qsa('.order-row', widget).map(r=>{
         const menu = qs('.menu-value', r).textContent.trim();
-        const qty  = Number(qs('.qty-input', r).value || 0);
+        const qty = Number(qs('.qty-input', r).value || 0);
         return {menu, qty};
       }).filter(o => !!o.menu && o.menu!=='Belum dipilih' && o.qty>0);
     }
-
     function sumQty(rows){ return rows.reduce((s,o)=> s + Number(o.qty||0), 0); }
-
     function refresh(widget){
       const key = widget.dataset.key;
       const min = Number(widget.dataset.min || 0);
       const serviceName = widget.dataset.service || 'Layanan Kopi Feeling';
       const dateMode = widget.dataset.datemode || 'single';
-
       const orders = getOrders(widget);
-      const total  = sumQty(orders);
-
+      const total = sumQty(orders);
       // Tulis total
       const totalEl = qs(`#${key}-total`); if(totalEl) totalEl.textContent = String(total);
-
       // Ambil identitas
       const baseId = (key==='toyo') ? 'toyo' : (key==='party') ? 'party' : (key==='everyday') ? 'every' : 'wed';
-      const name   = qs(`#${baseId}-name`)?.value || qs(`#${key}-name`)?.value || '';
+      const name = qs(`#${baseId}-name`)?.value || qs(`#${key}-name`)?.value || '';
       const orgOrCouple = (key==='wedding')
         ? (qs('#wed-couple')?.value || '')
         : (qs(`#${baseId}-org`)?.value || qs(`#${key}-org`)?.value || '');
-      const email  = qs(`#${baseId}-email`)?.value || qs(`#${key}-email`)?.value || '';
-      const phone  = qs(`#${baseId}-phone`)?.value || qs(`#${key}-phone`)?.value || '';
-
+      const email = qs(`#${baseId}-email`)?.value || qs(`#${key}-email`)?.value || '';
+      const phone = qs(`#${baseId}-phone`)?.value || qs(`#${key}-phone`)?.value || '';
       // Tanggal
       let tanggal = '';
       if(dateMode==='range'){
@@ -607,13 +556,11 @@
         const d = dId ? (qs('#'+dId)?.value || '') : '';
         if(d) tanggal = `Tanggal: ${fmtDateID(d)}`;
       }
-
       const address = qs(`#${key}-address`)?.value || '';
-
       // Rangkai pesan WA
       const lines = [];
       lines.push(`*${serviceName}*`);
-      if(name)  lines.push(`Nama: ${name}`);
+      if(name) lines.push(`Nama: ${name}`);
       if(orgOrCouple){
         const labelOrg = (key==='wedding') ? 'Nama Mempelai' : 'Instansi/Komunitas';
         lines.push(`${labelOrg}: ${orgOrCouple}`);
@@ -621,7 +568,6 @@
       if(email) lines.push(`Email: ${email}`);
       if(phone) lines.push(`Nomor HP: ${phone}`);
       if(tanggal) lines.push(tanggal);
-
       lines.push('Pesanan:');
       if(orders.length){
         orders.forEach((o,i)=> lines.push(` ${i+1}. ${o.menu} × ${o.qty}`));
@@ -632,23 +578,20 @@
       if(address) lines.push(`Alamat Pengantaran: ${address}`);
       lines.push('');
       lines.push('Terima kasih 🙏');
-
       const msg = encodeURIComponent(lines.join('\n'));
       const waBtn = qs('.wa-send', widget);
-      const hint  = qs(`#${key}-hint`);
-      const ok    = total >= min;
-
+      const hint = qs(`#${key}-hint`);
+      const ok = total >= min;
       waBtn.href = ok ? `https://wa.me/${WA_NUMBER}?text=${msg}` : '#';
       waBtn.setAttribute('aria-disabled', ok ? 'false' : 'true');
       if(hint){
         hint.style.color = ok ? '#888' : '#d00';
         hint.textContent = ok ? 'Pesan akan dirangkum otomatis ke format WhatsApp.'
-                               : `Minimum pemesanan ${min} cup belum terpenuhi.`;
+                              : `Minimum pemesanan ${min} cup belum terpenuhi.`;
       }
     }
-  }());
+  })();
   </script>
-
   <noscript>Halaman ini bekerja optimal dengan JavaScript diaktifkan.</noscript>
 </body>
 </html>
