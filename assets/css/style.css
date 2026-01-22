@@ -529,12 +529,12 @@ input,textarea{
 
 /* ==== Navbar Logo Resize (Desktop + Mobile) ==== */
 .logo {
-  height: 52px;        /* ukuran desktop */
+  height: 72px;        /* ukuran desktop */
   width: auto;
 }
 
 @media (max-width: 768px) {
   .logo {
-    height: 42px;      /* mobile lebih kecil */
+    height: 62px;      /* mobile lebih kecil */
   }
 }
