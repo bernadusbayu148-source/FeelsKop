@@ -14,7 +14,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
 
-  <!-- Main CSS -->
+  <!-- Main CSS tema -->
   <link rel="stylesheet" href="assets/css/style.css" />
 
   <!-- Open Graph -->
@@ -40,15 +40,18 @@
     gtag('config', 'G-TJ8JRPYLQP', { anonymize_ip: true, send_page_view: true });
   </script>
 
-  <!-- Styles khusus halaman feedback (scoped) -->
+  <!-- Styles khusus halaman feedback (scoped & mobile-first FIX) -->
   <style>
-    /* Namespace agar tidak mengganggu halaman lain */
-    #feedbackPage * { box-sizing: border-box; max-width: 100%; }
-    #feedbackPage { word-break: break-word; }
-    #feedbackPage .fb-layout{
-      display:grid;grid-template-columns:minmax(0,1fr) 380px;gap:18px;align-items:start;
+    /* ===== Namespace agar tidak mempengaruhi halaman lain ===== */
+    #feedbackPage { /* Hapus pemenggalan agresif yang bikin teks turun per huruf */
+      word-break: normal; overflow-wrap: anywhere; /* only long unbroken strings */
     }
-    @media (max-width:992px){ #feedbackPage .fb-layout{grid-template-columns:1fr} }
+    #feedbackPage .fb-layout{
+      display:grid;grid-template-columns:1fr;gap:16px;align-items:start;
+    }
+    @media (min-width: 992px){
+      #feedbackPage .fb-layout{grid-template-columns:minmax(0,1fr) 380px}
+    }
 
     #feedbackPage .fb-card{
       background:#fff;border:1px solid var(--border);border-radius:16px;padding:16px;
@@ -58,15 +61,15 @@
     #feedbackPage .fb-card .hint{color:var(--muted);margin:2px 0 10px}
 
     /* Field group */
-    #feedbackPage .row-2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-    @media (max-width:768px){ #feedbackPage .row-2{grid-template-columns:1fr} }
+    #feedbackPage .row-2{display:grid;grid-template-columns:1fr;gap:12px}
+    @media (min-width: 768px){ #feedbackPage .row-2{grid-template-columns:1fr 1fr} }
     #feedbackPage input[type="text"],
     #feedbackPage input[type="tel"],
     #feedbackPage input[type="email"]{
-      width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:10px;font:inherit;
+      width:100%;padding:12px 14px;border:1px solid var(--border);border-radius:10px;font:inherit;
     }
     #feedbackPage .select{
-      width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:10px;background:#fff;font:inherit
+      width:100%;padding:12px 14px;border:1px solid var(--border);border-radius:10px;background:#fff;font:inherit
     }
     #feedbackPage .textarea{
       width:100%;padding:12px 14px;border:1px solid var(--border);border-radius:12px;min-height:140px;resize:vertical;font:inherit
@@ -77,25 +80,39 @@
     #feedbackPage .chip{
       display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:999px;
       border:1.5px solid var(--border);background:#fff;cursor:pointer;font-weight:700;color:#444;transition:.15s;
+      white-space:nowrap;
     }
     #feedbackPage .chip input{display:none}
     #feedbackPage .chip.active{border-color:#b5121b;background:#fff0f2;color:#b5121b}
 
-    /* Counter & consent row */
+    /* Meta row (checkbox + keterangan + counter) – FIX mobile wrap rapi */
     #feedbackPage .meta-row{
-      display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-top:6px;color:#888;font-size:14px;flex-wrap:wrap;
+      display:flex;align-items:flex-start;gap:10px;margin-top:8px;color:#888;font-size:14px;
+      flex-wrap:wrap;
     }
-    #feedbackPage .meta-row label{display:flex;align-items:flex-start;gap:8px;line-height:1.4;flex:1 1 240px}
-    #feedbackPage .counter{font-variant-numeric:tabular-nums;font-feature-settings:"tnum"}
+    #feedbackPage .meta-row label{
+      display:flex;align-items:flex-start;gap:8px;line-height:1.4;
+      flex:1 1 280px; /* min width agar teks tidak turun per huruf */
+      min-width: 260px;
+      white-space:normal;word-break:normal;
+    }
+    #feedbackPage .meta-row input[type="checkbox"]{margin-top:3px}
+    #feedbackPage .counter{
+      font-variant-numeric:tabular-nums;font-feature-settings:"tnum";
+      flex:0 0 auto;
+    }
 
-    /* CTA */
-    #feedbackPage .send-actions{display:flex;align-items:center;gap:12px;margin-top:12px;flex-wrap:wrap}
+    /* CTA row – wrap aman */
+    #feedbackPage .send-actions{
+      display:flex;align-items:center;gap:12px;margin-top:12px;flex-wrap:wrap
+    }
     #feedbackPage .send-actions .btn-wa{
       display:inline-flex;align-items:center;gap:8px;padding:12px 18px;border-radius:999px;
       background:#b5121b;color:#fff;text-decoration:none;border:2px solid transparent;font-weight:800;min-height:44px;
+      flex:0 0 auto;
     }
     #feedbackPage .send-actions .btn-wa[aria-disabled="true"]{ pointer-events:none;opacity:.6;filter:grayscale(.2) }
-    #feedbackPage .send-actions .send-hint{color:#888}
+    #feedbackPage .send-actions .send-hint{color:#888;flex:1 1 220px;min-width:200px}
 
     /* Section title spacing */
     #feedbackPage .page-intro{margin:-6px 0 18px;text-align:center}
@@ -207,14 +224,14 @@
 
         <!-- CTA -->
         <div class="send-actions">
-          <a id="waSendBtn" class="btn-wa" href="#" aria-disabled="true" target="_blank" rel="noopener">
+          <a id="waSendBtn" class="btn-wa" href="#" aria-disabled="true">
             <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Kirim via WhatsApp
           </a>
           <small class="send-hint">Pesan akan dirangkum otomatis untuk WhatsApp.</small>
         </div>
       </section>
 
-      <!-- RIGHT: HELP / FAQ (alamat/telepon/email DIHILANGKAN) -->
+      <!-- RIGHT: HELP / FAQ (blok alamat/telepon/email DIHILANGKAN) -->
       <aside class="fb-card side-card" aria-label="Bantuan & Informasi">
         <h3>Bantuan Cepat</h3>
         <div class="item">
@@ -281,8 +298,8 @@
     </div>
   </footer>
 
-  <!-- SCRIPTS -->
-  <script src="assets/js/main.js" defer></script>
+  <!-- SCRIPTS tema -->
+  <script defer src="assets/js/main.js"></script>
 
   <!-- Inline JS khusus halaman feedback -->
   <script>
@@ -345,8 +362,7 @@
 
     function update(){
       // Karakter
-      const count = el.msg.value.length;
-      el.counterNow.textContent = count;
+      el.counterNow.textContent = el.msg.value.length;
 
       // Validasi minimal agar tombol aktif
       const valid = el.name.value.trim().length >= 2 && el.msg.value.trim().length >= 5;
@@ -364,4 +380,3 @@
   <noscript>Halaman ini bekerja optimal dengan JavaScript diaktifkan.</noscript>
 </body>
 </html>
-``
