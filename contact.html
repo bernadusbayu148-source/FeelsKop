@@ -9,11 +9,11 @@
   <link rel="canonical" href="https://bernadusbayu148-source.github.io/FeelsKop/contact.html" />
 
   <!-- Fonts & Icons -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
 
   <!-- Main CSS (cache-buster) -->
-  <link rel="stylesheet" href="assets/css/style.css?v=20260123d" />
+  <link rel="stylesheet" href="assets/css/style.css?v=20260123e" />
 
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
@@ -54,9 +54,7 @@
         </ul>
       </nav>
 
-      <a class="btn btn-outline btn-wa"
-         href="https://wa.me/6281254913064?text=Halo%20Kopi%20Feeling,%20saya%20ingin%20menyampaikan%20kritik%20atau%20saran."
-         target="_blank" rel="noopener">
+      <a class="btn btn-outline btn-wa" href="https://wa.me/6281254913064?text=Halo%20Kopi%20Feeling,%20saya%20ingin%20menyampaikan%20kritik%20atau%20saran." target="_blank" rel="noopener">
         <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> WhatsApp
       </a>
     </div>
@@ -80,8 +78,7 @@
         </div>
         <div>
           <label for="fbPhone">Nomor HP</label>
-          <input id="fbPhone" name="phone" type="tel" inputmode="tel" pattern="\+?\d{9,15}" autocomplete="tel"
-                 placeholder="Opsional" />
+          <input id="fbPhone" name="phone" type="tel" inputmode="tel" pattern="\+?\d{9,15}" autocomplete="tel" placeholder="Opsional" />
         </div>
         <div>
           <label for="fbType">Jenis Masukan <span class="req">*</span></label>
@@ -126,22 +123,24 @@
       <div class="feedback-field">
         <label for="fbMessage">Pesan <span class="req">*</span></label>
         <textarea id="fbMessage" name="message" rows="6" maxlength="1200"
-                  placeholder="Tulis kritik/saran/pertanyaan Anda secara jelas. Sertakan detail waktu/tempat jika relevan."></textarea>
-        <div class="input-hint">
-          <span id="charCount">0</span>/1200 karakter
-        </div>
+          placeholder="Tulis kritik/saran/pertanyaan Anda secara jelas. Sertakan detail waktu/tempat jika relevan."></textarea>
+        <div class="input-hint"><span id="charCount">0</span>/1200 karakter</div>
       </div>
 
-      <!-- Izinkan follow up -->
-      <div class="feedback-check">
-        <input type="checkbox" id="fbConsent" />
-        <label for="fbConsent">Saya bersedia dihubungi tim Kopi Feeling untuk menindaklanjuti pesan ini.</label>
-      </div>
+      <!-- Persetujuan follow-up (DIRAPIKAN) -->
+      <fieldset class="consent-fieldset" aria-label="Persetujuan tindak lanjut">
+        <legend class="sr-only">Persetujuan tindak lanjut</legend>
+        <label class="consent-row">
+          <input type="checkbox" id="fbConsent" />
+          <span class="consent-text">
+            Saya bersedia dihubungi tim Kopi Feeling untuk menindaklanjuti pesan ini.
+          </span>
+        </label>
+      </fieldset>
 
       <!-- Kirim -->
       <div class="send-actions">
-        <a id="fbSendBtn" class="btn btn-primary" href="#"
-           target="_blank" rel="noopener" aria-disabled="true">
+        <a id="fbSendBtn" class="btn btn-primary" href="#" target="_blank" rel="noopener" aria-disabled="true">
           <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
           Kirim via WhatsApp
         </a>
