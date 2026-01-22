@@ -580,3 +580,16 @@ input,textarea{
   .logo{ height: 32px; }
   .brand-wordmark{ height: 22px; }
 }
+
+/* ==== Logo Tulisan (Wordmark) ==== */
+.wordmark {
+  height: 28px;       /* Ukuran desktop */
+  width: auto;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .wordmark {
+    height: 22px;
+  }
+}
