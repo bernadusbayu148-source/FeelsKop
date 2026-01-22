@@ -525,3 +525,16 @@ input,textarea{
 #leaderboard-host .lb-sub{
   margin-top: 4px;               /* kecilkan bila perlu */
 }
+
+
+/* ==== Navbar Logo Resize (Desktop + Mobile) ==== */
+.logo {
+  height: 42px;        /* ukuran desktop */
+  width: auto;
+}
+
+@media (max-width: 768px) {
+  .logo {
+    height: 32px;      /* mobile lebih kecil */
+  }
+}
