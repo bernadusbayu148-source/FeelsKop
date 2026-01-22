@@ -588,3 +588,41 @@ input,textarea{
   .input-hint{font-size:12.5px}
   .feedback-check{gap:8px}
 }
+
+/* =========================
+   Feedback Consent — One-line & mobile-friendly
+   ========================= */
+.consent-fieldset{
+  margin: 10px 0 8px;
+  padding: 0;
+  border: 0;
+}
+.consent-row{
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  line-height: 1.35;
+  font-weight: 600;
+  color: var(--text);
+  /* Membuat area klik lebih luas: label membungkus input */
+  cursor: pointer;
+}
+.consent-row input[type="checkbox"]{
+  inline-size: 18px;
+  block-size: 18px;
+  min-width: 18px;
+  min-height: 18px;
+  border-radius: 4px;
+  accent-color: var(--brand-red); /* browser modern */
+}
+.consent-text{
+  display: inline-block;
+  text-wrap: balance;        /* memecah kalimat lebih cantik (browser modern) */
+  max-width: 60ch;           /* batasi panjang di desktop agar tidak terlalu lebar */
+}
+
+/* Mobile: rapat & tetap satu blok rapi (boleh pindah baris, tetapi tidak saling berjauhan) */
+@media (max-width: 768px){
+  .consent-row{ gap: 8px; }
+  .consent-text{ max-width: 100%; font-weight: 600; }
+}
