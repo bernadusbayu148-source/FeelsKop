@@ -31,7 +31,7 @@
   <meta name="twitter:description" content="Sampaikan pertanyaan, kritik, saran, atau keluhan Anda untuk Kopi Feeling. Kami siap membantu." />
   <meta name="twitter:image" content="https://bernadusbayu148-source.github.io/FeelsKop/assets/img/og-cover.jpg" />
 
-  <!-- GA4: Kopi Feeling -->
+  <!-- GA4 -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-TJ8JRPYLQP"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -43,10 +43,13 @@
   <!-- Styles khusus halaman feedback (scoped) -->
   <style>
     /* Namespace agar tidak mengganggu halaman lain */
+    #feedbackPage * { box-sizing: border-box; max-width: 100%; }
+    #feedbackPage { word-break: break-word; }
     #feedbackPage .fb-layout{
       display:grid;grid-template-columns:minmax(0,1fr) 380px;gap:18px;align-items:start;
     }
     @media (max-width:992px){ #feedbackPage .fb-layout{grid-template-columns:1fr} }
+
     #feedbackPage .fb-card{
       background:#fff;border:1px solid var(--border);border-radius:16px;padding:16px;
       box-shadow:var(--shadow);
@@ -57,45 +60,52 @@
     /* Field group */
     #feedbackPage .row-2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
     @media (max-width:768px){ #feedbackPage .row-2{grid-template-columns:1fr} }
-    #feedbackPage .chip-group{display:flex;flex-wrap:wrap;gap:8px}
-    #feedbackPage .chip{
-      display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:999px;
-      border:1.5px solid var(--border);background:#fff;cursor:pointer;font-weight:700;color:#444;
-      transition:.15s;
+    #feedbackPage input[type="text"],
+    #feedbackPage input[type="tel"],
+    #feedbackPage input[type="email"]{
+      width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:10px;font:inherit;
     }
-    #feedbackPage .chip input{display:none}
-    #feedbackPage .chip.active{border-color:#b5121b;background:#fff0f2;color:#b5121b}
     #feedbackPage .select{
       width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:10px;background:#fff;font:inherit
     }
     #feedbackPage .textarea{
       width:100%;padding:12px 14px;border:1px solid var(--border);border-radius:12px;min-height:140px;resize:vertical;font:inherit
     }
-    #feedbackPage .meta-row{
-      display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:6px;color:#888;font-size:14px
+
+    /* Urgensi chip */
+    #feedbackPage .chip-group{display:flex;flex-wrap:wrap;gap:8px}
+    #feedbackPage .chip{
+      display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:999px;
+      border:1.5px solid var(--border);background:#fff;cursor:pointer;font-weight:700;color:#444;transition:.15s;
     }
+    #feedbackPage .chip input{display:none}
+    #feedbackPage .chip.active{border-color:#b5121b;background:#fff0f2;color:#b5121b}
+
+    /* Counter & consent row */
+    #feedbackPage .meta-row{
+      display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-top:6px;color:#888;font-size:14px;flex-wrap:wrap;
+    }
+    #feedbackPage .meta-row label{display:flex;align-items:flex-start;gap:8px;line-height:1.4;flex:1 1 240px}
     #feedbackPage .counter{font-variant-numeric:tabular-nums;font-feature-settings:"tnum"}
 
-    /* Side Card */
-    #feedbackPage .side-card .item{display:flex;gap:12px;align-items:flex-start;padding:10px 0;border-bottom:1px dashed #eee}
-    #feedbackPage .side-card .item:last-child{border-bottom:none}
-    #feedbackPage .side-card .item i{color:#b5121b;font-size:18px;min-width:22px;transform:translateY(3px)}
-    #feedbackPage .side-card .item b{display:block}
-
     /* CTA */
-    #feedbackPage .send-actions{display:flex;align-items:center;gap:12px;margin-top:12px}
+    #feedbackPage .send-actions{display:flex;align-items:center;gap:12px;margin-top:12px;flex-wrap:wrap}
     #feedbackPage .send-actions .btn-wa{
       display:inline-flex;align-items:center;gap:8px;padding:12px 18px;border-radius:999px;
       background:#b5121b;color:#fff;text-decoration:none;border:2px solid transparent;font-weight:800;min-height:44px;
     }
-    #feedbackPage .send-actions .btn-wa[aria-disabled="true"]{
-      pointer-events:none;opacity:.6;filter:grayscale(.2)
-    }
+    #feedbackPage .send-actions .btn-wa[aria-disabled="true"]{ pointer-events:none;opacity:.6;filter:grayscale(.2) }
     #feedbackPage .send-actions .send-hint{color:#888}
 
     /* Section title spacing */
     #feedbackPage .page-intro{margin:-6px 0 18px;text-align:center}
     #feedbackPage .page-intro p{color:var(--muted);margin:8px 0 0}
+
+    /* Side card list */
+    #feedbackPage .side-card .item{display:flex;gap:12px;align-items:flex-start;padding:10px 0;border-bottom:1px dashed #eee}
+    #feedbackPage .side-card .item:last-child{border-bottom:none}
+    #feedbackPage .side-card .item i{color:#b5121b;font-size:18px;min-width:22px;transform:translateY(3px)}
+    #feedbackPage .side-card .item b{display:block}
   </style>
 </head>
 <body>
@@ -123,7 +133,8 @@
         </ul>
       </nav>
 
-      <a class="btn btn-outline btn-wa" href="https://wa.me/6281254913064?text=Halo%20Kopi%20Feeling,%20saya%20ingin%20bertanya%20tentang%20menu%20dan%20pemesanan." target="_blank" rel="noopener">
+      <a class="btn btn-outline btn-wa" target="_blank" rel="noopener"
+         href="https://wa.me/6281254913064?text=Halo%20Kopi%20Feeling,%20saya%20ingin%20bertanya%20tentang%20menu%20dan%20pemesanan.">
         <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> WhatsApp
       </a>
     </div>
@@ -140,7 +151,7 @@
       <!-- LEFT: FEEDBACK CARD -->
       <section class="fb-card" aria-label="Form Pertanyaan & Keluhan">
         <h3>Formulir</h3>
-        <p class="hint">Isi data singkat berikut, lalu kirim via WhatsApp.</p>
+        <p class="hint">Isi data berikut, lalu kirim via WhatsApp.</p>
 
         <!-- Identitas -->
         <div class="row-2">
@@ -186,8 +197,9 @@
           <label for="fb-message">Pesan</label>
           <textarea id="fb-message" class="textarea" maxlength="1200" placeholder="Tuliskan pertanyaan, kritik, saran, atau keluhan Anda secara jelas…"></textarea>
           <div class="meta-row">
-            <label style="display:flex;align-items:center;gap:8px">
-              <input id="fb-consent" type="checkbox" /> Izinkan kami menghubungi kembali untuk menindaklanjuti.
+            <label for="fb-consent">
+              <input id="fb-consent" type="checkbox" />
+              <span>Izinkan kami menghubungi kembali untuk menindaklanjuti.</span>
             </label>
             <span class="counter"><span id="charNow">0</span>/1200</span>
           </div>
@@ -202,7 +214,7 @@
         </div>
       </section>
 
-      <!-- RIGHT: HELP / FAQ -->
+      <!-- RIGHT: HELP / FAQ (alamat/telepon/email DIHILANGKAN) -->
       <aside class="fb-card side-card" aria-label="Bantuan & Informasi">
         <h3>Bantuan Cepat</h3>
         <div class="item">
@@ -226,34 +238,7 @@
             <div class="hint">Butuh cart di event? Sampaikan kebutuhan jumlah cup & tanggal. Tim kami akan menindaklanjuti.</div>
           </div>
         </div>
-        <div class="item">
-          <i class="fa-solid fa-location-dot"></i>
-          <div>
-            <b>Alamat Main Office</b>
-            <div class="hint">JL.Irigasi No.08, RT.001/RW.003, Mentaos, Banjarbaru Utara, Kalimantan Selatan 70711</div>
-          </div>
-        </div>
-        <div class="item">
-          <i class="fa-solid fa-phone"></i>
-          <div>
-            <b>Telepon</b>
-            <div class="hint"><a class="link" href="tel:+6281254913064">+62 812-5491-3064</a></div>
-          </div>
-        </div>
-        <div class="item">
-          <i class="fa-solid fa-envelope-open-text"></i>
-          <div>
-            <b>Email</b>
-            <div class="hint"><a class="link" href="mailto:order@kopifeeling.id">order@kopifeeling.id</a></div>
-          </div>
-        </div>
       </aside>
-    </div>
-
-    <!-- Address (dipertahankan) -->
-    <div class="section" style="padding-top:24px">
-      <h3>Alamat Main Office</h3>
-      <p>JL.Irigasi No.08, RT.001/RW.003, Mentaos, Kec. Banjarbaru Utara, Kota Banjar Baru, Kalimantan Selatan 70711</p>
     </div>
   </main>
 
@@ -315,7 +300,7 @@
       consent: document.getElementById('fb-consent')
     };
 
-    /* Badge urgensi aktif */
+    // Toggle chip active
     el.urgencyGroup.addEventListener('click', (e)=>{
       const lbl = e.target.closest('.chip'); if(!lbl) return;
       el.urgencyGroup.querySelectorAll('.chip').forEach(c=>c.classList.remove('active'));
@@ -323,7 +308,7 @@
       update();
     });
 
-    /* Counter karakter & enable/disable WA */
+    // Bind inputs
     ['input','change','keyup'].forEach(evt=>{
       el.msg.addEventListener(evt, update);
       el.name.addEventListener(evt, update);
@@ -359,11 +344,11 @@
     }
 
     function update(){
-      // Hitung karakter
+      // Karakter
       const count = el.msg.value.length;
       el.counterNow.textContent = count;
 
-      // Validasi minimal: nama + pesan
+      // Validasi minimal agar tombol aktif
       const valid = el.name.value.trim().length >= 2 && el.msg.value.trim().length >= 5;
       el.waBtn.setAttribute('aria-disabled', valid ? 'false' : 'true');
 
@@ -371,7 +356,7 @@
       el.waBtn.href = valid ? `https://wa.me/${WA_NUMBER}?text=${text}` : '#';
     }
 
-    // Inisialisasi awal
+    // Init
     update();
   })();
   </script>
@@ -379,3 +364,4 @@
   <noscript>Halaman ini bekerja optimal dengan JavaScript diaktifkan.</noscript>
 </body>
 </html>
+``
