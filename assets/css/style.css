@@ -498,6 +498,8 @@ input,textarea{
 @media (max-width: 992px){
   #leaderboard-host .lb-header .lb-title .lb-logo{
     max-width: 380px;
+    height: auto;
+    margin-inline: auto;           
   }
 }
 
@@ -505,6 +507,8 @@ input,textarea{
 @media (max-width: 640px){
   #leaderboard-host .lb-header .lb-title .lb-logo{
     max-width: 300px;
+    height: auto;
+    margin-inline: auto;  
   }
 }
 
@@ -512,6 +516,8 @@ input,textarea{
 @media (max-width: 390px){
   #leaderboard-host .lb-header .lb-title .lb-logo{
     max-width: 240px;
+    height: auto;
+    margin-inline: auto;  
   }
 }
 
