@@ -23,7 +23,7 @@
   --silver:#cfd3da;
   --bronze:#d48957;
 
-  /* ===== Skala spacing (untuk pengaturan ketat) ===== */
+  /* Skala spacing */
   --sp-0:0px;
   --sp-1:4px;
   --sp-2:6px;
@@ -34,22 +34,21 @@
   --sp-7:16px;
   --sp-8:18px;
 
-  /* Footer (diperkecil agresif) */
-  --footer-pad-y-desktop:16px;   /* sebelumnya 28px */
+  /* Footer (kompak) */
+  --footer-pad-y-desktop:16px;
   --footer-pad-y-tablet:14px;
   --footer-pad-y-mobile:12px;
-  --footer-gap-desktop:14px;     /* sebelumnya 24px */
-  --footer-bottom-pad-y:8px;     /* sebelumnya 14px */
-  --footer-logo-h:32px;          /* sebelumnya 42px */
-  --footer-h4:18px;              /* sebelumnya default */
-  --footer-p:15px;               /* default 16px => 15px */
+  --footer-gap-desktop:14px;
+  --footer-bottom-pad-y:8px;
+  --footer-logo-h:32px;
+  --footer-h4:18px;
+  --footer-p:15px;
   --social-size:18px;
 
-  /* CTA strip (dipadatkan) */
-  --cta-pad-y-desktop:14px;      /* sebelumnya 28px */
+  /* CTA strip (kompak) */
+  --cta-pad-y-desktop:14px;
   --cta-pad-y-mobile:10px;
 }
-
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{
@@ -158,7 +157,7 @@ body.nav-open{overflow:hidden;touch-action:none;}
 @media (max-width:576px){.product-grid{grid-template-columns:1fr}}
 
 /* =========================
-   CTA Strip (DIPERKECIL)
+   CTA Strip (kompak)
    ========================= */
 .cta-strip{
   background:#fbeaed;
@@ -168,54 +167,27 @@ body.nav-open{overflow:hidden;touch-action:none;}
 .cta-content{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
 .cta-content h3{margin:0;font-size:clamp(18px,3.5vw,22px)}
 .cta-content p{margin:0;color:var(--muted);font-size:clamp(14px,3.2vw,16px)}
-@media (max-width:768px){
-  .cta-strip{padding:var(--cta-pad-y-mobile) 0;}
-}
+@media (max-width:768px){.cta-strip{padding:var(--cta-pad-y-mobile) 0;}}
 
 /* =========================
-   Footer (DIPERKECIL AGRESIF)
+   Footer (kompak agresif)
    ========================= */
 .site-footer{background:#8f0e22;color:#fff;margin-top:32px}
-
-/* Grid & padding */
 .footer-grid{
-  display:grid;
-  grid-template-columns:2fr 1.4fr 1fr;
-  gap:var(--footer-gap-desktop);
-  padding:var(--footer-pad-y-desktop) 16px;
+  display:grid;grid-template-columns:2fr 1.4fr 1fr;gap:var(--footer-gap-desktop);padding:var(--footer-pad-y-desktop) 16px;
 }
-
-/* Kompakkan tipografi & margin */
 .footer-logo{height:var(--footer-logo-h);margin:0 0 6px}
-.footer-about p,
-.footer-contact p{margin:6px 0;line-height:1.45;font-size:var(--footer-p);}
+.footer-about p,.footer-contact p{margin:6px 0;line-height:1.45;font-size:var(--footer-p);}
 .footer-contact i{margin-right:8px}
-
-/* Heading footer diperkecil */
-.footer-contact h4,
-.footer-menu h4{margin:0 0 8px;font-size:var(--footer-h4);}
-
-/* Menu footer */
+.footer-contact h4,.footer-menu h4{margin:0 0 8px;font-size:var(--footer-h4);}
 .footer-menu ul{list-style:none;padding:0;margin:0}
 .footer-menu li{margin:6px 0}
 .footer-menu a{color:#fff;text-decoration:none}
 .footer-menu a:hover{text-decoration:underline}
-
-/* Bottom strip */
-.footer-bottom{
-  border-top:1px solid rgba(255,255,255,.3);
-  display:flex;align-items:center;justify-content:space-between;
-  padding:var(--footer-bottom-pad-y) 16px;font-size:13.5px;
-}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.3);display:flex;align-items:center;justify-content:space-between;padding:var(--footer-bottom-pad-y) 16px;font-size:13.5px;}
 .socials a{color:#fff;margin-left:10px;font-size:var(--social-size);line-height:1}
-
-/* Responsif footer */
-@media (max-width:1100px){
-  .footer-grid{grid-template-columns:1.6fr 1.2fr 1fr;padding:var(--footer-pad-y-tablet) 16px;}
-}
-@media (max-width:900px){
-  .footer-grid{grid-template-columns:1fr 1fr;gap:12px}
-}
+@media (max-width:1100px){.footer-grid{grid-template-columns:1.6fr 1.2fr 1fr;padding:var(--footer-pad-y-tablet) 16px}}
+@media (max-width:900px){.footer-grid{grid-template-columns:1fr 1fr;gap:12px}}
 @media (max-width:700px){
   .footer-grid{grid-template-columns:1fr;padding:var(--footer-pad-y-mobile) 16px;}
   .footer-about p,.footer-contact p{line-height:1.4}
@@ -226,9 +198,7 @@ body.nav-open{overflow:hidden;touch-action:none;}
    Form (contact)
    ========================= */
 label{display:block;font-weight:600;margin-bottom:6px}
-input,textarea{
-  width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:10px;font:inherit;
-}
+input,textarea{width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:10px;font:inherit}
 
 /* =========================
    Service Tabs
@@ -352,111 +322,62 @@ input,textarea{
 #leaderboard-host .footer{color:#888;font-size:.9rem;margin-top:8px}
 
 /* =========================
-   Kontak — Pesanan Dinamis & Modal
+   Kontak — Feedback Form
    ========================= */
-.contact-subtitle{font-weight:800;font-size:clamp(18px,4vw,22px);margin:8px 0 10px;letter-spacing:-.01em;}
-.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px;}
-@media (max-width:768px){.contact-grid{grid-template-columns:1fr}}
-.order-list{display:flex;flex-direction:column;gap:10px;margin:8px 0 10px}
-.order-row{display:grid;grid-template-columns:1.4fr 110px 36px;gap:8px;background:#fff;border:1px solid var(--border);border-radius:14px;padding:10px;align-items:center;box-shadow:0 6px 16px rgba(0,0,0,.06)}
-.menu-picker{display:flex;justify-content:space-between;align-items:center;gap:8px;width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:12px;background:#fafafa;color:var(--text);cursor:pointer;transition:.15s}
-.menu-picker:hover{filter:brightness(.98)}
-.menu-label{font-weight:700;color:var(--brand-red)}
-.menu-value{font-weight:600;color:#444}
-.qty-box{display:flex;align-items:center}
-.qty-input{width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:12px;text-align:center;font-weight:700;letter-spacing:.02em}
-.row-remove{width:36px;height:36px;border:1px solid var(--border);border-radius:10px;background:#fff;color:#d00;font-weight:800;cursor:pointer}
-.row-remove:hover{background:#ffecec}
-.order-actions{margin:6px 0 10px}
-.order-actions .btn{min-height:38px}
-.address-box{margin:8px 0}
-.address-box textarea{width:100%;padding:12px 14px;border:1px solid var(--border);border-radius:12px;resize:vertical}
-.send-actions{display:flex;align-items:center;gap:10px;margin-top:8px}
-.send-actions .send-hint{color:#888}
+.feedback-form .req{color:#d22;font-weight:800}
+.feedback-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
+.feedback-field{margin:10px 0}
+.feedback-field textarea{width:100%;padding:12px 14px;border:1px solid var(--border);border-radius:12px;resize:vertical;min-height:160px;font:inherit;line-height:1.55}
+.input-hint{color:#888;font-size:13px;margin-top:6px}
+.feedback-form input[type="text"],.feedback-form input[type="email"],.feedback-form input[type="tel"],.feedback-form select{width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:10px;font:inherit;background:#fff}
+.feedback-check{display:flex;gap:10px;align-items:flex-start;margin-top:6px;margin-bottom:8px}
+.feedback-check input{margin-top:4px}
+@media (max-width:768px){
+  .feedback-grid{grid-template-columns:1fr;gap:8px;margin-bottom:8px}
+  .feedback-field textarea{min-height:140px;padding:10px 12px}
+  .input-hint{font-size:12.5px}
+  .feedback-check{gap:8px}
+}
 
-/* Modal */
-.modal[hidden]{display:none}
-.modal{position:fixed;inset:0;z-index:1000}
-.modal-backdrop{position:absolute;inset:0;background:rgba(0,0,0,.35)}
-.modal-dialog{position:relative;margin:36px auto;background:#fff;border-radius:16px;border:1px solid var(--border);max-width:720px;width:92%;box-shadow:0 18px 40px rgba(0,0,0,.18);overflow:hidden}
-.modal-header,.modal-footer{padding:10px 12px;background:#fafafa;border-bottom:1px solid var(--border)}
-.modal-footer{border-top:1px solid var(--border);border-bottom:none}
-.modal-header h4{margin:0;font-weight:800}
-.modal-close{position:absolute;right:10px;top:10px;width:34px;height:34px;border:1px solid var(--border);background:#fff;border-radius:10px;font-weight:800;color:#d00;cursor:pointer}
-.modal-body{padding:10px 12px}
-.modal-search{margin:0 0 8px}
-.modal-search input{width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:12px}
-.menu-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
-@media (min-width:640px){.menu-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
-.menu-item{padding:12px 14px;border:1px solid var(--border);border-radius:12px;background:#fff;cursor:pointer;font-weight:700;box-shadow:0 6px 14px rgba(0,0,0,.06);transition:.15s}
-.menu-item:hover{filter:brightness(.98);border-color:#dcdcdc}
-.menu-item:active{transform:scale(.98)}
-.menu-item:focus-visible,.menu-picker:focus-visible,.qty-input:focus-visible,.modal-close:focus-visible{outline:2px solid #1e90ff;outline-offset:2px}
+/* Consent row (contact) */
+.consent-fieldset{margin:10px 0 8px;padding:0;border:0}
+.consent-row{display:inline-flex;align-items:center;gap:10px;line-height:1.35;font-weight:600;color:var(--text);cursor:pointer}
+.consent-row input[type="checkbox"]{inline-size:18px;block-size:18px;min-width:18px;min-height:18px;border-radius:4px;accent-color:var(--brand-red)}
+.consent-text{display:inline-block;text-wrap:balance;max-width:60ch}
+@media (max-width:768px){.consent-row{gap:8px}.consent-text{max-width:100%;font-weight:600}}
 
-/* Screen reader only */
-.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+/* ===== SERVICES — Perbaikan input tanggal ===== */
+.order-widget input[type="date"]{width:100%;box-sizing:border-box;appearance:none;-webkit-appearance:none;background-color:#fff;border:1px solid var(--border);border-radius:12px;padding:10px 12px;min-height:44px;font:inherit;line-height:1.2;color:var(--text)}
+.order-widget input[type="date"]::-webkit-date-and-time-value{text-align:left;padding:0;min-height:1.2em}
+.order-widget input[type="date"]::-webkit-calendar-picker-indicator{padding:0 6px;margin:0;opacity:.8}
+@supports (-moz-appearance: none){.order-widget input[type="date"]{padding-block:10px}}
+@media (max-width:768px){#panel-everyday .contact-grid{grid-template-columns:1fr;gap:8px} .order-widget .contact-grid{gap:8px;margin-bottom:8px} .order-widget label{margin-bottom:4px}}
 
-/* Motion preference */
-@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
-
-
-/* ==== MOBILE COMPACT OVERRIDES (≤768px) ==== */
-@media (max-width: 768px) {
-  /* --- Strip CTA (di atas footer) --- */
+/* ===== MOBILE COMPACT OVERRIDES (global) ===== */
+@media (max-width: 768px){
   .cta-strip { padding: 8px 0; }
   .cta-content { gap: 8px; }
   .cta-content h3 { font-size: 16px; line-height: 1.2; }
   .cta-content p  { font-size: 13px; line-height: 1.35; }
-
-  /* --- Footer grid & spacing --- */
-  .footer-grid {
-    grid-template-columns: 1fr;   /* 1 kolom */
-    gap: 8px;                     /* sebelumnya 12+ */
-    padding: 10px 14px;           /* sebelumnya 16+ */
-  }
+  .footer-grid { grid-template-columns: 1fr; gap: 8px; padding: 10px 14px; }
   .footer-logo { height: 28px; margin: 0 0 4px; }
-
-  /* Heading & paragraf diperkecil */
-  .footer-contact h4,
-  .footer-menu h4 { font-size: 16px; margin: 0 0 6px; }
-  .footer-about p,
-  .footer-contact p { font-size: 13.5px; line-height: 1.35; margin: 4px 0; }
-  .footer-contact i { margin-right: 6px; }
-
-  /* Menu footer lebih rapat */
-  .footer-menu li { margin: 4px 0; }
-  .footer-menu a  { font-size: 14px; }
-
-  /* Baris paling bawah footer */
+  .footer-contact h4, .footer-menu h4 { font-size: 16px; margin: 0 0 6px; }
+  .footer-about p, .footer-contact p { font-size: 13.5px; line-height: 1.35; margin: 4px 0; }
+  .footer-menu li { margin: 4px 0; } .footer-menu a { font-size: 14px; }
   .footer-bottom { padding: 6px 14px; font-size: 12.5px; }
   .socials a { font-size: 16px; margin-left: 8px; }
-
-  /* --- Kecilkan padding section global (opsional aman) --- */
-  .section { padding: 42px 0; } /* sebelumnya 64px — hemat tinggi layar */
-
-  /* --- Kartu/teks umum agar tidak “mengembang” --- */
-  .service-intro { padding: 10px 10px; }
-  .service-intro p { line-height: 1.45; }
-  .service-hero   { margin: 10px 0 14px; }
-
-  /* Tabs layanan / halaman lain */
+  .section { padding: 42px 0; }
+  .service-intro { padding: 10px 10px; } .service-intro p { line-height: 1.45; }
+  .service-hero { margin: 10px 0 14px; }
   .service-tabs { gap: 8px; margin-bottom: 12px; }
   .service-tabs .tab { padding: 9px 14px; min-height: 38px; }
-
-  /* Stations list lebih rapat */
   .station-list { gap: 10px; margin-top: 6px; }
   .station-item { padding: 10px; }
-  .station-item h4 { margin-bottom: 4px; }
-  .station-item p  { margin-bottom: 4px; }
   .station-item a.link { min-height: 36px; }
-
-  /* Kartu menu produk */
   .menu-grid { gap: 10px; }
   .menu-card img { height: 160px; }
   .menu-info { padding: 10px; gap: 6px; }
   .menu-desc { line-height: 1.5; }
-
-  /* Kontak & order rows */
   .contact-grid { gap: 8px; margin-bottom: 8px; }
   .order-list { gap: 8px; }
   .order-row  { gap: 8px; padding: 8px; grid-template-columns: 1.3fr 96px 32px; }
@@ -466,163 +387,63 @@ input,textarea{
   .address-box { margin: 6px 0; }
   .send-actions { gap: 8px; margin-top: 8px; }
 }
-
-/* ==== EXTRA COMPACT untuk layar sangat kecil (≤360px) ==== */
-@media (max-width: 360px) {
+@media (max-width: 360px){
   .footer-grid { padding: 8px 12px; gap: 6px; }
   .footer-about p, .footer-contact p { font-size: 13px; line-height: 1.3; }
   .footer-contact h4, .footer-menu h4 { font-size: 15px; }
   .footer-bottom { padding: 6px 12px; font-size: 12px; }
   .socials a { font-size: 15px; margin-left: 6px; }
-
   .cta-strip { padding: 8px 0; }
   .cta-content h3 { font-size: 15px; }
   .cta-content p  { font-size: 12.5px; }
 }
 
-
-/* ===== SERVICES — Perbaikan input tanggal di mobile & cross-browser ===== */
-
-/* Gaya dasar input tanggal di semua perangkat (agar konsisten) */
-.order-widget input[type="date"]{
-  width: 100%;
-  box-sizing: border-box;
-  appearance: none;
-  -webkit-appearance: none;
-  background-color: #fff;
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 10px 12px;
-  min-height: 44px;
-  font: inherit;
-  line-height: 1.2;
-  color: var(--text);
-}
-
-/* Safari/iOS: nilai internal sering ‘mendorong’ lebar, rapikan paddingnya */
-.order-widget input[type="date"]::-webkit-date-and-time-value{
-  text-align: left;
-  padding: 0;            /* hilangkan padding bawaan */
-  min-height: 1.2em;
-}
-
-/* Safari/iOS: indikator kalender kadang memotong/overflow — kecilkan dan pastikan klik */
-.order-widget input[type="date"]::-webkit-calendar-picker-indicator{
-  padding: 0 6px;
-  margin: 0;
-  opacity: .8;
-}
-
-/* Firefox (non-WebKit) menjaga tinggi yang sama */
-@supports (-moz-appearance: none) {
-  .order-widget input[type="date"]{
-    padding-block: 10px;
-  }
-}
-
-/* Layout untuk rentang tanggal (Everyday) agar tidak ‘pecah’ di layar kecil */
+/* =========================================================
+   MOBILE FIX – LEADERBOARD (PODIUM & TABEL)
+   ========================================================= */
+/* 1) Podium: ubah jadi 1 kolom di mobile dan jadikan chip trofi flow normal */
 @media (max-width: 768px){
-  /* Pastikan grid dua tanggal menjadi satu kolom rapi */
-  #panel-everyday .contact-grid{
-    grid-template-columns: 1fr;      /* tumpuk vertikal */
-    gap: 8px;                         /* lebih rapat */
+  #leaderboard-host .podium-wrap{
+    grid-template-columns: 1fr;     /* kartu bertumpuk */
+    gap: 10px;
   }
-  /* Kompakkan label & kolom tanggal pada semua panel layanan */
-  .order-widget .contact-grid{
-    gap: 8px;
-    margin-bottom: 8px;
+  #leaderboard-host .podium-card{
+    padding: 12px 12px 12px;
+    overflow: hidden;               /* cegah overlap */
   }
-  .order-widget label{
-    margin-bottom: 4px;
+  #leaderboard-host .podium-avatar{ width: 64px; height: 64px; }
+  #leaderboard-host .podium-badge{
+    top: 8px; right: 8px;           /* lebih aman di sudut */
   }
+  /* MEGA-FIX: trofi ikut alur dokumen agar tidak menutup elemen lain */
+  #leaderboard-host .podium-trophy{
+    position: static;
+    transform: none;
+    margin-top: 8px;
+    font-size: 12.5px;
+    padding: 5px 10px;
+    min-height: 26px;
+  }
+  #leaderboard-host .podium-trophy .trophy-icon{ font-size: 16px; }
+  #leaderboard-host .podium-name,
+  #leaderboard-host .podium-member{ text-align:center }
 }
 
-
-/* =========================
-   Feedback Form (Kritik & Saran)
-   ========================= */
-.feedback-form .req{color:#d22;font-weight:800}
-
-.feedback-grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:12px;
-  margin-bottom:12px;
-}
-
-.feedback-field{margin:10px 0}
-.feedback-field textarea{
-  width:100%;
-  padding:12px 14px;
-  border:1px solid var(--border);
-  border-radius:12px;
-  resize:vertical;
-  min-height:160px;
-  font:inherit;
-  line-height:1.55;
-}
-.input-hint{color:#888;font-size:13px;margin-top:6px}
-
-.feedback-check{
-  display:flex;gap:10px;align-items:flex-start;
-  margin-top:6px;margin-bottom:8px;
-}
-.feedback-check input{margin-top:4px}
-
-.feedback-form input[type="text"],
-.feedback-form input[type="email"],
-.feedback-form input[type="tel"],
-.feedback-form select{
-  width:100%;
-  padding:10px 12px;
-  border:1px solid var(--border);
-  border-radius:10px;
-  font:inherit;
-  background:#fff;
-}
-
-/* Responsif mobile — lebih ringkas */
+/* 2) Tabel: scroll horizontal lembut + kompres padding & ukuran */
 @media (max-width: 768px){
-  .feedback-grid{grid-template-columns:1fr;gap:8px;margin-bottom:8px}
-  .feedback-field textarea{min-height:140px;padding:10px 12px}
-  .input-hint{font-size:12.5px}
-  .feedback-check{gap:8px}
-}
-
-/* =========================
-   Feedback Consent — One-line & mobile-friendly
-   ========================= */
-.consent-fieldset{
-  margin: 10px 0 8px;
-  padding: 0;
-  border: 0;
-}
-.consent-row{
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  line-height: 1.35;
-  font-weight: 600;
-  color: var(--text);
-  /* Membuat area klik lebih luas: label membungkus input */
-  cursor: pointer;
-}
-.consent-row input[type="checkbox"]{
-  inline-size: 18px;
-  block-size: 18px;
-  min-width: 18px;
-  min-height: 18px;
-  border-radius: 4px;
-  accent-color: var(--brand-red); /* browser modern */
-}
-.consent-text{
-  display: inline-block;
-  text-wrap: balance;        /* memecah kalimat lebih cantik (browser modern) */
-  max-width: 60ch;           /* batasi panjang di desktop agar tidak terlalu lebar */
-}
-
-/* Mobile: rapat & tetap satu blok rapi (boleh pindah baris, tetapi tidak saling berjauhan) */
-@media (max-width: 768px){
-  .consent-row{ gap: 8px; }
-  .consent-text{ max-width: 100%; font-weight: 600; }
+  #leaderboard-host .card{
+    overflow-x: auto;               /* memungkinkan geser tabel */
+    -webkit-overflow-scrolling: touch;
+  }
+  #leaderboard-host #board{
+    min-width: 560px;               /* cegah kolom terlalu sempit */
+  }
+  #leaderboard-host #board thead th,
+  #leaderboard-host #board tbody td{
+    padding: 10px;
+  }
+  #leaderboard-host .rank-badge{
+    padding: 5px 8px;
+    font-size: .85rem;
+  }
 }
