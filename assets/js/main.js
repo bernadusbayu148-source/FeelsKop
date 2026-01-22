@@ -30,6 +30,8 @@ window.addEventListener('scroll', () => {
   const btnPrev = slider.querySelector('.prev');
   const btnNext = slider.querySelector('.next');
   const dotsWrap = slider.querySelector('.slider-dots');
+  if (!slides.length || !dotsWrap) return;
+
   let index = slides.findIndex(s => s.classList.contains('is-active'));
   if (index < 0) index = 0;
 
@@ -47,10 +49,10 @@ window.addEventListener('scroll', () => {
     dot.addEventListener('click', () => setActive(i));
     dotsWrap.appendChild(dot);
   });
-
   setActive(index);
-  btnPrev?.addEventListener('click', () => setActive((index - 1 + slides.length) % slides.length));
-  btnNext?.addEventListener('click', () => setActive((index + 1) % slides.length));
+
+  btnPrev && btnPrev.addEventListener('click', () => setActive((index - 1 + slides.length) % slides.length));
+  btnNext && btnNext.addEventListener('click', () => setActive((index + 1) % slides.length));
 
   // Auto-rotate (pause saat tab tidak aktif)
   let timer = setInterval(() => setActive((index + 1) % slides.length), 6000);
@@ -99,7 +101,6 @@ window.addEventListener('scroll', () => {
       if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setActive(getKey(btn)); }
     });
   });
-
   window.addEventListener('hashchange', () => {
     const key = (location.hash ?? '').replace('#', '');
     if (keys.includes(key)) setActive(key);
