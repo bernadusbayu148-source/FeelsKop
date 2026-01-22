@@ -8,13 +8,13 @@
   <meta name="description" content="Sampaikan pertanyaan, kritik, saran, atau keluhan Anda untuk Kopi Feeling. Kami siap membantu." />
   <link rel="canonical" href="https://bernadusbayu148-source.github.io/FeelsKop/contact.html" />
 
-  <!-- Fonts & Icons -->
+  <!-- Fonts & Icons (tetap) -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
 
-  <!-- Main CSS tema -->
+  <!-- CSS Tema global (tetap) -->
   <link rel="stylesheet" href="assets/css/style.css" />
 
   <!-- Open Graph -->
@@ -40,9 +40,9 @@
     gtag('config', 'G-TJ8JRPYLQP', { anonymize_ip: true, send_page_view: true });
   </script>
 
-  <!-- Styles khusus halaman feedback (scoped & mobile-first FIX) -->
+  <!-- ==== Scoped styles HANYA untuk halaman feedback ==== -->
   <style>
-    /* Namespace agar aman terhadap halaman lain */
+    /* Namespace aman (tidak mengubah halaman lain) */
     #feedbackPage { word-break: normal; overflow-wrap: break-word; }
     #feedbackPage .fb-layout{
       display:grid; grid-template-columns:1fr; gap:16px; align-items:start;
@@ -53,6 +53,8 @@
 
     #feedbackPage .fb-card{
       background:#fff; border:1px solid var(--border); border-radius:16px; padding:16px; box-shadow:var(--shadow);
+      overflow:hidden;               /* cegah overflow horizontal dalam kartu */
+      contain: layout paint;         /* isolasi layout (stabil di iOS) */
     }
     #feedbackPage .fb-card h3{ margin:0 0 8px; font-size:clamp(18px,4vw,22px); font-weight:800; color:var(--brand-red) }
     #feedbackPage .fb-card .hint{ color:var(--muted); margin:2px 0 10px }
@@ -82,27 +84,20 @@
     #feedbackPage .chip input{ display:none; }
     #feedbackPage .chip.active{ border-color:#b5121b; background:#fff0f2; color:#b5121b; }
 
-    /* === META-ROW FIX: pakai grid agar stabil di desktop & mobile === */
+    /* === Meta row: Consent + Counter (pakai grid agar stabil) === */
     #feedbackPage .meta-row{
       display:grid; grid-template-columns: 1fr auto; gap:10px; align-items:center; margin-top:8px; color:#888; font-size:14px;
     }
-    @media (max-width: 576px){
-      #feedbackPage .meta-row{ grid-template-columns: 1fr; }
-      #feedbackPage .meta-row .counter{ justify-self:end; }
-    }
     #feedbackPage .consent-wrap{
-      display:flex; align-items:flex-start; gap:8px; min-width: 240px; /* cegah turun per huruf */
+      display:flex; align-items:flex-start; gap:8px; min-width: 240px;
       white-space:normal; word-break:normal; line-height:1.4;
     }
     #feedbackPage .consent-wrap input{ margin-top:3px; }
+    #feedbackPage .counter{ font-variant-numeric:tabular-nums; font-feature-settings:"tnum"; }
 
-    /* === SEND-ACTIONS FIX: tombol + hint jadi grid rapi === */
+    /* === Send actions: tombol + hint (grid, lebih rapi) === */
     #feedbackPage .send-actions{
       display:grid; grid-template-columns:auto 1fr; gap:12px; align-items:center; margin-top:12px;
-    }
-    @media (max-width: 576px){
-      #feedbackPage .send-actions{ grid-template-columns:1fr; }
-      #feedbackPage .send-actions .btn-wa{ width:100%; justify-content:center; }
     }
     #feedbackPage .send-actions .btn-wa{
       display:inline-flex; align-items:center; gap:8px; padding:12px 18px; border-radius:999px;
@@ -111,32 +106,57 @@
     #feedbackPage .send-actions .btn-wa[aria-disabled="true"]{ pointer-events:none; opacity:.6; filter:grayscale(.2); }
     #feedbackPage .send-actions .send-hint{ color:#888; }
 
-    /* Section title spacing */
-    #feedbackPage .page-intro{ margin:-6px 0 18px; text-align:center }
-    #feedbackPage .page-intro p{ color:var(--muted); margin:8px 0 0 }
+    /* ====== PATCH: iOS Safari & Mobile ====== */
+    @media (max-width: 820px) {
+      /* Meta row paksa 1 kolom di mobile */
+      #feedbackPage .meta-row {
+        grid-template-columns: 1fr !important;
+        align-items: start;
+      }
+      #feedbackPage .consent-wrap {
+        min-width: 0 !important;
+        width: 100%;
+        white-space: normal;
+        word-break: normal;
+        overflow-wrap: break-word;
+        -webkit-hyphens: auto;
+        hyphens: auto;
+      }
+      #feedbackPage .meta-row .counter { justify-self: end; }
 
-    /* Side card list */
-    #feedbackPage .side-card .item{ display:flex; gap:12px; align-items:flex-start; padding:10px 0; border-bottom:1px dashed #eee }
-    #feedbackPage .side-card .item:last-child{ border-bottom:none }
-    #feedbackPage .side-card .item i{ color:#b5121b; font-size:18px; min-width:22px; transform:translateY(3px) }
-    #feedbackPage .side-card .item b{ display:block }
+      /* Tombol WA + hint 1 kolom & tombol full width */
+      #feedbackPage .send-actions {
+        grid-template-columns: 1fr !important;
+      }
+      #feedbackPage .send-actions .btn-wa {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+    /* Deteksi fitur iOS Safari untuk jaga-jaga */
+    @supports (-webkit-touch-callout: none) {
+      #feedbackPage .meta-row { grid-template-columns: 1fr !important; }
+      #feedbackPage .consent-wrap {
+        min-width: 0 !important; width: 100% !important;
+        -webkit-hyphens: auto; hyphens: auto; word-break: normal; overflow-wrap: break-word;
+      }
+      #feedbackPage .send-actions { grid-template-columns: 1fr !important; }
+    }
   </style>
 </head>
 <body>
-  <!-- HEADER / NAVBAR -->
+  <!-- HEADER (tetap) -->
   <header class="site-header" id="siteHeader">
     <div class="container nav-container">
       <a class="brand" href="index.html" aria-label="Halaman utama">
         <img src="assets/img/logo-oval.svg" alt="Logo Kopi Feeling" class="logo" />
         <span class="brand-name">Kopi Feeling</span>
       </a>
-
       <button class="nav-toggle" aria-label="Buka menu" aria-expanded="false" aria-controls="primaryNav">
         <span class="nav-toggle-bar"></span>
         <span class="nav-toggle-bar"></span>
         <span class="nav-toggle-bar"></span>
       </button>
-
       <nav class="nav" id="primaryNav" aria-label="Navigasi utama">
         <ul class="nav-list">
           <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
@@ -146,7 +166,6 @@
           <li class="nav-item"><a class="nav-link active" href="contact.html">Kontak</a></li>
         </ul>
       </nav>
-
       <a class="btn btn-outline btn-wa" target="_blank" rel="noopener"
          href="https://wa.me/6281254913064?text=Halo%20Kopi%20Feeling,%20saya%20ingin%20bertanya%20tentang%20menu%20dan%20pemesanan.">
         <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> WhatsApp
@@ -154,7 +173,7 @@
     </div>
   </header>
 
-  <!-- MAIN -->
+  <!-- MAIN: Pertanyaan & Keluhan (kartu feedback) -->
   <main class="section container" id="feedbackPage">
     <h2 class="section-title">Pertanyaan & Keluhan</h2>
     <div class="page-intro">
@@ -162,7 +181,7 @@
     </div>
 
     <div class="fb-layout">
-      <!-- LEFT: FEEDBACK CARD -->
+      <!-- Kartu Form -->
       <section class="fb-card" aria-label="Form Pertanyaan & Keluhan">
         <h3>Formulir</h3>
         <p class="hint">Isi data berikut, lalu kirim via WhatsApp.</p>
@@ -221,14 +240,14 @@
 
         <!-- CTA -->
         <div class="send-actions">
-          <a id="waSendBtn" class="btn-wa" href="#" aria-disabled="true">
+          <a id="waSendBtn" class="btn btn-wa" href="#" aria-disabled="true" rel="noopener">
             <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Kirim via WhatsApp
           </a>
           <small class="send-hint">Pesan akan dirangkum otomatis untuk WhatsApp.</small>
         </div>
       </section>
 
-      <!-- RIGHT: HELP / FAQ (tanpa blok alamat/telepon/email) -->
+      <!-- Kartu Bantuan (alamat/telepon/email DIHILANGKAN sesuai arahan) -->
       <aside class="fb-card side-card" aria-label="Bantuan & Informasi">
         <h3>Bantuan Cepat</h3>
         <div class="item">
@@ -256,11 +275,11 @@
     </div>
   </main>
 
-  <!-- FOOTER -->
+  <!-- FOOTER (tetap) -->
   <footer class="site-footer">
     <div class="container footer-grid">
       <div class="footer-about">
-        <img src="assets/img/logo-oval.svg" alt="Logo Kopi Feeling" class="footer-logo">
+        <img src="assets/img/logo-oval.svg" alt="Logo Kopi Feeling" class="footer-logo" />
         <p>Kopi Feeling adalah brand kopi gerobak nomor 1 di Banjarmasin—siap menemani harian & acara Anda.</p>
       </div>
       <div class="footer-contact">
@@ -295,10 +314,10 @@
     </div>
   </footer>
 
-  <!-- SCRIPTS tema -->
+  <!-- Script tema (tetap) -->
   <script src="assets/js/main.js" defer></script>
 
-  <!-- Inline JS khusus halaman feedback -->
+  <!-- Inline JS khusus halaman feedback (tidak mengubah halaman lain) -->
   <script>
   (function(){
     const WA_NUMBER = '6281254913064';
@@ -358,7 +377,7 @@
     }
 
     function update(){
-      // Karakter
+      // Hitung karakter
       el.counterNow.textContent = el.msg.value.length;
 
       // Validasi minimal agar tombol aktif
@@ -377,4 +396,3 @@
   <noscript>Halaman ini bekerja optimal dengan JavaScript diaktifkan.</noscript>
 </body>
 </html>
-``
