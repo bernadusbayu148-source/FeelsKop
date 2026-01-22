@@ -6,14 +6,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>Kontak — Kritik & Saran | Kopi Feeling</title>
   <meta name="description" content="Kirim kritik, saran, atau pertanyaan untuk Kopi Feeling. Kami senang mendengar masukan Anda agar bisa terus menjadi lebih baik.">
-  <link rel="canonical" href="https://bernadusbayu148-source.github.io/FeelsKop/contact.html" />
+  https://bernadusbayu148-source.github.io/FeelsKop/contact.html
 
   <!-- Fonts & Icons -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap
+  https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css
 
   <!-- Main CSS (cache-buster) -->
-  <link rel="stylesheet" href="assets/css/style.css?v=20260123e" />
+  assets/css/style.css?v=20260123e
 
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
@@ -29,12 +29,13 @@
   <meta name="twitter:description" content="Kirim kritik, saran, atau pertanyaan Anda untuk Kopi Feeling. Kami siap mendengar dan menindaklanjuti." />
   <meta name="twitter:image" content="https://bernadusbayu148-source.github.io/FeelsKop/assets/img/og-cover.jpg" />
 </head>
+
 <body>
   <!-- HEADER / NAVBAR -->
   <header class="site-header" id="siteHeader">
     <div class="container nav-container">
-      <a href="index.html" class="brand" aria-label="Halaman utama">
-        <img src="assets/img/logo-oval.svg" class="logo" alt="Logo Kopi Feeling" />
+      index.html
+        assets/img/logo-oval.svg
         <span class="brand-name">Kopi Feeling</span>
       </a>
 
@@ -46,15 +47,15 @@
 
       <nav class="nav" id="primaryNav" aria-label="Navigasi utama">
         <ul class="nav-list">
-          <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
-          <li class="nav-item"><a href="products.html" class="nav-link">Menu</a></li>
-          <li class="nav-item"><a href="services.html" class="nav-link">Layanan</a></li>
-          <li class="nav-item"><a href="stations.html" class="nav-link">Lokasi & Coverage</a></li>
-          <li class="nav-item"><a href="contact.html" class="nav-link active" aria-current="page">Kontak</a></li>
+          <li class="nav-item">index.htmlHome</a></li>
+          <li class="nav-item">products.htmlMenu</a></li>
+          <li class="nav-item">services.htmlLayanan</a></li>
+          <li class="nav-item">stations.htmlLokasi & Coverage</a></li>
+          <li class="nav-item">contact.htmlKontak</a></li>
         </ul>
       </nav>
 
-      <a class="btn btn-outline btn-wa" href="https://wa.me/6281254913064?text=Halo%20Kopi%20Feeling,%20saya%20ingin%20menyampaikan%20kritik%20atau%20saran." target="_blank" rel="noopener">
+      https://wa.me/6281254913064?text=Halo%20Kopi%20Feeling,%20saya%20ingin%20menyampaikan%20kritik%20atau%20saran.
         <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> WhatsApp
       </a>
     </div>
@@ -66,23 +67,27 @@
 
     <!-- FEEDBACK FORM -->
     <form id="feedbackForm" class="feedback-form" onsubmit="return false;" aria-label="Form kritik dan saran">
-      <!-- Identitas ringkas -->
+
+      <!-- IDENTITAS -->
       <div class="feedback-grid">
         <div>
           <label for="fbName">Nama <span class="req">*</span></label>
-          <input id="fbName" name="name" type="text" required autocomplete="name" />
+          <input id="fbName" name="name" type="text" required autocomplete="name"/>
         </div>
+
         <div>
           <label for="fbEmail">Email <span class="req">*</span></label>
-          <input id="fbEmail" name="email" type="email" required autocomplete="email" />
+          <input id="fbEmail" name="email" type="email" required autocomplete="email"/>
         </div>
+
         <div>
           <label for="fbPhone">Nomor HP</label>
-          <input id="fbPhone" name="phone" type="tel" inputmode="tel" pattern="\+?\d{9,15}" autocomplete="tel" placeholder="Opsional" />
+          <input id="fbPhone" name="phone" type="tel" inputmode="tel" pattern="\+?\d{9,15}" autocomplete="tel" placeholder="Opsional"/>
         </div>
+
         <div>
           <label for="fbType">Jenis Masukan <span class="req">*</span></label>
-          <select id="fbType" name="type" required>
+          <select id="fbType" required>
             <option value="">Pilih jenis…</option>
             <option value="Kritik">Kritik</option>
             <option value="Saran">Saran</option>
@@ -92,11 +97,11 @@
         </div>
       </div>
 
-      <!-- Topik + rating singkat -->
+      <!-- TOPIK -->
       <div class="feedback-grid">
         <div>
           <label for="fbTopic">Topik</label>
-          <select id="fbTopic" name="topic">
+          <select id="fbTopic">
             <option value="">(Opsional) Pilih topik…</option>
             <option>Produk / Rasa</option>
             <option>Layanan / CS</option>
@@ -106,9 +111,10 @@
             <option>Lainnya</option>
           </select>
         </div>
+
         <div>
           <label for="fbRating">Penilaian Pengalaman</label>
-          <select id="fbRating" name="rating">
+          <select id="fbRating">
             <option value="">(Opsional) Pilih…</option>
             <option>1 - Sangat buruk</option>
             <option>2 - Buruk</option>
@@ -119,93 +125,85 @@
         </div>
       </div>
 
-      <!-- Pesan -->
+      <!-- PESAN -->
       <div class="feedback-field">
         <label for="fbMessage">Pesan <span class="req">*</span></label>
-        <textarea id="fbMessage" name="message" rows="6" maxlength="1200"
+        <textarea id="fbMessage" rows="6" maxlength="1200"
           placeholder="Tulis kritik/saran/pertanyaan Anda secara jelas. Sertakan detail waktu/tempat jika relevan."></textarea>
         <div class="input-hint"><span id="charCount">0</span>/1200 karakter</div>
       </div>
 
-      <!-- Persetujuan follow-up (DIRAPIKAN) -->
-      <fieldset class="consent-fieldset" aria-label="Persetujuan tindak lanjut">
-        <legend class="sr-only">Persetujuan tindak lanjut</legend>
+      <!-- PERSETUJUAN FOLLOW UP (DIRAPIKAN) -->
+      <fieldset class="consent-fieldset">
+        <legend class="sr-only">Persetujuan follow up</legend>
+
         <label class="consent-row">
-          <input type="checkbox" id="fbConsent" />
+          <input type="checkbox" id="fbConsent"/>
           <span class="consent-text">
             Saya bersedia dihubungi tim Kopi Feeling untuk menindaklanjuti pesan ini.
           </span>
         </label>
       </fieldset>
 
-      <!-- Kirim -->
+      <!-- TOMBOL KIRIM -->
       <div class="send-actions">
-        <a id="fbSendBtn" class="btn btn-primary" href="#" target="_blank" rel="noopener" aria-disabled="true">
+        #
           <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
           Kirim via WhatsApp
         </a>
         <small class="send-hint">Pesan akan dirangkum otomatis ke format WhatsApp.</small>
       </div>
-    </form>
 
-    <!-- Info alamat -->
-    <div class="section" style="padding-top:24px">
-      <h3>Alamat Main Office</h3>
-      <p>JL.Irigasi No.08, RT.001/RW.003, Mentaos, Kec. Banjarbaru Utara, Kota Banjar Baru, Kalimantan Selatan 70711</p>
-    </div>
+    </form>
   </main>
 
   <!-- FOOTER -->
   <footer class="site-footer">
     <div class="container footer-grid">
       <div class="footer-about">
-        <img src="assets/img/logo-oval.svg" alt="Logo Kopi Feeling" class="footer-logo" />
+        assets/img/logo-oval.svg
         <p>Kopi Feeling adalah brand kopi gerobak nomor 1 di Banjarmasin—siap menemani harian & acara Anda.</p>
       </div>
+
       <div class="footer-contact">
         <h4>Alamat & Kontak</h4>
-        <p><i class="fa-solid fa-location-dot" aria-hidden="true"></i>
-          JL.Irigasi No.08, RT.001/RW.003, Mentaos, Kec. Banjarbaru Utara, Kota Banjar Baru, Kalimantan Selatan 70711
-        </p>
-        <p><i class="fa-solid fa-phone" aria-hidden="true"></i>
-          <a class="link" href="tel:+6281254913064">+62 812-5491-3064</a>
-        </p>
-        <p><i class="fa-solid fa-envelope" aria-hidden="true"></i>
-          <a class="link" href="mailto:order@kopifeeling.id">order@kopifeeling.id</a>
-        </p>
+        <p><i class="fa-solid fa-location-dot"></i> JL.Irigasi No.08, RT.001/RW.003, Mentaos, Banjarbaru Utara, Kalimantan Selatan 70711</p>
+        <p><i class="fa-solid fa-phone"></i> +62 812-5491-3064</p>
+        <p><i class="fa-solid fa-envelope"></i> order@kopifeeling.id</p>
       </div>
+
       <div class="footer-menu">
         <h4>Menu Cepat</h4>
         <ul>
-          <li><a href="products.html">Menu</a></li>
-          <li><a href="services.html">Layanan</a></li>
-          <li><a href="stations.html">Lokasi & Coverage</a></li>
-          <li><a href="contact.html" aria-current="page">Kontak</a></li>
+          <li>products.htmlMenu</a></li>
+          <li>services.htmlLayanan</a></li>
+          <li>stations.htmlLokasi & Coverage</a></li>
+          <li>contact.htmlKontak</a></li>
         </ul>
       </div>
     </div>
+
     <div class="footer-bottom">
       <p>© <span id="year"></span> Kopi Feeling. All rights reserved.</p>
       <div class="socials">
-        <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a>
-        <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook" aria-hidden="true"></i></a>
-        <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin" aria-hidden="true"></i></a>
+        #<i class="fa-brands fa-instagram"></i></a>
+        #<i class="fa-brands fa-facebook"></i></a>
+        #<i class="fa-brands fa-linkedin"></i></a>
       </div>
     </div>
   </footer>
 
-  <!-- SCRIPTS -->
-  <script src="assets/js/main.js" defer></script>
+  assets/js/main.js</script>
 
-  <!-- Inline JS — rangkum form ke WhatsApp -->
+  <!-- Inline JS untuk WhatsApp -->
   <script>
     (function () {
       const WA_NUMBER = '6281254913064';
-      const qs  = (s, r=document)=> r.querySelector(s);
+      const qs = (s, r=document) => r.querySelector(s);
       const qsv = (id)=> (qs('#'+id)?.value ?? '').trim();
 
-      const btn = qs('#fbSendBtn');
       const fields = ['fbName','fbEmail','fbPhone','fbType','fbTopic','fbRating','fbMessage'];
+      const sendBtn = qs('#fbSendBtn');
       const charCount = qs('#charCount');
       const msgBox = qs('#fbMessage');
 
@@ -221,17 +219,17 @@
 
         const lines = [];
         lines.push('*Kritik & Saran — Kopi Feeling*');
-        if (type)   lines.push(`Jenis: ${type}`);
-        if (topic)  lines.push(`Topik: ${topic}`);
-        if (rating) lines.push(`Penilaian: ${rating}`);
+        if(type)   lines.push(`Jenis: ${type}`);
+        if(topic)  lines.push(`Topik: ${topic}`);
+        if(rating) lines.push(`Penilaian: ${rating}`);
         lines.push('');
         lines.push('Pesan:');
-        lines.push(msg ? msg : '(kosong)');
+        lines.push(msg || '(kosong)');
         lines.push('');
         lines.push('— Identitas Pengirim —');
-        if (name)  lines.push(`Nama: ${name}`);
-        if (email) lines.push(`Email: ${email}`);
-        if (phone) lines.push(`Nomor HP: ${phone}`);
+        if(name)  lines.push(`Nama: ${name}`);
+        if(email) lines.push(`Email: ${email}`);
+        if(phone) lines.push(`Nomor HP: ${phone}`);
         lines.push(`Bersedia dihubungi: ${consent}`);
         lines.push('');
         lines.push('Terima kasih 🙏');
@@ -240,33 +238,31 @@
       }
 
       function validate(){
-        // wajib: nama, email, jenis, pesan
         const ok =
-          qsv('fbName')  &&
+          qsv('fbName') &&
           qsv('fbEmail') &&
-          qsv('fbType')  &&
+          qsv('fbType') &&
           qsv('fbMessage');
 
-        btn.setAttribute('aria-disabled', ok ? 'false' : 'true');
-        btn.href = ok ? `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(buildMessage())}` : '#';
+        sendBtn.setAttribute('aria-disabled', ok ? 'false' : 'true');
+        sendBtn.href = ok
+          ? `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(buildMessage())}`
+          : '#';
       }
 
-      // Bind inputs
-      fields.forEach(id => {
+      fields.forEach(id=>{
         const el = qs('#'+id);
-        if (!el) return;
+        if(!el) return;
         el.addEventListener('input', validate);
         el.addEventListener('change', validate);
       });
 
-      // Karakter pesan
-      msgBox.addEventListener('input', () => {
-        charCount.textContent = String(msgBox.value.length);
+      msgBox.addEventListener('input', ()=>{
+        charCount.textContent = msgBox.value.length;
       });
 
-      // Init
       validate();
-      charCount.textContent = String(msgBox.value.length || 0);
+      charCount.textContent = msgBox.value.length || 0;
     })();
   </script>
 
