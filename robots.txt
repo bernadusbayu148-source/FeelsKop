@@ -1,4 +1,5 @@
 
 User-agent: *
 Allow: /
-Sitemap: https://bernadusbayu148-source.github.io/KopiFeeling/sitemap.xml
+
+Sitemap: https://bernadusbayu148-source.github.io/FeelsKop/sitemap.xml
