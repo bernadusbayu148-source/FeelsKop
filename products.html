@@ -45,20 +45,19 @@
     /* Namespace hanya untuk halaman Menu */
     #menuPage *{ box-sizing:border-box; }
 
-    /* Hapus gambar pada setiap menu-card (termasuk ruangnya) */
-    #menuPage .menu-card img{ display:none !important; }
-    /* Hilangkan kotak putih, border, dan shadow pada kartu */
+    /* Kartu tanpa kotak putih & tanpa border */
     #menuPage .menu-card{
       background:transparent !important;
       border:none !important;
       box-shadow:none !important;
-      padding:0;                 /* rapikan spacing */
+      overflow:visible;
     }
+    /* Wrapper info dan jarak */
     #menuPage .menu-info{
-      padding:14px 8px 10px;    /* sedikit lebih ringkas */
-      border-radius:0;
+      padding:12px 4px 4px;
     }
-    /* Rapikan grid agar tetap seimbang tanpa gambar */
+
+    /* Grid responsif */
     #menuPage .menu-grid{
       display:grid; gap:18px;
       grid-template-columns:repeat(3,minmax(0,1fr));
@@ -66,30 +65,27 @@
     @media (max-width: 992px){ #menuPage .menu-grid{ grid-template-columns:repeat(2,minmax(0,1fr)); } }
     @media (max-width: 576px){ #menuPage .menu-grid{ grid-template-columns:1fr; } }
 
-    /* Judul/subjudul tetap seperti tema */
-    #menuPage .menu-info h3{ margin:0 0 6px; font-size:18px; color:var(--brand-red); }
+    /* Gambar PNG transparan: proporsional, tidak ter-crop, rapi */
+    #menuPage .menu-card img{
+      display:block;
+      width:100%;
+      height:220px;               /* tinggi konsisten */
+      object-fit:contain;         /* biar proporsional, tidak dipotong */
+      background:transparent;     /* PNG transparan tetap transparan */
+      border-radius:12px;
+      /* Jika ingin tanpa radius sama sekali, gunakan: border-radius:0; */
+    }
+    @media (max-width: 576px){
+      #menuPage .menu-card img{ height:200px; }
+    }
+
+    /* Teks */
+    #menuPage .menu-info h3{ margin:8px 0 4px; font-size:18px; color:var(--brand-red); }
     #menuPage .menu-sub{ margin:0; color:var(--muted); font-weight:700; }
+    #menuPage .menu-desc{ margin:8px 0 0; color:var(--text); line-height:1.6; }
 
-    /* Paragraf deskripsi */
-    #menuPage .menu-desc{ margin:8px 0 10px; color:var(--text); line-height:1.6; }
-
-    /* Tombol: hilangkan background putih, jadikan outline transparan */
-    #menuPage .menu-card .btn{
-      min-height:44px; border-radius:999px; font-weight:800;
-    }
-    #menuPage .menu-card .btn i{ font-size:1.05em; }
-    #menuPage .menu-card .btn.btn-outline{
-      background:transparent !important;
-      color:var(--brand-red);
-      border:2px solid var(--brand-red);
-      transition:.15s;
-    }
-    #menuPage .menu-card .btn.btn-outline:hover{
-      background:rgba(181,18,27,.06);
-    }
-
-    /* Spasi antar elemen agar rapi tanpa kotak kartu */
-    #menuPage .menu-card + .menu-card{ margin-top:0; }
+    /* Hapus tombol “Pesan …” jika masih ada sisa (guard) */
+    #menuPage .menu-card .btn{ display:none !important; }
   </style>
 </head>
 <body>
@@ -150,8 +146,7 @@
 
         <!-- Be Carefeels -->
         <article class="menu-card">
-          <!-- img disembunyikan via CSS -->
-          <img src="assets/img/menu-becarefeels.jpg" alt="Be Carefeels — Creamy Caramel" loading="lazy" />
+          <img src="assets/img/menu-becarefeels.png" alt="Be Carefeels — Creamy Caramel (tanpa latar)" />
           <div class="menu-info">
             <h3>Be Carefeels</h3>
             <p class="menu-sub">Creamy Caramel</p>
@@ -159,124 +154,93 @@
               Perpaduan espresso dan karamel lembut, berpadu susu creamy. Manis pas—comfort drink yang bikin hari
               terasa lebih “care”.
             </p>
-            <a class="btn btn-outline" target="_blank" rel="noopener"
-               href="https://wa.me/6281254913064?text=Halo%20Kopi%20Feeling,%20saya%20ingin%20pesan%20Be%20Carefeels%20%28Creamy%20Caramel%29">
-              <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Pesan Be Carefeels
-            </a>
           </div>
         </article>
 
         <!-- Our Feeling -->
         <article class="menu-card">
-          <img src="assets/img/menu-ourfeeling.jpg" alt="Our Feeling — Sugar Palm" loading="lazy" />
+          <img src="assets/img/menu-ourfeeling.png" alt="Our Feeling — Sugar Palm (tanpa latar)" />
           <div class="menu-info">
             <h3>Our Feeling</h3>
             <p class="menu-sub">Sugar Palm</p>
             <p class="menu-desc">
               Signature gula aren dengan espresso bold. Rasa legit alami, aftertaste hangat—favorit para pecinta kopi gula aren.
             </p>
-            <a class="btn btn-outline" target="_blank" rel="noopener"
-               href="https://wa.me/6281254913064?text=Halo%20Kopi%20Feeling,%20pesan%20Our%20Feeling%20%28Sugar%20Palm%29">
-              <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Pesan Our Feeling
-            </a>
           </div>
         </article>
 
         <!-- Happy Feels -->
         <article class="menu-card">
-          <img src="assets/img/menu-happyfeels.jpg" alt="Happy Feels — Butterscotch Sea Salt" loading="lazy" />
+          <img src="assets/img/menu-happyfeels.png" alt="Happy Feels — Butterscotch Sea Salt (tanpa latar)" />
           <div class="menu-info">
             <h3>Happy Feels</h3>
             <p class="menu-sub">Butterscotch Sea Salt</p>
             <p class="menu-desc">
               Butterscotch buttery yang diperkaya sea salt lembut—manis gurih unik, bikin senyum muncul di setiap teguk.
             </p>
-            <a class="btn btn-outline" target="_blank" rel="noopener"
-               href="https://wa.me/6281254913064?text=Halo%20Kopi%20Feeling,%20pesan%20Happy%20Feels%20%28Butterscotch%20Sea%20Salt%29">
-              <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Pesan Happy Feels
-            </a>
           </div>
         </article>
 
         <!-- Mocafeels -->
         <article class="menu-card">
-          <img src="assets/img/menu-mocafeels.jpg" alt="Mocafeels — Moccacino" loading="lazy" />
+          <img src="assets/img/menu-mocafeels.png" alt="Mocafeels — Moccacino (tanpa latar)" />
           <div class="menu-info">
             <h3>Mocafeels</h3>
             <p class="menu-sub">Moccacino</p>
             <p class="menu-desc">
               Kombinasi espresso, susu, dan cokelat—seimbang, smooth, dan selalu jadi pilihan aman untuk semua momen.
             </p>
-            <a class="btn btn-outline" target="_blank" rel="noopener"
-               href="https://wa.me/6281254913064?text=Halo%20Kopi%20Feeling,%20pesan%20Mocafeels%20%28Moccacino%29">
-              <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Pesan Mocafeels
-            </a>
           </div>
         </article>
 
         <!-- Rushfeels -->
         <article class="menu-card">
-          <img src="assets/img/menu-rushfeels.jpg" alt="Rushfeels — Irish Coffee" loading="lazy" />
+          <img src="assets/img/menu-rushfeels.png" alt="Rushfeels — Irish Coffee (tanpa latar)" />
           <div class="menu-info">
             <h3>Rushfeels</h3>
             <p class="menu-sub">Irish Coffee</p>
             <p class="menu-desc">
               Espresso intens dengan aroma khas “irish style”—memberi dorongan semangat, cocok saat butuh pace lebih cepat.
             </p>
-            <a class="btn btn-outline" target="_blank" rel="noopener"
-               href="https://wa.me/6281254913064?text=Halo%20Kopi%20Feeling,%20pesan%20Rushfeels%20%28Irish%20Coffee%29">
-              <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Pesan Rushfeels
-            </a>
           </div>
         </article>
 
         <!-- Vanfeels -->
         <article class="menu-card">
-          <img src="assets/img/menu-vanfeels.jpg" alt="Vanfeels — Vanilla Cream" loading="lazy" />
+          <img src="assets/img/menu-vanfeels.png" alt="Vanfeels — Vanilla Cream (tanpa latar)" />
           <div class="menu-info">
             <h3>Vanfeels</h3>
             <p class="menu-sub">Vanilla Cream</p>
             <p class="menu-desc">
               Creamy vanilla yang wangi dan halus, menyatukan espresso jadi minuman lembut yang bikin hati “calm”.
             </p>
-            <a class="btn btn-outline" target="_blank" rel="noopener"
-               href="https://wa.me/6281254913064?text=Halo%20Kopi%20Feeling,%20pesan%20Vanfeels%20%28Vanilla%20Cream%29">
-              <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Pesan Vanfeels
-            </a>
           </div>
         </article>
 
         <!-- Nutfeels -->
         <article class="menu-card">
-          <img src="assets/img/menu-nutfeels.jpg" alt="Nutfeels — Hazelnut" loading="lazy" />
+          <img src="assets/img/menu-nutfeels.png" alt="Nutfeels — Hazelnut (tanpa latar)" />
           <div class="menu-info">
             <h3>Nutfeels</h3>
             <p class="menu-sub">Hazelnut</p>
             <p class="menu-desc">
               Perpaduan espresso dengan hazelnut aromatik—nutty, wangi, dan comforting. Cocok untuk penikmat rasa kacang.
             </p>
-            <a class="btn btn-outline" target="_blank" rel="noopener"
-               href="https://wa.me/6281254913064?text=Halo%20Kopi%20Feeling,%20pesan%20Nutfeels%20%28Hazelnut%29">
-              <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Pesan Nutfeels
-            </a>
           </div>
         </article>
 
         <!-- Blackfeels -->
         <article class="menu-card">
-          <img src="assets/img/menu-blackfeels.jpg" alt="Blackfeels — Americano" loading="lazy" />
+          <img src="assets/img/menu-blackfeels.png" alt="Blackfeels — Americano (tanpa latar)" />
           <div class="menu-info">
             <h3>Blackfeels</h3>
             <p class="menu-sub">Americano</p>
             <p class="menu-desc">
               Espresso yang dilunakkan air panas—clean, ringkas, dan jernih. Pilihan tepat untuk pecinta kopi tanpa susu.
             </p>
-            <a class="btn btn-outline" target="_blank" rel="noopener"
-               href="https://wa.me/6281254913064?text=Halo%20Kopi%20Feeling,%20pesan%20Blackfeels%20%28Americano%29">
-              <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Pesan Blackfeels
-            </a>
           </div>
         </article>
+
       </div>
     </section>
 
@@ -286,49 +250,37 @@
 
         <!-- Chocofeels -->
         <article class="menu-card">
-          <img src="assets/img/menu-chocofeels.jpg" alt="Chocofeels — Cokelat Belgian" loading="lazy" />
+          <img src="assets/img/menu-chocofeels.png" alt="Chocofeels — Cokelat Belgian (tanpa latar)" />
           <div class="menu-info">
             <h3>Chocofeels</h3>
             <p class="menu-sub">Cokelat Belgian</p>
             <p class="menu-desc">
               Cokelat belgian yang kaya & indulgent—tekstur lembut, rasa legit. Cocok buat mood booster tanpa kafein.
             </p>
-            <a class="btn btn-outline" target="_blank" rel="noopener"
-               href="https://wa.me/6281254913064?text=Halo%20Kopi%20Feeling,%20pesan%20Chocofeels%20%28Cokelat%20Belgian%29">
-              <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Pesan Chocofeels
-            </a>
           </div>
         </article>
 
         <!-- Greenfeels -->
         <article class="menu-card">
-          <img src="assets/img/menu-greenfeels.jpg" alt="Greenfeels — Sweet Matcha" loading="lazy" />
+          <img src="assets/img/menu-greenfeels.png" alt="Greenfeels — Sweet Matcha (tanpa latar)" />
           <div class="menu-info">
             <h3>Greenfeels</h3>
             <p class="menu-sub">Sweet Matcha <span class="addon">(+ Pistachio IDR 3K)</span></p>
             <p class="menu-desc">
               Matcha manis lembut yang menenangkan. Add-on Pistachio menambah nuansa nutty premium—unik & nagih!
             </p>
-            <a class="btn btn-outline" target="_blank" rel="noopener"
-               href="https://wa.me/6281254913064?text=Halo%20Kopi%20Feeling,%20pesan%20Greenfeels%20%28Sweet%20Matcha%20%2B%20Pistachio%29">
-              <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Pesan Greenfeels
-            </a>
           </div>
         </article>
 
         <!-- Red Deveels -->
         <article class="menu-card">
-          <img src="assets/img/menu-reddeveels.jpg" alt="Red Deveels — Red Velvet" loading="lazy" />
+          <img src="assets/img/menu-reddeveels.png" alt="Red Deveels — Red Velvet (tanpa latar)" />
           <div class="menu-info">
             <h3>Red Deveels</h3>
             <p class="menu-sub">Red Velvet</p>
             <p class="menu-desc">
               Red velvet creamy dengan aroma vanila & kakao—dengan warna ikonik yang bikin momen jadi lebih berkesan.
             </p>
-            <a class="btn btn-outline" target="_blank" rel="noopener"
-               href="https://wa.me/6281254913064?text=Halo%20Kopi%20Feeling,%20pesan%20Red%20Deveels%20%28Red%20Velvet%29">
-              <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Pesan Red Deveels
-            </a>
           </div>
         </article>
 
@@ -387,7 +339,6 @@
   </footer>
 
   <!-- Script tema -->
-  <script src="assets/js/main.js"></script>
+  <script src="assets/js/main.js" defer></script>
 </body>
 </html>
-``
