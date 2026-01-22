@@ -199,8 +199,21 @@
         <!-- START: markup leaderboard -->
         <div class="lb-root">
           <header class="lb-header">
-            <h1 class="lb-title">Feeling Leaderboard</h1>
+            <h1 class="lb-title">
+              <!-- SR-only untuk aksesibilitas & SEO -->
+              <span class="sr-only">Feeling Leaderboard</span>
+              <img
+                class="lb-logo"
+                src="assets/img/sipaling-feeling.png"
+                alt="Sipaling Feeling — Leaderboard"
+                width="620"
+                height="auto"
+                loading="lazy"
+                decoding="async"
+              />
+            </h1>
           </header>
+
 
           <div class="controls" role="region" aria-label="Filter dan aksi">
             <input id="searchBox" type="search" placeholder="Cari nama atau No Member…" aria-label="Cari" />
