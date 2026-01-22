@@ -538,3 +538,45 @@ input,textarea{
     height: 62px;      /* mobile lebih kecil */
   }
 }
+
+/* ==== Brand inline: ikon + wordmark ==== */
+
+/* Pastikan kontainer brand rapi dan sejajar */
+.brand{
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;            /* jarak antara ikon dan tulisan */
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Ikon di kiri (logo pictogram) */
+.logo{
+  height: 44px;         /* ukuran desktop: boleh kamu ubah 40–52px */
+  width: auto;
+}
+
+/* Wordmark (tulisan) yang baru */
+.brand-wordmark{
+  display: block;
+  height: 28px;         /* tinggi tulisan di desktop */
+  width: auto;
+}
+
+/* Tablet */
+@media (max-width: 992px){
+  .logo{ height: 40px; }
+  .brand-wordmark{ height: 26px; }
+}
+
+/* Mobile */
+@media (max-width: 768px){
+  .logo{ height: 36px; }
+  .brand-wordmark{ height: 24px; }
+}
+
+/* Mobile kecil (iPhone mini, dsb.) */
+@media (max-width: 390px){
+  .logo{ height: 32px; }
+  .brand-wordmark{ height: 22px; }
+}
