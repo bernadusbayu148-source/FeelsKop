@@ -6,43 +6,33 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>Kopi Feeling — Brand Kopi Gerobak #1 di Banjarmasin</title>
   <meta name="description" content="Kopi Feeling, brand kopi gerobak nomor 1 di Banjarmasin. Rasa mantap, harga bersahabat, pengantaran tepat waktu.">
-  https://bernadusbayu148-source.github.io/FeelsKop/
-
-  <!-- Preconnect fonts -->
-  https://fonts.googleapis.com
-  https://fonts.gstatic.com
+  <link rel="canonical" href="https://bernadusbayu148-source.github.io/KopiFeeling/" />
   <!-- Fonts & Icons -->
-  https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap
-  https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css
-
-  <!-- Performa: preload hero images (tidak mengubah tampilan) -->
-  assets/img/hero-1.jpg
-  assets/img/hero-2.jpg
-
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
   <!-- Main CSS -->
-  assets/css/style.css
-
+  <link rel="stylesheet" href="assets/css/style.css" />
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Kopi Feeling — Brand Kopi Gerobak #1 di Banjarmasin" />
   <meta property="og:description" content="Rasa mantap, harga bersahabat, pengantaran tepat waktu." />
-  <meta property="og:url" content="https://bernadusbayu148-source.github.io/FeelsKop/" />
-  <meta property="og:image" content="https://bernadusbayu148-source.github.io/FeelsKop/assets/img/og-cover.jpg" />
+  <meta property="og:url" content="https://bernadusbayu148-source.github.io/KopiFeeling/" />
+  <meta property="og:image" content="https://bernadusbayu148-source.github.io/KopiFeeling/assets/img/og-cover.jpg" />
   <meta property="og:locale" content="id_ID" />
-
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Kopi Feeling — Brand Kopi Gerobak #1 di Banjarmasin" />
   <meta name="twitter:description" content="Rasa mantap, harga bersahabat, pengantaran tepat waktu." />
-  <meta name="twitter:image" content="https://bernadusbayu148-source.github.io/FeelsKop/assets/img/og-cover.jpg" />
-
-  <!-- Structured Data (dipertahankan, hanya URL disesuaikan) -->
+  <meta name="twitter:image" content="https://bernadusbayu148-source.github.io/KopiFeeling/assets/img/og-cover.jpg" />
+  <!-- Structured Data -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "CafeOrCoffeeShop",
     "name": "Kopi Feeling",
-    "url": "https://bernadusbayu148-source.github.io/FeelsKop/",
+    "url": "https://bernadusbayu148-source.github.io/KopiFeeling/",
     "telephone": "+62 812-5491-3064",
     "address": {
       "@type": "PostalAddress",
@@ -61,28 +51,25 @@
   <!-- HEADER / NAVBAR -->
   <header class="site-header" id="siteHeader">
     <div class="container nav-container">
-      index.html
-        assets/img/logo-oval.svg
+      <a class="brand" href="index.html" aria-label="Halaman utama">
+        <img src="assets/img/logo-oval.svg" alt="Logo Kopi Feeling" class="logo" />
         <span class="brand-name">Kopi Feeling</span>
       </a>
-
       <button class="nav-toggle" aria-label="Buka menu" aria-expanded="false" aria-controls="primaryNav">
         <span class="nav-toggle-bar"></span>
         <span class="nav-toggle-bar"></span>
         <span class="nav-toggle-bar"></span>
       </button>
-
       <nav class="nav" id="primaryNav" aria-label="Navigasi utama">
         <ul class="nav-list">
-          <li class="nav-item">index.htmlHome</a></li>
-          <li class="nav-item">products.htmlMenu</a></li>
-          <li class="nav-item">services.htmlLayanan</a></li>
-          <li class="nav-item">stations.htmlLokasi & Coverage</a></li>
-          <li class="nav-item">contact.htmlKontak</a></li>
+          <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="products.html">Menu</a></li>
+          <li class="nav-item"><a class="nav-link" href="services.html">Layanan</a></li>
+          <li class="nav-item"><a class="nav-link" href="stations.html">Lokasi & Coverage</a></li>
+          <li class="nav-item"><a class="nav-link" href="contact.html">Kontak</a></li>
         </ul>
       </nav>
-
-      https://wa.me/6281254913064?text=Halo%20Kopi%20Feeling,%20saya%20ingin%20bertanya%20tentang%20menu%20dan%20pemesanan.
+      <a class="btn btn-outline btn-wa" href="https://wa.me/6281254913064?text=Halo%20Kopi%20Feeling,%20saya%20ingin%20bertanya%20tentang%20menu%20dan%20pemesanan." target="_blank" rel="noopener">
         <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> WhatsApp
       </a>
     </div>
@@ -97,8 +84,8 @@
           <h1 class="hero-title">Kopi Gerobak, Rasa Juara</h1>
           <p class="hero-subtitle">Biji pilihan • Racikan konsisten • Harga bersahabat</p>
           <div class="hero-actions">
-            products.htmlLihat Menu</a>
-            services.htmlPesan Sekarang</a>
+            <a class="btn btn-primary" href="products.html">Lihat Menu</a>
+            <a class="btn btn-outline" href="services.html">Pesan Sekarang</a>
           </div>
         </div>
       </div>
@@ -108,22 +95,20 @@
           <h1 class="hero-title">Semakin dekat, Semakin Bersahabat</h1>
           <p class="hero-subtitle">Lihat Stasion terdekat dengan Anda</p>
           <div class="hero-actions">
-            stations.htmlLokasi & Coverage</a>
+            <a class="btn btn-primary" href="stations.html">Lokasi & Coverage</a>
           </div>
         </div>
       </div>
-
       <button class="slider-btn prev" aria-label="Slide sebelumnya"><i class="fa-solid fa-chevron-left"></i></button>
       <button class="slider-btn next" aria-label="Slide berikutnya"><i class="fa-solid fa-chevron-right"></i></button>
       <div class="slider-dots" aria-hidden="true"></div>
     </div>
   </section>
 
-  <!-- LEADERBOARD -->
+  <!-- LEADERBOARD (dari file kamu) -->
   <section class="section" id="leaderboard-host">
     <div class="container">
       <h2 class="section-title">Feeling Leaderboard</h2>
-
       <div class="leaderboard-card">
         <!-- START: markup leaderboard -->
         <div class="lb-root">
@@ -210,12 +195,12 @@
     </div>
   </section>
 
-  <!-- CTA STRIP -->
+  <!-- CTA STRIP (DIUBAH) -->
   <section class="cta-strip" role="complementary" aria-label="Bantuan pelanggan & keluhan">
     <div class="container cta-content">
       <h3>Ada pertanyaan atau keluhan?</h3>
       <p>Kami siap membantu. Kunjungi halaman <strong>Kontak</strong> untuk menyampaikan pertanyaan, saran, atau keluhan Anda.</p>
-      contact.html
+      <a class="btn btn-primary" href="contact.html" aria-label="Buka halaman kontak">
         <i class="fa-regular fa-envelope" aria-hidden="true"></i> Hubungi Kami
       </a>
     </div>
@@ -225,44 +210,44 @@
   <footer class="site-footer">
     <div class="container footer-grid">
       <div class="footer-about">
-        assets/img/logo-oval.svg
+        <img src="assets/img/logo-oval.svg" alt="Logo Kopi Feeling" class="footer-logo" />
         <p>Kopi Feeling adalah brand kopi gerobak nomor 1 di Banjarmasin—siap menemani harian & acara Anda.</p>
       </div>
       <div class="footer-contact">
         <h4>Alamat & Kontak</h4>
         <p><i class="fa-solid fa-location-dot" aria-hidden="true"></i>
-          JL.Irigasi No.08, RT.001/RW.003, Mentaos, Kec. Banjarbaru Utara, Kota Banjar Baru, Kalimantan Selatan 70711
+        JL.Irigasi No.08, RT.001/RW.003, Mentaos, Kec. Banjarbaru Utara, Kota Banjar Baru, Kalimantan Selatan 70711
         </p>
         <p><i class="fa-solid fa-phone" aria-hidden="true"></i>
-          tel:+6281254913064+62 812-5491-3064</a>
+        <a class="link" href="tel:+6281254913064">+62 812-5491-3064</a>
         </p>
         <p><i class="fa-solid fa-envelope" aria-hidden="true"></i>
-          mailto:order@kopifeeling.idorder@kopifeeling.id</a>
+        <a class="link" href="mailto:order@kopifeeling.id">order@kopifeeling.id</a>
         </p>
       </div>
       <div class="footer-menu">
         <h4>Menu Cepat</h4>
         <ul>
-          <li>products.htmlMenu</a></li>
-          <li>services.htmlLayanan</a></li>
-          <li>stations.htmlLokasi & Coverage</a></li>
-          <li>contact.htmlKontak</a></li>
+          <li><a href="products.html">Menu</a></li>
+          <li><a href="services.html">Layanan</a></li>
+          <li><a href="stations.html">Lokasi & Coverage</a></li>
+          <li><a href="contact.html">Kontak</a></li>
         </ul>
       </div>
     </div>
     <div class="footer-bottom">
       <p>© <span id="year"></span> Kopi Feeling. All rights reserved.</p>
       <div class="socials">
-        #<i class="fa-brands fa-instagram" aria-hidden="true"></i></a>
-        #<i class="fa-brands fa-facebook" aria-hidden="true"></i></a>
-        #<i class="fa-brands fa-linkedin" aria-hidden="true"></i></a>
+        <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a>
+        <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook" aria-hidden="true"></i></a>
+        <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin" aria-hidden="true"></i></a>
       </div>
     </div>
   </footer>
 
   <!-- SCRIPTS -->
-  assets/js/main.js</script>
-  assets/js/leaderboard-inline.js</script>
+  <script src="assets/js/main.js" defer></script>
+  <script src="assets/js/leaderboard-inline.js" defer></script>
   <noscript>Website ini bekerja lebih optimal dengan JavaScript diaktifkan.</noscript>
 </body>
 </html>
