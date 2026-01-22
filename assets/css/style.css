@@ -447,3 +447,24 @@ input,textarea{
 @media (prefers-reduced-motion:reduce){
   *{transition:none!important;animation:none!important}
 }
+
+
+/* ===== Leaderboard: ganti judul teks menjadi logo ===== */
+#leaderboard-host .lb-header .lb-title{
+  /* reset style gradient teks bawaan */
+  margin: 0 0 8px;
+  font: inherit;               /* kita tidak pakai text visual di sini */
+  line-height: 1;
+}
+
+#leaderboard-host .lb-header .lb-title .lb-logo{
+  display: block;
+  max-width: min(100%, 560px); /* batas lebar agar tidak kepanjangan */
+  height: auto;
+}
+
+@media (max-width: 640px){
+  #leaderboard-host .lb-header .lb-title .lb-logo{
+    max-width: 84%;            /* sedikit mengecil di layar kecil */
+  }
+}
