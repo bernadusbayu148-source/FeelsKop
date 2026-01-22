@@ -36,7 +36,7 @@
   <meta name="twitter:description" content="Rasa mantap, harga bersahabat, pengantaran tepat waktu." />
   <meta name="twitter:image" content="https://bernadusbayu148-source.github.io/FeelsKop/assets/img/og-cover.jpg" />
 
-  <!-- Structured Data (dipertahankan, hanya URL disesuaikan) -->
+  <!-- Structured Data -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -57,17 +57,77 @@
   }
   </script>
 
-  <!-- GA4: Kopi Feeling (tidak mengubah tampilan/isi) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TJ8JRPYLQP"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){ dataLayer.push(arguments); }
-    gtag('js', new Date());
-    gtag('config', 'G-TJ8JRPYLQP', {
-      anonymize_ip: true,
-      send_page_view: true
-    });
-  </script>
+  <!-- =========================
+       Leaderboard Mobile Fix (SCOPED)
+       ========================= -->
+  <style>
+    /* Kartu host: cegah spill */
+    #leaderboard-host .leaderboard-card { overflow: hidden; }
+
+    /* Pembungkus scroll horizontal agar tabel tidak keluar batas */
+    #leaderboard-host .table-wrap{
+      position: relative;
+      overflow-x: auto;
+      overflow-y: hidden;
+      -webkit-overflow-scrolling: touch; /* iOS inertia */
+      border-radius: 12px;
+    }
+    /* Masking lembut kiri/kanan saat bisa di-scroll (browser modern) */
+    @supports (mask-image: linear-gradient(#000, #000)) {
+      #leaderboard-host .table-wrap {
+        --fade: 16px;
+        mask-image: linear-gradient(to right,
+                      transparent 0, #000 var(--fade),
+                      #000 calc(100% - var(--fade)), transparent 100%);
+      }
+    }
+
+    /* Tabel: minimal width agar kolom tidak berhimpit, tapi responsif */
+    #leaderboard-host #board{
+      display: table;
+      width: max(640px, 100%);
+      border-collapse: collapse;
+    }
+
+    /* Header sticky yang rapi (tidak menutupi tepi saat scroll) */
+    #leaderboard-host #board thead th{
+      position: sticky; top: 0; z-index: 1;
+      background: #f6f7f9;
+      box-shadow: 0 1px 0 var(--lb-border);
+    }
+
+    /* Lebar kolom & pembatasan teks */
+    #leaderboard-host #board thead th:first-child,
+    #leaderboard-host #board tbody td:first-child{ min-width: 96px; }
+    #leaderboard-host #board thead th:nth-child(2),
+    #leaderboard-host #board tbody td:nth-child(2){ min-width: 140px; }
+    #leaderboard-host #board thead th:nth-child(3),
+    #leaderboard-host #board tbody td:nth-child(3){
+      min-width: 180px;
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+      max-width: 220px;
+    }
+    #leaderboard-host #board thead th:nth-child(4),
+    #leaderboard-host #board tbody td:nth-child(4){
+      min-width: 120px; text-align: right;
+    }
+
+    /* Mobile ekstra sempit */
+    @media (max-width: 420px){
+      #leaderboard-host #board{ width: max(560px, 100%); }
+      #leaderboard-host #board thead th:first-child,
+      #leaderboard-host #board tbody td:first-child{ min-width: 84px; }
+      #leaderboard-host #board thead th:nth-child(3),
+      #leaderboard-host #board tbody td:nth-child(3){
+        min-width: 150px; max-width: 180px;
+      }
+      #leaderboard-host #board thead th:nth-child(4),
+      #leaderboard-host #board tbody td:nth-child(4){ min-width: 110px; }
+    }
+
+    /* Safari/iOS overscroll: jangan geser body saat scroll tabel */
+    #leaderboard-host .leaderboard-card{ overscroll-behavior: contain; }
+  </style>
 </head>
 <body>
   <!-- HEADER / NAVBAR -->
@@ -201,19 +261,24 @@
 
           <div class="card" role="region" aria-label="Tabel leaderboard">
             <div class="table-accent" aria-hidden="true"></div>
-            <table id="board">
-              <thead>
-                <tr>
-                  <th style="width:90px">Peringkat</th>
-                  <th style="width:140px">No Member</th>
-                  <th>Nama</th>
-                  <th style="width:140px">Point</th>
-                </tr>
-              </thead>
-              <tbody id="boardBody">
-                <tr><td colspan="4" class="empty">Memuat data…</td></tr>
-              </tbody>
-            </table>
+
+            <!-- NEW: pembungkus scroll agar tabel tidak keluar batas -->
+            <div class="table-wrap">
+              <table id="board">
+                <thead>
+                  <tr>
+                    <th style="width:90px">Peringkat</th>
+                    <th style="width:140px">No Member</th>
+                    <th>Nama</th>
+                    <th style="width:140px">Point</th>
+                  </tr>
+                </thead>
+                <tbody id="boardBody">
+                  <tr><td colspan="4" class="empty">Memuat data…</td></tr>
+                </tbody>
+              </table>
+            </div>
+
             <div class="footer" id="meta" aria-live="polite"></div>
           </div>
         </div>
@@ -277,4 +342,4 @@
   <script src="assets/js/leaderboard-inline.js" defer></script>
   <noscript>Website ini bekerja lebih optimal dengan JavaScript diaktifkan.</noscript>
 </body>
-</html>
+</
