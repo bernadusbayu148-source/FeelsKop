@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>Kopi Feeling — Brand Kopi Gerobak #1 di Banjarmasin</title>
   <meta name="description" content="Kopi Feeling, brand kopi gerobak nomor 1 di Banjarmasin. Rasa mantap, harga bersahabat, pengantaran tepat waktu.">
-  <link rel="canonical" href="https://bernadusbayu148-source.github.io/KopiFeeling/" />
+  <link rel="canonical" href="https://bernadusbayu148-source.github.io/FeelsKop/" />
   <!-- Fonts & Icons -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -18,21 +18,21 @@
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Kopi Feeling — Brand Kopi Gerobak #1 di Banjarmasin" />
   <meta property="og:description" content="Rasa mantap, harga bersahabat, pengantaran tepat waktu." />
-  <meta property="og:url" content="https://bernadusbayu148-source.github.io/KopiFeeling/" />
-  <meta property="og:image" content="https://bernadusbayu148-source.github.io/KopiFeeling/assets/img/og-cover.jpg" />
+  <meta property="og:url" content="https://bernadusbayu148-source.github.io/FeelsKop/" />
+  <meta property="og:image" content="https://bernadusbayu148-source.github.io/FeelsKop/assets/img/og-cover.jpg" />
   <meta property="og:locale" content="id_ID" />
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Kopi Feeling — Brand Kopi Gerobak #1 di Banjarmasin" />
   <meta name="twitter:description" content="Rasa mantap, harga bersahabat, pengantaran tepat waktu." />
-  <meta name="twitter:image" content="https://bernadusbayu148-source.github.io/KopiFeeling/assets/img/og-cover.jpg" />
+  <meta name="twitter:image" content="https://bernadusbayu148-source.github.io/FeelsKop/assets/img/og-cover.jpg" />
   <!-- Structured Data -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "CafeOrCoffeeShop",
     "name": "Kopi Feeling",
-    "url": "https://bernadusbayu148-source.github.io/KopiFeeling/",
+    "url": "https://bernadusbayu148-source.github.io/FeelsKop/",
     "telephone": "+62 812-5491-3064",
     "address": {
       "@type": "PostalAddress",
@@ -62,7 +62,7 @@
       </button>
       <nav class="nav" id="primaryNav" aria-label="Navigasi utama">
         <ul class="nav-list">
-          <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link active" href="index.html" aria-current="page">Home</a></li>
           <li class="nav-item"><a class="nav-link" href="products.html">Menu</a></li>
           <li class="nav-item"><a class="nav-link" href="services.html">Layanan</a></li>
           <li class="nav-item"><a class="nav-link" href="stations.html">Lokasi & Coverage</a></li>
@@ -105,7 +105,7 @@
     </div>
   </section>
 
-  <!-- LEADERBOARD (dari file kamu) -->
+  <!-- LEADERBOARD (markup tetap) -->
   <section class="section" id="leaderboard-host">
     <div class="container">
       <h2 class="section-title">Feeling Leaderboard</h2>
@@ -118,7 +118,6 @@
               Data diambil dari Google Sheets (kolom: <strong>No Member</strong>, <strong>Nama</strong>, <strong>Point</strong>).
             </p>
           </header>
-
           <div class="controls" role="region" aria-label="Filter dan aksi">
             <input id="searchBox" type="search" placeholder="Cari nama atau No Member…" aria-label="Cari" />
             <select id="limitSelect" aria-label="Tampilkan">
@@ -129,7 +128,6 @@
             </select>
             <button id="refreshBtn" class="btn btn-primary" aria-label="Muat ulang data">Muat Ulang</button>
           </div>
-
           <section class="stats" aria-label="Ringkasan">
             <article class="stat-card">
               <p class="stat-title">Total Member</p>
@@ -142,9 +140,7 @@
               <div class="stat-bar"><div class="fill" id="barAvg" style="width:0%"></div></div>
             </article>
           </section>
-
           <div id="searchInfo" class="search-info" aria-live="polite"></div>
-
           <section class="podium" aria-label="Klasemen 3 teratas">
             <div class="podium-wrap">
               <article class="podium-card second" id="rank-2">
@@ -171,7 +167,6 @@
             </div>
             <div class="podium-meta" id="podiumMeta" aria-live="polite"></div>
           </section>
-
           <div class="card" role="region" aria-label="Tabel leaderboard">
             <div class="table-accent" aria-hidden="true"></div>
             <table id="board">
@@ -195,7 +190,7 @@
     </div>
   </section>
 
-  <!-- CTA STRIP (DIUBAH) -->
+  <!-- CTA STRIP (tetap) -->
   <section class="cta-strip" role="complementary" aria-label="Bantuan pelanggan & keluhan">
     <div class="container cta-content">
       <h3>Ada pertanyaan atau keluhan?</h3>
@@ -216,13 +211,13 @@
       <div class="footer-contact">
         <h4>Alamat & Kontak</h4>
         <p><i class="fa-solid fa-location-dot" aria-hidden="true"></i>
-        JL.Irigasi No.08, RT.001/RW.003, Mentaos, Kec. Banjarbaru Utara, Kota Banjar Baru, Kalimantan Selatan 70711
+          JL.Irigasi No.08, RT.001/RW.003, Mentaos, Kec. Banjarbaru Utara, Kota Banjar Baru, Kalimantan Selatan 70711
         </p>
         <p><i class="fa-solid fa-phone" aria-hidden="true"></i>
-        <a class="link" href="tel:+6281254913064">+62 812-5491-3064</a>
+          <a class="link" href="tel:+6281254913064">+62 812-5491-3064</a>
         </p>
         <p><i class="fa-solid fa-envelope" aria-hidden="true"></i>
-        <a class="link" href="mailto:order@kopifeeling.id">order@kopifeeling.id</a>
+          <a class="link" href="mailto:order@kopifeeling.id">order@kopifeeling.id</a>
         </p>
       </div>
       <div class="footer-menu">
@@ -244,7 +239,6 @@
       </div>
     </div>
   </footer>
-
   <!-- SCRIPTS -->
   <script src="assets/js/main.js" defer></script>
   <script src="assets/js/leaderboard-inline.js" defer></script>
