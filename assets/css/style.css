@@ -1,7 +1,7 @@
 
 /* =========================
- Tema Dasar & Reset
- ========================= */
+   Tema Dasar & Reset
+   ========================= */
 :root{
   --brand-red:#b5121b;
   --brand-dark:#1f1f1f;
@@ -11,7 +11,6 @@
   --bg-soft:#f7f7f8;
   --border:#eaeaea;
   --shadow:0 8px 24px rgba(0,0,0,.08);
-
   /* Leaderboard theme */
   --lb-bg:#fff;
   --lb-card:#ffffff;
@@ -22,6 +21,28 @@
   --gold:#f5b942;
   --silver:#cfd3da;
   --bronze:#d48957;
+
+  /* ===== Spacing scale (baru) ===== */
+  --sp-0:0px;
+  --sp-1:6px;
+  --sp-2:10px;
+  --sp-3:12px;
+  --sp-4:14px;
+  --sp-5:16px;
+  --sp-6:18px;
+  --sp-7:20px;
+  --sp-8:24px;
+
+  /* Footer sizing (dipadatkan) */
+  --footer-pad-y-desktop:20px;   /* sebelumnya 28px */
+  --footer-pad-y-mobile:16px;    /* sebelumnya 28px */
+  --footer-gap-desktop:16px;     /* sebelumnya 24px */
+  --footer-bottom-pad-y:10px;    /* sebelumnya 14px */
+  --footer-logo-h:36px;          /* sebelumnya 42px */
+  --social-size:18px;            /* sebelumnya default font-size */
+  /* CTA strip */
+  --cta-pad-y-desktop:18px;      /* sebelumnya 28px */
+  --cta-pad-y-mobile:14px;       /* sebelumnya 28px */
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -33,8 +54,8 @@ body{
 }
 
 /* =========================
- Utilities
- ========================= */
+   Utilities
+   ========================= */
 .container{max-width:1140px;margin-inline:auto;padding:0 16px;}
 .section{padding:64px 0;}
 .section-title{font-size:clamp(22px,4vw,28px);font-weight:700;text-align:center;margin:0 0 24px;}
@@ -52,8 +73,8 @@ body{
 .btn-outline:hover{filter:brightness(.97);}
 
 /* =========================
- Header / Navbar
- ========================= */
+   Header / Navbar
+   ========================= */
 .site-header{
   position:sticky;top:0;z-index:1000;
   background:#fff;border-bottom:1px solid var(--border);
@@ -87,8 +108,8 @@ body.nav-open{overflow:hidden;touch-action:none;}
 .nav .nav-link:focus-visible,.btn:focus-visible,.dropdown-toggle:focus-visible{outline:2px solid #1e90ff;outline-offset:2px;}
 
 /* =========================
- Hero Slider
- ========================= */
+   Hero Slider
+   ========================= */
 .hero{position:relative;background:var(--bg-soft)}
 .slider{position:relative}
 .slide{
@@ -110,8 +131,8 @@ body.nav-open{overflow:hidden;touch-action:none;}
 @media (max-width:576px){.hero-title{font-size:clamp(24px,6vw,32px)}.slide{min-height:380px}}
 
 /* =========================
- Features Grid
- ========================= */
+   Features Grid
+   ========================= */
 .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
 .feature{
   background:#fff;border:1px solid var(--border);border-radius:14px;padding:18px;text-align:center;box-shadow:var(--shadow);
@@ -120,8 +141,8 @@ body.nav-open{overflow:hidden;touch-action:none;}
 @media (max-width:768px){.grid-3{grid-template-columns:1fr}}
 
 /* =========================
- Product Grid (highlight)
- ========================= */
+   Product Grid (highlight)
+   ========================= */
 .product-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
 .product-card{background:#fff;border:1px solid var(--border);border-radius:14px;overflow:hidden;box-shadow:var(--shadow)}
 .product-card img{width:100%;height:auto;display:block}
@@ -131,41 +152,84 @@ body.nav-open{overflow:hidden;touch-action:none;}
 @media (max-width:576px){.product-grid{grid-template-columns:1fr}}
 
 /* =========================
- CTA Strip
- ========================= */
-.cta-strip{background:#fbeaed;padding:28px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+   CTA Strip  (DIPERKECIL)
+   ========================= */
+.cta-strip{
+  background:#fbeaed;
+  padding:var(--cta-pad-y-desktop) 0;
+  border-top:1px solid var(--border);border-bottom:1px solid var(--border)
+}
 .cta-content{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
 .cta-content h3{margin:0}
 .cta-content p{margin:0;color:var(--muted)}
+@media (max-width:768px){
+  .cta-strip{padding:var(--cta-pad-y-mobile) 0;}
+  .cta-content{gap:10px}
+}
 
 /* =========================
- Footer
- ========================= */
-.site-footer{background:#8f0e22;color:#fff;margin-top:40px}
-.footer-grid{display:grid;grid-template-columns:2fr 1.5fr 1fr;gap:24px;padding:28px 16px}
-.footer-logo{height:42px;margin-bottom:8px}
+   Footer (DIPERKECIL)
+   ========================= */
+.site-footer{
+  background:#8f0e22;color:#fff;margin-top:40px
+}
+/* Pad & gap diperkecil */
+.footer-grid{
+  display:grid;
+  grid-template-columns:2fr 1.5fr 1fr;
+  gap:var(--footer-gap-desktop);
+  padding:var(--footer-pad-y-desktop) 16px;
+}
+/* Tipografi disesuaikan agar lebih rapat tanpa mengubah konten */
+.footer-logo{height:var(--footer-logo-h);margin-bottom:8px}
+.footer-about p{margin:8px 0 0;line-height:1.6;}
+.footer-contact p{margin:8px 0;line-height:1.6;}
 .footer-menu ul{list-style:none;padding:0;margin:0}
 .footer-menu a{color:#fff;text-decoration:none}
 .footer-menu a:hover{text-decoration:underline}
+
+/* Strip paling bawah dipadatkan */
 .footer-bottom{
   border-top:1px solid rgba(255,255,255,.3);
   display:flex;align-items:center;justify-content:space-between;
-  padding:14px 16px;font-size:14px;
+  padding:var(--footer-bottom-pad-y) 16px;font-size:14px;
 }
-.socials a{color:#fff;margin-left:12px}
-@media (max-width:768px){.footer-grid{grid-template-columns:1fr}}
+/* Ikon sosmed lebih kecil & rapat */
+.socials a{
+  color:#fff;margin-left:10px;
+  font-size:var(--social-size); /* 18px */
+  line-height:1;
+}
+
+/* Responsif footer */
+@media (max-width:992px){
+  .footer-grid{
+    grid-template-columns:1.6fr 1.2fr 1fr;
+    gap:14px;
+    padding:18px 16px;
+  }
+}
+@media (max-width:768px){
+  .footer-grid{
+    grid-template-columns:1fr;
+    gap:12px;
+    padding:var(--footer-pad-y-mobile) 16px; /* 16px */
+  }
+  .footer-bottom{padding:8px 16px;font-size:13.5px}
+  .footer-about p,.footer-contact p{line-height:1.55}
+}
 
 /* =========================
- Form (contact)
- ========================= */
+   Form (contact)
+   ========================= */
 label{display:block;font-weight:600;margin-bottom:6px}
 input,textarea{
   width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:10px;font:inherit;
 }
 
 /* =========================
- Service Tabs
- ========================= */
+   Service Tabs
+   ========================= */
 .service-tabs{
   display:flex;gap:14px;justify-content:center;align-items:center;
   flex-wrap:wrap;margin:0 0 18px;
@@ -187,8 +251,8 @@ input,textarea{
 .tab-panel[hidden]{display:none!important}
 
 /* =========================
- Services
- ========================= */
+   Services
+   ========================= */
 .service-intro{
   background:var(--brand-red);color:#fff;border-radius:16px;padding:18px 16px;box-shadow:var(--shadow);margin-bottom:16px;
 }
@@ -217,8 +281,8 @@ input,textarea{
 @media (max-width:576px){.service-intro{padding:14px 12px}.service-card .card-head h3{font-size:18px}}
 
 /* =========================
- Stations Page
- ========================= */
+   Stations Page
+   ========================= */
 .count-badge{
   display:inline-block;margin-left:8px;padding:2px 8px;
   font-size:.85em;border-radius:999px;border:2px solid var(--brand-red);color:var(--brand-red);background:#fff;
@@ -233,8 +297,8 @@ input,textarea{
 @media (max-width:768px){.station-list{grid-template-columns:1fr}}
 
 /* =========================
- Products Page — Menu Cards
- ========================= */
+   Products Page — Menu Cards
+   ========================= */
 .menu-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
 .menu-card{
   background:#fff;border:1px solid var(--border);
@@ -251,8 +315,8 @@ input,textarea{
 @media (max-width:576px){.menu-grid{grid-template-columns:1fr}.menu-card img{height:180px}}
 
 /* =========================================================
- LEADERBOARD (Redesign penuh, namespace: #leaderboard-host)
- ========================================================= */
+   LEADERBOARD (Redesign penuh, namespace: #leaderboard-host)
+   ========================================================= */
 /* Host card */
 #leaderboard-host .leaderboard-card{
   background:var(--lb-card);
@@ -376,8 +440,8 @@ input,textarea{
 #leaderboard-host .footer{color:#888;font-size:.9rem;margin-top:8px}
 
 /* =========================
- Kontak — Pesanan Dinamis & Modal
- ========================= */
+   Kontak — Pesanan Dinamis & Modal
+   ========================= */
 .contact-subtitle{
   font-weight:800;font-size:clamp(18px,4vw,22px);margin:10px 0 12px;letter-spacing:-.01em;
 }
@@ -451,10 +515,12 @@ input,textarea{
 }
 .menu-item:hover{filter:brightness(.98);border-color:#dcdcdc}
 .menu-item:active{transform:scale(.98)}
+
 /* Aksesibilitas visual */
 .menu-item:focus-visible,.menu-picker:focus-visible,.qty-input:focus-visible,.modal-close:focus-visible{
   outline:2px solid #1e90ff;outline-offset:2px
 }
+
 /* Screen reader only */
 .sr-only{
   position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0
