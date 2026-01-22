@@ -5,49 +5,56 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>Kontak — Kopi Feeling</title>
-  <meta name="description" content="Hubungi Kopi Feeling: pemesanan menu, catering, paket acara, kemitraan."/>
-  https://bernadusbayu148-source.github.io/FeelsKop/contact.html
+  <meta name="description" content="Hubungi Kopi Feeling: pemesanan menu, catering, paket acara, kemitraan.">
+  <link rel="canonical" href="https://bernadusbayu148-source.github.io/KopiFeeling/contact.html">
+
   <!-- Fonts & Icons -->
-  https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap
-  https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+
   <!-- Main CSS -->
-  assets/css/style.css
+  <link rel="stylesheet" href="assets/css/style.css">
+
   <!-- Open Graph -->
-  <meta property="og:type" content="website" />
-  <meta property="og:title" content="Kontak — Kopi Feeling" />
-  <meta property="og:description" content="Pemesanan menu, catering, paket acara, kemitraan." />
-  <meta property="og:url" content="https://bernadusbayu148-source.github.io/FeelsKop/contact.html" />
-  <meta property="og:image" content="https://bernadusbayu148-source.github.io/FeelsKop/assets/img/og-cover.jpg" />
-  <meta property="og:locale" content="id_ID" />
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Kontak — Kopi Feeling">
+  <meta property="og:description" content="Pemesanan menu, catering, paket acara, kemitraan.">
+  <meta property="og:url" content="https://bernadusbayu148-source.github.io/KopiFeeling/contact.html">
+  <meta property="og:image" content="https://bernadusbayu148-source.github.io/KopiFeeling/assets/img/og-cover.jpg">
+  <meta property="og:locale" content="id_ID">
+
   <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Kontak — Kopi Feeling" />
-  <meta name="twitter:description" content="Pemesanan menu, catering, paket acara, kemitraan." />
-  <meta name="twitter:image" content="https://bernadusbayu148-source.github.io/FeelsKop/assets/img/og-cover.jpg" />
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Kontak — Kopi Feeling">
+  <meta name="twitter:description" content="Pemesanan menu, catering, paket acara, kemitraan.">
+  <meta name="twitter:image" content="https://bernadusbayu148-source.github.io/KopiFeeling/assets/img/og-cover.jpg">
 </head>
 <body>
-  <!-- HEADER -->
+  <!-- HEADER / NAVBAR -->
   <header class="site-header" id="siteHeader">
     <div class="container nav-container">
-      index.html
-        assets/img/logo-oval.svg
+      <a href="index.html" class="brand">
+        <img src="assets/img/logo-oval.svg" class="logo" alt="Logo Kopi Feeling">
         <span class="brand-name">Kopi Feeling</span>
       </a>
+
       <button class="nav-toggle" aria-label="Buka menu" aria-expanded="false" aria-controls="primaryNav">
         <span class="nav-toggle-bar"></span>
         <span class="nav-toggle-bar"></span>
         <span class="nav-toggle-bar"></span>
       </button>
+
       <nav class="nav" id="primaryNav" aria-label="Navigasi utama">
         <ul class="nav-list">
-          <li class="nav-item">index.htmlHome</a></li>
-          <li class="nav-item">products.htmlMenu</a></li>
-          <li class="nav-item">services.htmlLayanan</a></li>
-          <li class="nav-item">stations.htmlLokasi & Coverage</a></li>
-          <li class="nav-item">contact.htmlKontak</a></li>
+          <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+          <li class="nav-item"><a href="products.html" class="nav-link">Menu</a></li>
+          <li class="nav-item"><a href="services.html" class="nav-link">Layanan</a></li>
+          <li class="nav-item"><a class="nav-link" href="stations.html">Lokasi & Coverage</a></li>
+          <li class="nav-item"><a href="contact.html" class="nav-link active">Kontak</a></li>
         </ul>
       </nav>
-      https://wa.me/6281254913064?text=Halo%20Kopi%20Feeling,%20saya%20ingin%20bertanya%20tentang%20menu%20&%20pemesanan.
+
+      <a class="btn btn-outline btn-wa" href="https://wa.me/6281254913064?text=Halo%20Kopi%20Feeling,%20saya%20ingin%20bertanya%20tentang%20menu%20&%20pemesanan." target="_blank" rel="noopener">
         <i class="fa-brands fa-whatsapp"></i> WhatsApp
       </a>
     </div>
@@ -85,30 +92,39 @@
 
         <!-- Daftar baris pesanan -->
         <div id="orderList" class="order-list">
+          <!-- Baris 0 (default) -->
           <div class="order-row" data-index="0">
+            <!-- PILIH MENU -->
             <button type="button" class="menu-picker" data-target="menuModal" aria-haspopup="dialog">
               <span class="menu-label">Pilih Menu</span>
               <span class="menu-value" aria-live="polite">Belum dipilih</span>
             </button>
+
+            <!-- QTY -->
             <div class="qty-box">
               <label for="qty-0" class="sr-only">Jumlah</label>
               <input id="qty-0" class="qty-input" type="number" min="1" step="1" placeholder="Qty" inputmode="numeric" />
             </div>
-            <button type="button" class="row-remove" aria-label="Hapus baris">×</button>
+
+            <!-- HAPUS -->
+            <button type="button" class="row-remove" aria-label="Hapus baris">&times;</button>
           </div>
         </div>
 
+        <!-- TAMBAH BARIS -->
         <div class="order-actions">
           <button type="button" id="addRowBtn" class="btn btn-outline">+ Tambah Menu</button>
         </div>
 
+        <!-- ALAMAT / LOKASI -->
         <div class="address-box">
           <label for="deliveryAddress">Alamat / Lokasi Pengantaran</label>
           <textarea id="deliveryAddress" rows="3" placeholder="Tulis alamat lengkap & catatan waktu pengantaran (opsional)"></textarea>
         </div>
 
+        <!-- KIRIM VIA WHATSAPP -->
         <div class="send-actions">
-          #
+          <a id="waSendBtn" class="btn btn-primary" href="#" target="_blank" rel="noopener">
             <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Kirim via WhatsApp
           </a>
           <small class="send-hint">Pesan akan dirangkum otomatis ke format WhatsApp.</small>
@@ -122,12 +138,16 @@
       <div class="modal-dialog" role="document">
         <header class="modal-header">
           <h4 id="menuModalTitle">Pilih Menu</h4>
-          <button type="button" class="modal-close" data-close="menuModal" aria-label="Tutup">×</button>
+          <button type="button" class="modal-close" data-close="menuModal" aria-label="Tutup">&times;</button>
         </header>
+
         <div class="modal-body">
+          <!-- Pencarian (opsional) -->
           <div class="modal-search">
             <input id="menuSearch" type="search" placeholder="Cari menu…" aria-label="Cari menu" />
           </div>
+
+          <!-- Grid pilihan menu -->
           <div id="menuGrid" class="menu-grid" role="listbox" aria-label="Daftar menu Kopi Feeling">
             <button class="menu-item" data-value="Be Carefeels">Be Carefeels</button>
             <button class="menu-item" data-value="Our Feeling">Our Feeling</button>
@@ -142,6 +162,7 @@
             <button class="menu-item" data-value="Red Deveels">Red Deveels</button>
           </div>
         </div>
+
         <footer class="modal-footer">
           <button type="button" class="btn btn-outline" data-close="menuModal">Batal</button>
         </footer>
@@ -155,11 +176,11 @@
     </div>
   </main>
 
-  <!-- FOOTER -->
+  <!-- FOOTER (sama dengan Home) -->
   <footer class="site-footer">
     <div class="container footer-grid">
       <div class="footer-about">
-        assets/img/logo-oval.svg
+        <img src="assets/img/logo-oval.svg" alt="Logo Kopi Feeling" class="footer-logo">
         <p>Kopi Feeling adalah brand kopi gerobak nomor 1 di Banjarmasin—siap menemani harian & acara Anda.</p>
       </div>
       <div class="footer-contact">
@@ -168,56 +189,68 @@
           JL.Irigasi No.08, RT.001/RW.003, Mentaos, Kec. Banjarbaru Utara, Kota Banjar Baru, Kalimantan Selatan 70711
         </p>
         <p><i class="fa-solid fa-phone" aria-hidden="true"></i>
-          tel:+6281254913064+62 812-5491-3064</a>
+          <a class="link" href="tel:+6281254913064">+62 812-5491-3064</a>
         </p>
         <p><i class="fa-solid fa-envelope" aria-hidden="true"></i>
-          mailto:order@kopifeeling.idorder@kopifeeling.id</a>
+          <a class="link" href="mailto:order@kopifeeling.id">order@kopifeeling.id</a>
         </p>
       </div>
       <div class="footer-menu">
         <h4>Menu Cepat</h4>
         <ul>
-          <li>products.htmlMenu</a></li>
-          <li>services.htmlLayanan</a></li>
-          <li>stations.htmlLokasi & Coverage</a></li>
-          <li>contact.htmlKontak</a></li>
+          <li><a href="products.html">Menu</a></li>
+          <li><a href="services.html">Layanan</a></li>
+          <li><a href="stations.html">Lokasi & Coverage</a></li>
+          <li><a href="contact.html">Kontak</a></li>
         </ul>
       </div>
     </div>
     <div class="footer-bottom">
       <p>© <span id="year"></span> Kopi Feeling. All rights reserved.</p>
       <div class="socials">
-        #<i class="fa-brands fa-instagram" aria-hidden="true"></i></a>
-        #<i class="fa-brands fa-facebook" aria-hidden="true"></i></a>
-        #<i class="fa-brands fa-linkedin" aria-hidden="true"></i></a>
+        <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a>
+        <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook" aria-hidden="true"></i></a>
+        <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin" aria-hidden="true"></i></a>
       </div>
     </div>
   </footer>
 
   <!-- SCRIPTS -->
-  assets/js/main.js</script>
+  <script src="assets/js/main.js" defer></script>
 
-  <!-- Inline JS untuk kontak -->
+  <!-- Inline JS untuk kontak: pesanan dinamis & WhatsApp -->
   <script>
   (function(){
     const WA_NUMBER = '6281254913064';
-    const orderList = document.getElementById('orderList');
-    const addRowBtn = document.getElementById('addRowBtn');
-    const waSendBtn = document.getElementById('waSendBtn');
-    const addressEl = document.getElementById('deliveryAddress');
-    const menuModal = document.getElementById('menuModal');
-    const menuGrid = document.getElementById('menuGrid');
-    const menuSearch = document.getElementById('menuSearch');
-    let activeRowIndex = 0;
 
+    const orderList     = document.getElementById('orderList');
+    const addRowBtn     = document.getElementById('addRowBtn');
+    const waSendBtn     = document.getElementById('waSendBtn');
+    const addressEl     = document.getElementById('deliveryAddress');
+
+    const menuModal     = document.getElementById('menuModal');
+    const menuGrid      = document.getElementById('menuGrid');
+    const menuSearch    = document.getElementById('menuSearch');
+
+    let activeRowIndex  = 0;
+
+    /* Helpers */
     const qs  = (sel, root=document) => root.querySelector(sel);
     const qsa = (sel, root=document) => Array.from(root.querySelectorAll(sel));
 
-    function openModal(){ menuModal.removeAttribute('hidden'); menuSearch.value = ''; filterMenu(''); }
-    function closeModal(){ menuModal.setAttribute('hidden',''); }
+    function openModal(){
+      menuModal.removeAttribute('hidden');
+      menuSearch.value = '';
+      filterMenu('');
+    }
+    function closeModal(){
+      menuModal.setAttribute('hidden','');
+    }
     function filterMenu(term){
       const t = String(term||'').toLowerCase();
-      qsa('.menu-item', menuGrid).forEach(btn=>{ btn.style.display = btn.textContent.toLowerCase().includes(t) ? '' : 'none'; });
+      qsa('.menu-item', menuGrid).forEach(btn=>{
+        btn.style.display = btn.textContent.toLowerCase().includes(t) ? '' : 'none';
+      });
     }
 
     function addRow(){
@@ -234,7 +267,8 @@
           <label for="qty-${idx}" class="sr-only">Jumlah</label>
           <input id="qty-${idx}" class="qty-input" type="number" min="1" step="1" placeholder="Qty" inputmode="numeric" />
         </div>
-        <button type="button" class="row-remove" aria-label="Hapus baris">×</button>`;
+        <button type="button" class="row-remove" aria-label="Hapus baris">&times;</button>
+      `;
       orderList.appendChild(row);
     }
 
@@ -247,40 +281,50 @@
         return;
       }
       rowEl.remove();
-      qsa('.order-row', orderList).forEach((r,i)=>{ r.dataset.index = i; qs('.qty-input', r).id = `qty-${i}`; });
+      // reindex id qty agar unik
+      qsa('.order-row', orderList).forEach((r,i)=>{
+        r.dataset.index = i;
+        qs('.qty-input', r).id = `qty-${i}`;
+      });
       updateWaLink();
     }
 
     function getOrders(){
       return qsa('.order-row', orderList).map(r=>{
         const menu = qs('.menu-value', r).textContent.trim();
-        const qty = Number(qs('.qty-input', r).value || 0);
+        const qty  = Number(qs('.qty-input', r).value || 0);
         return {menu, qty};
       }).filter(o => !!o.menu && o.menu !== 'Belum dipilih' && o.qty > 0);
     }
 
     function buildWaMessage(){
-      const name = (qs('#name')?.value ?? '').trim();
-      const org  = (qs('#organization')?.value ?? '').trim();
-      const email= (qs('#email')?.value ?? '').trim();
-      const phone= (qs('#phone')?.value ?? '').trim();
-      const addr = (addressEl?.value ?? '').trim();
-      const orders = getOrders();
+      const name   = (qs('#name')?.value ?? '').trim();
+      const org    = (qs('#organization')?.value ?? '').trim();
+      const email  = (qs('#email')?.value ?? '').trim();
+      const phone  = (qs('#phone')?.value ?? '').trim();
+      const addr   = (addressEl?.value ?? '').trim();
 
-      const lines = [];
+      const orders = getOrders();
+      const lines  = [];
+
       lines.push('*Pesan Kopi Feeling*');
-      if (name) lines.push(`Nama: ${name}`);
-      if (org)  lines.push(`Instansi/Komunitas: ${org}`);
-      if (email)lines.push(`Email: ${email}`);
-      if (phone)lines.push(`Nomor HP: ${phone}`);
+      if (name)  lines.push(`Nama: ${name}`);
+      if (org)   lines.push(`Instansi/Komunitas: ${org}`);
+      if (email) lines.push(`Email: ${email}`);
+      if (phone) lines.push(`Nomor HP: ${phone}`);
+
       if (orders.length){
         lines.push('Pesanan:');
-        orders.forEach((o,i)=> lines.push(` ${i+1}. ${o.menu} × ${o.qty}`));
+        orders.forEach((o,i)=> lines.push(`  ${i+1}. ${o.menu} × ${o.qty}`));
       } else {
         lines.push('Pesanan: (belum terisi)');
       }
+
       if (addr) lines.push(`Alamat Pengantaran: ${addr}`);
-      lines.push(''); lines.push('Terima kasih 🙏');
+
+      lines.push('');
+      lines.push('Terima kasih 🙏');
+
       return lines.join('\n');
     }
 
@@ -289,35 +333,61 @@
       waSendBtn.href = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`;
     }
 
-    // Bindings
+    /* Bindings */
     addRowBtn.addEventListener('click', addRow);
+
     orderList.addEventListener('click', (e)=>{
       const picker = e.target.closest('.menu-picker');
       const remover= e.target.closest('.row-remove');
+
       if (picker){
         const row = e.target.closest('.order-row');
         activeRowIndex = Number(row?.dataset?.index ?? 0);
         openModal();
       }
-      if (remover){ removeRow(e.target.closest('.order-row')); }
+      if (remover){
+        removeRow(e.target.closest('.order-row'));
+      }
     });
-    orderList.addEventListener('input', (e)=>{ if (e.target.classList.contains('qty-input')) updateWaLink(); });
+
+    orderList.addEventListener('input', (e)=>{
+      if (e.target.classList.contains('qty-input')){
+        updateWaLink();
+      }
+    });
+
     menuGrid.addEventListener('click', (e)=>{
-      const btn = e.target.closest('.menu-item'); if (!btn) return;
+      const btn = e.target.closest('.menu-item');
+      if (!btn) return;
       const val = btn.dataset.value || btn.textContent.trim();
+
       const row = qsa('.order-row', orderList)[activeRowIndex];
-      if (row){ qs('.menu-value', row).textContent = val; qs('.qty-input', row).focus(); }
-      closeModal(); updateWaLink();
+      if (row){
+        qs('.menu-value', row).textContent = val;
+        qs('.qty-input', row).focus();
+      }
+      closeModal();
+      updateWaLink();
     });
-    menuModal.addEventListener('click', (e)=>{ const c=e.target.closest('[data-close="menuModal"]'); if (c) closeModal(); });
-    document.addEventListener('keydown', (e)=>{ if (e.key === 'Escape' && !menuModal.hasAttribute('hidden')) closeModal(); });
+
+    menuModal.addEventListener('click', (e)=>{
+      const closeBtn = e.target.closest('[data-close="menuModal"]');
+      if (closeBtn) closeModal();
+    });
+
+    document.addEventListener('keydown', (e)=>{
+      if (e.key === 'Escape' && !menuModal.hasAttribute('hidden')) closeModal();
+    });
+
     menuSearch.addEventListener('input', (e)=> filterMenu(e.target.value));
+
     addressEl.addEventListener('input', updateWaLink);
 
     // Init
     updateWaLink();
   })();
   </script>
+
   <noscript>Halaman ini bekerja optimal dengan JavaScript diaktifkan.</noscript>
 </body>
 </html>
