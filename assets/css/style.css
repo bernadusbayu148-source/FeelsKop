@@ -277,7 +277,7 @@ input,textarea{width:100%;padding:10px 12px;border:1px solid var(--border);borde
 @media (max-width:576px){.menu-grid{grid-template-columns:1fr}.menu-card img{height:170px}}
 
 /* =========================================================
-   LEADERBOARD (namespace: #leaderboard-host)
+   LEADERBOARD
    ========================================================= */
 #leaderboard-host .leaderboard-card{background:var(--lb-card);border:1px solid var(--lb-border);border-radius:18px;box-shadow:0 10px 28px rgba(0,0,0,.08);padding:16px;}
 #leaderboard-host .lb-header .lb-title{margin:0 0 8px;font-weight:800;font-size:clamp(26px,4.6vw,36px);letter-spacing:-.02em;background:linear-gradient(90deg,#D21F3C,#F75353);-webkit-background-clip:text;background-clip:text;color:transparent;}
@@ -298,6 +298,8 @@ input,textarea{width:100%;padding:10px 12px;border:1px solid var(--border);borde
 #leaderboard-host .search-item .member{color:var(--muted);font-weight:600}
 #leaderboard-host .search-item .points,#leaderboard-host .search-item .gap{font-variant-numeric:tabular-nums;font-feature-settings:"tnum"}
 #leaderboard-host .search-item .gap{color:#D21F3C;font-weight:700}
+
+/* Podium */
 #leaderboard-host .podium{margin:12px 0 16px;padding:14px;border-radius:18px;background:linear-gradient(180deg,#fff 0%,#f9fafc 100%);border:1px solid var(--lb-border)}
 #leaderboard-host .podium-wrap{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;align-items:stretch}
 #leaderboard-host .podium-card{position:relative;background:var(--lb-card);border:1px solid var(--lb-border);border-radius:18px;padding:14px;text-align:center;box-shadow:0 8px 24px rgba(0,0,0,.06);min-width:0;overflow:visible;display:flex;flex-direction:column;align-items:center}
@@ -310,6 +312,8 @@ input,textarea{width:100%;padding:10px 12px;border:1px solid var(--border);borde
 #leaderboard-host .podium-trophy{position:absolute;left:50%;bottom:10px;transform:translateX(-50%);display:inline-flex;align-items:center;gap:8px;padding:6px 12px;min-height:28px;border-radius:999px;background:var(--lb-chip);border:1px solid var(--lb-chip-border);box-shadow:0 8px 18px rgba(0,0,0,.08);white-space:nowrap;font-size:13px;line-height:1.2}
 #leaderboard-host .podium-trophy .trophy-icon{font-size:18px;transform:translateY(1px)}
 #leaderboard-host .podium-badge{position:absolute;top:-10px;right:-10px;padding:8px 12px;border-radius:999px;font-weight:800;background:#fff;border:1px solid var(--lb-border);box-shadow:0 6px 14px rgba(0,0,0,.12)}
+
+/* Table */
 #leaderboard-host .card{background:var(--lb-card);border:1px solid var(--lb-border);border-radius:18px;box-shadow:0 8px 18px rgba(0,0,0,.06);padding:10px;margin-top:10px}
 #leaderboard-host .table-accent{height:6px;border-radius:999px;background:linear-gradient(90deg,#D21F3C,#F75353);opacity:.22;margin:0 6px 8px}
 #leaderboard-host #board{width:100%;border-collapse:collapse}
@@ -339,7 +343,7 @@ input,textarea{width:100%;padding:10px 12px;border:1px solid var(--border);borde
   .feedback-check{gap:8px}
 }
 
-/* Consent row (contact) */
+/* Consent row */
 .consent-fieldset{margin:10px 0 8px;padding:0;border:0}
 .consent-row{display:inline-flex;align-items:center;gap:10px;line-height:1.35;font-weight:600;color:var(--text);cursor:pointer}
 .consent-row input[type="checkbox"]{inline-size:18px;block-size:18px;min-width:18px;min-height:18px;border-radius:4px;accent-color:var(--brand-red)}
@@ -387,21 +391,12 @@ input,textarea{width:100%;padding:10px 12px;border:1px solid var(--border);borde
   .address-box { margin: 6px 0; }
   .send-actions { gap: 8px; margin-top: 8px; }
 }
-@media (max-width: 360px){
-  .footer-grid { padding: 8px 12px; gap: 6px; }
-  .footer-about p, .footer-contact p { font-size: 13px; line-height: 1.3; }
-  .footer-contact h4, .footer-menu h4 { font-size: 15px; }
-  .footer-bottom { padding: 6px 12px; font-size: 12px; }
-  .socials a { font-size: 15px; margin-left: 6px; }
-  .cta-strip { padding: 8px 0; }
-  .cta-content h3 { font-size: 15px; }
-  .cta-content p  { font-size: 12.5px; }
-}
 
 /* =========================================================
-   MOBILE FIX – LEADERBOARD (KEEP DESKTOP LOOK ON MOBILE)
+   PENYESUAIAN KHUSUS MOBILE – LEADERBOARD
+   (agar seragam di iPhone 11/17 Pro Max/Android)
    ========================================================= */
-/* 1) PODIUM: tetap 3 kolom di mobile; sediakan ruang untuk chip trofi */
+/* Podium tetap 3 kolom; chip poin selalu utuh */
 @media (max-width: 768px){
   #leaderboard-host .podium-wrap{
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -409,70 +404,65 @@ input,textarea{width:100%;padding:10px 12px;border:1px solid var(--border);borde
   }
   #leaderboard-host .podium-card{
     padding: 12px;
-    padding-bottom: 46px;     /* ruang untuk trofi */
+    padding-bottom: 48px;          /* ruang untuk trofi */
     overflow: hidden;
   }
   #leaderboard-host .podium-avatar{ width: 64px; height: 64px; }
   #leaderboard-host .podium-name{ font-size: 14px; }
   #leaderboard-host .podium-member{ font-size: 12.5px; }
 
-  /* Trofi: full width di dalam kartu (selalu terlihat penuh) */
+  /* Trofi full‑width agar angka tidak terpotong di semua device */
   #leaderboard-host .podium-trophy{
     position: absolute;
-    left: 10px;
-    right: 10px;              /* gunakan kiri/kanan agar lebar mengikuti kartu */
+    left: 8px;
+    right: 8px;                    /* lebar mengikuti kartu */
     bottom: 8px;
     transform: none;
-    display: flex;            /* pusatkan konten */
-    justify-content: center;
+    display: inline-flex;
+    justify-content:center;
+    align-items:center;
     gap: 6px;
-    font-size: 12.5px;
-    padding: 5px 10px;
-    min-height: 26px;
-    white-space: nowrap;      /* tidak patah kata */
+    box-sizing: border-box;        /* pastikan padding masuk hitungan lebar */
+    padding: 4px 8px;
+    min-height: 24px;
+    font-size: 12px;
+    line-height: 1.15;
+    white-space: nowrap;
     overflow: hidden;
-    text-overflow: ellipsis;  /* jaga rapi jika nama chip terlalu panjang */
+    text-overflow: ellipsis;
   }
   #leaderboard-host .podium-trophy .trophy-icon{ font-size: 16px; }
-  #leaderboard-host .podium-badge{
-    top: 6px; right: 6px; padding: 6px 10px;
-  }
+  #leaderboard-host .podium-badge{ top: 6px; right: 6px; padding: 6px 10px; }
 }
 
-/* 2) TABEL: tanpa overflow horizontal; layout auto dan header tidak pecah */
+/* Tabel: tanpa scroll; header tidak pecah; lebar stabil */
 @media (max-width: 768px){
-  #leaderboard-host .card{ overflow: visible; }
+  #leaderboard-host .card{ overflow: hidden; }  /* cegah keluar border */
   #leaderboard-host #board{
-    width: 100%;
-    min-width: 0;
-    table-layout: auto;       /* biarkan browser mengatur kolom agar mirip desktop */
+    width:100%;
+    min-width:0;
+    table-layout: fixed;           /* distribusi lebar konsisten */
+    border-collapse:collapse;
   }
+  /* Alokasi persentase kolom yang aman untuk layar kecil */
+  #leaderboard-host #board th:nth-child(1),
+  #leaderboard-host #board td:nth-child(1){ width: 20%; }
+  #leaderboard-host #board th:nth-child(2),
+  #leaderboard-host #board td:nth-child(2){ width: 26%; }
+  #leaderboard-host #board th:nth-child(3),
+  #leaderboard-host #board td:nth-child(3){ width: 34%; }
+  #leaderboard-host #board th:nth-child(4),
+  #leaderboard-host #board td:nth-child(4){ width: 20%; text-align:right; white-space:nowrap; }
+
+  /* Kompres tipografi/padding agar muat tanpa pecah */
   #leaderboard-host #board thead th,
   #leaderboard-host #board tbody td{
     padding: 8px 10px;
     font-size: 14px;
     vertical-align: middle;
-    word-break: normal;
     overflow-wrap: normal;
+    word-break: normal;
   }
-  /* Header jangan pecah baris menjadi vertikal */
-  #leaderboard-host #board thead th{
-    white-space: nowrap;
-  }
-  /* Nama boleh membungkus natural */
-  #leaderboard-host #board tbody td:nth-child(3){
-    white-space: normal;
-  }
-  /* Point rata kanan & tegas */
-  #leaderboard-host #board td:nth-child(4),
-  #leaderboard-host #board th:nth-child(4){
-    text-align: right;
-    white-space: nowrap;
-  }
-  /* Badge peringkat lebih kecil agar muat */
-  #leaderboard-host .rank-badge{
-    padding: 5px 8px;
-    font-size: .85rem;
-    white-space: nowrap;
-  }
+  #leaderboard-host #board thead th{ white-space: nowrap; }
+  #leaderboard-host .rank-badge{ padding:5px 8px;font-size:.85rem;white-space:nowrap; }
 }
