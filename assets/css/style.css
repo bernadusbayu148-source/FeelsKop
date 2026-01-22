@@ -313,8 +313,8 @@ input,textarea{width:100%;padding:10px 12px;border:1px solid var(--border);borde
 #leaderboard-host .card{background:var(--lb-card);border:1px solid var(--lb-border);border-radius:18px;box-shadow:0 8px 18px rgba(0,0,0,.06);padding:10px;margin-top:10px}
 #leaderboard-host .table-accent{height:6px;border-radius:999px;background:linear-gradient(90deg,#D21F3C,#F75353);opacity:.22;margin:0 6px 8px}
 #leaderboard-host #board{width:100%;border-collapse:collapse}
-#leaderboard-host #board thead th{background:#f6f7f9;text-align:left;padding:10px;border-bottom:1px solid var(--lb-border);font-weight:800;letter-spacing:.2px}
-#leaderboard-host #board tbody td{padding:10px;border-bottom:1px solid var(--lb-border)}
+#leaderboard-host #board thead th{background:#f6f7f9;text-align:left;padding:10px;border-bottom:1px solid var(--lb-border);font-weight:800;letter-spacing:.2px;white-space:nowrap}
+#leaderboard-host #board tbody td{padding:10px;border-bottom:1px solid var(--lb-border);vertical-align:middle}
 #leaderboard-host #board tbody tr:hover{background:#fafbff}
 #leaderboard-host .rank-badge{display:inline-block;padding:6px 10px;border-radius:999px;font-weight:800;font-size:.9rem;background:#fff;border:1px solid var(--lb-border);box-shadow:0 4px 10px rgba(0,0,0,.06)}
 #leaderboard-host .mono{font-variant-numeric:tabular-nums;font-feature-settings:"tnum"}
@@ -403,79 +403,73 @@ input,textarea{width:100%;padding:10px 12px;border:1px solid var(--border);borde
    ========================================================= */
 /* 1) PODIUM: tetap 3 kolom di mobile; sediakan ruang untuk chip trofi */
 @media (max-width: 768px){
-  /* tetap 3 kolom seperti desktop */
   #leaderboard-host .podium-wrap{
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 8px;
   }
-  /* ruang bawah agar chip trofi absolute tidak menimpa konten */
   #leaderboard-host .podium-card{
     padding: 12px;
-    padding-bottom: 46px;   /* ruang untuk .podium-trophy */
-    overflow: hidden;       /* cegah bleed */
+    padding-bottom: 46px;     /* ruang untuk trofi */
+    overflow: hidden;
   }
-  /* avatar & teks sedikit diperkecil agar pas di lebar kecil */
   #leaderboard-host .podium-avatar{ width: 64px; height: 64px; }
   #leaderboard-host .podium-name{ font-size: 14px; }
   #leaderboard-host .podium-member{ font-size: 12.5px; }
 
-  /* chip trofi tetap absolute di bawah, tapi lebih rapat */
+  /* Trofi: full width di dalam kartu (selalu terlihat penuh) */
   #leaderboard-host .podium-trophy{
     position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
+    left: 10px;
+    right: 10px;              /* gunakan kiri/kanan agar lebar mengikuti kartu */
     bottom: 8px;
+    transform: none;
+    display: flex;            /* pusatkan konten */
+    justify-content: center;
+    gap: 6px;
     font-size: 12.5px;
     padding: 5px 10px;
     min-height: 26px;
+    white-space: nowrap;      /* tidak patah kata */
+    overflow: hidden;
+    text-overflow: ellipsis;  /* jaga rapi jika nama chip terlalu panjang */
   }
   #leaderboard-host .podium-trophy .trophy-icon{ font-size: 16px; }
-
-  /* badge peringkat lebih rapat */
   #leaderboard-host .podium-badge{
-    top: 6px;
-    right: 6px;
-    padding: 6px 10px;
+    top: 6px; right: 6px; padding: 6px 10px;
   }
 }
 
-/* 2) TABEL: tanpa overflow horizontal; gunakan table-layout:fixed agar pas layar */
+/* 2) TABEL: tanpa overflow horizontal; layout auto dan header tidak pecah */
 @media (max-width: 768px){
-  /* jangan paksa scroll */
-  #leaderboard-host .card{
-    overflow: visible;
-  }
+  #leaderboard-host .card{ overflow: visible; }
   #leaderboard-host #board{
-    min-width: 0;            /* hilangkan kebutuhan min-width besar */
-    table-layout: fixed;     /* kolom menyesuaikan lebar container */
     width: 100%;
+    min-width: 0;
+    table-layout: auto;       /* biarkan browser mengatur kolom agar mirip desktop */
   }
-  /* kompres padding & font agar semua kolom muat */
   #leaderboard-host #board thead th,
   #leaderboard-host #board tbody td{
     padding: 8px 10px;
     font-size: 14px;
-    word-wrap: break-word;
-    overflow-wrap: anywhere;
+    vertical-align: middle;
+    word-break: normal;
+    overflow-wrap: normal;
   }
-  /* kolom No Member sedikit lebih kecil */
-  #leaderboard-host #board td:nth-child(2),
-  #leaderboard-host #board th:nth-child(2){
-    width: 26%;
-    font-size: 12.5px;
+  /* Header jangan pecah baris menjadi vertikal */
+  #leaderboard-host #board thead th{
+    white-space: nowrap;
   }
-  /* kolom Nama fleksibel paling lebar */
-  #leaderboard-host #board td:nth-child(3),
-  #leaderboard-host #board th:nth-child(3){
-    width: 44%;
+  /* Nama boleh membungkus natural */
+  #leaderboard-host #board tbody td:nth-child(3){
+    white-space: normal;
   }
-  /* kolom Point rata kanan, lebih tegas */
+  /* Point rata kanan & tegas */
   #leaderboard-host #board td:nth-child(4),
   #leaderboard-host #board th:nth-child(4){
-    width: 22%;
     text-align: right;
+    white-space: nowrap;
   }
-  /* badge peringkat lebih kecil agar tidak memakan lebar */
+  /* Badge peringkat lebih kecil agar muat */
   #leaderboard-host .rank-badge{
     padding: 5px 8px;
     font-size: .85rem;
