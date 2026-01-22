@@ -506,7 +506,7 @@ input,textarea{
 /* Mobile besar (<= 640px) */
 @media (max-width: 640px){
   #leaderboard-host .lb-header .lb-title .lb-logo{
-    max-width: 300px;
+    max-width: 240px;
     height: auto;
     margin-inline: auto;  
   }
