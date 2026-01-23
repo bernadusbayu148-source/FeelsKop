@@ -13,6 +13,11 @@ html{ -webkit-text-size-adjust: 100%; }
   --gold:#f5b942; --silver:#cfd3da; --bronze:#d48957;
   --lb-bg:#fff; --lb-border:#e7e7ea; --lb-chip:#fff; --lb-chip-border:#eaeaea;
   --text:#333; --muted:#6b7280; --brand:#D21F3C;
+
+  /* ===== Offset vertikal chip poin (bisa kamu atur cepat) ===== */
+  --point-offset-desktop:-14px;  /* lebih tinggi di desktop/tablet */
+  --point-offset-mobile:-8px;    /* naik ringan di mobile (aman tidak saling bersentuhan) */
+  --point-offset-tiny:-4px;      /* sangat kecil di ≤360px */
 }
 
 /* Host */
@@ -97,39 +102,50 @@ html{ -webkit-text-size-adjust: 100%; }
 #leaderboard-host .podium-col.second .stage{ --ring:var(--silver);--tone1:#f2f4f8; --tone2:#ffffff; }
 #leaderboard-host .podium-col.third  .stage{ --ring:var(--bronze);--tone1:#fde6d2; --tone2:#fff2e6; }
 
-/* Chip poin — kecil di device sempit & maksimum lebar agar tak menyentuh */
+/* ===== Chip poin: dinaikkan posisinya (overlap elegan ke panggung) ===== */
 #leaderboard-host .p-point{
-  margin-top:6px;
+  /* offset default (desktop/tablet) */
+  margin-top: var(--point-offset-desktop);
   display:inline-flex; align-items:center; gap:6px;
-  padding:5px 10px; min-height:26px;
+  padding:6px 12px; min-height:26px;
   border-radius:999px; background:#fff; border:1px solid var(--lb-chip-border);
   box-shadow:0 10px 20px rgba(0,0,0,.10);
-  font-size:12.5px; line-height:1.1; white-space:nowrap;
+  font-size:13px; line-height:1.1; white-space:nowrap;
   max-width:92%;
   font-variant-numeric:tabular-nums; font-feature-settings:"tnum";
+  transform: translateY(0); /* tambahkan jika ingin tuning halus via JS nanti */
 }
 #leaderboard-host .p-point .num{ font-weight:800; }
+
+/* Mobile aman (≤414px): tetap naik, tapi sedikit lebih rendah agar tidak bersentuhan */
 @media (max-width: 414px){
   #leaderboard-host .lb-podium{ gap:18px; }
-  #leaderboard-host .p-point{ font-size:12px; padding:4px 8px; gap:5px; max-width:90%; }
+  #leaderboard-host .p-point{
+    margin-top: var(--point-offset-mobile);
+    padding:5px 10px; font-size:12.5px; gap:6px; max-width:90%;
+  }
 }
+/* Sangat kecil (≤360px): naik tipis saja dan chip diperkecil */
 @media (max-width: 360px){
   #leaderboard-host .podium-col.first  { --step:1.00; }
   #leaderboard-host .podium-col.second { --step:0.88; }
   #leaderboard-host .podium-col.third  { --step:0.80; }
-  #leaderboard-host .p-point{ font-size:11.5px; padding:4px 7px; gap:5px; max-width:88%; }
+  #leaderboard-host .p-point{
+    margin-top: var(--point-offset-tiny);
+    padding:4px 8px; font-size:11.5px; gap:5px; max-width:88%;
+  }
 }
 
 /* ===================== Kartu tabel/daftar ===================== */
 #leaderboard-host .lb-table-card{
   background:#fff; border:1px solid var(--lb-border); border-radius:18px;
-  box-shadow:0 8px 18px rgba(0,0,0,.06); padding:10px; margin-top:6px;
+  box-shadow:0 8px 18px rgba(0,0,0,.06); padding:10px; margin-top:8px;
   overflow:hidden; contain:layout paint style;
 }
-/* GARIS aksen (tetap) */
+/* GARIS aksen */
 #leaderboard-host .table-accent{ height:6px; border-radius:999px; background:linear-gradient(90deg,#D21F3C,#F75353); opacity:.22; margin:0 6px 8px }
 
-/* Hilangkan meta sumber di mobile & desktop */
+/* Sembunyikan meta "Sumber ..." di semua mode */
 #leaderboard-host #lb-meta{ display:none !important; }
 
 /* ===== Desktop/Tablet (>480px): gunakan tabel ===== */
@@ -148,12 +164,12 @@ html{ -webkit-text-size-adjust: 100%; }
 #leaderboard-host .mono{font-variant-numeric:tabular-nums; font-feature-settings:"tnum"}
 #leaderboard-host .empty{ color:#888; text-align:center; padding:16px }
 
-/* ===== Mobile (≤480px): sembunyikan tabel, pakai list-card SEDERHANA TANPA HEADER ===== */
+/* ===== Mobile (≤480px): sembunyikan tabel, pakai list-card tanpa header ===== */
 #leaderboard-host .lb-list{ display:none; }
 
 @media (max-width: 480px){
-  #leaderboard-host .lb-table{ display:none; }  /* sembunyikan tabel */
-  #leaderboard-host .lb-list{ display:block; } /* tampilkan list */
+  #leaderboard-host .lb-table{ display:none; }
+  #leaderboard-host .lb-list{ display:block; }
 
   /* List item: rank badge | (Nama + No) | Poin */
   #leaderboard-host .lb-li{
@@ -164,14 +180,12 @@ html{ -webkit-text-size-adjust: 100%; }
     background:#fff;
   }
   #leaderboard-host .lb-li:last-child{ border-bottom:0; }
-
   #leaderboard-host .lb-li .rk{ width:56px; height:40px; display:grid; place-items:center; }
   #leaderboard-host .lb-li .rk .rank-badge{
     padding:6px 10px; border-radius:999px; font-weight:800; background:#fff;
     border:1px solid var(--lb-border); box-shadow:0 4px 10px rgba(0,0,0,.06);
     font-size:13px;
   }
-
   #leaderboard-host .lb-li .who{ min-width:0; }
   #leaderboard-host .lb-li .who .nm{
     font-weight:800; color:var(--text);
@@ -181,7 +195,6 @@ html{ -webkit-text-size-adjust: 100%; }
   #leaderboard-host .lb-li .who .mb{
     color:var(--muted); font-size:12.5px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; display:block;
   }
-
   #leaderboard-host .lb-li .pt{
     font-weight:800; color:var(--text); font-variant-numeric:tabular-nums; font-feature-settings:"tnum";
     margin-left:auto; text-align:right; min-width:72px;
