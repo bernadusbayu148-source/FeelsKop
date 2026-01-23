@@ -4,6 +4,11 @@
    Podium bertingkat (panggung + piala), nama+member di atas,
    chip poin “di depan” panggung, tabel top #4–#10.
    ========================================================= */
+
+/* ---- iOS text-zoom guard (wajib untuk tabel tidak melebar) ---- */
+html{ -webkit-text-size-adjust: 100%; }
+
+/* Skema warna / var */
 :root{
   --gold:  #f5b942;
   --silver:#cfd3da;
@@ -16,13 +21,14 @@
   --muted:#6b7280;
 }
 
-/* Kartu host */
+/* Host card */
 #leaderboard-host .lb-card{
   background:var(--lb-bg);
   border:1px solid var(--lb-border);
   border-radius:18px;
   box-shadow:0 10px 28px rgba(0,0,0,.08);
   padding:14px;
+  overflow-x:hidden;           /* cegah overflow horizontal */
 }
 
 /* Controls & Stats */
@@ -47,32 +53,23 @@
 #leaderboard-host .stat-bar{margin-top:8px;width:100%;height:10px;border-radius:999px;background:#ffe1e5;overflow:hidden;border:1px solid #ffd1d8}
 #leaderboard-host .stat-bar .fill{height:100%;background:linear-gradient(90deg,#D21F3C,#F75353);width:0%;transition:width .6s ease}
 
-/* ===================== PODIUM v5 ===================== */
-/* Base height responsif + faktor per juara (beda tinggi terjaga). */
+/* ===================== PODIUM (sama dgn versi sudah OK) ===================== */
 #leaderboard-host .lb-podium{
   --bh: clamp(150px, 26vw, 220px);   /* tinggi dasar responsif */
   display:grid;
   grid-template-columns:repeat(3,minmax(0,1fr));
-  align-items:end;                   /* anak tangga “menyentuh lantai” */
-  gap:16px;                          /* jarak default lega */
+  align-items:end;
+  gap:16px;
   margin:6px 0 14px;
   position:relative;
 }
-
-/* “Panggung” umum tipis di bawah (aksen) */
 #leaderboard-host .lb-podium::after{
   content:""; position:absolute; left:8px; right:8px; bottom:-2px;
   height:6px; border-radius:999px;
   background:linear-gradient(90deg,#D21F3C,#F75353);
   opacity:.15;
 }
-
-#leaderboard-host .podium-col{
-  --step: 1;      /* default (diubah di varian) */
-  display:flex; flex-direction:column; align-items:center; min-width:0;
-}
-
-/* Nama & No Member DI ATAS panggung */
+#leaderboard-host .podium-col{ --step:1; display:flex; flex-direction:column; align-items:center; min-width:0; }
 #leaderboard-host .p-name{
   margin:0 6px 2px; text-align:center; font-weight:800;
   font-size:clamp(14px,3.6vw,16px); line-height:1.25;
@@ -80,12 +77,10 @@
   text-wrap:balance;
 }
 #leaderboard-host .p-member{ margin:0 0 8px; color:var(--muted); font-size:12.5px; }
-
-/* Panggung/tangga (tinggi = base * faktor) */
 #leaderboard-host .stage{
   --ring:#e7e7ea;
   height: calc(var(--bh) * var(--step));
-  width: 100%;
+  width:100%;
   border-radius:18px;
   background:
     radial-gradient(120% 80% at 50% -10%, rgba(255,255,255,.9), transparent 60%),
@@ -93,36 +88,27 @@
   border:2.5px solid var(--ring);
   box-shadow: 0 12px 24px rgba(0,0,0,.06), inset 0 6px 12px rgba(255,255,255,.35);
   display:flex; align-items:flex-start; justify-content:center;
-  padding-top:10px;    /* ruang untuk piala */
-  margin-bottom:18px;  /* ruang chip poin “di depan panggung” */
+  padding-top:10px; margin-bottom:18px;
 }
-
-/* Ikon piala di ATAS panggung */
 #leaderboard-host .trophy{
-  width:44px; height:44px; border-radius:12px;
+  width:40px; height:40px; border-radius:12px;
   background:#fff; border:1px solid #ececec;
   box-shadow:0 8px 16px rgba(0,0,0,.08);
   display:grid; place-items:center;
 }
-
-/* Faktor & warna khusus per juara (2–1–3) */
 #leaderboard-host .podium-col.first  { --step: 1.00; }
 #leaderboard-host .podium-col.second { --step: 0.90; }
 #leaderboard-host .podium-col.third  { --step: 0.82; }
-
 #leaderboard-host .podium-col.first  .stage{ --ring:var(--gold);  --tone1:#fff7d0; --tone2:#fffae6; }
 #leaderboard-host .podium-col.second .stage{ --ring:var(--silver);--tone1:#f2f4f8; --tone2:#ffffff; }
 #leaderboard-host .podium-col.third  .stage{ --ring:var(--bronze);--tone1:#fde6d2; --tone2:#fff2e6; }
-
-/* Chip poin DI DEPAN panggung (tanpa absolute -> stabil) */
 #leaderboard-host .p-point{
-  /* desktop/tablet: sedikit overlap */
-  margin-top:-10px;
-  display:inline-flex; align-items:center; gap:8px;
-  padding:6px 12px; min-height:28px;
+  margin-top:6px;            /* no overlap di mobile */
+  display:inline-flex; align-items:center; gap:6px;
+  padding:5px 10px; min-height:26px;
   border-radius:999px; background:#fff; border:1px solid var(--lb-chip-border);
   box-shadow:0 10px 20px rgba(0,0,0,.10);
-  font-size:13px; line-height:1.1; white-space:nowrap;
+  font-size:12.5px; line-height:1.1; white-space:nowrap;
   font-variant-numeric:tabular-nums; font-feature-settings:"tnum";
 }
 #leaderboard-host .p-point .num{ font-weight:800; }
@@ -131,79 +117,84 @@
 #leaderboard-host .lb-table-card{
   background:#fff;border:1px solid var(--lb-border);border-radius:18px;
   box-shadow:0 8px 18px rgba(0,0,0,.06);padding:10px;margin-top:6px;
-  overflow:hidden;                   /* <-- cegah overflow horizontal */
+  overflow:hidden;                 /* kunci agar anak tidak keluar */
+  contain: layout paint style;     /* isolasi layout anak (stabilitas) */
 }
 #leaderboard-host .table-accent{
   height:6px;border-radius:999px;background:linear-gradient(90deg,#D21F3C,#F75353);opacity:.22;margin:0 6px 8px
 }
+
+/* Kunci layout tabel: fixed + clip teks agar tak melebar */
 #leaderboard-host .lb-table{
-  width:100%; border-collapse:collapse; table-layout:fixed; /* distribusi kolom stabil */
+  width:100%;
+  border-collapse:collapse;
+  table-layout:fixed;        /* distribusi kolom konsisten */
 }
 #leaderboard-host .lb-table thead th{
-  background:#f6f7f9;text-align:left;padding:10px;border-bottom:1px solid var(--lb-border);
-  font-weight:800;letter-spacing:.2px;white-space:nowrap
+  background:#f6f7f9; text-align:left; padding:10px;
+  border-bottom:1px solid var(--lb-border);
+  font-weight:800; letter-spacing:.2px;
+  /* jangan paksa nowrap di mobile; biar wrap jika perlu */
+  white-space:normal;
 }
-#leaderboard-host .lb-table tbody td{padding:10px;border-bottom:1px solid var(--lb-border);vertical-align:middle}
-#leaderboard-host .lb-table tbody tr:hover{background:#fafbff}
+#leaderboard-host .lb-table tbody td{
+  padding:10px; border-bottom:1px solid var(--lb-border); vertical-align:middle;
+  overflow:hidden; text-overflow:ellipsis; white-space:nowrap;   /* clip isi panjang */
+}
+#leaderboard-host .lb-table tbody tr:hover{ background:#fafbff }
 #leaderboard-host .mono{font-variant-numeric:tabular-nums;font-feature-settings:"tnum"}
 #leaderboard-host .empty{color:#888;text-align:center;padding:16px}
 #leaderboard-host .lb-meta{color:#888;font-size:.9rem;margin-top:8px;text-align:center}
 
-/* ===== Mobile tuning (≤ 768px) ===== */
+/* ===== Distribusi kolom aman (≤ 768px) ===== */
 @media (max-width: 768px){
-  /* beri jarak sedikit lebih lebar antar kolom podium */
   #leaderboard-host .lb-podium{ gap:14px; }
-  /* chip poin: TIDAK overlap di mobile, lebih kecil */
-  #leaderboard-host .p-point{ margin-top:6px; padding:5px 10px; font-size:12.5px; gap:6px; }
-  #leaderboard-host .trophy{ width:40px; height:40px; }
+  #leaderboard-host .trophy{ width:38px; height:38px; }
+  #leaderboard-host .p-point{ font-size:12.5px; padding:5px 9px; gap:6px; }
 
-  /* Tabel: gunakan persentase kolom agar total ≤ 100% */
+  /* Persentase total: 22 + 26 + auto + 20 <= 100% */
   #leaderboard-host .lb-table thead th:nth-child(1),
   #leaderboard-host .lb-table tbody td:nth-child(1){ width:22%; }
   #leaderboard-host .lb-table thead th:nth-child(2),
-  #leaderboard-host .lb-table tbody td:nth-child(2){ width:28%; }
+  #leaderboard-host .lb-table tbody td:nth-child(2){ width:26%; }
   #leaderboard-host .lb-table thead th:nth-child(3),
   #leaderboard-host .lb-table tbody td:nth-child(3){ width:auto; }
   #leaderboard-host .lb-table thead th:nth-child(4),
-  #leaderboard-host .lb-table tbody td:nth-child(4){ width:20%; text-align:right; white-space:nowrap; }
+  #leaderboard-host .lb-table tbody td:nth-child(4){
+    width:20%; text-align:right; white-space:nowrap;
+  }
 
-  /* kompres padding tabel agar muat */
+  /* kompres padding & font agar muat */
   #leaderboard-host .lb-table thead th,
   #leaderboard-host .lb-table tbody td{ padding:8px 10px; font-size:14px; }
 }
 
-/* ===== Very small (≤ 414px) — iPhone 12/13/14/15 ===== */
+/* ===== Sangat kecil (≤ 414px) ===== */
 @media (max-width: 414px){
-  /* chip poin lebih kecil lagi + jarak vertikal aman */
-  #leaderboard-host .p-point{
-    margin-top:8px;               /* tidak overlap sama sekali */
-    padding:4px 9px;
-    font-size:12px;
-    gap:6px;
-  }
-  /* tambah gap antar kolom agar chip tidak “menyentuh” */
   #leaderboard-host .lb-podium{ gap:12px; }
-}
+  #leaderboard-host .p-name{ font-size:13.5px; }
+  #leaderboard-host .p-member{ font-size:12px; }
+  #leaderboard-host .p-point{ font-size:12px; padding:4px 8px; gap:5px; }
 
-/* ===== Extra small (≤ 360px) — iPhone SE / Android mini ===== */
-@media (max-width: 360px){
-  /* beda tinggi podium tetap terjaga via faktor */
-  #leaderboard-host .podium-col.first  { --step: 1.00; }
-  #leaderboard-host .podium-col.second { --step: 0.88; }
-  #leaderboard-host .podium-col.third  { --step: 0.80; }
-
-  /* chip poin paling kecil */
-  #leaderboard-host .p-point{
-    margin-top:8px; padding:4px 8px; font-size:11.5px; gap:5px;
-  }
-
-  /* tabel lebih rapat */
+  /* Tabel makin rapat; tetap total ≤ 100% */
   #leaderboard-host .lb-table thead th,
-  #leaderboard-host .lb-table tbody td{ padding:7px 8px; font-size:13px; }
+  #leaderboard-host .lb-table tbody td{ padding:7px 8px; font-size:13.5px; }
   #leaderboard-host .lb-table thead th:nth-child(1),
   #leaderboard-host .lb-table tbody td:nth-child(1){ width:22%; }
   #leaderboard-host .lb-table thead th:nth-child(2),
   #leaderboard-host .lb-table tbody td:nth-child(2){ width:26%; }
   #leaderboard-host .lb-table thead th:nth-child(4),
   #leaderboard-host .lb-table tbody td:nth-child(4){ width:20%; }
+}
+
+/* ===== Ekstra kecil (≤ 360px) ===== */
+@media (max-width: 360px){
+  #leaderboard-host .podium-col.first  { --step: 1.00; }
+  #leaderboard-host .podium-col.second { --step: 0.88; }
+  #leaderboard-host .podium-col.third  { --step: 0.80; }
+  #leaderboard-host .p-point{ font-size:11.5px; padding:4px 7px; gap:5px; }
+
+  /* tabel paling rapat */
+  #leaderboard-host .lb-table thead th,
+  #leaderboard-host .lb-table tbody td{ padding:6px 8px; font-size:12.5px; }
 }
