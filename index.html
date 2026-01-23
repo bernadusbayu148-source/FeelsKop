@@ -15,10 +15,11 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
 
-  <!-- Main CSS (wajib) -->
+  <!-- CSS utama & komponen -->
   <link rel="stylesheet" href="assets/css/style.css?v=20260123f">
-  <!-- CSS khusus komponen Leaderboard -->
   <link rel="stylesheet" href="assets/css/leaderboard-podium.css?v=20260124-podium12">
+  <!-- CSS kecil untuk branding header (baru) -->
+  <link rel="stylesheet" href="assets/css/header-brand.css?v=20260124-brand1">
 
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
@@ -60,8 +61,17 @@
   <!-- HEADER / NAVBAR -->
   <header class="site-header" id="siteHeader">
     <div class="container nav-container">
+
+      <!-- BRAND: ganti teks “Kopi Feeling” menjadi logo PNG responsif -->
       <a class="brand" href="index.html" aria-label="Halaman utama">
-        <img src="assets/img/logo-oval.svg" alt="Logo Kopi Feeling" class="logo" />
+        <!-- Logo utama responsif; gunakan @2x bila tersedia -->
+        <img
+          src="assets/img/LogoWeb.png"
+          srcset="assets/img/LogoWeb.png 1x, assets/img/LogoWeb@2x.png 2x"
+          alt="Kopi Feeling"
+          class="logo logo-wide"
+          width="220" height="64" />
+        <!-- Teks lama disembunyikan via CSS (fallback a11y tetap ada) -->
         <span class="brand-name">Kopi Feeling</span>
       </a>
 
@@ -107,7 +117,7 @@
       <div class="slide" style="--bg:url('assets/img/hero-2.jpg')">
         <div class="slide-content">
           <h1 class="hero-title">Semakin dekat, Semakin Bersahabat</h1>
-          <p class="hero-subtitle">Lihat Stasiun terdekat dengan Anda</p>
+        <p class="hero-subtitle">Lihat Stasiun terdekat dengan Anda</p>
           <div class="hero-actions">
             <a class="btn btn-primary" href="stations.html">Lokasi &amp; Coverage</a>
           </div>
@@ -124,17 +134,13 @@
   <section class="section" id="leaderboard-host">
     <div class="container">
 
-      <!-- ====== JUDUL SEKSI: gambar PNG responsif ====== -->
+      <!-- JUDUL SEKSI: (sudah kamu ganti ke PNG pada iterasi sebelumnya) -->
       <div class="section-title-img" role="img" aria-label="Feeling Leaderboard">
         <picture>
-          <!-- Jika kamu punya versi 2x/retina, bisa tambahkan source-set di sini -->
-          <source srcset="assets/img/leaderboard-title.png" type="image/png">
-          <img src="assets/img/leaderboard-title.png"
-               alt="Feeling Leaderboard"
-               loading="lazy" decoding="async">
+          <source srcset="assets/img/leaderboard-title.png" type="image/png" />
+          <img src="assets/img/leaderboard-title.png" alt="Feeling Leaderboard">
         </picture>
       </div>
-      <!-- ====== / JUDUL SEKSI ====== -->
 
       <div class="lb-card">
         <!-- Controls -->
@@ -143,7 +149,7 @@
           <button id="lb-refresh" class="btn btn-primary" aria-label="Muat ulang data">Muat Ulang</button>
         </div>
 
-        <!-- Container hasil pencarian inline -->
+        <!-- Hasil pencarian inline (dibuat/diisi JS) -->
         <div id="lb-search-inline" class="lb-search-inline" hidden></div>
 
         <!-- Stats -->
@@ -160,13 +166,10 @@
           </article>
         </section>
 
-        <!-- Podium 1–3 (dirender via JS) -->
+        <!-- Podium -->
         <section id="lb-podium" class="lb-podium" aria-label="Podium 1–3">
           <div class="empty" aria-hidden="true" style="grid-column:1/-1; text-align:center;">Memuat data…</div>
         </section>
-
-        <!-- (Tidak dipakai lagi: hasil cari lama) -->
-        <div id="lb-search-info" class="lb-search-info" aria-live="polite" hidden></div>
 
         <!-- Daftar/Tabel -->
         <div class="lb-table-card" role="region" aria-label="Tabel/Daftar leaderboard">
@@ -187,16 +190,15 @@
             </tbody>
           </table>
 
-          <!-- List-card untuk ≤ 480px akan diisi JS -->
+          <!-- List-card untuk ≤ 480px (diisi JS) -->
           <div class="lb-list" style="display:none"></div>
 
-          <!-- Meta sumber (disembunyikan via CSS) -->
+          <!-- Meta sumber (disembunyikan oleh CSS) -->
           <div class="lb-meta" id="lb-meta" aria-live="polite"></div>
         </div>
       </div>
     </div>
   </section>
-  <!-- ===================== / FEELING LEADERBOARD ===================== -->
 
   <!-- CTA STRIP -->
   <section class="cta-strip" role="complementary" aria-label="Bantuan pelanggan & keluhan">
@@ -216,7 +218,6 @@
         <img src="assets/img/logo-oval.svg" alt="Logo Kopi Feeling" class="footer-logo" />
         <p>Kopi Feeling adalah brand kopi gerobak nomor 1 di Banjarmasin—siap menemani harian & acara Anda.</p>
       </div>
-
       <div class="footer-contact">
         <h4>Alamat & Kontak</h4>
         <p><i class="fa-solid fa-location-dot" aria-hidden="true"></i>
@@ -229,18 +230,16 @@
           <a class="link" href="mailto:order@kopifeeling.id">order@kopifeeling.id</a>
         </p>
       </div>
-
       <div class="footer-menu">
         <h4>Menu Cepat</h4>
         <ul>
           <li><a href="products.html">Menu</a></li>
           <li><a href="services.html">Layanan</a></li>
-          <li><a href="stations.html">Lokasi &amp; Coverage</a></li>
+          <li><a href="stations.html">Lokasi & Coverage</a></li>
           <li><a href="contact.html">Kontak</a></li>
         </ul>
       </div>
     </div>
-
     <div class="footer-bottom">
       <p>© <span id="year"></span> Kopi Feeling. All rights reserved.</p>
       <div class="socials">
@@ -251,7 +250,7 @@
     </div>
   </footer>
 
-  <!-- SCRIPTS (hanya sekali) -->
+  <!-- SCRIPTS -->
   <script src="assets/js/main.js" defer></script>
   <script src="assets/js/leaderboard-inline.js?v=20260124-podium12" defer></script>
   <noscript>Website ini bekerja lebih optimal dengan JavaScript diaktifkan.</noscript>
