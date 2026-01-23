@@ -7,6 +7,7 @@
   <title>Kopi Feeling — Brand Kopi Gerobak #1 di Banjarmasin</title>
   <meta name="description" content="Kopi Feeling, brand kopi gerobak nomor 1 di Banjarmasin. Rasa mantap, harga bersahabat, pengantaran tepat waktu.">
   <link rel="canonical" href="https://bernadusbayu148-source.github.io/FeelsKop/" />
+  <meta name="theme-color" content="#b5121b" />
 
   <!-- Fonts & Icons -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -14,10 +15,10 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
 
-  <!-- Main CSS (WAJIB agar seluruh tampilan tidak 'tanpa style') -->
-  <link rel="stylesheet" href="assets/css/leaderboard-podium.css?v=20260124-podium12">
+  <!-- Main CSS (wajib agar layout tidak 'tanpa style') -->
+  <link rel="stylesheet" href="assets/css/style.css?v=20260123f">
   <!-- CSS khusus komponen Leaderboard + Podium -->
-  <link rel="stylesheet" href="assets/css/leaderboard-podium.css?v=20260123-podium9">
+  <link rel="stylesheet" href="assets/css/leaderboard-podium.css?v=20260124-podium12">
 
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
@@ -26,6 +27,7 @@
   <meta property="og:url" content="https://bernadusbayu148-source.github.io/FeelsKop/" />
   <meta property="og:image" content="https://bernadusbayu148-source.github.io/FeelsKop/assets/img/og-cover.jpg" />
   <meta property="og:locale" content="id_ID" />
+
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Kopi Feeling — Brand Kopi Gerobak #1 di Banjarmasin" />
@@ -53,6 +55,7 @@
   }
   </script>
 </head>
+
 <body>
   <!-- HEADER / NAVBAR -->
   <header class="site-header" id="siteHeader">
@@ -61,20 +64,23 @@
         <img src="assets/img/logo-oval.svg" alt="Logo Kopi Feeling" class="logo" />
         <span class="brand-name">Kopi Feeling</span>
       </a>
+
       <button class="nav-toggle" aria-label="Buka menu" aria-expanded="false" aria-controls="primaryNav">
         <span class="nav-toggle-bar"></span>
         <span class="nav-toggle-bar"></span>
         <span class="nav-toggle-bar"></span>
       </button>
+
       <nav class="nav" id="primaryNav" aria-label="Navigasi utama">
         <ul class="nav-list">
           <li class="nav-item"><a class="nav-link active" href="index.html" aria-current="page">Home</a></li>
           <li class="nav-item"><a class="nav-link" href="products.html">Menu</a></li>
           <li class="nav-item"><a class="nav-link" href="services.html">Layanan</a></li>
-          <li class="nav-item"><a class="nav-link" href="stations.html">Lokasi & Coverage</a></li>
+          <li class="nav-item"><a class="nav-link" href="stations.html">Lokasi &amp; Coverage</a></li>
           <li class="nav-item"><a class="nav-link" href="contact.html">Kontak</a></li>
         </ul>
       </nav>
+
       <a class="btn btn-outline btn-wa"
          href="https://wa.me/6281254913064?text=Halo%20Kopi%20Feeling,%20saya%20ingin%20bertanya%20tentang%20menu%20dan%20pemesanan."
          target="_blank" rel="noopener">
@@ -103,10 +109,11 @@
           <h1 class="hero-title">Semakin dekat, Semakin Bersahabat</h1>
           <p class="hero-subtitle">Lihat Stasiun terdekat dengan Anda</p>
           <div class="hero-actions">
-            <a class="btn btn-primary" href="stations.html">Lokasi & Coverage</a>
+            <a class="btn btn-primary" href="stations.html">Lokasi &amp; Coverage</a>
           </div>
         </div>
       </div>
+
       <button class="slider-btn prev" aria-label="Slide sebelumnya"><i class="fa-solid fa-chevron-left"></i></button>
       <button class="slider-btn next" aria-label="Slide berikutnya"><i class="fa-solid fa-chevron-right"></i></button>
       <div class="slider-dots" aria-hidden="true"></div>
@@ -121,9 +128,13 @@
       <div class="lb-card">
         <!-- Controls -->
         <div class="lb-controls" role="region" aria-label="Pencarian & aksi">
+          <!-- Kolom pencarian: JS akan menambahkan tombol hapus (X) dan menaruh hasil-inline di bawahnya -->
           <input id="lb-search" type="search" placeholder="Cari nama atau No Member…" aria-label="Cari" />
           <button id="lb-refresh" class="btn btn-primary" aria-label="Muat ulang data">Muat Ulang</button>
         </div>
+
+        <!-- Container hasil pencarian inline (opsional; JS juga akan membuat jika tidak ada) -->
+        <div id="lb-search-inline" class="lb-search-inline" hidden></div>
 
         <!-- Stats -->
         <section class="lb-stats" aria-label="Ringkasan">
@@ -144,12 +155,14 @@
           <div class="empty" aria-hidden="true" style="grid-column:1/-1; text-align:center;">Memuat data…</div>
         </section>
 
-        <!-- Search info (muncul saat mengetik) -->
+        <!-- (Tidak dipakai lagi: hasil cari lama) -->
         <div id="lb-search-info" class="lb-search-info" aria-live="polite" hidden></div>
 
-        <!-- Tabel: default menampilkan #4–#10; saat mencari → hasil pencarian -->
-        <div class="lb-table-card" role="region" aria-label="Tabel leaderboard">
+        <!-- Daftar: default menampilkan #4–#10; saat mencari → hasil pencarian -->
+        <div class="lb-table-card" role="region" aria-label="Tabel/Daftar leaderboard">
           <div class="table-accent" aria-hidden="true"></div>
+
+          <!-- Tabel untuk layar > 480px -->
           <table class="lb-table">
             <thead>
               <tr>
@@ -163,7 +176,11 @@
               <tr><td colspan="4" class="empty">Memuat data…</td></tr>
             </tbody>
           </table>
-          <!-- lb-meta tetap ada (untuk desktop) tapi disembunyikan via CSS/JS -->
+
+          <!-- List-card untuk layar ≤ 480px akan dibuat via JS -->
+          <div class="lb-list" style="display:none"></div>
+
+          <!-- Meta sumber (disembunyikan via CSS) -->
           <div class="lb-meta" id="lb-meta" aria-live="polite"></div>
         </div>
       </div>
@@ -189,6 +206,7 @@
         <img src="assets/img/logo-oval.svg" alt="Logo Kopi Feeling" class="footer-logo" />
         <p>Kopi Feeling adalah brand kopi gerobak nomor 1 di Banjarmasin—siap menemani harian & acara Anda.</p>
       </div>
+
       <div class="footer-contact">
         <h4>Alamat & Kontak</h4>
         <p><i class="fa-solid fa-location-dot" aria-hidden="true"></i>
@@ -201,16 +219,18 @@
           <a class="link" href="mailto:order@kopifeeling.id">order@kopifeeling.id</a>
         </p>
       </div>
+
       <div class="footer-menu">
         <h4>Menu Cepat</h4>
         <ul>
           <li><a href="products.html">Menu</a></li>
           <li><a href="services.html">Layanan</a></li>
-          <li><a href="stations.html">Lokasi & Coverage</a></li>
+          <li><a href="stations.html">Lokasi &amp; Coverage</a></li>
           <li><a href="contact.html">Kontak</a></li>
         </ul>
       </div>
     </div>
+
     <div class="footer-bottom">
       <p>© <span id="year"></span> Kopi Feeling. All rights reserved.</p>
       <div class="socials">
@@ -221,7 +241,7 @@
     </div>
   </footer>
 
-  <!-- SCRIPTS (hanya sekali, versi sama) -->
+  <!-- SCRIPTS (hanya sekali, versi sama dengan file terbaru) -->
   <script src="assets/js/main.js" defer></script>
   <script src="assets/js/leaderboard-inline.js?v=20260124-podium12" defer></script>
   <noscript>Website ini bekerja lebih optimal dengan JavaScript diaktifkan.</noscript>
