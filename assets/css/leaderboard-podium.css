@@ -1,7 +1,7 @@
 
 /* =========================================================
    LEADERBOARD — Mobile-first & konsisten lintas device
-   Podium bertingkat (ada panggung, piala), nama+member di atas,
+   Podium bertingkat (panggung + piala), nama+member di atas,
    chip poin “di depan” panggung, tabel top #4–#10.
    ========================================================= */
 :root{
@@ -47,15 +47,14 @@
 #leaderboard-host .stat-bar{margin-top:8px;width:100%;height:10px;border-radius:999px;background:#ffe1e5;overflow:hidden;border:1px solid #ffd1d8}
 #leaderboard-host .stat-bar .fill{height:100%;background:linear-gradient(90deg,#D21F3C,#F75353);width:0%;transition:width .6s ease}
 
-/* ===================== PODIUM v4 ===================== */
-/* Base height responsif, kemudian dikalikan faktor per juara
-   —> memastikan beda tinggi tetap TERJAGA di semua lebar. */
+/* ===================== PODIUM v5 ===================== */
+/* Base height responsif + faktor per juara (beda tinggi terjaga). */
 #leaderboard-host .lb-podium{
   --bh: clamp(150px, 26vw, 220px);   /* tinggi dasar responsif */
   display:grid;
   grid-template-columns:repeat(3,minmax(0,1fr));
   align-items:end;                   /* anak tangga “menyentuh lantai” */
-  gap:14px;
+  gap:16px;                          /* jarak default lega */
   margin:6px 0 14px;
   position:relative;
 }
@@ -117,33 +116,22 @@
 
 /* Chip poin DI DEPAN panggung (tanpa absolute -> stabil) */
 #leaderboard-host .p-point{
-  /* default (desktop/tablet) sedikit overlap ke panggung */
-  margin-top:-12px;
+  /* desktop/tablet: sedikit overlap */
+  margin-top:-10px;
   display:inline-flex; align-items:center; gap:8px;
   padding:6px 12px; min-height:28px;
   border-radius:999px; background:#fff; border:1px solid var(--lb-chip-border);
   box-shadow:0 10px 20px rgba(0,0,0,.10);
-  font-size:13px; line-height:1.1;
+  font-size:13px; line-height:1.1; white-space:nowrap;
   font-variant-numeric:tabular-nums; font-feature-settings:"tnum";
 }
 #leaderboard-host .p-point .num{ font-weight:800; }
 
-/* Search info & Table */
-#leaderboard-host .lb-search-info{
-  margin:6px 0 10px; padding:10px;
-  border:1px solid var(--lb-border); border-radius:14px;
-  background:linear-gradient(180deg,#fff 0%,#fafbff 100%);
-  color:var(--text); box-shadow:0 8px 18px rgba(0,0,0,.06);
-}
-#leaderboard-host .lb-search-info .hit{
-  display:grid; grid-template-columns:96px 1fr 120px; gap:10px; align-items:center;
-}
-
-/* Kartu tabel + pencegah overflow */
+/* ===================== TABEL ===================== */
 #leaderboard-host .lb-table-card{
   background:#fff;border:1px solid var(--lb-border);border-radius:18px;
   box-shadow:0 8px 18px rgba(0,0,0,.06);padding:10px;margin-top:6px;
-  overflow:hidden;  /* <-- cegah “kelebihan” kanan di mobile */
+  overflow:hidden;                   /* <-- cegah overflow horizontal */
 }
 #leaderboard-host .table-accent{
   height:6px;border-radius:999px;background:linear-gradient(90deg,#D21F3C,#F75353);opacity:.22;margin:0 6px 8px
@@ -161,13 +149,15 @@
 #leaderboard-host .empty{color:#888;text-align:center;padding:16px}
 #leaderboard-host .lb-meta{color:#888;font-size:.9rem;margin-top:8px;text-align:center}
 
-/* ===== Mobile tuning ===== */
+/* ===== Mobile tuning (≤ 768px) ===== */
 @media (max-width: 768px){
-  #leaderboard-host .lb-podium{ gap:10px; }
+  /* beri jarak sedikit lebih lebar antar kolom podium */
+  #leaderboard-host .lb-podium{ gap:14px; }
+  /* chip poin: TIDAK overlap di mobile, lebih kecil */
+  #leaderboard-host .p-point{ margin-top:6px; padding:5px 10px; font-size:12.5px; gap:6px; }
   #leaderboard-host .trophy{ width:40px; height:40px; }
-  /* chip poin: JANGAN overlap di mobile */
-  #leaderboard-host .p-point{ margin-top:6px; padding:5px 10px; font-size:12.5px; }
-  /* Tabel: distribusi kolom aman (total <= 100%) */
+
+  /* Tabel: gunakan persentase kolom agar total ≤ 100% */
   #leaderboard-host .lb-table thead th:nth-child(1),
   #leaderboard-host .lb-table tbody td:nth-child(1){ width:22%; }
   #leaderboard-host .lb-table thead th:nth-child(2),
@@ -176,27 +166,44 @@
   #leaderboard-host .lb-table tbody td:nth-child(3){ width:auto; }
   #leaderboard-host .lb-table thead th:nth-child(4),
   #leaderboard-host .lb-table tbody td:nth-child(4){ width:20%; text-align:right; white-space:nowrap; }
+
+  /* kompres padding tabel agar muat */
+  #leaderboard-host .lb-table thead th,
+  #leaderboard-host .lb-table tbody td{ padding:8px 10px; font-size:14px; }
 }
 
-/* Ekstra kecil (≤ 480px): tambah gap, kecilkan tipografi */
-@media (max-width: 480px){
-  #leaderboard-host .lb-podium{ gap:8px; }
-  #leaderboard-host .p-name{ font-size:13.5px; }
-  #leaderboard-host .p-member{ font-size:12px; }
-  #leaderboard-host .p-point{ font-size:12px; padding:4px 8px; }
-  /* kolom tabel lebih rapat */
+/* ===== Very small (≤ 414px) — iPhone 12/13/14/15 ===== */
+@media (max-width: 414px){
+  /* chip poin lebih kecil lagi + jarak vertikal aman */
+  #leaderboard-host .p-point{
+    margin-top:8px;               /* tidak overlap sama sekali */
+    padding:4px 9px;
+    font-size:12px;
+    gap:6px;
+  }
+  /* tambah gap antar kolom agar chip tidak “menyentuh” */
+  #leaderboard-host .lb-podium{ gap:12px; }
+}
+
+/* ===== Extra small (≤ 360px) — iPhone SE / Android mini ===== */
+@media (max-width: 360px){
+  /* beda tinggi podium tetap terjaga via faktor */
+  #leaderboard-host .podium-col.first  { --step: 1.00; }
+  #leaderboard-host .podium-col.second { --step: 0.88; }
+  #leaderboard-host .podium-col.third  { --step: 0.80; }
+
+  /* chip poin paling kecil */
+  #leaderboard-host .p-point{
+    margin-top:8px; padding:4px 8px; font-size:11.5px; gap:5px;
+  }
+
+  /* tabel lebih rapat */
+  #leaderboard-host .lb-table thead th,
+  #leaderboard-host .lb-table tbody td{ padding:7px 8px; font-size:13px; }
   #leaderboard-host .lb-table thead th:nth-child(1),
   #leaderboard-host .lb-table tbody td:nth-child(1){ width:22%; }
   #leaderboard-host .lb-table thead th:nth-child(2),
   #leaderboard-host .lb-table tbody td:nth-child(2){ width:26%; }
   #leaderboard-host .lb-table thead th:nth-child(4),
   #leaderboard-host .lb-table tbody td:nth-child(4){ width:20%; }
-}
-
-/* Extra small safeguard (≤ 360px) */
-@media (max-width: 360px){
-  /* tetap berbeda tinggi karena berbasis rasio */
-  #leaderboard-host .podium-col.first  { --step: 1.00; }
-  #leaderboard-host .podium-col.second { --step: 0.89; }
-  #leaderboard-host .podium-col.third  { --step: 0.81; }
 }
