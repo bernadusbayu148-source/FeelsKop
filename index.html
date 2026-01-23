@@ -15,9 +15,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
 
-  <!-- Main CSS (wajib agar layout tidak 'tanpa style') -->
+  <!-- Main CSS (wajib) -->
   <link rel="stylesheet" href="assets/css/style.css?v=20260123f">
-  <!-- CSS khusus komponen Leaderboard + Podium -->
+  <!-- CSS khusus komponen Leaderboard -->
   <link rel="stylesheet" href="assets/css/leaderboard-podium.css?v=20260124-podium12">
 
   <!-- Open Graph -->
@@ -123,17 +123,27 @@
   <!-- ===================== FEELING LEADERBOARD (HOME) ===================== -->
   <section class="section" id="leaderboard-host">
     <div class="container">
-      <h2 class="section-title">Feeling Leaderboard</h2>
+
+      <!-- ====== JUDUL SEKSI: gambar PNG responsif ====== -->
+      <div class="section-title-img" role="img" aria-label="Feeling Leaderboard">
+        <picture>
+          <!-- Jika kamu punya versi 2x/retina, bisa tambahkan source-set di sini -->
+          <source srcset="assets/img/leaderboard-title.png" type="image/png">
+          <img src="assets/img/leaderboard-title.png"
+               alt="Feeling Leaderboard"
+               loading="lazy" decoding="async">
+        </picture>
+      </div>
+      <!-- ====== / JUDUL SEKSI ====== -->
 
       <div class="lb-card">
         <!-- Controls -->
         <div class="lb-controls" role="region" aria-label="Pencarian & aksi">
-          <!-- Kolom pencarian: JS akan menambahkan tombol hapus (X) dan menaruh hasil-inline di bawahnya -->
           <input id="lb-search" type="search" placeholder="Cari nama atau No Member…" aria-label="Cari" />
           <button id="lb-refresh" class="btn btn-primary" aria-label="Muat ulang data">Muat Ulang</button>
         </div>
 
-        <!-- Container hasil pencarian inline (opsional; JS juga akan membuat jika tidak ada) -->
+        <!-- Container hasil pencarian inline -->
         <div id="lb-search-inline" class="lb-search-inline" hidden></div>
 
         <!-- Stats -->
@@ -158,11 +168,11 @@
         <!-- (Tidak dipakai lagi: hasil cari lama) -->
         <div id="lb-search-info" class="lb-search-info" aria-live="polite" hidden></div>
 
-        <!-- Daftar: default menampilkan #4–#10; saat mencari → hasil pencarian -->
+        <!-- Daftar/Tabel -->
         <div class="lb-table-card" role="region" aria-label="Tabel/Daftar leaderboard">
           <div class="table-accent" aria-hidden="true"></div>
 
-          <!-- Tabel untuk layar > 480px -->
+          <!-- Tabel untuk > 480px -->
           <table class="lb-table">
             <thead>
               <tr>
@@ -177,7 +187,7 @@
             </tbody>
           </table>
 
-          <!-- List-card untuk layar ≤ 480px akan dibuat via JS -->
+          <!-- List-card untuk ≤ 480px akan diisi JS -->
           <div class="lb-list" style="display:none"></div>
 
           <!-- Meta sumber (disembunyikan via CSS) -->
@@ -241,7 +251,7 @@
     </div>
   </footer>
 
-  <!-- SCRIPTS (hanya sekali, versi sama dengan file terbaru) -->
+  <!-- SCRIPTS (hanya sekali) -->
   <script src="assets/js/main.js" defer></script>
   <script src="assets/js/leaderboard-inline.js?v=20260124-podium12" defer></script>
   <noscript>Website ini bekerja lebih optimal dengan JavaScript diaktifkan.</noscript>
