@@ -1,0 +1,187 @@
+
+/* =========================================================
+   LEADERBOARD — Mobile-first, stabil lintas device
+   (Hanya mempengaruhi elemen di dalam #leaderboard-host)
+   ========================================================= */
+:root{
+  --gold:  #f5b942;
+  --silver:#cfd3da;
+  --bronze:#d48957;
+  --lb-bg:#fff;
+  --lb-border:#e7e7ea;
+  --lb-soft:#f8f9fb;
+  --lb-chip:#fff;
+  --lb-chip-border:#eaeaea;
+}
+
+#leaderboard-host .lb-card{
+  background:var(--lb-bg);
+  border:1px solid var(--lb-border);
+  border-radius:18px;
+  box-shadow:0 10px 28px rgba(0,0,0,.08);
+  padding:14px;
+}
+
+/* Controls & stats */
+#leaderboard-host .lb-controls{
+  display:grid; grid-template-columns:1fr auto; gap:10px; margin-bottom:12px;
+}
+#leaderboard-host .lb-controls input{
+  background:#fff;color:var(--text);
+  border:1px solid var(--lb-border);
+  border-radius:999px;padding:10px 14px;height:40px;outline:none;
+}
+#leaderboard-host .lb-stats{
+  display:grid; grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:10px; margin:6px 0 12px;
+}
+#leaderboard-host .stat-card{
+  background:#fff;border:1px solid var(--lb-border);
+  border-radius:16px;padding:12px;box-shadow:0 8px 18px rgba(0,0,0,.06)
+}
+#leaderboard-host .stat-title{color:#8a8a8a;margin:0 0 6px;font-size:.95rem}
+#leaderboard-host .stat-value{font-weight:800;font-size:clamp(20px,3.6vw,24px);margin:0}
+#leaderboard-host .stat-bar{margin-top:8px;width:100%;height:10px;border-radius:999px;background:#ffe1e5;overflow:hidden;border:1px solid #ffd1d8}
+#leaderboard-host .stat-bar .fill{height:100%;background:linear-gradient(90deg,#D21F3C,#F75353);width:0%;transition:width .6s ease}
+
+/* ===================== PODIUM v2 ===================== */
+#leaderboard-host .lb-podium{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  align-items:end;
+  gap:12px;
+  margin:6px 0 12px;
+}
+
+/* Satu “anak tangga” podium */
+#leaderboard-host .podium-step{
+  --h: 200px;                    /* default height, akan diubah per rank */
+  --ring: #e7e7ea;
+  position:relative;
+  display:flex; flex-direction:column; align-items:center; justify-content:flex-end;
+  height:clamp(160px, 26vw, var(--h));
+  padding:12px 10px 14px;
+  border-radius:18px;
+  background:linear-gradient(180deg,#ffffff 0%, #fafbff 100%);
+  border:2.5px solid var(--ring);
+  box-shadow:0 12px 24px rgba(0,0,0,.06);
+  overflow:hidden;
+}
+
+/* Varian warna bingkai */
+#leaderboard-host .podium-step.first  { --ring: var(--gold); }
+#leaderboard-host .podium-step.second { --ring: var(--silver); }
+#leaderboard-host .podium-step.third  { --ring: var(--bronze); }
+
+/* Tinggi relatif (1 paling tinggi) */
+#leaderboard-host .podium-step.second { --h: 180px; }
+#leaderboard-host .podium-step.third  { --h: 170px; }
+
+/* Latar gradien halus sesuai medali */
+#leaderboard-host .podium-step.first::before,
+#leaderboard-host .podium-step.second::before,
+#leaderboard-host .podium-step.third::before{
+  content:"";
+  position:absolute; inset:0;
+  background:
+    radial-gradient(120% 80% at 50% -10%, rgba(255,255,255,.9), transparent 60%),
+    linear-gradient(180deg, rgba(255,255,255,.6), transparent 55%),
+    linear-gradient(180deg, var(--tone1, #fff), var(--tone2, #fff));
+  opacity:.55; pointer-events:none;
+}
+#leaderboard-host .podium-step.first { --tone1:#ffe9a6; --tone2:#fff6cf; }
+#leaderboard-host .podium-step.second{ --tone1:#eef2f6; --tone2:#fbfcff; }
+#leaderboard-host .podium-step.third { --tone1:#f4c6a1; --tone2:#fde3cf; }
+
+/* Badge #1/#2/#3 */
+#leaderboard-host .rank-medal{
+  position:absolute; top:8px; right:8px;
+  display:inline-flex; align-items:center; justify-content:center;
+  width:34px; height:34px; border-radius:50%;
+  background:#fff; border:1.5px solid var(--ring);
+  font-weight:800; font-size:14px; color:#333;
+  box-shadow:0 8px 16px rgba(0,0,0,.10);
+}
+
+/* Ikon piala */
+#leaderboard-host .trophy{
+  margin-top:8px;
+  display:inline-flex; align-items:center; justify-content:center;
+  width:40px; height:40px;
+  border-radius:10px;
+  background:#fff; border:1px solid #ececec;
+  box-shadow:0 6px 12px rgba(0,0,0,.06);
+}
+
+/* Nama, member, point */
+#leaderboard-host .p-name{
+  margin:10px 6px 2px;
+  text-align:center; font-weight:800;
+  font-size:clamp(14px,3.6vw,16px);
+  line-height:1.25;
+  display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden;
+  text-wrap:balance;
+}
+#leaderboard-host .p-member{
+  margin:0; color:var(--muted); font-size:12.5px;
+}
+#leaderboard-host .p-point{
+  margin-top:10px;
+  display:inline-flex; align-items:center; gap:8px;
+  padding:6px 10px; min-height:28px;
+  border-radius:999px; background:#fff; border:1px solid #ececec;
+  box-shadow:0 8px 18px rgba(0,0,0,.08);
+  font-size:13px; line-height:1.1;
+  font-variant-numeric:tabular-nums; font-feature-settings:"tnum";
+}
+#leaderboard-host .p-point .num{ font-weight:800; }
+
+/* Catatan pembaruan */
+#leaderboard-host .lb-meta{ grid-column:1 / -1; text-align:center; margin-top:6px; color:#888; }
+
+/* Search info */
+#leaderboard-host .lb-search-info{
+  margin:6px 0 10px; padding:10px;
+  border:1px solid var(--lb-border); border-radius:14px;
+  background:linear-gradient(180deg,#fff 0%,#fafbff 100%);
+  color:var(--text); box-shadow:0 8px 18px rgba(0,0,0,.06);
+}
+#leaderboard-host .lb-search-info .hit{
+  display:grid; grid-template-columns:96px 1fr 120px; gap:10px; align-items:center;
+}
+#leaderboard-host .rank-badge{
+  display:inline-block; padding:6px 10px; border-radius:999px; font-weight:800; font-size:.9rem;
+  background:#fff; border:1px solid var(--lb-border); box-shadow:0 4px 10px rgba(0,0,0,.06)
+}
+
+/* Table */
+#leaderboard-host .lb-table-card{background:#fff;border:1px solid var(--lb-border);border-radius:18px;box-shadow:0 8px 18px rgba(0,0,0,.06);padding:10px;margin-top:6px}
+#leaderboard-host .table-accent{height:6px;border-radius:999px;background:linear-gradient(90deg,#D21F3C,#F75353);opacity:.22;margin:0 6px 8px}
+#leaderboard-host .lb-table{width:100%;border-collapse:collapse;table-layout:fixed}
+#leaderboard-host .lb-table thead th{background:#f6f7f9;text-align:left;padding:10px;border-bottom:1px solid var(--lb-border);font-weight:800;letter-spacing:.2px;white-space:nowrap}
+#leaderboard-host .lb-table tbody td{padding:10px;border-bottom:1px solid var(--lb-border);vertical-align:middle}
+#leaderboard-host .lb-table tbody tr:hover{background:#fafbff}
+#leaderboard-host .mono{font-variant-numeric:tabular-nums;font-feature-settings:"tnum"}
+#leaderboard-host .empty{color:#888;text-align:center;padding:16px}
+
+/* Mobile tuning */
+@media (max-width: 768px){
+  #leaderboard-host .lb-podium{ gap:10px; }
+  #leaderboard-host .podium-step{ padding:10px 8px 12px; }
+  #leaderboard-host .trophy{ width:36px; height:36px; }
+  #leaderboard-host .p-point{ font-size:12.5px; padding:5px 8px; }
+  #leaderboard-host .lb-table-card{ overflow:hidden; }
+  #leaderboard-host .lb-table thead th,
+  #leaderboard-host .lb-table tbody td{ padding:8px 10px; font-size:14px; }
+}
+
+/* Optional "panggung" tipis di bawah podium */
+#leaderboard-host .lb-podium::after{
+  content:"";
+  grid-column:1/-1;
+  height:6px;
+  margin-top:6px;
+  border-radius:999px;
+  background:linear-gradient(90deg,#D21F3C,#F75353);
+  opacity:.15;
+}
