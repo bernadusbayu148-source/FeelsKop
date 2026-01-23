@@ -146,7 +146,7 @@
     el.barAvg.style.width   = Math.min(100, (avg/5000)*100) + '%';
   }
 
-  // ====== PODIUM: 2 – 1 – 3, dgn panggung, piala, nama di atas, poin di depan ======
+  // ====== PODIUM: 2 – 1 – 3, panggung + piala + chip poin ======
   function renderPodium(){
     const [p1 = {Nama:'—','No Member':'—','Point':0},
            p2 = {Nama:'—','No Member':'—','Point':0},
@@ -174,16 +174,13 @@
       <article class="podium-col ${cls}" aria-label="Juara ${rank}">
         <h3 class="p-name">${esc(row['Nama'])}</h3>
         <p class="p-member mono">${esc(row['No Member'])}</p>
-        <div class="stage">
-          <div class="trophy">${svgTrophy(rank)}</div>
-        </div>
+        <div class="stage"><div class="trophy">${svgTrophy(rank)}</div></div>
         <div class="p-point"><span>🏆</span><span class="num mono">${nf.format(Number(row['Point']||0))}</span><span>poin</span></div>
       </article>`;
 
     // Urutan: #2 (kiri) – #1 (tengah) – #3 (kanan)
     el.podium.innerHTML = col(2,'second',p2) + col(1,'first',p1) + col(3,'third',p3);
 
-    // catatan pembaruan
     const meta = document.createElement('div');
     meta.className = 'lb-meta';
     meta.textContent = `Teratas saat ini • diperbarui ${new Date().toLocaleString('id-ID')}`;
@@ -219,11 +216,10 @@
 
     let rowsToShow = [];
     if (!isSearching){
-      // Default: tampilkan #4–#10 (podium sudah menempati #1–#3)
+      // Default: tampilkan #4–#10
       rowsToShow = state.rows.slice(3, 10);
     } else {
-      // Saat mencari: tampilkan semua hasil cocok
-      rowsToShow = state.filtered;
+      rowsToShow = state.filtered; // semua hasil cocok
     }
 
     if (rowsToShow.length === 0){
