@@ -14,7 +14,7 @@ html{ -webkit-text-size-adjust: 100%; }
   --lb-bg:#fff; --lb-border:#e7e7ea; --lb-chip:#fff; --lb-chip-border:#eaeaea;
   --text:#333; --muted:#6b7280; --brand:#D21F3C;
 
-  /* Offset vertikal chip poin (boleh diubah) */
+  /* Offset vertikal chip poin */
   --point-offset-desktop:-14px;  /* desktop/tablet */
   --point-offset-mobile:-8px;    /* mobile ≤414px */
   --point-offset-tiny:-4px;      /* sangat kecil ≤360px */
@@ -32,25 +32,40 @@ html{ -webkit-text-size-adjust: 100%; }
 
 /* Controls & Stats */
 #leaderboard-host .lb-controls{
-  display:grid; grid-template-columns:1fr auto; gap:10px; margin-bottom:12px;
+  display:grid; grid-template-columns:1fr auto; gap:10px; margin-bottom:8px;
 }
-#leaderboard-host .lb-controls input{
-  background:#fff;color:var(--text);
-  border:1px solid var(--lb-border);
-  border-radius:999px;padding:10px 14px;height:40px;outline:none;
+
+/* Bungkus kolom pencarian agar bisa pasang tombol clear di dalamnya */
+#leaderboard-host .search-wrap{ position:relative; }
+#leaderboard-host .search-wrap input{ padding-right:42px; } /* ruang untuk ikon hapus */
+
+/* Tombol hapus pencarian (ikon X) */
+#leaderboard-host .clear-btn{
+  position:absolute; right:10px; top:50%; transform:translateY(-50%);
+  width:28px; height:28px; display:none; align-items:center; justify-content:center;
+  border:none; border-radius:50%; background:#f4f5f7; color:#777; cursor:pointer;
 }
-#leaderboard-host .lb-stats{
-  display:grid; grid-template-columns:repeat(2,minmax(0,1fr));
-  gap:10px; margin:6px 0 12px;
+#leaderboard-host .clear-btn.visible{ display:flex; }
+#leaderboard-host .clear-btn:hover{ background:#eceef2; color:#444; }
+#leaderboard-host .clear-btn i{ font-size:16px; line-height:1; }
+
+/* Ringkasan hasil pencarian — MUNCUL DI BAWAH KOLOM PENCARIAN */
+#leaderboard-host .lb-search-inline{
+  display:none; margin:6px 0 10px; padding:10px 12px;
+  border:1px solid var(--lb-border); border-radius:14px;
+  background:linear-gradient(180deg,#fff 0%,#fafbff 100%);
+  color:var(--text); box-shadow:0 8px 18px rgba(0,0,0,.06);
 }
-#leaderboard-host .stat-card{
-  background:#fff;border:1px solid var(--lb-border);
-  border-radius:16px;padding:12px;box-shadow:0 8px 18px rgba(0,0,0,.06)
+#leaderboard-host .lb-search-inline .hit{
+  display:grid; grid-template-columns:96px 1fr auto; gap:10px; align-items:center;
 }
-#leaderboard-host .stat-title{color:#8a8a8a;margin:0 0 6px;font-size:.95rem}
-#leaderboard-host .stat-value{font-weight:800;font-size:clamp(20px,3.6vw,24px);margin:0}
-#leaderboard-host .stat-bar{margin-top:8px;width:100%;height:10px;border-radius:999px;background:#ffe1e5;overflow:hidden;border:1px solid #ffd1d8}
-#leaderboard-host .stat-bar .fill{height:100%;background:linear-gradient(90deg,#D21F3C,#F75353);width:0%;transition:width .6s ease}
+#leaderboard-host .lb-search-inline .gap{
+  margin-top:6px; color:#D21F3C; font-weight:700; font-variant-numeric:tabular-nums; font-feature-settings:"tnum";
+}
+#leaderboard-host .rank-badge{
+  display:inline-block; padding:6px 10px; border-radius:999px; font-weight:800; background:#fff;
+  border:1px solid var(--lb-border); box-shadow:0 4px 10px rgba(0,0,0,.06);
+}
 
 /* ===================== PODIUM ===================== */
 #leaderboard-host .lb-podium{
@@ -58,14 +73,7 @@ html{ -webkit-text-size-adjust: 100%; }
   display:grid; grid-template-columns:repeat(3,minmax(0,1fr));
   align-items:end; gap:16px; margin:6px 0 14px; position:relative;
 }
-/* >>> DIHILANGKAN: dekor garis merah di bawah podium
-#leaderboard-host .lb-podium::after{
-  content:""; position:absolute; left:8px; right:8px; bottom:-2px;
-  height:6px; border-radius:999px;
-  background:linear-gradient(90deg,#D21F3C,#F75353);
-  opacity:.15;
-}
-*/
+/* (garis dekor di bawah podium telah dihapus pada versi sebelumnya) */
 
 #leaderboard-host .podium-col{ --step:1; display:flex; flex-direction:column; align-items:center; min-width:0; }
 #leaderboard-host .p-name{
@@ -107,7 +115,7 @@ html{ -webkit-text-size-adjust: 100%; }
 
 /* Chip poin — dinaikkan posisinya, aman di mobile */
 #leaderboard-host .p-point{
-  margin-top: var(--point-offset-desktop); /* overlap elegan */
+  margin-top: var(--point-offset-desktop);
   display:inline-flex; align-items:center; gap:6px;
   padding:6px 12px; min-height:26px;
   border-radius:999px; background:#fff; border:1px solid var(--lb-chip-border);
@@ -141,13 +149,7 @@ html{ -webkit-text-size-adjust: 100%; }
   box-shadow:0 8px 18px rgba(0,0,0,.06); padding:10px; margin-top:8px;
   overflow:hidden; contain:layout paint style;
 }
-
-/* GARIS aksen di atas kartu daftar (biarkan tetap; jika ingin dihapus juga, hilangkan blok ini)
-#leaderboard-host .table-accent{ display:none; }
-*/
-#leaderboard-host .table-accent{
-  height:6px; border-radius:999px; background:linear-gradient(90deg,#D21F3C,#F75353); opacity:.22; margin:0 6px 8px
-}
+#leaderboard-host .table-accent{ height:6px; border-radius:999px; background:linear-gradient(90deg,#D21F3C,#F75353); opacity:.22; margin:0 6px 8px }
 
 /* Sembunyikan meta "Sumber ..." di semua mode */
 #leaderboard-host #lb-meta{ display:none !important; }
@@ -164,7 +166,6 @@ html{ -webkit-text-size-adjust: 100%; }
   overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
 }
 #leaderboard-host .lb-table tbody tr:hover{ background:#fafbff }
-#leaderboard-host .rank-badge{ display:inline-block; padding:6px 10px; border-radius:999px; font-weight:800; background:#fff; border:1px solid var(--lb-border); box-shadow:0 4px 10px rgba(0,0,0,.06) }
 #leaderboard-host .mono{font-variant-numeric:tabular-nums; font-feature-settings:"tnum"}
 #leaderboard-host .empty{ color:#888; text-align:center; padding:16px }
 
