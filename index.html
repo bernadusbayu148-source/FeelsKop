@@ -7,16 +7,17 @@
   <title>Kopi Feeling — Brand Kopi Gerobak #1 di Banjarmasin</title>
   <meta name="description" content="Kopi Feeling, brand kopi gerobak nomor 1 di Banjarmasin. Rasa mantap, harga bersahabat, pengantaran tepat waktu.">
   <link rel="canonical" href="https://bernadusbayu148-source.github.io/FeelsKop/" />
+
   <!-- Fonts & Icons -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
-  <!-- Main CSS -->  
+
+  <!-- Main CSS (WAJIB agar seluruh tampilan tidak 'tanpa style') -->
+  <link rel="stylesheet" href="assets/css/style.css?v=20260123f">
+  <!-- CSS khusus komponen Leaderboard + Podium -->
   <link rel="stylesheet" href="assets/css/leaderboard-podium.css?v=20260123-podium9">
-  
-  <!-- NEW: CSS khusus komponen Leaderboard + Podium -->
-  <script src="assets/js/leaderboard-inline.js?v=20260123-podium9" defer></script>
 
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
@@ -30,6 +31,7 @@
   <meta name="twitter:title" content="Kopi Feeling — Brand Kopi Gerobak #1 di Banjarmasin" />
   <meta name="twitter:description" content="Rasa mantap, harga bersahabat, pengantaran tepat waktu." />
   <meta name="twitter:image" content="https://bernadusbayu148-source.github.io/FeelsKop/assets/img/og-cover.jpg" />
+
   <!-- Structured Data -->
   <script type="application/ld+json">
   {
@@ -73,7 +75,9 @@
           <li class="nav-item"><a class="nav-link" href="contact.html">Kontak</a></li>
         </ul>
       </nav>
-      <a class="btn btn-outline btn-wa" href="https://wa.me/6281254913064?text=Halo%20Kopi%20Feeling,%20saya%20ingin%20bertanya%20tentang%20menu%20dan%20pemesanan." target="_blank" rel="noopener">
+      <a class="btn btn-outline btn-wa"
+         href="https://wa.me/6281254913064?text=Halo%20Kopi%20Feeling,%20saya%20ingin%20bertanya%20tentang%20menu%20dan%20pemesanan."
+         target="_blank" rel="noopener">
         <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> WhatsApp
       </a>
     </div>
@@ -97,7 +101,7 @@
       <div class="slide" style="--bg:url('assets/img/hero-2.jpg')">
         <div class="slide-content">
           <h1 class="hero-title">Semakin dekat, Semakin Bersahabat</h1>
-          <p class="hero-subtitle">Lihat Stasion terdekat dengan Anda</p>
+          <p class="hero-subtitle">Lihat Stasiun terdekat dengan Anda</p>
           <div class="hero-actions">
             <a class="btn btn-primary" href="stations.html">Lokasi & Coverage</a>
           </div>
@@ -159,6 +163,7 @@
               <tr><td colspan="4" class="empty">Memuat data…</td></tr>
             </tbody>
           </table>
+          <!-- lb-meta tetap ada (untuk desktop) tapi disembunyikan via CSS/JS -->
           <div class="lb-meta" id="lb-meta" aria-live="polite"></div>
         </div>
       </div>
@@ -216,9 +221,9 @@
     </div>
   </footer>
 
-  <!-- SCRIPTS -->
+  <!-- SCRIPTS (hanya sekali, versi sama) -->
   <script src="assets/js/main.js" defer></script>
-  <script src="assets/js/leaderboard-inline.js?v=20260123-podium4" defer></script>
+  <script src="assets/js/leaderboard-inline.js?v=20260123-podium9" defer></script>
   <noscript>Website ini bekerja lebih optimal dengan JavaScript diaktifkan.</noscript>
 </body>
 </html>
