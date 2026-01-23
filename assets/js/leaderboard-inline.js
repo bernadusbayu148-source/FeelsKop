@@ -1,5 +1,9 @@
 
-/* assets/js/leaderboard-inline.js — podium bertingkat + top10 + search */
+/* assets/js/leaderboard-inline.js — podium bertingkat + top10 + search
+   Mode tampilan:
+   - ≤ 480px  : list-card mobile (anti overflow)
+   - > 480px  : tabel seperti biasa
+*/
 (() => {
   // ====== Konfigurasi ======
   const SHEET_ID = "1UBrdYls_Ed0GIXCSPghK9C3du5dEhbdx";
@@ -146,7 +150,7 @@
     el.barAvg.style.width   = Math.min(100, (avg/5000)*100) + '%';
   }
 
-  // ====== PODIUM: 2 – 1 – 3, panggung + piala + chip poin ======
+  // ====== PODIUM: 2 – 1 – 3 ======
   function renderPodium(){
     const [p1 = {Nama:'—','No Member':'—','Point':0},
            p2 = {Nama:'—','No Member':'—','Point':0},
@@ -178,7 +182,6 @@
         <div class="p-point"><span>🏆</span><span class="num mono">${nf.format(Number(row['Point']||0))}</span><span>poin</span></div>
       </article>`;
 
-    // Urutan: #2 (kiri) – #1 (tengah) – #3 (kanan)
     el.podium.innerHTML = col(2,'second',p2) + col(1,'first',p1) + col(3,'third',p3);
 
     const meta = document.createElement('div');
@@ -195,6 +198,7 @@
     );
   }
 
+  // ====== RENDER: pilih TABEL (>480px) atau LIST-CARD (≤480px) ======
   function renderTable(){
     const q = state.query.trim();
     const isSearching = q.length > 0;
@@ -222,6 +226,14 @@
       rowsToShow = state.filtered; // semua hasil cocok
     }
 
+    // Jika layar kecil (≤480px), render sebagai LIST-CARD
+    const isMobileList = window.matchMedia('(max-width: 480px)').matches;
+    if (isMobileList){
+      renderListMobile(rowsToShow);
+      return;
+    }
+
+    // ===== TABEL (desktop/tablet) =====
     if (rowsToShow.length === 0){
       el.tbBody.innerHTML = `<tr><td colspan="4" class="empty">${isSearching ? 'Tidak ada hasil.' : 'Data kosong.'}</td></tr>`;
       return;
@@ -241,9 +253,54 @@
     el.tbBody.innerHTML = tr;
   }
 
+  // ===== LIST-CARD untuk mobile (≤480px) =====
+  function renderListMobile(rows){
+    let card = document.querySelector('#leaderboard-host .lb-table-card');
+    if (!card) return;
+
+    // Pastikan container list ada
+    let list = card.querySelector('.lb-list');
+    if (!list){
+      // Kosongkan tbody tabel agar tidak mempengaruhi layout
+      el.tbBody.innerHTML = '';
+      // Sisipkan head kecil & list-wrap
+      const headHtml = `<div class="lb-head" aria-hidden="true">
+                          <span>Peringkat • No • Nama • Poin</span>
+                          <span class="dot"></span>
+                        </div>`;
+      card.insertAdjacentHTML('beforeend', headHtml + `<div class="lb-list"></div>`);
+      list = card.querySelector('.lb-list');
+    }
+
+    if (rows.length === 0){
+      list.innerHTML = `<div class="empty">Tidak ada data.</div>`;
+      return;
+    }
+
+    const html = rows.map(r => {
+      const key  = String(r['No Member']||'').trim();
+      const rank = state.rankMap[key] ?? '-';
+      const name = esc(String(r['Nama']||''));
+      const memb = esc(key);
+      const pts  = nf.format(Number(r['Point']||0));
+      return `<div class="lb-li">
+                <div class="rk"><span class="rank-badge">#${rank}</span></div>
+                <div class="who">
+                  <span class="nm">${name}</span>
+                  <span class="mb mono">${memb}</span>
+                </div>
+                <div class="pt mono">${pts}</div>
+              </div>`;
+    }).join('');
+
+    list.innerHTML = html;
+  }
+
   // ====== Events ======
   el.search.addEventListener('input', e => { state.query = e.target.value; applyFilter(); renderTable(); });
   el.refresh.addEventListener('click', () => fetchSheet());
+  // Re-render saat orientasi/lebar berubah, agar switch list<->table mulus
+  window.addEventListener('resize', () => renderTable());
 
   // Start
   fetchSheet();
