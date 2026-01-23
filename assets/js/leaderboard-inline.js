@@ -1,7 +1,7 @@
 
 /* assets/js/leaderboard-inline.js — podium bertingkat + top10 + search
    Mode tampilan:
-   - ≤ 480px  : list-card mobile (anti overflow)
+   - ≤ 480px  : list-card mobile (tanpa header keterangan)
    - > 480px  : tabel seperti biasa
 */
 (() => {
@@ -17,7 +17,7 @@
   const el = {
     podium:  document.getElementById('lb-podium'),
     tbBody:  document.getElementById('lb-table-body'),
-    meta:    document.getElementById('lb-meta'),
+    meta:    document.getElementById('lb-meta'),          // tidak akan dipakai
     search:  document.getElementById('lb-search'),
     refresh: document.getElementById('lb-refresh'),
     sInfo:   document.getElementById('lb-search-info'),
@@ -85,13 +85,14 @@
     cancelInFlight(); currentAbort = new AbortController();
     el.podium.innerHTML = `<div class="empty" style="grid-column:1/-1; text-align:center;">Memuat data…</div>`;
     el.tbBody.innerHTML = `<tr><td colspan="4" class="empty">Memuat data…</td></tr>`;
-    el.meta.textContent = ''; el.sInfo.hidden = true; el.sInfo.innerHTML = '';
+    el.sInfo.hidden = true; el.sInfo.innerHTML = '';
+    if (el.meta) el.meta.textContent = '';  // dihilangkan
 
     const okG = await tryFetchGviz(currentAbort.signal); if (okG) return;
     const okC = await tryFetchCsv(currentAbort.signal);  if (okC) return;
 
     el.tbBody.innerHTML = `<tr><td colspan="4" class="empty">Gagal memuat data. Pastikan Sheet publik & telah dipublikasikan.</td></tr>`;
-    el.meta.textContent = `Fetch gagal • ${new Date().toLocaleString('id-ID')}`;
+    // meta tetap disembunyikan
   }
   async function tryFetchGviz(signal){
     try{
@@ -106,7 +107,7 @@
         headers.forEach((label,i)=> o[label] = c[i]?.v ?? '');
         return o;
       });
-      applyAndRender(rows, headers, 'Google Visualization (JSON)');
+      applyAndRender(rows, headers);
       return true;
     }catch(e){ console.warn('GVIZ gagal:', e); return false; }
   }
@@ -115,13 +116,13 @@
       const res = await fetch(CSV_URL(SHEET_ID, GID), { cache:'no-store', signal });
       const csv = await res.text();
       const { headers, rows } = parseCsv(csv);
-      applyAndRender(rows, headers, 'CSV export');
+      applyAndRender(rows, headers);
       return true;
     }catch(e){ console.warn('CSV gagal:', e); return false; }
   }
 
   // ====== Transform & render ======
-  function applyAndRender(rows, headers, source){
+  function applyAndRender(rows, headers){
     const map = normalizeHeaderMap(headers, HEADERS_EXPECT);
     const data = rows.map(r => ({
       'No Member': r[map['No Member']] ?? r['No Member'] ?? '',
@@ -137,7 +138,7 @@
     renderPodium();
     applyFilter();
     renderTable();
-    el.meta.textContent = `Sumber: ${source} • ${state.rows.length} baris • ${new Date().toLocaleString('id-ID')}`;
+    // el.meta dihilangkan (tidak menulis sumber)
   }
 
   function updateStats(){
@@ -184,9 +185,11 @@
 
     el.podium.innerHTML = col(2,'second',p2) + col(1,'first',p1) + col(3,'third',p3);
 
+    // Catatan pembaruan (dipertahankan singkat, tanpa "Sumber")
+    // Kalau tidak ingin sama sekali, boleh dihapus 3 baris di bawah.
     const meta = document.createElement('div');
     meta.className = 'lb-meta';
-    meta.textContent = `Teratas saat ini • diperbarui ${new Date().toLocaleString('id-ID')}`;
+    meta.style.display = 'none'; // dimatikan sesuai permintaan
     el.podium.appendChild(meta);
   }
 
@@ -203,15 +206,15 @@
     const q = state.query.trim();
     const isSearching = q.length > 0;
 
-    // Panel info pencarian
+    // Info pencarian mini (boleh dibiarkan; rapi di atas daftar)
     if (isSearching && state.filtered.length > 0){
       const r = state.filtered[0];
       const rank = state.rankMap[String(r['No Member']).trim()] ?? '-';
       el.sInfo.innerHTML = `
-        <div class="hit">
+        <div class="hit" style="display:grid;grid-template-columns:96px 1fr 120px;gap:10px;align-items:center;padding:6px 0;">
           <div><span class="rank-badge">#${rank}</span></div>
           <div><strong>${esc(String(r['Nama']||''))}</strong><div class="mono" style="color:var(--muted)">${esc(String(r['No Member']||''))}</div></div>
-          <div class="mono">${nf.format(Number(r['Point']||0))} poin</div>
+          <div class="mono" style="text-align:right">${nf.format(Number(r['Point']||0))} poin</div>
         </div>`;
       el.sInfo.hidden = false;
     } else {
@@ -220,13 +223,12 @@
 
     let rowsToShow = [];
     if (!isSearching){
-      // Default: tampilkan #4–#10
+      // Default: tampilkan #4–#10 (podium = #1–#3)
       rowsToShow = state.rows.slice(3, 10);
     } else {
-      rowsToShow = state.filtered; // semua hasil cocok
+      rowsToShow = state.filtered;
     }
 
-    // Jika layar kecil (≤480px), render sebagai LIST-CARD
     const isMobileList = window.matchMedia('(max-width: 480px)').matches;
     if (isMobileList){
       renderListMobile(rowsToShow);
@@ -253,24 +255,19 @@
     el.tbBody.innerHTML = tr;
   }
 
-  // ===== LIST-CARD untuk mobile (≤480px) =====
+  // ===== LIST-CARD untuk mobile (≤480px), TANPA HEADER KETERANGAN =====
   function renderListMobile(rows){
     let card = document.querySelector('#leaderboard-host .lb-table-card');
     if (!card) return;
 
-    // Hapus head/list lama bila ada (agar tidak dobel saat resize)
+    // Bersihkan head/list lama bila ada
     let oldHead = card.querySelector('.lb-head');
     let oldList = card.querySelector('.lb-list');
     if (oldHead) oldHead.remove();
     if (oldList) oldList.remove();
 
-    // Buat head SELARAS kolom: [Peringkat] [No • Nama] [Poin]
-    const headHtml = `<div class="lb-head" role="row">
-                        <div class="h-rank">Peringkat</div>
-                        <div class="h-who">No • Nama</div>
-                        <div class="h-point">Poin</div>
-                      </div>`;
-    card.insertAdjacentHTML('beforeend', headHtml + `<div class="lb-list"></div>`);
+    // Buat list-wrap langsung (tanpa header keterangan)
+    card.insertAdjacentHTML('beforeend', `<div class="lb-list"></div>`);
     const list = card.querySelector('.lb-list');
 
     if (rows.length === 0){
@@ -300,8 +297,7 @@
   // ====== Events ======
   el.search.addEventListener('input', e => { state.query = e.target.value; applyFilter(); renderTable(); });
   el.refresh.addEventListener('click', () => fetchSheet());
-  // Re-render saat lebar berubah (supaya switch list/tabel mulus)
-  window.addEventListener('resize', () => renderTable());
+  window.addEventListener('resize', () => renderTable()); // switch mulus list <-> tabel
 
   // Start
   fetchSheet();
