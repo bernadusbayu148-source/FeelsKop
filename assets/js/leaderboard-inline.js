@@ -1,6 +1,10 @@
 
 /* assets/js/leaderboard-inline.js — podium bertingkat + top10 + search
-   Mode tampilan:
+   Penambahan:
+   - Hasil pencarian MUNCUL di bawah kolom pencarian (inline).
+   - Tampilkan selisih poin ke #1.
+   - Tombol 'hapus' (X) untuk membersihkan kolom pencarian.
+   Mode tampilan daftar:
    - ≤ 480px  : list-card mobile (tanpa header keterangan)
    - > 480px  : tabel seperti biasa
 */
@@ -17,10 +21,10 @@
   const el = {
     podium:  document.getElementById('lb-podium'),
     tbBody:  document.getElementById('lb-table-body'),
-    meta:    document.getElementById('lb-meta'),          // tidak akan dipakai
+    meta:    document.getElementById('lb-meta'),          // tidak dipakai (disembunyikan via CSS)
     search:  document.getElementById('lb-search'),
     refresh: document.getElementById('lb-refresh'),
-    sInfo:   document.getElementById('lb-search-info'),
+    sInfo:   document.getElementById('lb-search-info'),   // tidak dipakai lagi (diganti inline)
     statTotal: document.getElementById('lb-stat-total'),
     statAvg:   document.getElementById('lb-stat-avg'),
     barTotal:  document.getElementById('lb-bar-total'),
@@ -79,20 +83,69 @@
     return String(s ?? '').replace(/[&<>"']/g,c=>({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' })[c]);
   }
 
+  // ====== Buat UI tambahan: wrapper search + tombol hapus + container hasil inline ======
+  function ensureSearchEnhancements(){
+    // Bungkus input agar bisa menaruh tombol hapus di dalamnya
+    if (!el.search.closest('.search-wrap')){
+      const wrap = document.createElement('div');
+      wrap.className = 'search-wrap';
+      el.search.parentNode.insertBefore(wrap, el.search);
+      wrap.appendChild(el.search);
+
+      // Tombol clear
+      const clr = document.createElement('button');
+      clr.type = 'button';
+      clr.className = 'clear-btn';
+      clr.setAttribute('aria-label', 'Bersihkan pencarian');
+      clr.innerHTML = '<i class="fa-solid fa-xmark" aria-hidden="true"></i>';
+      wrap.appendChild(clr);
+
+      // Event clear
+      clr.addEventListener('click', () => {
+        el.search.value = '';
+        state.query = '';
+        applyFilter();
+        renderTable();
+        renderSearchInline(); // kosongkan
+        el.search.focus();
+        toggleClearButton();
+      });
+
+      // Toggle visibilitas tombol
+      function toggleClearButton(){
+        if (el.search.value.trim().length > 0) clr.classList.add('visible');
+        else clr.classList.remove('visible');
+      }
+      el.search.addEventListener('input', toggleClearButton);
+      // panggil sekali awal
+      toggleClearButton();
+    }
+
+    // Container hasil inline di bawah baris kontrol
+    if (!document.getElementById('lb-search-inline')){
+      const controls = el.search.closest('.lb-controls');
+      if (controls){
+        const inline = document.createElement('div');
+        inline.id = 'lb-search-inline';
+        inline.className = 'lb-search-inline';
+        controls.insertAdjacentElement('afterend', inline);
+      }
+    }
+  }
+
   // ====== Fetch ======
   function cancelInFlight(){ if (currentAbort) currentAbort.abort(); }
   async function fetchSheet(){
     cancelInFlight(); currentAbort = new AbortController();
     el.podium.innerHTML = `<div class="empty" style="grid-column:1/-1; text-align:center;">Memuat data…</div>`;
     el.tbBody.innerHTML = `<tr><td colspan="4" class="empty">Memuat data…</td></tr>`;
-    el.sInfo.hidden = true; el.sInfo.innerHTML = '';
-    if (el.meta) el.meta.textContent = '';  // dihilangkan
+    if (el.sInfo){ el.sInfo.hidden = true; el.sInfo.innerHTML = ''; } // tidak dipakai lagi
+    if (el.meta) el.meta.textContent = '';  // disembunyikan via CSS
 
     const okG = await tryFetchGviz(currentAbort.signal); if (okG) return;
     const okC = await tryFetchCsv(currentAbort.signal);  if (okC) return;
 
     el.tbBody.innerHTML = `<tr><td colspan="4" class="empty">Gagal memuat data. Pastikan Sheet publik & telah dipublikasikan.</td></tr>`;
-    // meta tetap disembunyikan
   }
   async function tryFetchGviz(signal){
     try{
@@ -134,11 +187,12 @@
 
     state.rows = data; state.rankMap = rankMap;
 
+    ensureSearchEnhancements();  // buat UI tambahan
     updateStats();
     renderPodium();
     applyFilter();
     renderTable();
-    // el.meta dihilangkan (tidak menulis sumber)
+    renderSearchInline();        // kosongkan/isi sesuai query
   }
 
   function updateStats(){
@@ -184,17 +238,11 @@
       </article>`;
 
     el.podium.innerHTML = col(2,'second',p2) + col(1,'first',p1) + col(3,'third',p3);
-
-    // Catatan pembaruan (dipertahankan singkat, tanpa "Sumber")
-    // Kalau tidak ingin sama sekali, boleh dihapus 3 baris di bawah.
-    const meta = document.createElement('div');
-    meta.className = 'lb-meta';
-    meta.style.display = 'none'; // dimatikan sesuai permintaan
-    el.podium.appendChild(meta);
   }
 
   function applyFilter(){
-    const q = state.query.trim().toLowerCase();
+    state.query = el.search.value.trim();
+    const q = state.query.toLowerCase();
     state.filtered = !q ? [...state.rows] : state.rows.filter(r =>
       String(r['No Member']).toLowerCase().includes(q) ||
       String(r['Nama']).toLowerCase().includes(q)
@@ -206,25 +254,12 @@
     const q = state.query.trim();
     const isSearching = q.length > 0;
 
-    // Info pencarian mini (boleh dibiarkan; rapi di atas daftar)
-    if (isSearching && state.filtered.length > 0){
-      const r = state.filtered[0];
-      const rank = state.rankMap[String(r['No Member']).trim()] ?? '-';
-      el.sInfo.innerHTML = `
-        <div class="hit" style="display:grid;grid-template-columns:96px 1fr 120px;gap:10px;align-items:center;padding:6px 0;">
-          <div><span class="rank-badge">#${rank}</span></div>
-          <div><strong>${esc(String(r['Nama']||''))}</strong><div class="mono" style="color:var(--muted)">${esc(String(r['No Member']||''))}</div></div>
-          <div class="mono" style="text-align:right">${nf.format(Number(r['Point']||0))} poin</div>
-        </div>`;
-      el.sInfo.hidden = false;
-    } else {
-      el.sInfo.hidden = true; el.sInfo.innerHTML = '';
-    }
+    // (Hasil inline dipindahkan ke bawah kolom pencarian; el.sInfo tidak dipakai)
+    if (el.sInfo){ el.sInfo.hidden = true; el.sInfo.innerHTML = ''; }
 
     let rowsToShow = [];
     if (!isSearching){
-      // Default: tampilkan #4–#10 (podium = #1–#3)
-      rowsToShow = state.rows.slice(3, 10);
+      rowsToShow = state.rows.slice(3, 10); // default: #4–#10
     } else {
       rowsToShow = state.filtered;
     }
@@ -260,13 +295,11 @@
     let card = document.querySelector('#leaderboard-host .lb-table-card');
     if (!card) return;
 
-    // Bersihkan head/list lama bila ada
-    let oldHead = card.querySelector('.lb-head');
+    // Hapus list lama bila ada
     let oldList = card.querySelector('.lb-list');
-    if (oldHead) oldHead.remove();
     if (oldList) oldList.remove();
 
-    // Buat list-wrap langsung (tanpa header keterangan)
+    // Buat list-wrap
     card.insertAdjacentHTML('beforeend', `<div class="lb-list"></div>`);
     const list = card.querySelector('.lb-list');
 
@@ -294,11 +327,55 @@
     list.innerHTML = html;
   }
 
+  // ====== RENDER HASIL PENCARIAN INLINE (di bawah kolom pencarian) ======
+  function renderSearchInline(){
+    const inline = document.getElementById('lb-search-inline');
+    if (!inline) return;
+
+    const q = state.query.trim();
+    if (!q){
+      inline.style.display = 'none';
+      inline.innerHTML = '';
+      return;
+    }
+
+    if (state.filtered.length === 0){
+      inline.style.display = 'block';
+      inline.innerHTML = `<div class="hit"><div></div><div>Tidak ada hasil untuk "<strong>${esc(q)}</strong>"</div><div></div></div>`;
+      return;
+    }
+
+    // Ambil hasil teratas dari filter
+    const r = state.filtered[0];
+    const no = String(r['No Member']||'').trim();
+    const nama = String(r['Nama']||'').trim();
+    const pts = Number(r['Point']||0);
+    const rank = state.rankMap[no] ?? '-';
+
+    // Hitung selisih dengan #1
+    const top1 = Number(state.rows[0]?.['Point'] ?? 0);
+    const gap = Math.max(top1 - pts, 0);
+
+    inline.innerHTML = `
+      <div class="hit">
+        <div><span class="rank-badge">#${rank}</span></div>
+        <div>
+          <strong>${esc(nama)}</strong>
+          <div class="mono" style="color:var(--muted)">${esc(no)}</div>
+        </div>
+        <div class="mono" style="text-align:right">${nf.format(pts)} poin</div>
+      </div>
+      <div class="gap mono">Selisih ke #1: ${nf.format(gap)} poin</div>
+    `;
+    inline.style.display = 'block';
+  }
+
   // ====== Events ======
-  el.search.addEventListener('input', e => { state.query = e.target.value; applyFilter(); renderTable(); });
+  el.search.addEventListener('input', () => { applyFilter(); renderTable(); renderSearchInline(); });
   el.refresh.addEventListener('click', () => fetchSheet());
-  window.addEventListener('resize', () => renderTable()); // switch mulus list <-> tabel
+  window.addEventListener('resize', () => { renderTable(); renderSearchInline(); }); // switch mulus list <-> tabel
 
   // Start
+  ensureSearchEnhancements();
   fetchSheet();
 })();
