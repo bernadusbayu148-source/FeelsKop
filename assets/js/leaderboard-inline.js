@@ -258,19 +258,20 @@
     let card = document.querySelector('#leaderboard-host .lb-table-card');
     if (!card) return;
 
-    // Pastikan container list ada
-    let list = card.querySelector('.lb-list');
-    if (!list){
-      // Kosongkan tbody tabel agar tidak mempengaruhi layout
-      el.tbBody.innerHTML = '';
-      // Sisipkan head kecil & list-wrap
-      const headHtml = `<div class="lb-head" aria-hidden="true">
-                          <span>Peringkat • No • Nama • Poin</span>
-                          <span class="dot"></span>
-                        </div>`;
-      card.insertAdjacentHTML('beforeend', headHtml + `<div class="lb-list"></div>`);
-      list = card.querySelector('.lb-list');
-    }
+    // Hapus head/list lama bila ada (agar tidak dobel saat resize)
+    let oldHead = card.querySelector('.lb-head');
+    let oldList = card.querySelector('.lb-list');
+    if (oldHead) oldHead.remove();
+    if (oldList) oldList.remove();
+
+    // Buat head SELARAS kolom: [Peringkat] [No • Nama] [Poin]
+    const headHtml = `<div class="lb-head" role="row">
+                        <div class="h-rank">Peringkat</div>
+                        <div class="h-who">No • Nama</div>
+                        <div class="h-point">Poin</div>
+                      </div>`;
+    card.insertAdjacentHTML('beforeend', headHtml + `<div class="lb-list"></div>`);
+    const list = card.querySelector('.lb-list');
 
     if (rows.length === 0){
       list.innerHTML = `<div class="empty">Tidak ada data.</div>`;
@@ -299,7 +300,7 @@
   // ====== Events ======
   el.search.addEventListener('input', e => { state.query = e.target.value; applyFilter(); renderTable(); });
   el.refresh.addEventListener('click', () => fetchSheet());
-  // Re-render saat orientasi/lebar berubah, agar switch list<->table mulus
+  // Re-render saat lebar berubah (supaya switch list/tabel mulus)
   window.addEventListener('resize', () => renderTable());
 
   // Start
