@@ -1,5 +1,5 @@
 
-/* assets/js/leaderboard-inline.js — redesign mobile-first, podium + top10 + search */
+/* assets/js/leaderboard-inline.js — podium bertingkat + top10 + search */
 (() => {
   // ====== Konfigurasi ======
   const SHEET_ID = "1UBrdYls_Ed0GIXCSPghK9C3du5dEhbdx";
@@ -8,7 +8,7 @@
   const GVIZ_URL = (id,gid) => `https://docs.google.com/spreadsheets/d/${id}/gviz/tq?tqx=out:json&gid=${gid}`;
   const CSV_URL  = (id,gid) => `https://docs.google.com/spreadsheets/d/${id}/export?format=csv&gid=${gid}`;
 
-  // ====== State & elemen ======
+  // ====== State & element ======
   const nf = new Intl.NumberFormat('id-ID');
   const el = {
     podium:  document.getElementById('lb-podium'),
@@ -31,7 +31,6 @@
     const n = Number(String(v ?? '').replace(/[^\d\-\.]/g,''));
     return Number.isFinite(n) ? n : 0;
   };
-
   function normalizeHeaderMap(headers, expects) {
     const lower = headers.map(h => String(h||'').trim().toLowerCase());
     const map = {};
@@ -47,8 +46,7 @@
     });
     return map;
   }
-
-  // CSV parser aman (kutip ganda & koma di field)
+  // CSV parser aman
   function splitCsvLine(line) {
     const out=[]; let cur=""; let q=false;
     for (let i=0;i<line.length;i++){
@@ -73,32 +71,24 @@
     });
     return { headers, rows };
   }
-
-  function escapeHtml(s){
-    return String(s).replace(/[&<>"']/g,c=>({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' })[c]);
+  function esc(s){
+    return String(s ?? '').replace(/[&<>"']/g,c=>({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' })[c]);
   }
 
   // ====== Fetch ======
   function cancelInFlight(){ if (currentAbort) currentAbort.abort(); }
-
   async function fetchSheet(){
-    cancelInFlight();
-    currentAbort = new AbortController();
-
+    cancelInFlight(); currentAbort = new AbortController();
     el.podium.innerHTML = `<div class="empty" style="grid-column:1/-1; text-align:center;">Memuat data…</div>`;
     el.tbBody.innerHTML = `<tr><td colspan="4" class="empty">Memuat data…</td></tr>`;
-    el.meta.textContent = '';
-    el.sInfo.hidden = true; el.sInfo.innerHTML = '';
+    el.meta.textContent = ''; el.sInfo.hidden = true; el.sInfo.innerHTML = '';
 
-    const okG = await tryFetchGviz(currentAbort.signal);
-    if (okG) return;
-    const okC = await tryFetchCsv(currentAbort.signal);
-    if (okC) return;
+    const okG = await tryFetchGviz(currentAbort.signal); if (okG) return;
+    const okC = await tryFetchCsv(currentAbort.signal);  if (okC) return;
 
     el.tbBody.innerHTML = `<tr><td colspan="4" class="empty">Gagal memuat data. Pastikan Sheet publik & telah dipublikasikan.</td></tr>`;
     el.meta.textContent = `Fetch gagal • ${new Date().toLocaleString('id-ID')}`;
   }
-
   async function tryFetchGviz(signal){
     try{
       const res = await fetch(GVIZ_URL(SHEET_ID, GID), { cache:'no-store', signal });
@@ -116,7 +106,6 @@
       return true;
     }catch(e){ console.warn('GVIZ gagal:', e); return false; }
   }
-
   async function tryFetchCsv(signal){
     try{
       const res = await fetch(CSV_URL(SHEET_ID, GID), { cache:'no-store', signal });
@@ -130,17 +119,16 @@
   // ====== Transform & render ======
   function applyAndRender(rows, headers, source){
     const map = normalizeHeaderMap(headers, HEADERS_EXPECT);
-    theData = rows.map(r => ({
+    const data = rows.map(r => ({
       'No Member': r[map['No Member']] ?? r['No Member'] ?? '',
       'Nama'     : r[map['Nama']]      ?? r['Nama']      ?? '',
       'Point'    : toInt(r[map['Point']] ?? r['Point'] ?? 0),
     }));
-    theData.sort((a,b) => b['Point'] - a['Point']);
+    data.sort((a,b) => b['Point'] - a['Point']);
+    const rankMap={}; data.forEach((row,i)=>{ const key=String(row['No Member']||'').trim(); if (key) rankMap[key]=i+1; });
 
-    // Rank map
-    const rankMap={}; theData.forEach((row,i)=>{ const key=String(row['No Member']||'').trim(); if (key) rankMap[key]=i+1; });
+    state.rows = data; state.rankMap = rankMap;
 
-    state.rows = theData; state.rankMap = rankMap;
     updateStats();
     renderPodium();
     applyFilter();
@@ -158,11 +146,11 @@
     el.barAvg.style.width   = Math.min(100, (avg/5000)*100) + '%';
   }
 
-  // ====== PODIUM v2 ======
+  // ====== PODIUM: 2 – 1 – 3, dgn panggung, piala, nama di atas, poin di depan ======
   function renderPodium(){
-    const [p1={Nama:'—','No Member':'—','Point':0},
-           p2={Nama:'—','No Member':'—','Point':0},
-           p3={Nama:'—','No Member':'—','Point':0}] = state.rows.slice(0,3);
+    const [p1 = {Nama:'—','No Member':'—','Point':0},
+           p2 = {Nama:'—','No Member':'—','Point':0},
+           p3 = {Nama:'—','No Member':'—','Point':0}] = state.rows.slice(0,3);
 
     const svgTrophy = (rank) => {
       const tone = rank===1
@@ -171,7 +159,7 @@
         ? {a:'#C9CFD8', b:'#E9EDF3'}        // perak
         : {a:'#CF8857', b:'#E9B692'};       // perunggu
       return `
-        <svg viewBox="0 0 64 64" width="24" height="24" aria-hidden="true" focusable="false">
+        <svg viewBox="0 0 64 64" width="26" height="26" aria-hidden="true" focusable="false">
           <defs>
             <linearGradient id="g${rank}" x1="0" x2="0" y1="0" y2="1">
               <stop offset="0%" stop-color="${tone.a}"/>
@@ -182,20 +170,20 @@
         </svg>`;
     };
 
-    const esc = (s) => String(s ?? '').replace(/[&<>"']/g,c=>({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' })[c]);
-
-    const step = (rank, cls, row) => `
-      <article class="podium-step ${cls}" aria-label="Juara ${rank}">
-        <div class="rank-medal">#${rank}</div>
-        <div class="trophy">${svgTrophy(rank)}</div>
+    const col = (rank, cls, row) => `
+      <article class="podium-col ${cls}" aria-label="Juara ${rank}">
         <h3 class="p-name">${esc(row['Nama'])}</h3>
         <p class="p-member mono">${esc(row['No Member'])}</p>
+        <div class="stage">
+          <div class="trophy">${svgTrophy(rank)}</div>
+        </div>
         <div class="p-point"><span>🏆</span><span class="num mono">${nf.format(Number(row['Point']||0))}</span><span>poin</span></div>
       </article>`;
 
-    // Urutan: 2 – 1 – 3 (tengah paling tinggi)
-    el.podium.innerHTML = step(2,'second',p2) + step(1,'first',p1) + step(3,'third',p3);
+    // Urutan: #2 (kiri) – #1 (tengah) – #3 (kanan)
+    el.podium.innerHTML = col(2,'second',p2) + col(1,'first',p1) + col(3,'third',p3);
 
+    // catatan pembaruan
     const meta = document.createElement('div');
     meta.className = 'lb-meta';
     meta.textContent = `Teratas saat ini • diperbarui ${new Date().toLocaleString('id-ID')}`;
@@ -221,7 +209,7 @@
       el.sInfo.innerHTML = `
         <div class="hit">
           <div><span class="rank-badge">#${rank}</span></div>
-          <div><strong>${escapeHtml(String(r['Nama']||''))}</strong><div class="mono" style="color:var(--muted)">${escapeHtml(String(r['No Member']||''))}</div></div>
+          <div><strong>${esc(String(r['Nama']||''))}</strong><div class="mono" style="color:var(--muted)">${esc(String(r['No Member']||''))}</div></div>
           <div class="mono">${nf.format(Number(r['Point']||0))} poin</div>
         </div>`;
       el.sInfo.hidden = false;
@@ -231,7 +219,7 @@
 
     let rowsToShow = [];
     if (!isSearching){
-      // Default: tampilkan #4–#10
+      // Default: tampilkan #4–#10 (podium sudah menempati #1–#3)
       rowsToShow = state.rows.slice(3, 10);
     } else {
       // Saat mencari: tampilkan semua hasil cocok
@@ -248,8 +236,8 @@
       const rank = state.rankMap[key] ?? '-';
       return `<tr>
         <td><span class="rank-badge">#${rank}</span></td>
-        <td class="mono">${escapeHtml(String(r['No Member']||''))}</td>
-        <td>${escapeHtml(String(r['Nama']||''))}</td>
+        <td class="mono">${esc(String(r['No Member']||''))}</td>
+        <td>${esc(String(r['Nama']||''))}</td>
         <td class="mono" style="text-align:right">${nf.format(Number(r['Point']||0))}</td>
       </tr>`;
     }).join('');
