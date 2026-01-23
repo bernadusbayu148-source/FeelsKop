@@ -130,17 +130,17 @@
   // ====== Transform & render ======
   function applyAndRender(rows, headers, source){
     const map = normalizeHeaderMap(headers, HEADERS_EXPECT);
-    const data = rows.map(r => ({
+    theData = rows.map(r => ({
       'No Member': r[map['No Member']] ?? r['No Member'] ?? '',
       'Nama'     : r[map['Nama']]      ?? r['Nama']      ?? '',
       'Point'    : toInt(r[map['Point']] ?? r['Point'] ?? 0),
     }));
-    data.sort((a,b) => b['Point'] - a['Point']);
+    theData.sort((a,b) => b['Point'] - a['Point']);
 
     // Rank map
-    const rankMap={}; data.forEach((row,i)=>{ const key=String(row['No Member']||'').trim(); if (key) rankMap[key]=i+1; });
+    const rankMap={}; theData.forEach((row,i)=>{ const key=String(row['No Member']||'').trim(); if (key) rankMap[key]=i+1; });
 
-    state.rows = data; state.rankMap = rankMap;
+    state.rows = theData; state.rankMap = rankMap;
     updateStats();
     renderPodium();
     applyFilter();
@@ -158,24 +158,46 @@
     el.barAvg.style.width   = Math.min(100, (avg/5000)*100) + '%';
   }
 
+  // ====== PODIUM v2 ======
   function renderPodium(){
     const [p1={Nama:'—','No Member':'—','Point':0},
            p2={Nama:'—','No Member':'—','Point':0},
            p3={Nama:'—','No Member':'—','Point':0}] = state.rows.slice(0,3);
 
-    const card = (rank, cls, row) => `
-      <article class="p-card ${cls}">
-        <div class="p-medal">#${rank}</div>
-        <div class="p-avatar" aria-hidden="true"></div>
-        <h3 class="p-name">${escapeHtml(String(row['Nama']||'—'))}</h3>
-        <p class="p-member mono">${escapeHtml(String(row['No Member']||'—'))}</p>
-        <div class="p-points"><span aria-hidden="true">🏆</span><span class="mono">${nf.format(Number(row['Point']||0))}</span><span>poin</span></div>
+    const svgTrophy = (rank) => {
+      const tone = rank===1
+        ? {a:'#F5C542', b:'#F6D77C'}        // emas
+        : rank===2
+        ? {a:'#C9CFD8', b:'#E9EDF3'}        // perak
+        : {a:'#CF8857', b:'#E9B692'};       // perunggu
+      return `
+        <svg viewBox="0 0 64 64" width="24" height="24" aria-hidden="true" focusable="false">
+          <defs>
+            <linearGradient id="g${rank}" x1="0" x2="0" y1="0" y2="1">
+              <stop offset="0%" stop-color="${tone.a}"/>
+              <stop offset="100%" stop-color="${tone.b}"/>
+            </linearGradient>
+          </defs>
+          <path fill="url(#g${rank})" d="M20 8h24c0 6 2 10 6 12h6v6c0 10-9 18-20 18h-8C17 44 8 36 8 26v-6h6c4-2 6-6 6-12zm8 44h8v4h-8zM10 12h6v6h-6v-6zm38 0h6v6h-6v-6z"/>
+        </svg>`;
+    };
+
+    const esc = (s) => String(s ?? '').replace(/[&<>"']/g,c=>({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' })[c]);
+
+    const step = (rank, cls, row) => `
+      <article class="podium-step ${cls}" aria-label="Juara ${rank}">
+        <div class="rank-medal">#${rank}</div>
+        <div class="trophy">${svgTrophy(rank)}</div>
+        <h3 class="p-name">${esc(row['Nama'])}</h3>
+        <p class="p-member mono">${esc(row['No Member'])}</p>
+        <div class="p-point"><span>🏆</span><span class="num mono">${nf.format(Number(row['Point']||0))}</span><span>poin</span></div>
       </article>`;
 
-    el.podium.innerHTML = card(2,'second',p2) + card(1,'first',p1) + card(3,'third',p3);
+    // Urutan: 2 – 1 – 3 (tengah paling tinggi)
+    el.podium.innerHTML = step(2,'second',p2) + step(1,'first',p1) + step(3,'third',p3);
+
     const meta = document.createElement('div');
     meta.className = 'lb-meta';
-    meta.style.gridColumn = '1/-1';
     meta.textContent = `Teratas saat ini • diperbarui ${new Date().toLocaleString('id-ID')}`;
     el.podium.appendChild(meta);
   }
@@ -242,4 +264,3 @@
   // Start
   fetchSheet();
 })();
-``
