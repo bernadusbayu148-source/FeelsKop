@@ -6,18 +6,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>Layanan — Kopi Feeling</title>
   <meta name="description" content="Kopi Feeling menghadirkan 4 layanan: Feeling To You., Feeling Party., Feeling Everyday., Feeling Di Wedding. Pengantaran cepat, harga bersahabat, kualitas premium." />
-  <link rel="canonical" href="https://bernadusbayu148-source.github.io/FeelsKop/services.html" />
+  <!-- Canonical (biarkan sesuai punyamu) -->
+  <!-- <link rel="canonical" href="https://bernadusbayu148-source.github.io/FeelsKop/services.html" /> -->
 
   <!-- Fonts & Icons -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
 
-  <!-- Main CSS (bump cache if needed) -->
-  <link href="assets/css/style.css?v=20260126-menuLabel" rel="stylesheet">
+  <!-- Main CSS (bump cache agar Android pasti ambil yang terbaru) -->
+  <link rel="stylesheet" href="assets/css/style.css?v=20260126-menuLabel">
 
-  <!-- OG/Twitter -->
+  <!-- Open Graph / Twitter (biarkan sesuai punyamu) -->
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Layanan — Kopi Feeling" />
   <meta property="og:description" content="4 layanan: Feeling To You., Feeling Party., Feeling Everyday., Feeling Di Wedding. Pesan sekarang — gratis ongkir!" />
@@ -25,17 +26,14 @@
   <meta property="og:image" content="https://bernadusbayu148-source.github.io/FeelsKop/assets/img/og-cover.jpg" />
   <meta property="og:locale" content="id_ID" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Layanan — Kopi Feeling" />
-  <meta name="twitter:description" content="4 layanan: Feeling To You., Feeling Party., Feeling Everyday., Feeling Di Wedding. Pesan sekarang — gratis ongkir!" />
-  <meta name="twitter:image" content="https://bernadusbayu148-source.github.io/FeelsKop/assets/img/og-cover.jpg" />
   <meta name="theme-color" content="#b5121b" />
 </head>
 <body>
   <!-- HEADER / NAVBAR -->
   <header class="site-header" id="siteHeader">
     <div class="container nav-container">
-      <a class="brand" href="index.html" aria-label="Beranda Kopi Feeling">
-        <img class="logo" src="assets/img/logo-oval.svg" alt="Logo Kopi Feeling">
+      <a class="brand" href="index.html">
+        <img src="assets/img/logo-oval.svg" alt="Logo Kopi Feeling" class="logo" />
         <span class="brand-name">Kopi Feeling</span>
       </a>
       <button class="nav-toggle" aria-label="Buka menu" aria-expanded="false" aria-controls="primaryNav">
@@ -47,12 +45,12 @@
         <ul class="nav-list">
           <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
           <li class="nav-item"><a class="nav-link" href="products.html">Menu</a></li>
-          <li class="nav-item"><a class="nav-link active" href="services.html" aria-current="page">Layanan</a></li>
+          <li class="nav-item"><a class="nav-link active" href="services.html">Layanan</a></li>
           <li class="nav-item"><a class="nav-link" href="stations.html">Lokasi & Coverage</a></li>
           <li class="nav-item"><a class="nav-link" href="contact.html">Kontak</a></li>
         </ul>
       </nav>
-      <a class="btn btn-outline btn-wa" target="_blank" rel="noopener" href="https://wa.me/6281254913064?text=Halo%20Kopi%20Feeling,%20minta%20info%20layanan.">
+      <a class="btn btn-outline btn-wa" href="https://wa.me/6281254913064?text=Halo%20Kopi%20Feeling,%20minta%20info%20layanan." target="_blank" rel="noopener">
         <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> WhatsApp
       </a>
     </div>
@@ -74,8 +72,8 @@
 
     <!-- Gambar utama layanan -->
     <figure class="service-hero">
-      <img src="assets/img/service-main.jpg" alt="Layanan Kopi Feeling">
-      <figcaption>Gambar utama layanan Kopi Feeling (silakan ganti dengan visual kamu).</figcaption>
+      <img src="assets/img/service-main.jpg" alt="" />
+      <figcaption>Gambar utama layanan Kopi Feeling.</figcaption>
     </figure>
 
     <!-- TAB BUTTONS -->
@@ -86,7 +84,7 @@
       <button class="tab" role="tab" aria-selected="false" aria-controls="panel-wedding" id="tab-wedding" data-tab="wedding">Feeling Di Wedding.</button>
     </nav>
 
-    <!-- PANEL: Feeling To You. -->
+    <!-- ================== PANEL: Feeling To You. ================== -->
     <section class="tab-panel is-active" role="tabpanel" id="panel-toyo" aria-labelledby="tab-toyo">
       <article class="service-card">
         <div class="card-head"><h3>Feeling To You.</h3></div>
@@ -94,58 +92,56 @@
           <p>Layanan <strong>Pengantaran Gratis</strong> untuk pemesanan mulai dari <strong>9 Cup</strong>.</p>
           <div class="card-image"><img src="assets/img/service-toyo.jpg" alt=""></div>
 
-          <section class="order-widget" id="ow-toyo" data-key="toyo" data-service="Feeling To You." data-min="9" data-datemode="single" aria-label="Form pemesanan Feeling To You.">
-            <h3 class="contact-subtitle">Detail Pemesanan — Feeling To You.</h3>
-            <div class="contact-grid">
-              <div><label for="toyo-name">Nama</label><input id="toyo-name" type="text" autocomplete="name" /></div>
-              <div><label for="toyo-org">Instansi/Komunitas</label><input id="toyo-org" type="text" autocomplete="organization" /></div>
-              <div><label for="toyo-email">Email</label><input id="toyo-email" type="email" autocomplete="email" /></div>
-              <div><label for="toyo-phone">Nomor HP</label><input id="toyo-phone" type="tel" inputmode="tel" pattern="\+?\d{9,15}" autocomplete="tel" /></div>
-            </div>
+        <!-- ORDER WIDGET: TOYO -->
+        <section class="order-widget" id="ow-toyo" data-key="toyo" data-service="Feeling To You." data-min="9" data-datemode="single" aria-label="Form pemesanan Feeling To You.">
+          <h3 class="contact-subtitle">Detail Pemesanan — Feeling To You.</h3>
 
-            <h4 class="contact-subtitle" style="margin-top:8px">Detail Pesanan</h4>
-            <div class="order-list" id="toyo-orderList">
-              <div class="order-row" data-index="0">
-                <div class="field">
-                  <label>Menu</label>
-                  <button type="button" class="menu-picker" data-target="serviceMenuModal" aria-haspopup="dialog">
-                    <span class="menu-label">Pilih Menu</span>
-                    <span class="menu-value" aria-live="polite">Belum dipilih</span>
-                  </button>
-                </div>
-                <div class="field">
-                  <label for="toyo-qty-0">Qty</label>
-                  <input id="toyo-qty-0" class="qty-input" type="number" min="1" step="1" placeholder="Qty" inputmode="numeric" />
-                </div>
-                <button type="button" class="row-remove" aria-label="Hapus baris">×</button>
-              </div>
-            </div>
+          <div class="contact-grid">
+            <div><label for="toyo-name">Nama</label><input id="toyo-name" type="text" autocomplete="name" /></div>
+            <div><label for="toyo-org">Instansi/Komunitas</label><input id="toyo-org" type="text" autocomplete="organization" /></div>
+            <div><label for="toyo-email">Email</label><input id="toyo-email" type="email" autocomplete="email" /></div>
+            <div><label for="toyo-phone">Nomor HP</label><input id="toyo-phone" type="tel" inputmode="tel" pattern="\+?\d{9,15}" autocomplete="tel" /></div>
+          </div>
 
-            <div class="order-actions"><button type="button" class="btn btn-outline add-row">+ Tambah Menu</button></div>
+          <h4 class="contact-subtitle" style="margin-top:8px">Detail Pesanan</h4>
+          <div class="order-list" id="toyo-orderList">
+            <div class="order-row" data-index="0">
+              <div class="field">
+                <label>Menu</label>
+                <button type="button" class="menu-picker" data-target="serviceMenuModal" aria-haspopup="dialog">
+                  <span class="menu-label">Pilih Menu</span>
+                  <span class="menu-value" aria-live="polite">Belum dipilih</span>
+                </button>
+              </div>
+              <div class="field">
+                <label for="toyo-qty-0">Qty</label>
+                <input id="toyo-qty-0" class="qty-input" type="number" min="1" step="1" placeholder="Qty" inputmode="numeric" />
+              </div>
+              <button type="button" class="row-remove" aria-label="Hapus baris">×</button>
+            </div>
+          </div>
 
-            <div class="contact-grid">
-              <div>
-                <label for="toyo-date">Tanggal Pemesanan</label>
-                <input id="toyo-date" type="date" />
-              </div>
-              <div>
-                <label for="toyo-address">Alamat / Lokasi Pengantaran</label>
-                <textarea id="toyo-address" rows="3" placeholder="Tulis alamat lengkap & catatan waktu pengantaran (opsional)"></textarea>
-              </div>
-            </div>
-            <p style="margin:8px 0 0;font-weight:700">Total Cup: <span class="total-cup" id="toyo-total">0</span> (Min 9)</p>
-            <small class="send-hint" id="toyo-hint" style="color:#888">Pesan akan dirangkum otomatis ke format WhatsApp.</small>
-            <div class="send-actions">
-              <a class="btn btn-outline wa-send" href="#" aria-disabled="true">
-                <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Kirim via WhatsApp
-              </a>
-            </div>
-          </section>
+          <div class="order-actions"><button type="button" class="btn btn-outline add-row">+ Tambah Menu</button></div>
+
+          <div class="contact-grid">
+            <div><label for="toyo-date">Tanggal Pemesanan</label><input id="toyo-date" type="date" /></div>
+            <div><label for="toyo-address">Alamat / Lokasi Pengantaran</label><textarea id="toyo-address" rows="3" placeholder="Tulis alamat lengkap & catatan waktu pengantaran (opsional)"></textarea></div>
+          </div>
+
+          <p style="margin:8px 0 0;font-weight:700">Total Cup: <span class="total-cup" id="toyo-total">0</span> (Min 9)</p>
+          <small class="send-hint" id="toyo-hint" style="color:#888">Pesan akan dirangkum otomatis ke format WhatsApp.</small>
+
+          <div class="send-actions">
+            <a class="btn btn-outline wa-send" href="#" aria-disabled="true" target="_blank" rel="noopener">
+              <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Kirim via WhatsApp
+            </a>
+          </div>
+        </section>
         </div>
       </article>
     </section>
 
-    <!-- PANEL: Feeling Party. -->
+    <!-- ================== PANEL: Feeling Party. ================== -->
     <section class="tab-panel" role="tabpanel" id="panel-party" aria-labelledby="tab-party" hidden>
       <article class="service-card">
         <div class="card-head"><h3>Feeling Party.</h3></div>
@@ -153,122 +149,112 @@
           <p>Minimum <strong>150 Cup</strong> termasuk 1 unit gerobak/bajaj + barista lapangan.</p>
           <div class="card-image"><img src="assets/img/service-party.jpg" alt=""></div>
 
-          <section class="order-widget" id="ow-party" data-key="party" data-service="Feeling Party." data-min="150" data-datemode="single" aria-label="Form pemesanan Feeling Party.">
-            <h3 class="contact-subtitle">Detail Pemesanan — Feeling Party.</h3>
-            <div class="contact-grid">
-              <div><label for="party-name">Nama</label><input id="party-name" type="text" autocomplete="name" /></div>
-              <div><label for="party-org">Instansi/Komunitas</label><input id="party-org" type="text" autocomplete="organization" /></div>
-              <div><label for="party-email">Email</label><input id="party-email" type="email" autocomplete="email" /></div>
-              <div><label for="party-phone">Nomor HP</label><input id="party-phone" type="tel" inputmode="tel" pattern="\+?\d{9,15}" autocomplete="tel" /></div>
-            </div>
+        <section class="order-widget" id="ow-party" data-key="party" data-service="Feeling Party." data-min="150" data-datemode="single" aria-label="Form pemesanan Feeling Party.">
+          <h3 class="contact-subtitle">Detail Pemesanan — Feeling Party.</h3>
 
-            <h4 class="contact-subtitle" style="margin-top:8px">Detail Pesanan</h4>
-            <div class="order-list" id="party-orderList">
-              <div class="order-row" data-index="0">
-                <div class="field">
-                  <label>Menu</label>
-                  <button type="button" class="menu-picker" data-target="serviceMenuModal" aria-haspopup="dialog">
-                    <span class="menu-label">Pilih Menu</span>
-                    <span class="menu-value" aria-live="polite">Belum dipilih</span>
-                  </button>
-                </div>
-                <div class="field">
-                  <label for="party-qty-0">Qty</label>
-                  <input id="party-qty-0" class="qty-input" type="number" min="1" step="1" placeholder="Qty" inputmode="numeric" />
-                </div>
-                <button type="button" class="row-remove" aria-label="Hapus baris">×</button>
-              </div>
-            </div>
+          <div class="contact-grid">
+            <div><label for="party-name">Nama</label><input id="party-name" type="text" autocomplete="name" /></div>
+            <div><label for="party-org">Instansi/Komunitas</label><input id="party-org" type="text" autocomplete="organization" /></div>
+            <div><label for="party-email">Email</label><input id="party-email" type="email" autocomplete="email" /></div>
+            <div><label for="party-phone">Nomor HP</label><input id="party-phone" type="tel" inputmode="tel" pattern="\+?\d{9,15}" autocomplete="tel" /></div>
+          </div>
 
-            <div class="order-actions"><button type="button" class="btn btn-outline add-row">+ Tambah Menu</button></div>
+          <h4 class="contact-subtitle" style="margin-top:8px">Detail Pesanan</h4>
+          <div class="order-list" id="party-orderList">
+            <div class="order-row" data-index="0">
+              <div class="field">
+                <label>Menu</label>
+                <button type="button" class="menu-picker" data-target="serviceMenuModal" aria-haspopup="dialog">
+                  <span class="menu-label">Pilih Menu</span>
+                  <span class="menu-value" aria-live="polite">Belum dipilih</span>
+                </button>
+              </div>
+              <div class="field">
+                <label for="party-qty-0">Qty</label>
+                <input id="party-qty-0" class="qty-input" type="number" min="1" step="1" placeholder="Qty" inputmode="numeric" />
+              </div>
+              <button type="button" class="row-remove" aria-label="Hapus baris">×</button>
+            </div>
+          </div>
 
-            <div class="contact-grid">
-              <div>
-                <label for="party-date">Tanggal Pemesanan</label>
-                <input id="party-date" type="date" />
-              </div>
-              <div>
-                <label for="party-address">Alamat / Lokasi Pengantaran</label>
-                <textarea id="party-address" rows="3" placeholder="Tulis alamat lengkap & catatan waktu pengantaran (opsional)"></textarea>
-              </div>
-            </div>
-            <p style="margin:8px 0 0;font-weight:700">Total Cup: <span class="total-cup" id="party-total">0</span> (Min 150)</p>
-            <small class="send-hint" id="party-hint" style="color:#888">Pesan akan dirangkum otomatis ke format WhatsApp.</small>
-            <div class="send-actions">
-              <a class="btn btn-outline wa-send" href="#" aria-disabled="true">
-                <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Kirim via WhatsApp
-              </a>
-            </div>
-          </section>
+          <div class="order-actions"><button type="button" class="btn btn-outline add-row">+ Tambah Menu</button></div>
+
+          <div class="contact-grid">
+            <div><label for="party-date">Tanggal Pemesanan</label><input id="party-date" type="date" /></div>
+            <div><label for="party-address">Alamat / Lokasi Pengantaran</label><textarea id="party-address" rows="3" placeholder="Tulis alamat lengkap & catatan waktu pengantaran (opsional)"></textarea></div>
+          </div>
+
+          <p style="margin:8px 0 0;font-weight:700">Total Cup: <span class="total-cup" id="party-total">0</span> (Min 150)</p>
+          <small class="send-hint" id="party-hint" style="color:#888">Pesan akan dirangkum otomatis ke format WhatsApp.</small>
+
+          <div class="send-actions">
+            <a class="btn btn-outline wa-send" href="#" aria-disabled="true" target="_blank" rel="noopener">
+              <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Kirim via WhatsApp
+            </a>
+          </div>
+        </section>
         </div>
       </article>
     </section>
 
-    <!-- PANEL: Feeling Everyday. -->
+    <!-- ================== PANEL: Feeling Everyday. ================== -->
     <section class="tab-panel" role="tabpanel" id="panel-everyday" aria-labelledby="tab-everyday" hidden>
       <article class="service-card">
         <div class="card-head"><h3>Feeling Everyday.</h3></div>
         <div class="card-body">
           <p>Program langganan harian untuk kantor/korporasi. Minimum <strong>8 Cup</strong> per pengantaran, jadwal fleksibel.</p>
-        <div class="card-image"><img src="assets/img/service-everyday.jpg" alt=""></div>
+          <div class="card-image"><img src="assets/img/service-everyday.jpg" alt=""></div>
 
-          <section class="order-widget" id="ow-everyday" data-key="everyday" data-service="Feeling Everyday." data-min="8" data-datemode="range" aria-label="Form pemesanan Feeling Everyday.">
-            <h3 class="contact-subtitle">Detail Pemesanan — Feeling Everyday.</h3>
-            <div class="contact-grid">
-              <div><label for="every-name">Nama</label><input id="every-name" type="text" autocomplete="name" /></div>
-              <div><label for="every-org">Instansi/Komunitas</label><input id="every-org" type="text" autocomplete="organization" /></div>
-              <div><label for="every-email">Email</label><input id="every-email" type="email" autocomplete="email" /></div>
-              <div><label for="every-phone">Nomor HP</label><input id="every-phone" type="tel" inputmode="tel" pattern="\+?\d{9,15}" autocomplete="tel" /></div>
-            </div>
+        <section class="order-widget" id="ow-everyday" data-key="everyday" data-service="Feeling Everyday." data-min="8" data-datemode="range" aria-label="Form pemesanan Feeling Everyday.">
+          <h3 class="contact-subtitle">Detail Pemesanan — Feeling Everyday.</h3>
 
-            <h4 class="contact-subtitle" style="margin-top:8px">Detail Pesanan</h4>
-            <div class="order-list" id="every-orderList">
-              <div class="order-row" data-index="0">
-                <div class="field">
-                  <label>Menu</label>
-                  <button type="button" class="menu-picker" data-target="serviceMenuModal" aria-haspopup="dialog">
-                    <span class="menu-label">Pilih Menu</span>
-                    <span class="menu-value" aria-live="polite">Belum dipilih</span>
-                  </button>
-                </div>
-                <div class="field">
-                  <label for="every-qty-0">Qty</label>
-                  <input id="every-qty-0" class="qty-input" type="number" min="1" step="1" placeholder="Qty" inputmode="numeric" />
-                </div>
-                <button type="button" class="row-remove" aria-label="Hapus baris">×</button>
-              </div>
-            </div>
+          <div class="contact-grid">
+            <div><label for="every-name">Nama</label><input id="every-name" type="text" autocomplete="name" /></div>
+            <div><label for="every-org">Instansi/Komunitas</label><input id="every-org" type="text" autocomplete="organization" /></div>
+            <div><label for="every-email">Email</label><input id="every-email" type="email" autocomplete="email" /></div>
+            <div><label for="every-phone">Nomor HP</label><input id="every-phone" type="tel" inputmode="tel" pattern="\+?\d{9,15}" autocomplete="tel" /></div>
+          </div>
 
-            <div class="order-actions"><button type="button" class="btn btn-outline add-row">+ Tambah Menu</button></div>
+          <h4 class="contact-subtitle" style="margin-top:8px">Detail Pesanan</h4>
+          <div class="order-list" id="every-orderList">
+            <div class="order-row" data-index="0">
+              <div class="field">
+                <label>Menu</label>
+                <button type="button" class="menu-picker" data-target="serviceMenuModal" aria-haspopup="dialog">
+                  <span class="menu-label">Pilih Menu</span>
+                  <span class="menu-value" aria-live="polite">Belum dipilih</span>
+                </button>
+              </div>
+              <div class="field">
+                <label for="every-qty-0">Qty</label>
+                <input id="every-qty-0" class="qty-input" type="number" min="1" step="1" placeholder="Qty" inputmode="numeric" />
+              </div>
+              <button type="button" class="row-remove" aria-label="Hapus baris">×</button>
+            </div>
+          </div>
 
-            <!-- Rentang tanggal + alamat -->
-            <div class="contact-grid">
-              <div>
-                <label for="every-date-start">Mulai (Tanggal)</label>
-                <input id="every-date-start" type="date" />
-              </div>
-              <div>
-                <label for="every-date-end">Sampai (Tanggal)</label>
-                <input id="every-date-end" type="date" />
-              </div>
-              <div>
-                <label for="every-address">Alamat / Lokasi Pengantaran</label>
-                <textarea id="every-address" rows="3" placeholder="Tulis alamat lengkap & catatan waktu pengantaran (opsional)"></textarea>
-              </div>
-            </div>
-            <p style="margin:8px 0 0;font-weight:700">Total Cup: <span class="total-cup" id="every-total">0</span> (Min 8)</p>
-            <small class="send-hint" id="every-hint" style="color:#888">Pesan akan dirangkum otomatis ke format WhatsApp.</small>
-            <div class="send-actions">
-              <a class="btn btn-outline wa-send" href="#" aria-disabled="true">
-                <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Kirim via WhatsApp
-              </a>
-            </div>
-          </section>
+          <div class="order-actions"><button type="button" class="btn btn-outline add-row">+ Tambah Menu</button></div>
+
+          <div class="contact-grid">
+            <div><label for="every-date-start">Mulai (Tanggal)</label><input id="every-date-start" type="date" /></div>
+            <div><label for="every-date-end">Sampai (Tanggal)</label><input id="every-date-end" type="date" /></div>
+            <div><label for="every-address">Alamat / Lokasi Pengantaran</label><textarea id="every-address" rows="3" placeholder="Tulis alamat lengkap & catatan waktu pengantaran (opsional)"></textarea></div>
+          </div>
+
+          <p style="margin:8px 0 0;font-weight:700">Total Cup: <span class="total-cup" id="every-total">0</span> (Min 8)</p>
+          <small class="send-hint" id="every-hint" style="color:#888">Pesan akan dirangkum otomatis ke format WhatsApp.</small>
+
+          <div class="send-actions">
+            <a class="btn btn-outline wa-send" href="#" aria-disabled="true" target="_blank" rel="noopener">
+              <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Kirim via WhatsApp
+            </a>
+          </div>
+        </section>
         </div>
       </article>
     </section>
 
-    <!-- PANEL: Feeling Di Wedding. -->
+    <!-- ================== PANEL: Feeling Di Wedding. ================== -->
     <section class="tab-panel" role="tabpanel" id="panel-wedding" aria-labelledby="tab-wedding" hidden>
       <article class="service-card">
         <div class="card-head"><h3>Feeling Di Wedding.</h3></div>
@@ -276,53 +262,50 @@
           <p>Wedding package: coffee cart eksklusif + <strong>2 barista</strong>. Minimum <strong>200 Cup</strong>.</p>
           <div class="card-image"><img src="assets/img/service-wedding.jpg" alt=""></div>
 
-          <section class="order-widget" id="ow-wedding" data-key="wedding" data-service="Feeling Di Wedding." data-min="200" data-datemode="single" aria-label="Form pemesanan Feeling Di Wedding.">
-            <h3 class="contact-subtitle">Detail Pemesanan — Feeling Di Wedding.</h3>
-            <div class="contact-grid">
-              <div><label for="wed-name">Nama</label><input id="wed-name" type="text" autocomplete="name" /></div>
-              <div><label for="wed-couple">Nama Mempelai</label><input id="wed-couple" type="text" placeholder="cth: Andi & Siti" /></div>
-              <div><label for="wed-email">Email</label><input id="wed-email" type="email" autocomplete="email" /></div>
-              <div><label for="wed-phone">Nomor HP</label><input id="wed-phone" type="tel" inputmode="tel" pattern="\+?\d{9,15}" autocomplete="tel" /></div>
-            </div>
+        <section class="order-widget" id="ow-wedding" data-key="wedding" data-service="Feeling Di Wedding." data-min="200" data-datemode="single" aria-label="Form pemesanan Feeling Di Wedding.">
+          <h3 class="contact-subtitle">Detail Pemesanan — Feeling Di Wedding.</h3>
 
-            <h4 class="contact-subtitle" style="margin-top:8px">Detail Pesanan</h4>
-            <div class="order-list" id="wed-orderList">
-              <div class="order-row" data-index="0">
-                <div class="field">
-                  <label>Menu</label>
-                  <button type="button" class="menu-picker" data-target="serviceMenuModal" aria-haspopup="dialog">
-                    <span class="menu-label">Pilih Menu</span>
-                    <span class="menu-value" aria-live="polite">Belum dipilih</span>
-                  </button>
-                </div>
-                <div class="field">
-                  <label for="wed-qty-0">Qty</label>
-                  <input id="wed-qty-0" class="qty-input" type="number" min="1" step="1" placeholder="Qty" inputmode="numeric" />
-                </div>
-                <button type="button" class="row-remove" aria-label="Hapus baris">×</button>
-              </div>
-            </div>
+          <div class="contact-grid">
+            <div><label for="wed-name">Nama</label><input id="wed-name" type="text" autocomplete="name" /></div>
+            <div><label for="wed-couple">Nama Mempelai</label><input id="wed-couple" type="text" placeholder="cth: Andi & Siti" /></div>
+            <div><label for="wed-email">Email</label><input id="wed-email" type="email" autocomplete="email" /></div>
+            <div><label for="wed-phone">Nomor HP</label><input id="wed-phone" type="tel" inputmode="tel" pattern="\+?\d{9,15}" autocomplete="tel" /></div>
+          </div>
 
-            <div class="order-actions"><button type="button" class="btn btn-outline add-row">+ Tambah Menu</button></div>
+          <h4 class="contact-subtitle" style="margin-top:8px">Detail Pesanan</h4>
+          <div class="order-list" id="wed-orderList">
+            <div class="order-row" data-index="0">
+              <div class="field">
+                <label>Menu</label>
+                <button type="button" class="menu-picker" data-target="serviceMenuModal" aria-haspopup="dialog">
+                  <span class="menu-label">Pilih Menu</span>
+                  <span class="menu-value" aria-live="polite">Belum dipilih</span>
+                </button>
+              </div>
+              <div class="field">
+                <label for="wed-qty-0">Qty</label>
+                <input id="wed-qty-0" class="qty-input" type="number" min="1" step="1" placeholder="Qty" inputmode="numeric" />
+              </div>
+              <button type="button" class="row-remove" aria-label="Hapus baris">×</button>
+            </div>
+          </div>
 
-            <div class="contact-grid">
-              <div>
-                <label for="wed-date">Tanggal Pemesanan</label>
-                <input id="wed-date" type="date" />
-              </div>
-              <div>
-                <label for="wed-address">Alamat / Lokasi Pengantaran</label>
-                <textarea id="wed-address" rows="3" placeholder="Tulis alamat lengkap & catatan waktu pengantaran (opsional)"></textarea>
-              </div>
-            </div>
-            <p style="margin:8px 0 0;font-weight:700">Total Cup: <span class="total-cup" id="wed-total">0</span> (Min 200)</p>
-            <small class="send-hint" id="wed-hint" style="color:#888">Pesan akan dirangkum otomatis ke format WhatsApp.</small>
-            <div class="send-actions">
-              <a class="btn btn-outline wa-send" href="#" aria-disabled="true">
-                <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Kirim via WhatsApp
-              </a>
-            </div>
-          </section>
+          <div class="order-actions"><button type="button" class="btn btn-outline add-row">+ Tambah Menu</button></div>
+
+          <div class="contact-grid">
+            <div><label for="wed-date">Tanggal Pemesanan</label><input id="wed-date" type="date" /></div>
+            <div><label for="wed-address">Alamat / Lokasi Pengantaran</label><textarea id="wed-address" rows="3" placeholder="Tulis alamat lengkap & catatan waktu pengantaran (opsional)"></textarea></div>
+          </div>
+
+          <p style="margin:8px 0 0;font-weight:700">Total Cup: <span class="total-cup" id="wed-total">0</span> (Min 200)</p>
+          <small class="send-hint" id="wed-hint" style="color:#888">Pesan akan dirangkum otomatis ke format WhatsApp.</small>
+
+          <div class="send-actions">
+            <a class="btn btn-outline wa-send" href="#" aria-disabled="true" target="_blank" rel="noopener">
+              <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Kirim via WhatsApp
+            </a>
+          </div>
+        </section>
         </div>
       </article>
     </section>
@@ -339,7 +322,9 @@
     <div class="container cta-content">
       <h3>Ada pertanyaan atau keluhan?</h3>
       <p>Kami siap membantu. Kunjungi halaman <strong>Kontak</strong> untuk menyampaikan pertanyaan, saran, atau keluhan Anda.</p>
-      <a class="btn btn-outline" href="contact.html"><i class="fa-regular fa-envelope" aria-hidden="true"></i> Hubungi Kami</a>
+      <a class="btn btn-primary" href="contact.html">
+        <i class="fa-regular fa-envelope" aria-hidden="true"></i> Hubungi Kami
+      </a>
     </div>
   </section>
 
@@ -347,7 +332,7 @@
   <footer class="site-footer">
     <div class="container footer-grid">
       <div class="footer-about">
-        <img class="footer-logo" src="assets/img/logo-oval.svg" alt="">
+        <img src="assets/img/logo-oval.svg" alt="Logo Kopi Feeling" class="footer-logo" />
         <p>Kopi Feeling adalah brand kopi gerobak nomor 1 di Banjarmasin—siap menemani harian & acara Anda.</p>
       </div>
       <div class="footer-contact">
@@ -356,19 +341,19 @@
           JL.Irigasi No.08, RT.001/RW.003, Mentaos, Kec. Banjarbaru Utara, Kota Banjar Baru, Kalimantan Selatan 70711
         </p>
         <p><i class="fa-solid fa-phone" aria-hidden="true"></i>
-          <a href="tel:+6281254913064" class="link">+62 812-5491-3064</a>
+          <a href="tel:+6281254913064">+62 812-5491-3064</a>
         </p>
         <p><i class="fa-solid fa-envelope" aria-hidden="true"></i>
-          <a href="mailto:order@kopifeeling.id" class="link">order@kopifeeling.id</a>
+          <a href="mailto:order@kopifeeling.id">order@kopifeeling.id</a>
         </p>
       </div>
       <div class="footer-menu">
         <h4>Menu Cepat</h4>
         <ul>
-          <li><a class="link" href="products.html">Menu</a></li>
-          <li><a class="link" href="services.html">Layanan</a></li>
-          <li><a class="link" href="stations.html">Lokasi & Coverage</a></li>
-          <li><a class="link" href="contact.html">Kontak</a></li>
+          <li><a href="products.html">Menu</a></li>
+          <li><a href="services.html">Layanan</a></li>
+          <li><a href="stations.html">Lokasi & Coverage</a></li>
+          <li><a href="contact.html">Kontak</a></li>
         </ul>
       </div>
     </div>
@@ -414,82 +399,100 @@
     </div>
   </div>
 
-  <!-- SCRIPTS -->
+  <!-- SCRIPTS (main + inline) -->
   <script src="assets/js/main.js"></script>
 
-  <!-- Inline JS — Perbaikan modal + akumulasi total + pemasangan handler klik yang pasti -->
+  <!-- Inline JS — modal always works + total cup tetap benar -->
   <script>
   (function(){
-    const WA_NUMBER = '6281254913064';
+    var WA_NUMBER = '6281254913064';
 
-    // Helpers
-    const qs  = (s, r=document)=> r.querySelector(s);
-    const qsa = (s, r=document)=> Array.from(r.querySelectorAll(s));
-    const fmtDateID = (v)=>{
+    // Helpers (tanpa optional chaining)
+    function qs(sel, root){ return (root||document).querySelector(sel); }
+    function qsa(sel, root){ return Array.prototype.slice.call((root||document).querySelectorAll(sel)); }
+    function getValById(id){
+      var el = document.getElementById(id);
+      return el ? el.value : '';
+    }
+    function fmtDateID(v){
       if(!v) return '';
-      try{ return new Date(v + 'T00:00:00').toLocaleDateString('id-ID',{day:'2-digit',month:'long',year:'numeric'}); }
-      catch(_){ return v; }
-    };
+      try{
+        var d = new Date(v + 'T00:00:00');
+        return d.toLocaleDateString('id-ID',{ day:'2-digit', month:'long', year:'numeric' });
+      }catch(e){ return v; }
+    }
 
     // ===== Modal =====
-    const modal      = qs('#serviceMenuModal');
-    const menuGrid   = qs('#serviceMenuGrid');
-    const menuSearch = qs('#serviceMenuSearch');
-    let activeWidget = null, activeRowIndex = 0, lastOpener = null;
+    var modal      = qs('#serviceMenuModal');
+    var menuGrid   = qs('#serviceMenuGrid');
+    var menuSearch = qs('#serviceMenuSearch');
+    var activeWidget = null, activeRowIndex = 0, lastOpener = null;
 
     function openModal(widgetEl, rowIndex){
       activeWidget = widgetEl; activeRowIndex = rowIndex;
       lastOpener = document.activeElement;
-      if (menuSearch) { menuSearch.value=''; filterMenu(''); }
-      modal.removeAttribute('hidden');                // << konsisten dengan CSS [hidden]
-      document.body.classList.add('modal-open');
-      setTimeout(()=> menuSearch && menuSearch.focus(), 0);
+      if (menuSearch){ menuSearch.value = ''; filterMenu(''); }
+      modal.removeAttribute('hidden');                // tampilkan modal
+      document.body.classList.add('modal-open');      // kunci scroll
+      setTimeout(function(){ if(menuSearch) menuSearch.focus(); }, 0);
     }
     function closeModal(){
       modal.setAttribute('hidden','');
       document.body.classList.remove('modal-open');
-      if(lastOpener && lastOpener.focus) lastOpener.focus();
+      if (lastOpener && typeof lastOpener.focus === 'function') lastOpener.focus();
     }
     function filterMenu(term){
-      const t = String(term||'').toLowerCase();
-      qsa('.menu-item', menuGrid).forEach(b=> b.style.display = b.textContent.toLowerCase().includes(t) ? '' : 'none');
+      var t = String(term || '').toLowerCase();
+      qsa('.menu-item', menuGrid).forEach(function(btn){
+        btn.style.display = btn.textContent.toLowerCase().indexOf(t) !== -1 ? '' : 'none';
+      });
     }
-    menuSearch.addEventListener('input', e=> filterMenu(e.target.value));
-    modal.addEventListener('click', e=> { if(e.target.closest('[data-close="serviceMenuModal"]')) closeModal(); });
-    document.addEventListener('keydown', e=> { if(e.key==='Escape' && !modal.hasAttribute('hidden')) closeModal(); });
-    // Focus trap
-    modal.addEventListener('keydown', e=>{
-      if(e.key!=='Tab' || modal.hasAttribute('hidden')) return;
-      const f = qsa('button,[href],input,select,textarea,[tabindex]:not([tabindex="-1"])', modal)
-                .filter(el=> !el.disabled && el.offsetParent!==null);
-      if(!f.length) return;
-      const first=f[0], last=f[f.length-1];
-      if(e.shiftKey && document.activeElement===first){ e.preventDefault(); last.focus(); }
-      else if(!e.shiftKey && document.activeElement===last){ e.preventDefault(); first.focus(); }
+    if (menuSearch) menuSearch.addEventListener('input', function(e){ filterMenu(e.target.value); });
+    if (modal) modal.addEventListener('click', function(e){
+      if (e.target.closest('[data-close="serviceMenuModal"]')) closeModal();
     });
-    // Klik pada item menu
-    menuGrid.addEventListener('click', e=>{
-      const btn = e.target.closest('.menu-item'); if(!btn || !activeWidget) return;
-      const val = btn.dataset.value || btn.textContent.trim();
-      const row = qsa('.order-row', activeWidget)[activeRowIndex];
-      if(row){ qs('.menu-value', row).textContent = val; qs('.qty-input', row)?.focus(); }
+    document.addEventListener('keydown', function(e){
+      if (e.key === 'Escape' && !modal.hasAttribute('hidden')) closeModal();
+    });
+    // Focus trap
+    if (modal) modal.addEventListener('keydown', function(e){
+      if (e.key !== 'Tab' || modal.hasAttribute('hidden')) return;
+      var focusables = qsa('button,[href],input,select,textarea,[tabindex]:not([tabindex="-1"])', modal)
+        .filter(function(el){ return !el.disabled && el.offsetParent !== null; });
+      if (!focusables.length) return;
+      var first = focusables[0], last = focusables[focusables.length - 1];
+      if (e.shiftKey && document.activeElement === first){ e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last){ e.preventDefault(); first.focus(); }
+    });
+    if (menuGrid) menuGrid.addEventListener('click', function(e){
+      var btn = e.target.closest('.menu-item'); if (!btn || !activeWidget) return;
+      var val = btn.getAttribute('data-value') || btn.textContent.replace(/\s+/g,' ').trim();
+      var rows = qsa('.order-row', activeWidget);
+      var row  = rows[activeRowIndex];
+      if (row){
+        var mv = qs('.menu-value', row);
+        if (mv) mv.textContent = val;
+        var qi = qs('.qty-input', row);
+        if (qi) qi.focus();
+      }
       closeModal(); refresh(activeWidget);
     });
 
     // ===== Widgets =====
-    const widgets = qsa('.order-widget');
-    widgets.forEach(w=>{ bindWidget(w); wirePickers(w); refresh(w); });
+    var widgets = qsa('.order-widget');
+    widgets.forEach(function(w){ bindWidget(w); wirePickers(w); refresh(w); });
 
-    // Pasang handler klik langsung pada semua tombol .menu-picker (agar pasti jalan)
+    // Pastikan setiap tombol .menu-picker punya handler klik
     function wirePickers(widget){
-      qsa('.menu-picker', widget).forEach((btn, idx)=>{
-        // Hindari dobel listener
-        if (btn.dataset.bound === '1') return;
-        btn.dataset.bound = '1';
-        btn.addEventListener('click', (e)=>{
-          e.preventDefault();
-          const row = e.currentTarget.closest('.order-row');
-          const index = Number(row?.dataset?.index || idx || 0);
+      qsa('.menu-picker', widget).forEach(function(btn, idx){
+        if (btn.getAttribute('data-bound') === '1') return;
+        btn.setAttribute('data-bound','1');
+        btn.addEventListener('click', function(ev){
+          ev.preventDefault();
+          var r = ev.currentTarget.closest('.order-row');
+          var index = 0;
+          if (r && r.dataset && r.dataset.index) index = Number(r.dataset.index)||0;
+          else index = idx||0;
           openModal(widget, index);
         });
       });
@@ -497,172 +500,179 @@
 
     function bindWidget(widget){
       // Tambah baris
-      qs('.add-row', widget).addEventListener('click', ()=>{
+      var addBtn = qs('.add-row', widget);
+      if (addBtn) addBtn.addEventListener('click', function(){
         addRow(widget);
-        wirePickers(widget);   // << pastikan picker baris baru juga aktif
+        wirePickers(widget);   // aktifkan picker pada baris baru
         refresh(widget);
       });
 
       // Delegasi click (backup)
-      widget.addEventListener('click', (e)=>{
-        const picker = e.target.closest('.menu-picker');
-        const remover= e.target.closest('.row-remove');
-        if(picker){
+      widget.addEventListener('click', function(e){
+        var picker = e.target.closest('.menu-picker');
+        var remover= e.target.closest('.row-remove');
+        if (picker){
           e.preventDefault();
-          const r = e.target.closest('.order-row');
-          openModal(widget, Number(r?.dataset?.index||0));
+          var r = e.target.closest('.order-row');
+          openModal(widget, r && r.dataset ? Number(r.dataset.index||0) : 0);
         }
-        if(remover){
+        if (remover){
           removeRow(widget, e.target.closest('.order-row'));
           refresh(widget);
         }
       });
 
-      // Delegasi input (qty + lainnya)
-      widget.addEventListener('input', (e)=>{
-        if(e.target.classList.contains('qty-input')) refresh(widget);
+      // Delegasi input
+      widget.addEventListener('input', function(e){
+        if (e.target.classList.contains('qty-input')) refresh(widget);
       });
-      qsa('input, textarea', widget).forEach(inp=>{
-        inp.addEventListener('input', ()=> refresh(widget));
+      qsa('input, textarea', widget).forEach(function(inp){
+        inp.addEventListener('input', function(){ refresh(widget); });
       });
 
-      // Optional guard untuk WA button
-      const waBtn = qs('.wa-send', widget);
+      // Optional: guard untuk tombol WA
+      var waBtn = qs('.wa-send', widget);
       if (waBtn){
-        waBtn.addEventListener('click', (e)=>{
-          if(waBtn.getAttribute('aria-disabled')==='true'){ e.preventDefault(); e.stopPropagation(); }
+        waBtn.addEventListener('click', function(e){
+          if (waBtn.getAttribute('aria-disabled') === 'true'){ e.preventDefault(); e.stopPropagation(); }
         });
       }
     }
 
-    // Template baris dengan label
     function addRow(widget){
-      const { baseId } = getIds(widget);
-      const list = qs('.order-list', widget);
-      const idx = qsa('.order-row', list).length;
-      const row = document.createElement('div');
-      row.className='order-row'; row.dataset.index=String(idx);
-      row.innerHTML = `
-        <div class="field">
-          <label>Menu</label>
-          <button type="button" class="menu-picker" data-target="serviceMenuModal" aria-haspopup="dialog">
-            <span class="menu-label">Pilih Menu</span>
-            <span class="menu-value" aria-live="polite">Belum dipilih</span>
-          </button>
-        </div>
-        <div class="field">
-          <label for="${baseId}-qty-${idx}">Qty</label>
-          <input id="${baseId}-qty-${idx}" class="qty-input" type="number" min="1" step="1" placeholder="Qty" inputmode="numeric" />
-        </div>
-        <button type="button" class="row-remove" aria-label="Hapus baris">×</button>
-      `;
+      var ids = getIds(widget);
+      var baseId = ids.baseId;
+      var list = qs('.order-list', widget);
+      var idx = qsa('.order-row', list).length;
+      var row = document.createElement('div');
+      row.className = 'order-row';
+      row.setAttribute('data-index', String(idx));
+      row.innerHTML =
+        '<div class="field">'+
+          '<label>Menu</label>'+
+          '<button type="button" class="menu-picker" data-target="serviceMenuModal" aria-haspopup="dialog">'+
+            '<span class="menu-label">Pilih Menu</span>'+
+            '<span class="menu-value" aria-live="polite">Belum dipilih</span>'+
+          '</button>'+
+        '</div>'+
+        '<div class="field">'+
+          '<label for="'+baseId+'-qty-'+idx+'">Qty</label>'+
+          '<input id="'+baseId+'-qty-'+idx+'" class="qty-input" type="number" min="1" step="1" placeholder="Qty" inputmode="numeric" />'+
+        '</div>'+
+        '<button type="button" class="row-remove" aria-label="Hapus baris">×</button>';
       list.appendChild(row);
     }
 
     function removeRow(widget, rowEl){
-      if(!rowEl) return;
-      const list = qs('.order-list', widget);
-      const rows = qsa('.order-row', list);
-      if(rows.length<=1){
-        qs('.menu-value', rowEl).textContent='Belum dipilih';
-        const qty = qs('.qty-input',  rowEl); if (qty) qty.value='';
+      if (!rowEl) return;
+      var list = qs('.order-list', widget);
+      var rows = qsa('.order-row', list);
+      if (rows.length <= 1){
+        var mv = qs('.menu-value', rowEl); if (mv) mv.textContent = 'Belum dipilih';
+        var qi = qs('.qty-input', rowEl); if (qi) qi.value = '';
         return;
       }
-      rowEl.remove();
+      rowEl.parentNode.removeChild(rowEl);
       // reindex id qty pakai baseId
-      const { baseId } = getIds(widget);
-      qsa('.order-row', list).forEach((r,i)=>{
-        r.dataset.index=String(i);
-        const qi = qs('.qty-input', r);
-        if (qi) qi.id = `${baseId}-qty-${i}`;
+      var ids = getIds(widget);
+      var baseId = ids.baseId;
+      qsa('.order-row', list).forEach(function(r, i){
+        r.setAttribute('data-index', String(i));
+        var qi = qs('.qty-input', r);
+        if (qi) qi.id = baseId + '-qty-' + i;
       });
       wirePickers(widget);
     }
 
     function getOrders(widget){
-      return qsa('.order-row', widget).map(r=>{
-        const menu = qs('.menu-value', r)?.textContent.trim() || '';
-        const qty  = Number(qs('.qty-input', r)?.value || 0);
-        return { menu, qty };
-      }).filter(o => o.menu && o.menu!=='Belum dipilih' && o.qty>0);
+      return qsa('.order-row', widget).map(function(r){
+        var mv = qs('.menu-value', r);
+        var qi = qs('.qty-input', r);
+        var menu = mv ? String(mv.textContent||'').trim() : '';
+        var qty  = qi ? Number(qi.value||0) : 0;
+        return { menu: menu, qty: qty };
+      }).filter(function(o){ return o.menu && o.menu !== 'Belum dipilih' && o.qty > 0; });
     }
-    const sumQty = rows => rows.reduce((s,o)=> s + Number(o.qty||0), 0);
+    function sumQty(rows){
+      return rows.reduce(function(s,o){ return s + Number(o.qty||0); }, 0);
+    }
 
-    // Gunakan baseId yang sesuai dengan ID elemen HTML
+    // Selaraskan key -> baseId (untuk ID elemen tampilan)
     function getIds(widget){
-      const key = widget.dataset.key; // toyo | party | everyday | wedding
-      const baseId =
-        key==='toyo'     ? 'toyo'  :
-        key==='party'    ? 'party' :
-        key==='everyday' ? 'every' :
-        /* wedding */      'wed';
-      return { key, baseId };
+      var key = widget.dataset ? widget.dataset.key : '';
+      var baseId = (key==='toyo') ? 'toyo' :
+                   (key==='party') ? 'party' :
+                   (key==='everyday') ? 'every' : 'wed';
+      return { key: key, baseId: baseId };
     }
 
     function refresh(widget){
-      const { baseId } = getIds(widget);
-      const min = Number(widget.dataset.min || 0);
-      const serviceName = widget.dataset.service || 'Layanan Kopi Feeling';
-      const dateMode = widget.dataset.datemode || 'single';
+      var ids = getIds(widget);
+      var baseId = ids.baseId;
+      var min = Number(widget.getAttribute('data-min') || 0);
+      var serviceName = widget.getAttribute('data-service') || 'Layanan Kopi Feeling';
+      var dateMode = widget.getAttribute('data-datemode') || 'single';
 
-      const orders = getOrders(widget);
-      const total  = sumQty(orders);
+      var orders = getOrders(widget);
+      var total  = sumQty(orders);
 
-      // Tulis total (pakai baseId) — ini menjaga Everyday & Wedding akurat
-      const totalEl = qs(`#${baseId}-total`); if(totalEl) totalEl.textContent = String(total);
+      // Tulis total (pakai baseId) — memastikan Everyday & Wedding akurat
+      var totalEl = qs('#'+baseId+'-total');
+      if (totalEl) totalEl.textContent = String(total);
 
       // Ambil identitas
-      const name  = qs(`#${baseId}-name`)?.value  || '';
-      const email = qs(`#${baseId}-email`)?.value || '';
-      const phone = qs(`#${baseId}-phone`)?.value || '';
-      const orgOrCouple =
-        baseId==='wed' ? (qs('#wed-couple')?.value || '')
-                       : (qs(`#${baseId}-org`)?.value || '');
+      var name  = getValById(baseId+'-name');
+      var email = getValById(baseId+'-email');
+      var phone = getValById(baseId+'-phone');
+      var orgOrCouple = (baseId==='wed') ? getValById('wed-couple') : getValById(baseId+'-org');
 
       // Tanggal
-      let tanggal = '';
-      if(dateMode==='range'){
-        const d1 = qs('#every-date-start')?.value || '';
-        const d2 = qs('#every-date-end')?.value   || '';
-        if(d1 || d2) tanggal = `Tanggal: ${fmtDateID(d1)}${(d1&&d2)?' – ':''}${fmtDateID(d2)}`;
+      var tanggal = '';
+      if (dateMode === 'range'){
+        var d1 = getValById('every-date-start');
+        var d2 = getValById('every-date-end');
+        if (d1 || d2) tanggal = 'Tanggal: ' + fmtDateID(d1) + ((d1 && d2) ? ' – ' : '') + fmtDateID(d2);
       }else{
-        const dId = baseId==='toyo' ? 'toyo-date' : baseId==='party' ? 'party-date' : baseId==='wed' ? 'wed-date' : '';
-        const d   = dId ? (qs('#'+dId)?.value || '') : '';
-        if(d) tanggal = `Tanggal: ${fmtDateID(d)}`;
+        var dId = (baseId==='toyo') ? 'toyo-date' : (baseId==='party') ? 'party-date' : (baseId==='wed') ? 'wed-date' : '';
+        var d = dId ? getValById(dId) : '';
+        if (d) tanggal = 'Tanggal: ' + fmtDateID(d);
       }
-      const address = qs(`#${baseId}-address`)?.value || '';
+      var address = getValById(baseId+'-address');
 
       // Rangkai pesan WA
-      const lines = [];
-      lines.push(`*${serviceName}*`);
-      if(name)  lines.push(`Nama: ${name}`);
-      if(orgOrCouple){
-        const labelOrg = baseId==='wed' ? 'Nama Mempelai' : 'Instansi/Komunitas';
-        lines.push(`${labelOrg}: ${orgOrCouple}`);
+      var lines = [];
+      lines.push('*' + serviceName + '*');
+      if (name)  lines.push('Nama: ' + name);
+      if (orgOrCouple){
+        var labelOrg = (baseId==='wed') ? 'Nama Mempelai' : 'Instansi/Komunitas';
+        lines.push(labelOrg + ': ' + orgOrCouple);
       }
-      if(email) lines.push(`Email: ${email}`);
-      if(phone) lines.push(`Nomor HP: ${phone}`);
-      if(tanggal) lines.push(tanggal);
+      if (email) lines.push('Email: ' + email);
+      if (phone) lines.push('Nomor HP: ' + phone);
+      if (tanggal) lines.push(tanggal);
       lines.push('Pesanan:');
-      if(orders.length){ orders.forEach((o,i)=> lines.push(` ${i+1}. ${o.menu} × ${o.qty}`)); }
-      else { lines.push(' (belum terisi)'); }
-      lines.push(`Total Cup: ${total}`);
-      if(address) lines.push(`Alamat Pengantaran: ${address}`);
+      if (orders.length){
+        orders.forEach(function(o,i){ lines.push(' ' + (i+1) + '. ' + o.menu + ' × ' + o.qty); });
+      } else {
+        lines.push(' (belum terisi)');
+      }
+      lines.push('Total Cup: ' + total);
+      if (address) lines.push('Alamat Pengantaran: ' + address);
       lines.push('', 'Terima kasih 🙏');
 
-      const msg   = encodeURIComponent(lines.join('\n'));
-      const waBtn = qs('.wa-send', widget);
-      const hint  = qs(`#${baseId}-hint`);
-      const ok    = total >= min;
+      var msg = encodeURIComponent(lines.join('\n'));
+      var waBtn = qs('.wa-send', widget);
+      var hint  = qs('#'+baseId+'-hint');
+      var ok    = total >= min;
 
-      if(waBtn){
-        waBtn.href = ok ? `https://wa.me/${WA_NUMBER}?text=${msg}` : '#';
+      if (waBtn){
+        waBtn.href = ok ? ('https://wa.me/' + WA_NUMBER + '?text=' + msg) : '#';
         waBtn.setAttribute('aria-disabled', ok ? 'false' : 'true');
       }
-      if(hint){
+      if (hint){
         hint.style.color = ok ? '#888' : '#d00';
         hint.textContent = ok ? 'Pesan akan dirangkum otomatis ke format WhatsApp.'
-                              : `Minimum pemesanan ${min} cup belum terpenuhi.`;
+                              : ('Minimum pemesanan ' + min + ' cup belum terpenuhi.');
       }
     }
   })();
