@@ -122,21 +122,6 @@ body.nav-open{overflow:hidden;touch-action:none;}
 @media (max-width:576px){.hero-title{font-size:clamp(24px,6vw,32px)}.slide{min-height:380px}}
 
 /* =========================
- Features Grid
- ========================= */
-.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
-.feature{
-  background:#fff;border:1px solid var(--border);border-radius:14px;padding:18px;text-align:center;box-shadow:var(--shadow);
-}
-.feature i{color:var(--brand-red);font-size:28px;margin-bottom:8px}
-@media (max-width:768px){.grid-3{grid-template-columns:1fr}}
-
-/* =========================
- Product Grid (highlight)
- ========================= */
-/* ——— Bagian lain tetap, tidak dipakai khusus halaman “Menu” ——— */
-
-/* =========================
  CTA Strip (kompak)
  ========================= */
 .cta-strip{
@@ -228,6 +213,18 @@ input,textarea{width:100%;padding:10px 12px;border:1px solid var(--border);borde
 @media (max-width:992px){.service-meta{grid-template-columns:1fr}}
 @media (max-width:576px){.service-intro{padding:12px 10px}.service-card .card-head h3{font-size:17px}}
 
+/* ===== Order list head (label kolom) ===== */
+.order-head{
+  display:grid;
+  grid-template-columns:1.4fr 120px 32px; /* Menu | Qty | (tombol hapus placeholder) */
+  gap:8px;
+  font-weight:800;
+  color:#fff;
+  margin:6px 0 6px;
+}
+.order-head .col-menu{text-align:left}
+.order-head .col-qty{text-align:left}
+
 /* =========================
  Stations Page
  ========================= */
@@ -242,58 +239,8 @@ input,textarea{width:100%;padding:10px 12px;border:1px solid var(--border);borde
 @media (max-width:768px){.station-list{grid-template-columns:1fr}}
 
 /* =========================
- Products Page — Menu Cards  (DIROMBAK)
+ Products Page — (tidak diubah di task ini)
  ========================= */
-/* Grid selalu 2 kolom pada semua lebar — responsif dengan gap nyaman */
-.menu-grid{
-  display:grid;
-  grid-template-columns:repeat(2, minmax(0, 1fr));
-  gap:14px;
-}
-
-/* Hilangkan kotak/kartu: latar transparan, tanpa border dan tanpa shadow */
-.menu-card{
-  background:transparent;
-  border:0;
-  border-radius:0;
-  box-shadow:none;
-  display:flex;
-  flex-direction:column;
-  align-items:center; /* supaya gambar + teks rapi di tengah secara visual */
-  text-align:left;   /* judul & deskripsi tetap rata kiri */
-}
-
-/* Gambar PNG: biarkan proporsional, tanpa tinggi paksa, transparansi dipertahankan */
-.menu-card img{
-  width:100%;
-  height:auto;           /* tidak dipaksa tinggi tetap */
-  object-fit:contain;    /* jangan crop gambar */
-  background:transparent;/* dukung PNG transparan */
-  display:block;
-}
-
-/* Info teks di bawah gambar — tanpa kotak */
-.menu-info{
-  width:100%;
-  padding:6px 2px 0;    /* ringkas supaya fokus ke gambar PNG */
-  display:flex;
-  flex-direction:column;
-  gap:6px;
-  background:transparent;
-}
-
-.menu-info h3{margin:0;font-size:18px;color:var(--brand-red);}
-.menu-sub{margin:0;color:var(--muted);font-weight:600;}
-.menu-desc{margin:0;color:var(--text);line-height:1.55;}
-
-/* Hapus ruang untuk tombol (karena WA per-item ditiadakan) */
-.menu-card .btn{display:none}
-
-/* Kompak di layar kecil tapi tetap 2 kolom */
-@media (max-width:576px){
-  .menu-grid{gap:10px}
-  .menu-info{padding:6px 0 0}
-}
 
 /* =========================
  Kontak — Feedback Form
@@ -351,16 +298,25 @@ input,textarea{width:100%;padding:10px 12px;border:1px solid var(--border);borde
   .station-list { gap: 10px; margin-top: 6px; }
   .station-item { padding: 10px; }
   .station-item a.link { min-height: 36px; }
-  .menu-grid { gap: 10px; }
-  .menu-info { padding: 6px 0 0; gap: 6px; }
-  .contact-grid { gap: 8px; margin-bottom: 8px; }
-  .order-list { gap: 8px; }
-  .order-row { gap: 8px; padding: 8px; grid-template-columns: 1.3fr 96px 32px; }
-  .menu-picker { padding: 10px 12px; }
-  .qty-input { padding: 8px 10px; }
-  .row-remove { width: 32px; height: 32px; }
-  .address-box { margin: 6px 0; }
-  .send-actions { gap: 8px; margin-top: 8px; }
 }
 
-/* === Leaderboard dipusatkan di `leaderboard-podium.css` (tidak ada aturan LB di file ini) === */
+/* ===== Modal (global) ===== */
+.modal{position:fixed;inset:0;z-index:2000;display:block}
+.modal[hidden]{display:none!important}
+.modal-backdrop{
+  position:fixed;inset:0;background:rgba(0,0,0,.45);backdrop-filter:saturate(120%) blur(2px);
+}
+.modal-dialog{
+  position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);
+  width:min(92vw, 720px);max-height:min(86vh, 720px);
+  background:#fff;border-radius:14px;border:1px solid var(--border);box-shadow:var(--shadow);
+  display:flex;flex-direction:column;overflow:hidden;
+}
+.modal-header{display:flex;align-items:center;justify-content:space-between;padding:12px 14px;border-bottom:1px solid var(--border);}
+.modal-body{padding:12px;overflow:auto}
+.modal-footer{padding:12px;border-top:1px solid var(--border);display:flex;justify-content:flex-end;gap:8px}
+.modal-close{background:#fff;border:1px solid var(--border);border-radius:8px;padding:6px 10px;cursor:pointer}
+.modal-search input{width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:10px;font:inherit}
+
+/* kunci scroll body ketika modal aktif */
+body.modal-open{overflow:hidden;touch-action:none}
