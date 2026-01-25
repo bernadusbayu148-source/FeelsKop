@@ -134,13 +134,7 @@ body.nav-open{overflow:hidden;touch-action:none;}
 /* =========================
  Product Grid (highlight)
  ========================= */
-.product-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-.product-card{background:#fff;border:1px solid var(--border);border-radius:14px;overflow:hidden;box-shadow:var(--shadow)}
-.product-card img{width:100%;height:auto;display:block}
-.product-info{padding:14px}
-.product-info h3{margin:0 0 6px;font-size:18px}
-@media (max-width:992px){.product-grid{grid-template-columns:repeat(2,1fr)}}
-@media (max-width:576px){.product-grid{grid-template-columns:1fr}}
+/* ——— Bagian lain tetap, tidak dipakai khusus halaman “Menu” ——— */
 
 /* =========================
  CTA Strip (kompak)
@@ -248,19 +242,58 @@ input,textarea{width:100%;padding:10px 12px;border:1px solid var(--border);borde
 @media (max-width:768px){.station-list{grid-template-columns:1fr}}
 
 /* =========================
- Products Page — Menu Cards
+ Products Page — Menu Cards  (DIROMBAK)
  ========================= */
-.menu-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
-.menu-card{background:#fff;border:1px solid var(--border);border-radius:14px;overflow:hidden;box-shadow:var(--shadow);display:flex;flex-direction:column;}
-.menu-card img{width:100%;height:170px;object-fit:cover;display:block;}
-.menu-info{padding:12px;display:flex;flex-direction:column;gap:8px;}
+/* Grid selalu 2 kolom pada semua lebar — responsif dengan gap nyaman */
+.menu-grid{
+  display:grid;
+  grid-template-columns:repeat(2, minmax(0, 1fr));
+  gap:14px;
+}
+
+/* Hilangkan kotak/kartu: latar transparan, tanpa border dan tanpa shadow */
+.menu-card{
+  background:transparent;
+  border:0;
+  border-radius:0;
+  box-shadow:none;
+  display:flex;
+  flex-direction:column;
+  align-items:center; /* supaya gambar + teks rapi di tengah secara visual */
+  text-align:left;   /* judul & deskripsi tetap rata kiri */
+}
+
+/* Gambar PNG: biarkan proporsional, tanpa tinggi paksa, transparansi dipertahankan */
+.menu-card img{
+  width:100%;
+  height:auto;           /* tidak dipaksa tinggi tetap */
+  object-fit:contain;    /* jangan crop gambar */
+  background:transparent;/* dukung PNG transparan */
+  display:block;
+}
+
+/* Info teks di bawah gambar — tanpa kotak */
+.menu-info{
+  width:100%;
+  padding:6px 2px 0;    /* ringkas supaya fokus ke gambar PNG */
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+  background:transparent;
+}
+
 .menu-info h3{margin:0;font-size:18px;color:var(--brand-red);}
 .menu-sub{margin:0;color:var(--muted);font-weight:600;}
 .menu-desc{margin:0;color:var(--text);line-height:1.55;}
-.menu-card .btn{align-self:flex-start;}
-.menu-sub .addon{font-weight:700;color:#b5121b;}
-@media (max-width:992px){.menu-grid{grid-template-columns:repeat(2,1fr)}.menu-card img{height:160px}}
-@media (max-width:576px){.menu-grid{grid-template-columns:1fr}.menu-card img{height:170px}}
+
+/* Hapus ruang untuk tombol (karena WA per-item ditiadakan) */
+.menu-card .btn{display:none}
+
+/* Kompak di layar kecil tapi tetap 2 kolom */
+@media (max-width:576px){
+  .menu-grid{gap:10px}
+  .menu-info{padding:6px 0 0}
+}
 
 /* =========================
  Kontak — Feedback Form
@@ -319,9 +352,7 @@ input,textarea{width:100%;padding:10px 12px;border:1px solid var(--border);borde
   .station-item { padding: 10px; }
   .station-item a.link { min-height: 36px; }
   .menu-grid { gap: 10px; }
-  .menu-card img { height: 160px; }
-  .menu-info { padding: 10px; gap: 6px; }
-  .menu-desc { line-height: 1.5; }
+  .menu-info { padding: 6px 0 0; gap: 6px; }
   .contact-grid { gap: 8px; margin-bottom: 8px; }
   .order-list { gap: 8px; }
   .order-row { gap: 8px; padding: 8px; grid-template-columns: 1.3fr 96px 32px; }
@@ -332,4 +363,4 @@ input,textarea{width:100%;padding:10px 12px;border:1px solid var(--border);borde
   .send-actions { gap: 8px; margin-top: 8px; }
 }
 
-/* === (Tidak ada aturan LEADERBOARD di berkas ini; seluruhnya dipusatkan di leaderboard-podium.css) === */
+/* === Leaderboard dipusatkan di `leaderboard-podium.css` (tidak ada aturan LB di file ini) === */
