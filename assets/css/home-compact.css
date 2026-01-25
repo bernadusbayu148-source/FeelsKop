@@ -1,0 +1,70 @@
+
+/* =========================================================
+  HOME — Compact Hero Overrides
+  Tujuan: mengecilkan tinggi area hero/slider agar tidak makan ruang.
+  File ini hanya di-include di index.html, sehingga halaman lain aman.
+========================================================= */
+
+/* Tinggi minimum hero per slide (desktop & tablet) */
+.hero .slide{
+  /* sebelumnya ~480px; sekarang lebih kompak */
+  min-height: clamp(320px, 58vh, 420px);
+  /* Overlay tetap ada agar teks terbaca */
+  background-image:
+    linear-gradient(rgba(0,0,0,.28), rgba(0,0,0,.28)),
+    var(--bg);
+}
+
+/* Konten di dalam hero dipadatkan sedikit */
+.hero .slide-content{
+  padding-top: 10px;
+  padding-bottom: 16px;
+}
+
+/* Heading & subheading */
+.hero .hero-title{
+  margin-top: 6px;
+  margin-bottom: 8px;
+  line-height: 1.15;
+}
+.hero .hero-subtitle{
+  margin: 0 0 12px;
+  opacity: .95;
+}
+
+/* Jarak antar tombol aksi */
+.hero .hero-actions{
+  display: inline-flex;
+  gap: 12px;
+}
+
+/* Posisi tombol navigasi slider */
+.hero .slider-btn{
+  top: 52%;
+}
+
+/* Dot indikator slider */
+.hero .slider-dots{
+  bottom: 12px;
+}
+
+/* ====== Mobile tuning ====== */
+@media (max-width: 576px){
+  .hero .slide{
+    /* sebelumnya ~380px; sekarang lebih pendek */
+    min-height: clamp(260px, 50vh, 360px);
+  }
+  .hero .hero-title{
+    margin-top: 0;
+    margin-bottom: 6px;
+  }
+  .hero .hero-subtitle{
+    margin-bottom: 10px;
+  }
+  .hero .slider-btn{
+    top: 55%;
+  }
+  .hero .slider-dots{
+    bottom: 10px;
+  }
+}
