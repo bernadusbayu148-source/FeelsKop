@@ -108,16 +108,6 @@ body.nav-open{overflow:hidden;touch-action:none;}
 @media (max-width:576px){.hero-title{font-size:clamp(24px,6vw,32px)}.slide{min-height:380px}}
 
 /* =========================
- Features Grid
- ========================= */
-.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
-.feature{
-  background:#fff;border:1px solid var(--border);border-radius:14px;padding:18px;text-align:center;box-shadow:var(--shadow);
-}
-.feature i{color:var(--brand-red);font-size:28px;margin-bottom:8px}
-@media (max-width:768px){.grid-3{grid-template-columns:1fr}}
-
-/* =========================
  CTA Strip (kompak)
  ========================= */
 .cta-strip{
@@ -324,16 +314,86 @@ main .menu-grid{
   .menu-info { padding: 6px 0 0 !important; gap: 6px !important; }
 }
 
-/* ===== Modal (global) — DIPERKUAT ===== */
-/* Pastikan modal selalu overlay di atas halaman & terkunci pada viewport */
+/* =========================
+ Order Widget — Baris Pesanan (Menu + Qty)  >>> DIPERKUAT
+ ========================= */
+/* Grid daftar baris */
+.order-widget .order-list{
+  display:grid !important;
+  gap:10px !important;
+}
+
+/* Setiap baris = 2 kolom field + 1 kolom kecil (hapus) */
+.order-widget .order-list .order-row{
+  display:grid !important;
+  grid-template-columns: 1.4fr 120px 32px !important; /* Menu | Qty | x */
+  gap:10px !important;
+  align-items:end !important;
+}
+
+/* Field kolom dengan label di atas kontrol */
+.order-widget .order-list .order-row .field{
+  display:flex !important;
+  flex-direction:column !important;
+  gap:6px !important;
+  min-width:0 !important;
+}
+.order-widget .order-list .order-row .field > label{
+  margin:0 !important;
+  font-weight:700 !important;
+  color:#fff !important;   /* agar kontras di card merah */
+}
+
+/* Tombol pilih menu */
+.order-widget .order-list .menu-picker{
+  width:100% !important;
+  text-align:left !important;
+  padding:10px 12px !important;
+  min-height:44px !important;
+  border:1px solid var(--border) !important;
+  border-radius:10px !important;
+  background:#fff !important;
+  color:var(--text) !important;
+  display:flex !important;
+  justify-content:space-between !important;
+  align-items:center !important;
+  gap:10px !important;
+}
+
+/* Input Qty */
+.order-widget .order-list .qty-input{
+  width:100% !important;
+  padding:10px 12px !important;
+  border:1px solid var(--border) !important;
+  border-radius:10px !important;
+}
+
+/* Tombol hapus baris */
+.order-widget .order-list .row-remove{
+  width:32px !important;
+  height:32px !important;
+  border-radius:8px !important;
+  border:1px solid var(--border) !important;
+  background:#fff !important;
+  cursor:pointer !important;
+}
+
+/* Responsif */
+@media (max-width:768px){
+  .order-widget .order-list .order-row{
+    grid-template-columns: 1fr 100px 32px !important;
+    gap:8px !important;
+  }
+}
+
+/* ===== Modal (global) — DIPERKUAT (dari perbaikan sebelumnya) ===== */
 body .modal{
   position:fixed !important;
   inset:0 !important;
-  z-index:4000 !important;   /* lebih tinggi dari header/footer */
+  z-index:4000 !important;
   display:block !important;
 }
 body .modal[hidden]{display:none !important;}
-
 body .modal-backdrop{
   position:fixed !important;
   inset:0 !important;
@@ -341,7 +401,6 @@ body .modal-backdrop{
   backdrop-filter:saturate(120%) blur(2px) !important;
   z-index:4001 !important;
 }
-
 body .modal-dialog{
   position:fixed !important;
   top:50% !important;
@@ -356,10 +415,10 @@ body .modal-dialog{
   display:flex !important;
   flex-direction:column !important;
   overflow:hidden !important;
-  z-index:4002 !important; /* di atas backdrop */
+  z-index:4002 !important;
 }
 body .modal-header{display:flex;align-items:center;justify-content:space-between;padding:12px 14px;border-bottom:1px solid var(--border);}
-body .modal-body{padding:12px;overflow:auto;max-height:calc(min(86vh,720px) - 96px);} /* area scroll isi */
+body .modal-body{padding:12px;overflow:auto;max-height:calc(min(86vh,720px) - 96px);}
 body .modal-footer{padding:12px;border-top:1px solid var(--border);display:flex;justify-content:flex-end;gap:8px}
 body .modal-close{background:#fff;border:1px solid var(--border);border-radius:8px;padding:6px 10px;cursor:pointer}
 body .modal-search input{width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:10px;font:inherit}
