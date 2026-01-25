@@ -1,23 +1,20 @@
 
 /* =========================================================
-   LEADERBOARD — Mobile-first & stabil lintas device
-   Podium bertingkat + List-card mobile (≤480px)
-   Tabel tetap untuk >480px. Scope hanya di #leaderboard-host.
-   ========================================================= */
-
+ LEADERBOARD — Single Source of Truth
+ Mobile-first & stabil lintas device
+ Podium bertingkat + List-card mobile (≤480px)
+ Tabel tetap untuk >480px. Scope hanya di #leaderboard-host.
+ ========================================================= */
 html{ -webkit-text-size-adjust: 100%; }
-
 :root{
   --gold:#f5b942; --silver:#cfd3da; --bronze:#d48957;
   --lb-bg:#fff; --lb-border:#e7e7ea; --lb-chip:#fff; --lb-chip-border:#eaeaea;
   --text:#333; --muted:#6b7280; --brand:#D21F3C;
-
   /* Offset vertikal chip poin */
   --point-offset-desktop:-14px;
   --point-offset-mobile:-8px;
   --point-offset-tiny:-4px;
 }
-
 /* ====== JUDUL SEKSI berupa GAMBAR ====== */
 #leaderboard-host .section-title-img{
   display:flex; align-items:center; justify-content:center;
@@ -38,7 +35,6 @@ html{ -webkit-text-size-adjust: 100%; }
 @media (max-width:360px){
   #leaderboard-host .section-title-img img{ width:min(90%, 520px); }
 }
-
 /* ===== Host card ===== */
 #leaderboard-host .lb-card{
   background:var(--lb-bg);
@@ -48,7 +44,6 @@ html{ -webkit-text-size-adjust: 100%; }
   padding:14px;
   overflow-x:hidden;
 }
-
 /* Controls */
 #leaderboard-host .lb-controls{
   display:grid; grid-template-columns:1fr auto; gap:10px; margin-bottom:8px;
@@ -80,14 +75,12 @@ html{ -webkit-text-size-adjust: 100%; }
   display:inline-block; padding:6px 10px; border-radius:999px; font-weight:800; background:#fff;
   border:1px solid var(--lb-border); box-shadow:0 4px 10px rgba(0,0,0,.06);
 }
-
 /* ===== Podium ===== */
 #leaderboard-host .lb-podium{
   --bh: clamp(150px, 26vw, 220px);
   display:grid; grid-template-columns:repeat(3,minmax(0,1fr));
   align-items:end; gap:16px; margin:6px 0 14px; position:relative;
 }
-
 #leaderboard-host .podium-col{ --step:1; display:flex; flex-direction:column; align-items:center; min-width:0; }
 #leaderboard-host .p-name{
   margin:0 6px 2px; text-align:center; font-weight:800;
@@ -96,7 +89,6 @@ html{ -webkit-text-size-adjust: 100%; }
   text-wrap:balance;
 }
 #leaderboard-host .p-member{ margin:0 0 8px; color:var(--muted); font-size:12.5px; }
-
 #leaderboard-host .stage{
   --ring:#e7e7ea;
   height: calc(var(--bh) * var(--step));
@@ -116,13 +108,12 @@ html{ -webkit-text-size-adjust: 100%; }
   box-shadow:0 8px 16px rgba(0,0,0,.08);
   display:grid; place-items:center;
 }
-#leaderboard-host .podium-col.first  { --step:1.00; }
-#leaderboard-host .podium-col.second { --step:0.90; }
-#leaderboard-host .podium-col.third  { --step:0.82; }
-#leaderboard-host .podium-col.first  .stage{ --ring:var(--gold);  --tone1:#fff7d0; --tone2:#fffae6; }
+#leaderboard-host .podium-col.first { --step:1.00; }
+#leaderboard-host .podium-col.second{ --step:0.90; }
+#leaderboard-host .podium-col.third { --step:0.82; }
+#leaderboard-host .podium-col.first .stage{ --ring:var(--gold); --tone1:#fff7d0; --tone2:#fffae6; }
 #leaderboard-host .podium-col.second .stage{ --ring:var(--silver);--tone1:#f2f4f8; --tone2:#ffffff; }
-#leaderboard-host .podium-col.third  .stage{ --ring:var(--bronze);--tone1:#fde6d2; --tone2:#fff2e6; }
-
+#leaderboard-host .podium-col.third .stage{ --ring:var(--bronze);--tone1:#fde6d2; --tone2:#fff2e6; }
 #leaderboard-host .p-point{
   margin-top: var(--point-offset-desktop);
   display:inline-flex; align-items:center; gap:6px;
@@ -134,7 +125,6 @@ html{ -webkit-text-size-adjust: 100%; }
   font-variant-numeric:tabular-nums; font-feature-settings:"tnum";
 }
 #leaderboard-host .p-point .num{ font-weight:800; }
-
 @media (max-width: 414px){
   #leaderboard-host .lb-podium{ gap:18px; }
   #leaderboard-host .p-point{
@@ -143,9 +133,9 @@ html{ -webkit-text-size-adjust: 100%; }
   }
 }
 @media (max-width: 360px){
-  #leaderboard-host .podium-col.first  { --step:1.00; }
-  #leaderboard-host .podium-col.second { --step:0.88; }
-  #leaderboard-host .podium-col.third  { --step:0.80; }
+  #leaderboard-host .podium-col.first { --step:1.00; }
+  #leaderboard-host .podium-col.second{ --step:0.88; }
+  #leaderboard-host .podium-col.third { --step:0.80; }
   #leaderboard-host .p-point{
     margin-top: var(--point-offset-tiny);
     padding:4px 8px; font-size:11.5px; gap:5px; max-width:88%;
@@ -160,7 +150,6 @@ html{ -webkit-text-size-adjust: 100%; }
 }
 #leaderboard-host .table-accent{ height:6px; border-radius:999px; background:linear-gradient(90deg,#D21F3C,#F75353); opacity:.22; margin:0 6px 8px }
 #leaderboard-host #lb-meta{ display:none !important; }
-
 #leaderboard-host .lb-table{ width:100%; border-collapse:collapse; table-layout:fixed; }
 #leaderboard-host .lb-table thead th{
   background:#f6f7f9; text-align:left; padding:10px;
@@ -180,7 +169,6 @@ html{ -webkit-text-size-adjust: 100%; }
 @media (max-width: 480px){
   #leaderboard-host .lb-table{ display:none; }
   #leaderboard-host .lb-list{ display:block; }
-
   #leaderboard-host .lb-li{
     display:grid;
     grid-template-columns:56px 1fr auto;
@@ -189,7 +177,6 @@ html{ -webkit-text-size-adjust: 100%; }
     background:#fff;
   }
   #leaderboard-host .lb-li:last-child{ border-bottom:0; }
-
   #leaderboard-host .lb-li .rk{ width:56px; height:40px; display:grid; place-items:center; }
   #leaderboard-host .lb-li .rk .rank-badge{
     padding:6px 10px; border-radius:999px; font-weight:800; background:#fff;
@@ -210,7 +197,6 @@ html{ -webkit-text-size-adjust: 100%; }
     margin-left:auto; text-align:right; min-width:72px;
   }
 }
-
 @media (max-width: 360px){
   #leaderboard-host .lb-li{ grid-template-columns:54px 1fr auto; gap:8px; padding:10px 10px; }
   #leaderboard-host .lb-li .rk .rank-badge{ font-size:12.5px; padding:5px 9px; }
