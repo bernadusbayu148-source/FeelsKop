@@ -1,34 +1,50 @@
 
 /* =========================================================
-  HOME — Compact Hero Overrides
-  Tujuan: mengecilkan tinggi area hero/slider agar tidak makan ruang.
+  HOME — Compact Hero Overrides (v2)
+  Tujuan:
+  - Mengurangi ruang abu-abu di ATAS judul (konten dinaikkan)
+  - Mengurangi ruang abu-abu di BAWAH (dekat dots)
   File ini hanya di-include di index.html, sehingga halaman lain aman.
 ========================================================= */
 
-/* Tinggi minimum hero per slide (desktop & tablet) */
+/* ===== Desktop & Tablet ===== */
 .hero .slide{
-  /* sebelumnya ~480px; sekarang lebih kompak */
-  min-height: clamp(320px, 58vh, 420px);
-  /* Overlay tetap ada agar teks terbaca */
+  /* Perkecil tinggi minimum hero */
+  min-height: clamp(300px, 52vh, 400px);
+  /* Pindahkan layout dari "grid center" ke "flex start"
+     agar konten bisa ditempatkan lebih ke atas */
+  display: flex !important;
+  align-items: flex-start !important;
+  justify-content: center !important;
+
+  /* Overlay tetap agar teks terbaca */
   background-image:
-    linear-gradient(rgba(0,0,0,.28), rgba(0,0,0,.28)),
+    linear-gradient(rgba(0,0,0,.26), rgba(0,0,0,.26)),
     var(--bg);
+  /* Sedikit padding atas & samping supaya napas */
+  padding: 12px 16px 8px;
 }
 
-/* Konten di dalam hero dipadatkan sedikit */
+/* Kontainer isi hero — rapatkan vertikal */
 .hero .slide-content{
-  padding-top: 10px;
-  padding-bottom: 16px;
+  /* Bawa konten lebih ke atas */
+  margin-top: 4px;
+  /* Padatkan ruang dalam */
+  padding-top: 0;
+  padding-bottom: 8px;
+  max-width: 880px;
+  width: 100%;
+  text-align: center;
 }
 
-/* Heading & subheading */
+/* Heading & subheading dipadatkan */
 .hero .hero-title{
-  margin-top: 6px;
-  margin-bottom: 8px;
+  margin-top: 2px;
+  margin-bottom: 6px;
   line-height: 1.15;
 }
 .hero .hero-subtitle{
-  margin: 0 0 12px;
+  margin: 0 0 10px;
   opacity: .95;
 }
 
@@ -38,33 +54,28 @@
   gap: 12px;
 }
 
-/* Posisi tombol navigasi slider */
+/* Tombol navigasi slider sedikit dinaikkan
+   (karena konten sekarang lebih ke atas) */
 .hero .slider-btn{
-  top: 52%;
+  top: 50%;
 }
 
-/* Dot indikator slider */
+/* Dots didekatkan ke bawah agar tidak menyisakan ruang besar */
 .hero .slider-dots{
-  bottom: 12px;
+  bottom: 8px;
 }
 
-/* ====== Mobile tuning ====== */
+/* ===== Mobile (≤576px) ===== */
 @media (max-width: 576px){
   .hero .slide{
-    /* sebelumnya ~380px; sekarang lebih pendek */
-    min-height: clamp(260px, 50vh, 360px);
+    /* Lebih pendek di mobile */
+    min-height: clamp(240px, 46vh, 330px);
+    padding: 10px 14px 6px;
+  }
+  .hero .slide-content{
+    margin-top: 0;
+    padding-bottom: 6px;
   }
   .hero .hero-title{
     margin-top: 0;
-    margin-bottom: 6px;
-  }
-  .hero .hero-subtitle{
-    margin-bottom: 10px;
-  }
-  .hero .slider-btn{
-    top: 55%;
-  }
-  .hero .slider-dots{
-    bottom: 10px;
-  }
-}
+    margin
