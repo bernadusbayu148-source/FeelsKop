@@ -225,15 +225,11 @@ input,textarea{width:100%;padding:10px 12px;border:1px solid var(--border);borde
 /* =========================
  Products Page — Menu Cards (PASTI 2 KOLOM)
  ========================= */
-/* Kunci grid 2 kolom di SEMUA device. Gunakan selector spesifik + !important
-   agar menang atas override lama/media query lain. */
 main .menu-grid{
   display:grid !important;
   grid-template-columns:repeat(2, minmax(0, 1fr)) !important;
   gap:14px !important;
 }
-
-/* Hilangkan “kotak”/kartu: cocok untuk PNG transparan */
 .menu-card{
   background:transparent !important;
   border:0 !important;
@@ -245,8 +241,6 @@ main .menu-grid{
   text-align:left !important;
   width:100% !important;
 }
-
-/* Gambar menu (PNG/JPG) tetap proporsional */
 .menu-card img{
   width:100% !important;
   height:auto !important;
@@ -254,8 +248,6 @@ main .menu-grid{
   background:transparent !important;
   display:block !important;
 }
-
-/* Info teks */
 .menu-info{
   width:100% !important;
   padding:6px 2px 0 !important;
@@ -267,11 +259,7 @@ main .menu-grid{
 .menu-info h3{margin:0;font-size:18px;color:var(--brand-red);}
 .menu-sub{margin:0;color:var(--muted);font-weight:600;}
 .menu-desc{margin:0;color:var(--text);line-height:1.55;}
-
-/* Tidak gunakan tombol WA per-item (jika masih ada di markup lama) */
 .menu-card .btn{display:none !important;}
-
-/* Kompak di layar kecil, namun tetap 2 kolom */
 @media (max-width:576px){
   main .menu-grid{ gap:10px !important; }
   .menu-info{ padding:6px 0 0 !important; gap:6px !important; }
@@ -332,9 +320,49 @@ main .menu-grid{
   .service-tabs .tab { padding: 9px 14px; min-height: 38px; }
   .station-list { gap: 10px; margin-top: 6px; }
   .station-item { padding: 10px; }
-  .station-item a.link { min-height: 36px; }
   main .menu-grid { gap: 10px !important; }
   .menu-info { padding: 6px 0 0 !important; gap: 6px !important; }
 }
 
-/* === Leaderboard dipusatkan di `leaderboard-podium.css` (tanpa perubahan di file ini) === */
+/* ===== Modal (global) — DIPERKUAT ===== */
+/* Pastikan modal selalu overlay di atas halaman & terkunci pada viewport */
+body .modal{
+  position:fixed !important;
+  inset:0 !important;
+  z-index:4000 !important;   /* lebih tinggi dari header/footer */
+  display:block !important;
+}
+body .modal[hidden]{display:none !important;}
+
+body .modal-backdrop{
+  position:fixed !important;
+  inset:0 !important;
+  background:rgba(0,0,0,.45) !important;
+  backdrop-filter:saturate(120%) blur(2px) !important;
+  z-index:4001 !important;
+}
+
+body .modal-dialog{
+  position:fixed !important;
+  top:50% !important;
+  left:50% !important;
+  transform:translate(-50%,-50%) !important;
+  width:min(92vw, 720px) !important;
+  max-height:min(86vh, 720px) !important;
+  background:#fff !important;
+  border-radius:14px !important;
+  border:1px solid var(--border) !important;
+  box-shadow:var(--shadow) !important;
+  display:flex !important;
+  flex-direction:column !important;
+  overflow:hidden !important;
+  z-index:4002 !important; /* di atas backdrop */
+}
+body .modal-header{display:flex;align-items:center;justify-content:space-between;padding:12px 14px;border-bottom:1px solid var(--border);}
+body .modal-body{padding:12px;overflow:auto;max-height:calc(min(86vh,720px) - 96px);} /* area scroll isi */
+body .modal-footer{padding:12px;border-top:1px solid var(--border);display:flex;justify-content:flex-end;gap:8px}
+body .modal-close{background:#fff;border:1px solid var(--border);border-radius:8px;padding:6px 10px;cursor:pointer}
+body .modal-search input{width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:10px;font:inherit}
+
+/* kunci scroll body ketika modal aktif */
+body.modal-open{overflow:hidden !important;touch-action:none !important;}
