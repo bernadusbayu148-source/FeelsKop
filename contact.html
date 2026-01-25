@@ -4,50 +4,47 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <title>Kontak — Kritik & Saran | Kopi Feeling</title>
+  <title>Kontak — Kritik & Saran
+ Kopi Feeling</title>
   <meta name="description" content="Kirim kritik, saran, atau pertanyaan untuk Kopi Feeling. Kami senang mendengar masukan Anda agar bisa terus menjadi lebih baik." />
   <link rel="canonical" href="https://bernadusbayu148-source.github.io/FeelsKop/contact.html" />
+  <meta name="theme-color" content="#b5121b" />
 
   <!-- Fonts & Icons -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
-
   <!-- Main CSS (cache-buster) -->
   <link rel="stylesheet" href="assets/css/style.css?v=20260123f">
-
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="Kontak — Kritik & Saran | Kopi Feeling" />
+  <meta property="og:title" content="Kontak — Kritik & Saran
+ Kopi Feeling" />
   <meta property="og:description" content="Kirim kritik, saran, atau pertanyaan Anda untuk Kopi Feeling. Kami siap mendengar dan menindaklanjuti." />
   <meta property="og:url" content="https://bernadusbayu148-source.github.io/FeelsKop/contact.html" />
   <meta property="og:image" content="https://bernadusbayu148-source.github.io/FeelsKop/assets/img/og-cover.jpg" />
   <meta property="og:locale" content="id_ID" />
-
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Kontak — Kritik & Saran | Kopi Feeling" />
+  <meta name="twitter:title" content="Kontak — Kritik & Saran
+ Kopi Feeling" />
   <meta name="twitter:description" content="Kirim kritik, saran, atau pertanyaan Anda untuk Kopi Feeling. Kami siap mendengar dan menindaklanjuti." />
   <meta name="twitter:image" content="https://bernadusbayu148-source.github.io/FeelsKop/assets/img/og-cover.jpg" />
 </head>
-
 <body>
   <!-- HEADER / NAVBAR -->
   <header class="site-header" id="siteHeader">
     <div class="container nav-container">
-
       <a class="brand" href="index.html" aria-label="Halaman utama">
         <img src="assets/img/logo-oval.svg" alt="Logo Kopi Feeling" class="logo" />
         <span class="brand-name">Kopi Feeling</span>
       </a>
-
       <button class="nav-toggle" aria-label="Buka menu" aria-expanded="false" aria-controls="primaryNav">
         <span class="nav-toggle-bar"></span>
         <span class="nav-toggle-bar"></span>
         <span class="nav-toggle-bar"></span>
       </button>
-
       <nav class="nav" id="primaryNav" aria-label="Navigasi utama">
         <ul class="nav-list">
           <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
@@ -57,13 +54,11 @@
           <li class="nav-item"><a class="nav-link active" aria-current="page" href="contact.html">Kontak</a></li>
         </ul>
       </nav>
-
       <a class="btn btn-outline btn-wa"
          href="https://wa.me/6281254913064?text=Halo%20Kopi%20Feeling,%20saya%20ingin%20menyampaikan%20kritik%20atau%20saran."
          target="_blank" rel="noopener">
         <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> WhatsApp
       </a>
-
     </div>
   </header>
 
@@ -130,13 +125,13 @@
       <div class="feedback-field">
         <label for="fbMessage">Pesan <span class="req">*</span></label>
         <textarea id="fbMessage" name="message" rows="6" maxlength="1200"
-                  placeholder="Tulis kritik/saran/pertanyaan Anda secara jelas. Sertakan detail waktu/tempat jika relevan."></textarea>
+          placeholder="Tulis kritik/saran/pertanyaan Anda secara jelas. Sertakan detail waktu/tempat jika relevan."></textarea>
         <div class="input-hint">
           <span id="charCount">0</span>/1200 karakter
         </div>
       </div>
 
-      <!-- Persetujuan follow-up (rapi & aksesibel) -->
+      <!-- Persetujuan follow-up -->
       <fieldset class="consent-fieldset" aria-label="Persetujuan tindak lanjut">
         <legend class="sr-only">Persetujuan tindak lanjut</legend>
         <label class="consent-row">
@@ -196,80 +191,74 @@
 
   <!-- SCRIPTS -->
   <script src="assets/js/main.js" defer></script>
-
   <!-- Inline JS — rangkum form ke WhatsApp -->
   <script>
-    (function () {
-      const WA_NUMBER = '6281254913064';
-      const qs  = (s, r=document)=> r.querySelector(s);
-      const qsv = (id)=> (qs('#'+id)?.value ?? '').trim();
+  (function () {
+    const WA_NUMBER = '6281254913064';
+    const qs = (s, r=document)=> r.querySelector(s);
+    const qsv = (id)=> (qs('#'+id)?.value ?? '').trim();
+    const btn = qs('#fbSendBtn');
+    const fields = ['fbName','fbEmail','fbPhone','fbType','fbTopic','fbRating','fbMessage'];
+    const charCount = qs('#charCount');
+    const msgBox = qs('#fbMessage');
 
-      const btn = qs('#fbSendBtn');
-      const fields = ['fbName','fbEmail','fbPhone','fbType','fbTopic','fbRating','fbMessage'];
-      const charCount = qs('#charCount');
-      const msgBox = qs('#fbMessage');
+    function buildMessage(){
+      const name = qsv('fbName');
+      const email = qsv('fbEmail');
+      const phone = qsv('fbPhone');
+      const type = qsv('fbType');
+      const topic = qsv('fbTopic');
+      const rating = qsv('fbRating');
+      const msg = qsv('fbMessage');
+      const consent= qs('#fbConsent')?.checked ? 'Ya' : 'Tidak';
+      const lines = [];
+      lines.push('*Kritik & Saran — Kopi Feeling*');
+      if (type)  lines.push(`Jenis: ${type}`);
+      if (topic) lines.push(`Topik: ${topic}`);
+      if (rating)lines.push(`Penilaian: ${rating}`);
+      lines.push('');
+      lines.push('Pesan:');
+      lines.push(msg ? msg : '(kosong)');
+      lines.push('');
+      lines.push('— Identitas Pengirim —');
+      if (name)  lines.push(`Nama: ${name}`);
+      if (email) lines.push(`Email: ${email}`);
+      if (phone) lines.push(`Nomor HP: ${phone}`);
+      lines.push(`Bersedia dihubungi: ${consent}`);
+      lines.push('');
+      lines.push('Terima kasih 🙏');
+      return lines.join('\n');
+    }
 
-      function buildMessage(){
-        const name   = qsv('fbName');
-        const email  = qsv('fbEmail');
-        const phone  = qsv('fbPhone');
-        const type   = qsv('fbType');
-        const topic  = qsv('fbTopic');
-        const rating = qsv('fbRating');
-        const msg    = qsv('fbMessage');
-        const consent= qs('#fbConsent')?.checked ? 'Ya' : 'Tidak';
+    function validate(){
+      // wajib: nama, email, jenis, pesan
+      const ok =
+        qsv('fbName') &&
+        qsv('fbEmail') &&
+        qsv('fbType') &&
+        qsv('fbMessage');
+      btn.setAttribute('aria-disabled', ok ? 'false' : 'true');
+      btn.href = ok ? `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(buildMessage())}` : '#';
+    }
 
-        const lines = [];
-        lines.push('*Kritik & Saran — Kopi Feeling*');
-        if (type)   lines.push(`Jenis: ${type}`);
-        if (topic)  lines.push(`Topik: ${topic}`);
-        if (rating) lines.push(`Penilaian: ${rating}`);
-        lines.push('');
-        lines.push('Pesan:');
-        lines.push(msg ? msg : '(kosong)');
-        lines.push('');
-        lines.push('— Identitas Pengirim —');
-        if (name)  lines.push(`Nama: ${name}`);
-        if (email) lines.push(`Email: ${email}`);
-        if (phone) lines.push(`Nomor HP: ${phone}`);
-        lines.push(`Bersedia dihubungi: ${consent}`);
-        lines.push('');
-        lines.push('Terima kasih 🙏');
+    // Bind inputs
+    fields.forEach(id => {
+      const el = qs('#'+id);
+      if (!el) return;
+      el.addEventListener('input', validate);
+      el.addEventListener('change', validate);
+    });
 
-        return lines.join('\n');
-      }
+    // Karakter pesan
+    msgBox.addEventListener('input', () => {
+      charCount.textContent = String((msgBox.value || '').length);
+    });
 
-      function validate(){
-        // wajib: nama, email, jenis, pesan
-        const ok =
-          qsv('fbName')  &&
-          qsv('fbEmail') &&
-          qsv('fbType')  &&
-          qsv('fbMessage');
-
-        btn.setAttribute('aria-disabled', ok ? 'false' : 'true');
-        btn.href = ok ? `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(buildMessage())}` : '#';
-      }
-
-      // Bind inputs
-      fields.forEach(id => {
-        const el = qs('#'+id);
-        if (!el) return;
-        el.addEventListener('input', validate);
-        el.addEventListener('change', validate);
-      });
-
-      // Karakter pesan
-      msgBox.addEventListener('input', () => {
-        charCount.textContent = String(msgBox.value.length);
-      });
-
-      // Init
-      validate();
-      charCount.textContent = String(msgBox.value.length || 0);
-    })();
+    // Init
+    validate();
+    charCount.textContent = String((msgBox.value || '').length);
+  })();
   </script>
-
   <noscript>Halaman ini bekerja optimal dengan JavaScript diaktifkan.</noscript>
 </body>
 </html>
