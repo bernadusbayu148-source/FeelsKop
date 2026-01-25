@@ -7,16 +7,13 @@
   <title>Layanan — Kopi Feeling</title>
   <meta name="description" content="Kopi Feeling menghadirkan 4 layanan: Feeling To You., Feeling Party., Feeling Everyday., Feeling Di Wedding. Pengantaran cepat, harga bersahabat, kualitas premium." />
   <link rel="canonical" href="https://bernadusbayu148-source.github.io/FeelsKop/services.html" />
-  <meta name="theme-color" content="#b5121b" />
-
   <!-- Fonts & Icons -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
   <!-- Main CSS -->
-  <link rel="stylesheet" href="assets/css/style.css?v=20260123f" />
-
+  <link rel="stylesheet" href="assets/css/style.css?v=20260126-modalfix" />
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Layanan — Kopi Feeling" />
@@ -102,13 +99,14 @@
           <!-- ORDER WIDGET: TOYO -->
           <section class="order-widget" id="ow-toyo" data-key="toyo" data-service="Feeling To You." data-min="9" data-datemode="single" aria-label="Form pemesanan Feeling To You.">
             <h3 class="contact-subtitle">Detail Pemesanan — Feeling To You.</h3>
-            <div class="contact-grid">
-              <div><label for="toyo-name">Nama</label><input id="toyo-name" type="text" autocomplete="name" /></div>
-              <div><label for="toyo-org">Instansi/Komunitas</label><input id="toyo-org" type="text" autocomplete="organization" /></div>
-              <div><label for="toyo-email">Email</label><input id="toyo-email" type="email" autocomplete="email" /></div>
-              <div><label for="toyo-phone">Nomor HP</label><input id="toyo-phone" type="tel" inputmode="tel" pattern="\+?\d{9,15}" autocomplete="tel" /></div>
+
+            <!-- Header kolom (ditambahkan juga via JS sebagai fallback) -->
+            <div class="order-head" aria-hidden="true">
+              <div class="col-menu">Menu</div>
+              <div class="col-qty">Qty</div>
+              <div></div>
             </div>
-            <h4 class="contact-subtitle" style="margin-top:8px">Detail Pesanan</h4>
+
             <div class="order-list" id="toyo-orderList">
               <div class="order-row" data-index="0">
                 <button type="button" class="menu-picker" data-target="serviceMenuModal" aria-haspopup="dialog">
@@ -122,7 +120,9 @@
                 <button type="button" class="row-remove" aria-label="Hapus baris">×</button>
               </div>
             </div>
+
             <div class="order-actions"><button type="button" class="btn btn-outline add-row">+ Tambah Menu</button></div>
+
             <!-- Tanggal + Alamat -->
             <div class="contact-grid">
               <div>
@@ -160,13 +160,13 @@
           <!-- ORDER WIDGET: PARTY -->
           <section class="order-widget" id="ow-party" data-key="party" data-service="Feeling Party." data-min="150" data-datemode="single" aria-label="Form pemesanan Feeling Party.">
             <h3 class="contact-subtitle">Detail Pemesanan — Feeling Party.</h3>
-            <div class="contact-grid">
-              <div><label for="party-name">Nama</label><input id="party-name" type="text" autocomplete="name" /></div>
-              <div><label for="party-org">Instansi/Komunitas</label><input id="party-org" type="text" autocomplete="organization" /></div>
-              <div><label for="party-email">Email</label><input id="party-email" type="email" autocomplete="email" /></div>
-              <div><label for="party-phone">Nomor HP</label><input id="party-phone" type="tel" inputmode="tel" pattern="\+?\d{9,15}" autocomplete="tel" /></div>
+
+            <div class="order-head" aria-hidden="true">
+              <div class="col-menu">Menu</div>
+              <div class="col-qty">Qty</div>
+              <div></div>
             </div>
-            <h4 class="contact-subtitle" style="margin-top:8px">Detail Pesanan</h4>
+
             <div class="order-list" id="party-orderList">
               <div class="order-row" data-index="0">
                 <button type="button" class="menu-picker" data-target="serviceMenuModal" aria-haspopup="dialog">
@@ -180,7 +180,9 @@
                 <button type="button" class="row-remove" aria-label="Hapus baris">×</button>
               </div>
             </div>
+
             <div class="order-actions"><button type="button" class="btn btn-outline add-row">+ Tambah Menu</button></div>
+
             <div class="contact-grid">
               <div>
                 <label for="party-date">Tanggal Pemesanan</label>
@@ -216,13 +218,13 @@
           <!-- ORDER WIDGET: EVERYDAY -->
           <section class="order-widget" id="ow-everyday" data-key="everyday" data-service="Feeling Everyday." data-min="8" data-datemode="range" aria-label="Form pemesanan Feeling Everyday.">
             <h3 class="contact-subtitle">Detail Pemesanan — Feeling Everyday.</h3>
-            <div class="contact-grid">
-              <div><label for="every-name">Nama</label><input id="every-name" type="text" autocomplete="name" /></div>
-              <div><label for="every-org">Instansi/Komunitas</label><input id="every-org" type="text" autocomplete="organization" /></div>
-              <div><label for="every-email">Email</label><input id="every-email" type="email" autocomplete="email" /></div>
-              <div><label for="every-phone">Nomor HP</label><input id="every-phone" type="tel" inputmode="tel" pattern="\+?\d{9,15}" autocomplete="tel" /></div>
+
+            <div class="order-head" aria-hidden="true">
+              <div class="col-menu">Menu</div>
+              <div class="col-qty">Qty</div>
+              <div></div>
             </div>
-            <h4 class="contact-subtitle" style="margin-top:8px">Detail Pesanan</h4>
+
             <div class="order-list" id="every-orderList">
               <div class="order-row" data-index="0">
                 <button type="button" class="menu-picker" data-target="serviceMenuModal" aria-haspopup="dialog">
@@ -236,7 +238,9 @@
                 <button type="button" class="row-remove" aria-label="Hapus baris">×</button>
               </div>
             </div>
+
             <div class="order-actions"><button type="button" class="btn btn-outline add-row">+ Tambah Menu</button></div>
+
             <!-- Rentang tanggal + alamat -->
             <div class="contact-grid">
               <div>
@@ -278,13 +282,13 @@
           <!-- ORDER WIDGET: WEDDING -->
           <section class="order-widget" id="ow-wedding" data-key="wedding" data-service="Feeling Di Wedding." data-min="200" data-datemode="single" aria-label="Form pemesanan Feeling Di Wedding.">
             <h3 class="contact-subtitle">Detail Pemesanan — Feeling Di Wedding.</h3>
-            <div class="contact-grid">
-              <div><label for="wed-name">Nama</label><input id="wed-name" type="text" autocomplete="name" /></div>
-              <div><label for="wed-couple">Nama Mempelai</label><input id="wed-couple" type="text" placeholder="cth: Andi & Siti" /></div>
-              <div><label for="wed-email">Email</label><input id="wed-email" type="email" autocomplete="email" /></div>
-              <div><label for="wed-phone">Nomor HP</label><input id="wed-phone" type="tel" inputmode="tel" pattern="\+?\d{9,15}" autocomplete="tel" /></div>
+
+            <div class="order-head" aria-hidden="true">
+              <div class="col-menu">Menu</div>
+              <div class="col-qty">Qty</div>
+              <div></div>
             </div>
-            <h4 class="contact-subtitle" style="margin-top:8px">Detail Pesanan</h4>
+
             <div class="order-list" id="wed-orderList">
               <div class="order-row" data-index="0">
                 <button type="button" class="menu-picker" data-target="serviceMenuModal" aria-haspopup="dialog">
@@ -298,7 +302,9 @@
                 <button type="button" class="row-remove" aria-label="Hapus baris">×</button>
               </div>
             </div>
+
             <div class="order-actions"><button type="button" class="btn btn-outline add-row">+ Tambah Menu</button></div>
+
             <div class="contact-grid">
               <div>
                 <label for="wed-date">Tanggal Pemesanan</label>
@@ -362,7 +368,7 @@
         <h4>Menu Cepat</h4>
         <ul>
           <li><a href="products.html">Menu</a></li>
-          <li><a href="services.html" aria-current="page">Layanan</a></li>
+          <li><a href="services.html">Layanan</a></li>
           <li><a href="stations.html">Lokasi & Coverage</a></li>
           <li><a href="contact.html">Kontak</a></li>
         </ul>
@@ -413,7 +419,7 @@
   <!-- SCRIPTS -->
   <script src="assets/js/main.js" defer></script>
 
-  <!-- Inline JS — Order widgets (ditingkatkan: focus trap modal) -->
+  <!-- Inline JS — Order widgets + Modal fix -->
   <script>
   (function(){
     const WA_NUMBER = '6281254913064';
@@ -434,19 +440,19 @@
     const menuSearch = qs('#serviceMenuSearch');
     let activeWidget = null;
     let activeRowIndex = 0;
-    let lastOpener = null; // NEW: simpan pemicu terakhir untuk restore focus
+    let lastOpener = null;
 
     function openModal(widgetEl, rowIndex){
       activeWidget = widgetEl; activeRowIndex = rowIndex;
-      lastOpener = document.activeElement; // NEW
+      lastOpener = document.activeElement;
       menuSearch.value = ''; filterMenu('');
       modal.removeAttribute('hidden');
-      // NEW: arahkan fokus ke kolom pencarian (awal focus trap)
+      document.body.classList.add('modal-open');           // << kunci scroll di belakang
       setTimeout(() => menuSearch && menuSearch.focus(), 0);
     }
     function closeModal(){
       modal.setAttribute('hidden',''); activeWidget=null;
-      // NEW: kembalikan fokus ke pemicu sebelumnya
+      document.body.classList.remove('modal-open');        // << lepas kunci scroll
       if (lastOpener && typeof lastOpener.focus === 'function') { lastOpener.focus(); }
     }
     function filterMenu(term){
@@ -463,7 +469,7 @@
     document.addEventListener('keydown', e=>{
       if(e.key==='Escape' && !modal.hasAttribute('hidden')) closeModal();
     });
-    // NEW: Focus trap di dalam dialog
+    // Focus trap
     modal.addEventListener('keydown', (e) => {
       if (e.key !== 'Tab' || modal.hasAttribute('hidden')) return;
       const focusables = qsa('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])', modal)
@@ -482,13 +488,31 @@
       closeModal(); refresh(activeWidget);
     });
 
+    // ===== Bantuan: header “Menu / Qty” per widget =====
+    function ensureOrderHead(widget){
+      let head = qs('.order-head', widget);
+      if (!head){
+        head = document.createElement('div');
+        head.className = 'order-head';
+        head.innerHTML = '<div class="col-menu">Menu</div><div class="col-qty">Qty</div><div></div>';
+        const list = qs('.order-list', widget);
+        list.parentNode.insertBefore(head, list); // letakkan di atas daftar baris
+      }
+    }
+
     // ===== Bind semua widget =====
     const widgets = qsa('.order-widget');
-    widgets.forEach(w=>{ bindWidget(w); refresh(w); });
+    widgets.forEach(w=>{ ensureOrderHead(w); bindWidget(w); refresh(w); });
+
     function bindWidget(widget){
       const list = qs('.order-list', widget);
+
       // Tambah baris
-      qs('.add-row', widget).addEventListener('click',()=>{ addRow(widget); refresh(widget); });
+      qs('.add-row', widget).addEventListener('click',()=>{
+        addRow(widget);
+        refresh(widget);
+      });
+
       // Delegasi click (picker/remove)
       widget.addEventListener('click', (e)=>{
         const picker = e.target.closest('.menu-picker');
@@ -499,9 +523,11 @@
           openModal(widget, idx);
         }
         if(remover){
-          removeRow(widget, e.target.closest('.order-row')); refresh(widget);
+          removeRow(widget, e.target.closest('.order-row'));
+          refresh(widget);
         }
       });
+
       // Delegasi input (qty + others)
       widget.addEventListener('input', (e)=>{
         if(e.target.classList.contains('qty-input')) refresh(widget);
@@ -509,12 +535,14 @@
       qsa('input, textarea', widget).forEach(inp=>{
         inp.addEventListener('input', ()=> refresh(widget));
       });
-      // Cegah klik WA jika disabled (dipasang sekali per widget)
+
+      // Cegah klik WA jika disabled
       const waBtn = qs('.wa-send', widget);
       waBtn.addEventListener('click', (e)=>{
         if(waBtn.getAttribute('aria-disabled')==='true'){ e.preventDefault(); e.stopPropagation(); }
       });
     }
+
     function addRow(widget){
       const key = widget.dataset.key;
       const list = qs('.order-list', widget);
@@ -534,6 +562,7 @@
       `;
       list.appendChild(row);
     }
+
     function removeRow(widget, rowEl){
       if(!rowEl) return;
       const list = qs('.order-list', widget);
@@ -550,6 +579,7 @@
         qs('.qty-input', r).id = `${key}-qty-${i}`;
       });
     }
+
     function getOrders(widget){
       return qsa('.order-row', widget).map(r=>{
         const menu = qs('.menu-value', r).textContent.trim();
@@ -558,15 +588,19 @@
       }).filter(o => !!o.menu && o.menu!=='Belum dipilih' && o.qty>0);
     }
     function sumQty(rows){ return rows.reduce((s,o)=> s + Number(o.qty||0), 0); }
+
     function refresh(widget){
+      ensureOrderHead(widget);
       const key = widget.dataset.key;
       const min = Number(widget.dataset.min || 0);
       const serviceName = widget.dataset.service || 'Layanan Kopi Feeling';
       const dateMode = widget.dataset.datemode || 'single';
       const orders = getOrders(widget);
       const total = sumQty(orders);
+
       // Tulis total
       const totalEl = qs(`#${key}-total`); if(totalEl) totalEl.textContent = String(total);
+
       // Ambil identitas
       const baseId = (key==='toyo') ? 'toyo' : (key==='party') ? 'party' : (key==='everyday') ? 'every' : 'wed';
       const name = qs(`#${baseId}-name`)?.value || qs(`#${key}-name`)?.value || '';
@@ -575,6 +609,7 @@
         : (qs(`#${baseId}-org`)?.value || qs(`#${key}-org`)?.value || '');
       const email = qs(`#${baseId}-email`)?.value || qs(`#${key}-email`)?.value || '';
       const phone = qs(`#${baseId}-phone`)?.value || qs(`#${key}-phone`)?.value || '';
+
       // Tanggal
       let tanggal = '';
       if(dateMode==='range'){
@@ -587,6 +622,7 @@
         if(d) tanggal = `Tanggal: ${fmtDateID(d)}`;
       }
       const address = qs(`#${key}-address`)?.value || '';
+
       // Rangkai pesan WA
       const lines = [];
       lines.push(`*${serviceName}*`);
