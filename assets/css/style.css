@@ -12,28 +12,14 @@
   --border:#eaeaea;
   --shadow:0 8px 24px rgba(0,0,0,.08);
   /* Skala spacing */
-  --sp-0:0px;
-  --sp-1:4px;
-  --sp-2:6px;
-  --sp-3:8px;
-  --sp-4:10px;
-  --sp-5:12px;
-  --sp-6:14px;
-  --sp-7:16px;
-  --sp-8:18px;
+  --sp-0:0px; --sp-1:4px; --sp-2:6px; --sp-3:8px; --sp-4:10px;
+  --sp-5:12px; --sp-6:14px; --sp-7:16px; --sp-8:18px;
   /* Footer (kompak) */
-  --footer-pad-y-desktop:16px;
-  --footer-pad-y-tablet:14px;
-  --footer-pad-y-mobile:12px;
-  --footer-gap-desktop:14px;
-  --footer-bottom-pad-y:8px;
-  --footer-logo-h:32px;
-  --footer-h4:18px;
-  --footer-p:15px;
-  --social-size:18px;
+  --footer-pad-y-desktop:16px; --footer-pad-y-tablet:14px; --footer-pad-y-mobile:12px;
+  --footer-gap-desktop:14px; --footer-bottom-pad-y:8px;
+  --footer-logo-h:32px; --footer-h4:18px; --footer-p:15px; --social-size:18px;
   /* CTA strip (kompak) */
-  --cta-pad-y-desktop:14px;
-  --cta-pad-y-mobile:10px;
+  --cta-pad-y-desktop:14px; --cta-pad-y-mobile:10px;
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -213,24 +199,10 @@ input,textarea{width:100%;padding:10px 12px;border:1px solid var(--border);borde
 @media (max-width:992px){.service-meta{grid-template-columns:1fr}}
 @media (max-width:576px){.service-intro{padding:12px 10px}.service-card .card-head h3{font-size:17px}}
 
-/* ===== Order list head (label kolom) ===== */
-.order-head{
-  display:grid;
-  grid-template-columns:1.4fr 120px 32px; /* Menu | Qty | (tombol hapus placeholder) */
-  gap:8px;
-  font-weight:800;
-  color:#fff;
-  margin:6px 0 6px;
-}
-.order-head .col-menu{text-align:left}
-.order-head .col-qty{text-align:left}
-
-/* =========================
- Stations Page
- ========================= */
+/* ===== Stations (tanpa perubahan) ===== */
 .count-badge{display:inline-block;margin-left:8px;padding:2px 8px;font-size:.85em;border-radius:999px;border:2px solid var(--brand-red);color:var(--brand-red);background:#fff;}
 .service-tabs .tab.is-active .count-badge{border-color:#fff;color:var(--brand-red);background:#fff;}
-.station-list{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:8px;}
+.station-list{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:8px;}
 .station-item{background:#fff;border:1px solid var(--border);border-radius:12px;padding:12px;box-shadow:var(--shadow);}
 .station-item h4{margin:0 0 6px;font-size:16px;color:var(--brand-red);}
 .station-item p{margin:0 0 6px;color:var(--text);}
@@ -239,73 +211,39 @@ input,textarea{width:100%;padding:10px 12px;border:1px solid var(--border);borde
 @media (max-width:768px){.station-list{grid-template-columns:1fr}}
 
 /* =========================
- Products Page — (tidak diubah di task ini)
+ Order Widget — Baris Pesanan (Menu + Qty)
  ========================= */
-
-/* =========================
- Kontak — Feedback Form
- ========================= */
-.feedback-form .req{color:#d22;font-weight:800}
-.feedback-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
-.feedback-field{margin:10px 0}
-.feedback-field textarea{width:100%;padding:12px 14px;border:1px solid var(--border);border-radius:12px;resize:vertical;min-height:160px;font:inherit;line-height:1.55}
-.input-hint{color:#888;font-size:13px;margin-top:6px}
-.feedback-form input[type="text"],.feedback-form input[type="email"],.feedback-form input[type="tel"],.feedback-form select{width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:10px;font:inherit;background:#fff}
-.feedback-check{display:flex;gap:10px;align-items:flex-start;margin-top:6px;margin-bottom:8px}
-.feedback-check input{margin-top:4px}
-@media (max-width:768px){
-  .feedback-grid{grid-template-columns:1fr;gap:8px;margin-bottom:8px}
-  .feedback-field textarea{min-height:140px;padding:10px 12px}
-  .input-hint{font-size:12.5px}
-  .feedback-check{gap:8px}
+/* Struktur: setiap baris = 2 kolom (field) + 1 kolom kecil untuk tombol hapus */
+.order-list{display:grid;gap:10px}
+.order-row{
+  display:grid;
+  grid-template-columns: 1.4fr 120px 32px; /* Menu | Qty | x */
+  gap:10px; align-items:end;
 }
-/* Consent row */
-.consent-fieldset{margin:10px 0 8px;padding:0;border:0}
-.consent-row{display:inline-flex;align-items:center;gap:10px;line-height:1.35;font-weight:600;color:var(--text);cursor:pointer}
-.consent-row input[type="checkbox"]{inline-size:18px;block-size:18px;min-width:18px;min-height:18px;border-radius:4px;accent-color:var(--brand-red)}
-.consent-text{display:inline-block;text-wrap:balance;max-width:60ch}
-@media (max-width:768px){.consent-row{gap:8px}.consent-text{max-width:100%;font-weight:600}}
-
-/* ===== SERVICES — Perbaikan input tanggal ===== */
-.order-widget input[type="date"]{width:100%;box-sizing:border-box;appearance:none;-webkit-appearance:none;background-color:#fff;border:1px solid var(--border);border-radius:12px;padding:10px 12px;min-height:44px;font:inherit;line-height:1.2;color:var(--text)}
-.order-widget input[type="date"]::-webkit-date-and-time-value{text-align:left;padding:0;min-height:1.2em}
-.order-widget input[type="date"]::-webkit-calendar-picker-indicator{padding:0 6px;margin:0;opacity:.8}
-@supports (-moz-appearance: none){.order-widget input[type="date"]{padding-block:10px}}
-@media (max-width:768px){
-  #panel-everyday .contact-grid{grid-template-columns:1fr;gap:8px}
-  .order-widget .contact-grid{gap:8px;margin-bottom:8px}
-  .order-widget label{margin-bottom:4px}
+.order-row .field{display:flex;flex-direction:column;gap:6px;min-width:0}
+.order-row .field label{color:#fff;font-weight:700;margin:0} /* label putih di card merah */
+.order-row .menu-picker{
+  width:100%; text-align:left; padding:10px 12px; min-height:44px;
+  border:1px solid var(--border); border-radius:10px; background:#fff; color:var(--text);
+  display:flex; justify-content:space-between; align-items:center; gap:10px;
+}
+.order-row .qty-input{width:100%; padding:10px 12px; border:1px solid var(--border); border-radius:10px;}
+.order-row .row-remove{
+  width:32px; height:32px; border-radius:8px; border:1px solid var(--border); background:#fff; cursor:pointer;
 }
 
-/* ===== MOBILE COMPACT OVERRIDES (global) ===== */
-@media (max-width: 768px){
-  .cta-strip { padding: 8px 0; }
-  .cta-content { gap: 8px; }
-  .cta-content h3 { font-size: 16px; line-height: 1.2; }
-  .cta-content p { font-size: 13px; line-height: 1.35; }
-  .footer-grid { grid-template-columns: 1fr; gap: 8px; padding: 10px 14px; }
-  .footer-logo { height: 28px; margin: 0 0 4px; }
-  .footer-contact h4, .footer-menu h4 { font-size: 16px; margin: 0 0 6px; }
-  .footer-about p, .footer-contact p { font-size: 13.5px; line-height: 1.35; margin: 4px 0; }
-  .footer-menu li { margin: 4px 0; } .footer-menu a { font-size: 14px; }
-  .footer-bottom { padding: 6px 14px; font-size: 12.5px; }
-  .socials a { font-size: 16px; margin-left: 8px; }
-  .section { padding: 42px 0; }
-  .service-intro { padding: 10px 10px; } .service-intro p { line-height: 1.45; }
-  .service-hero { margin: 10px 0 14px; }
-  .service-tabs { gap: 8px; margin-bottom: 12px; }
-  .service-tabs .tab { padding: 9px 14px; min-height: 38px; }
-  .station-list { gap: 10px; margin-top: 6px; }
-  .station-item { padding: 10px; }
-  .station-item a.link { min-height: 36px; }
+/* Mobile: tetap readable */
+@media (max-width:768px){
+  .order-row{
+    grid-template-columns: 1fr 100px 32px;
+    gap:8px;
+  }
 }
 
 /* ===== Modal (global) ===== */
 .modal{position:fixed;inset:0;z-index:2000;display:block}
 .modal[hidden]{display:none!important}
-.modal-backdrop{
-  position:fixed;inset:0;background:rgba(0,0,0,.45);backdrop-filter:saturate(120%) blur(2px);
-}
+.modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.45);backdrop-filter:saturate(120%) blur(2px);}
 .modal-dialog{
   position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);
   width:min(92vw, 720px);max-height:min(86vh, 720px);
@@ -318,5 +256,5 @@ input,textarea{width:100%;padding:10px 12px;border:1px solid var(--border);borde
 .modal-close{background:#fff;border:1px solid var(--border);border-radius:8px;padding:6px 10px;cursor:pointer}
 .modal-search input{width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:10px;font:inherit}
 
-/* kunci scroll body ketika modal aktif */
+/* Kunci scroll body ketika modal aktif */
 body.modal-open{overflow:hidden;touch-action:none}
