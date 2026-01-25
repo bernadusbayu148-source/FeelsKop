@@ -1,37 +1,37 @@
 
 /* =========================================================
-  HOME — Compact Hero Overrides (v2)
+  HOME — Compact Hero Overrides (v3)
   Tujuan:
-  - Mengurangi ruang abu-abu di ATAS judul (konten dinaikkan)
-  - Mengurangi ruang abu-abu di BAWAH (dekat dots)
-  File ini hanya di-include di index.html, sehingga halaman lain aman.
+  - Pertahankan area konten (bagian hijau) tetap utuh.
+  - Pangkas ruang abu-abu bagian bawah (bagian merah) agar hero makin pendek.
+  Catatan:
+  - File ini hanya dipanggil di index.html, sehingga halaman lain aman.
 ========================================================= */
 
 /* ===== Desktop & Tablet ===== */
 .hero .slide{
-  /* Perkecil tinggi minimum hero */
-  min-height: clamp(300px, 52vh, 400px);
-  /* Pindahkan layout dari "grid center" ke "flex start"
-     agar konten bisa ditempatkan lebih ke atas */
+  /* Perkecil tinggi minimum hero (lebih agresif dari v2) */
+  min-height: clamp(280px, 48vh, 380px);
+
+  /* Tempatkan konten lebih ke atas agar bagian hijau tidak terpangkas */
   display: flex !important;
   align-items: flex-start !important;
   justify-content: center !important;
 
-  /* Overlay tetap agar teks terbaca */
+  /* Overlay tetap agar teks terbaca di atas foto */
   background-image:
     linear-gradient(rgba(0,0,0,.26), rgba(0,0,0,.26)),
     var(--bg);
-  /* Sedikit padding atas & samping supaya napas */
-  padding: 12px 16px 8px;
+
+  /* Pangkas ruang bawah (kurangi padding-bottom) */
+  padding: 10px 16px 4px;
 }
 
 /* Kontainer isi hero — rapatkan vertikal */
 .hero .slide-content{
-  /* Bawa konten lebih ke atas */
-  margin-top: 4px;
-  /* Padatkan ruang dalam */
+  margin-top: 2px;   /* dorong ke atas sedikit */
   padding-top: 0;
-  padding-bottom: 8px;
+  padding-bottom: 4px; /* pangkas bawah */
   max-width: 880px;
   width: 100%;
   text-align: center;
@@ -39,12 +39,12 @@
 
 /* Heading & subheading dipadatkan */
 .hero .hero-title{
-  margin-top: 2px;
+  margin-top: 0;
   margin-bottom: 6px;
-  line-height: 1.15;
+  line-height: 1.14;
 }
 .hero .hero-subtitle{
-  margin: 0 0 10px;
+  margin: 0 0 8px;
   opacity: .95;
 }
 
@@ -54,28 +54,24 @@
   gap: 12px;
 }
 
-/* Tombol navigasi slider sedikit dinaikkan
-   (karena konten sekarang lebih ke atas) */
+/* Tombol navigasi slider tetap nyaman dijangkau */
 .hero .slider-btn{
   top: 50%;
 }
 
-/* Dots didekatkan ke bawah agar tidak menyisakan ruang besar */
+/* Dots didekatkan ke bawah untuk memangkas ruang merah */
 .hero .slider-dots{
-  bottom: 8px;
+  bottom: 4px;
 }
 
 /* ===== Mobile (≤576px) ===== */
 @media (max-width: 576px){
   .hero .slide{
-    /* Lebih pendek di mobile */
-    min-height: clamp(240px, 46vh, 330px);
-    padding: 10px 14px 6px;
+    /* Lebih pendek lagi di mobile, tapi aman untuk teks & tombol */
+    min-height: clamp(220px, 44vh, 300px);
+    padding: 8px 12px 2px;   /* pangkas bawah */
   }
   .hero .slide-content{
     margin-top: 0;
-    padding-bottom: 6px;
-  }
-  .hero .hero-title{
-    margin-top: 0;
-    margin
+    padding-bottom: 2px;     /* rapatkan */
+ 
