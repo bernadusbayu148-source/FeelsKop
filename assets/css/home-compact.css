@@ -1,47 +1,54 @@
-
 /* =========================================================
-  HOME — Compact Hero Overrides (v3)
-  Tujuan:
-  - Pertahankan area konten (bagian hijau) tetap utuh.
-  - Pangkas ruang abu-abu bagian bawah (bagian merah) agar hero makin pendek.
-  Catatan:
-  - File ini hanya dipanggil di index.html, sehingga halaman lain aman.
+   HOME — Hero Minimal & Compact (v20260127-heroMinimal)
+   Fokus:
+   - Hilangkan background abu di area hero (bersih & minimal).
+   - Padatkan tinggi hero + rapatkan konten ke bawah.
+   - Tetap readable (overlay halus di atas foto).
+   - Hanya berlaku di Home (section .hero).
+   Catatan kompatibilitas:
+   - Gunakan properti dasar & unit yang didukung iOS/Android/desktop modern.
+   - clamp() dipakai seperti sebelumnya (sudah supported luas).
 ========================================================= */
 
-/* ===== Desktop & Tablet ===== */
-.hero .slide{
-  /* Perkecil tinggi minimum hero (lebih agresif dari v2) */
-  min-height: clamp(280px, 48vh, 380px);
+/* Hilangkan latar abu bawaan section hero (di style.css) */
+.hero{
+  background: transparent !important; /* override var(--bg-soft) */
+}
 
-  /* Tempatkan konten lebih ke atas agar bagian hijau tidak terpangkas */
+/* Slide container — lebih pendek & konten dirapatkan ke bawah */
+.hero .slide{
+  /* Tinggi minimum lebih pendek dari default */
+  min-height: clamp(260px, 46vh, 380px);
+
+  /* Tempatkan konten di bagian bawah slide agar ruang kosong bawah minim */
   display: flex !important;
-  align-items: flex-start !important;
+  align-items: flex-end !important;
   justify-content: center !important;
 
-  /* Overlay tetap agar teks terbaca di atas foto */
+  /* Overlay tipis agar teks tetap terbaca */
   background-image:
-    linear-gradient(rgba(0,0,0,.26), rgba(0,0,0,.26)),
+    linear-gradient(rgba(0,0,0,.22), rgba(0,0,0,.22)),
     var(--bg);
 
-  /* Pangkas ruang bawah (kurangi padding-bottom) */
-  padding: 10px 16px 4px;
+  /* Pangkas padding bawaan agar lebih rapat */
+  padding: 10px 16px 6px;
 }
 
-/* Kontainer isi hero — rapatkan vertikal */
+/* Kontainer isi hero — diringkas & disejajarkan */
 .hero .slide-content{
-  margin-top: 2px;   /* dorong ke atas sedikit */
-  padding-top: 0;
-  padding-bottom: 4px; /* pangkas bawah */
-  max-width: 880px;
   width: 100%;
+  max-width: 880px;
   text-align: center;
+
+  /* Rapatkan vertikal: dorong ke bawah (dekat batas bawah hero) */
+  margin: 0 0 2px;       /* jarak kecil sekali ke bawah */
+  padding: 0 0 2px;      /* pangkas padding bawah */
 }
 
-/* Heading & subheading dipadatkan */
+/* Heading & subheading kompak */
 .hero .hero-title{
-  margin-top: 0;
-  margin-bottom: 6px;
-  line-height: 1.14;
+  margin: 0 0 6px;
+  line-height: 1.12;
 }
 .hero .hero-subtitle{
   margin: 0 0 8px;
@@ -54,12 +61,15 @@
   gap: 12px;
 }
 
-/* Tombol navigasi slider tetap nyaman dijangkau */
+/* Tombol navigasi slider — minimal & tetap mudah dijangkau */
 .hero .slider-btn{
   top: 50%;
+  background: rgba(255,255,255,.92);
+  border-color: #e6e6e9;
+  box-shadow: 0 4px 14px rgba(0,0,0,.10);
 }
 
-/* Dots didekatkan ke bawah untuk memangkas ruang merah */
+/* Dots didekatkan ke bawah (rapat) */
 .hero .slider-dots{
   bottom: 4px;
 }
@@ -67,11 +77,33 @@
 /* ===== Mobile (≤576px) ===== */
 @media (max-width: 576px){
   .hero .slide{
-    /* Lebih pendek lagi di mobile, tapi aman untuk teks & tombol */
     min-height: clamp(220px, 44vh, 300px);
-    padding: 8px 12px 2px;   /* pangkas bawah */
+    padding: 8px 12px 4px; /* sedikit lebih rapat */
   }
   .hero .slide-content{
-    margin-top: 0;
-    padding-bottom: 2px;     /* rapatkan */
- 
+    margin: 0 0 2px;
+    padding: 0 0 2px;
+  }
+  .hero .hero-title{
+    /* Ukuran judul tetap dari style.css (clamp), hanya atur jarak */
+    margin: 0 0 6px;
+  }
+  .hero .hero-subtitle{
+    margin: 0 0 8px;
+  }
+}
+
+/* ===== Tablet kecil (≤768px) — antisipasi notch & gesture bar ===== */
+@media (max-width: 768px){
+  .hero .slider-dots{ bottom: 4px; }
+}
+
+/* (Opsional) Jika ingin dots lebih kecil */
+.hero .slider-dots .dot{
+  width: 9px;
+  height: 9px;
+}
+.hero .slider-dots .dot.active{
+  transform: scale(1.1);
+  transition: transform .15s ease;
+}
