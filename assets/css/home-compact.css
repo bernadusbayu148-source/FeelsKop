@@ -1,7 +1,9 @@
 /* =========================================================
-   HOME — Hero Minimal & Compact (v20260127-heroMinimal-c3)
+   HOME — Hero Minimal & Compact (v20260127-heroMinimal-c4)
    - Anti-bertumpuk: hanya .slide.is-active yang ditampilkan
-   - Paksa override dengan !important
+   - Tombol hero diperkecil (semua slide)
+   - "Rata-rata Poin" sejajar dengan "Total Member" (2 kolom)
+   - Paksa override dengan !important (aman lintas CSS lain)
    - Hilangkan headroom; konten nempel ke bawah
    - Responsif mobile/tablet/desktop
 ========================================================= */
@@ -59,9 +61,29 @@
   opacity: .95 !important;
 }
 
+/* ====== PERMINTAAN: KECILKAN TOMBOL HERO (SEMUA SLIDE) ====== */
 .hero .hero-actions{
   display: inline-flex !important;
-  gap: 12px !important;
+  gap: 10px !important; /* sedikit lebih rapat */
+}
+
+/* Ukuran tombol default */
+.hero .hero-actions .btn{
+  padding: 10px 14px !important;      /* lebih kecil dari default */
+  min-height: 38px !important;        /* turun dari 44px */
+  font-size: 14px !important;
+  border-width: 2px !important;
+  border-radius: 999px !important;
+  line-height: 1.1 !important;
+}
+
+/* Di layar kecil, perkecil lagi sedikit */
+@media (max-width: 576px){
+  .hero .hero-actions .btn{
+    padding: 9px 12px !important;
+    min-height: 34px !important;
+    font-size: 13.5px !important;
+  }
 }
 
 /* Tombol navigasi slider */
@@ -107,4 +129,63 @@
 /* Guard untuk viewport sangat pendek (landscape/status bar besar) */
 @media (max-height: 520px){
   .hero .slide{ min-height: 220px !important; }
+}
+
+/* =========================================================
+   PERMINTAAN: "Rata-rata Poin" sejajar dengan "Total Member"
+   - Tampilkan keduanya sebagai 2 kolom di dalam .lb-stats
+   - Masing-masing di dalam kartu/kotak khusus
+   - Hanya mempengaruhi halaman Home (host leaderboard di Home)
+========================================================= */
+#leaderboard-host .lb-stats{
+  display: grid !important;
+  grid-template-columns: repeat(2, 1fr) !important; /* 2 kolom sejajar */
+  gap: 10px !important;
+  margin: 10px 0 12px !important;
+}
+
+/* Kartu stat seragam */
+#leaderboard-host .lb-stats .stat-card{
+  background: #fff !important;
+  border: 1px solid var(--lb-border, #e7e7ea) !important;
+  border-radius: 14px !important;
+  padding: 10px 12px !important;
+  box-shadow: 0 8px 18px rgba(0,0,0,.06) !important;
+}
+
+/* Teks di dalam kartu stat */
+#leaderboard-host .lb-stats .stat-title{
+  margin: 0 0 4px !important;
+  color: var(--muted, #6b7280) !important;
+  font-weight: 700 !important;
+}
+#leaderboard-host .lb-stats .stat-value{
+  margin: 0 0 8px !important;
+  font-weight: 800 !important;
+}
+
+/* Progress bar di kartu stat */
+#leaderboard-host .lb-stats .stat-bar{
+  height: 6px !important;
+  border-radius: 999px !important;
+  background: #f2f3f7 !important;
+  overflow: hidden !important;
+}
+#leaderboard-host .lb-stats .stat-bar .fill{
+  height: 100% !important;
+  background: linear-gradient(90deg, #D21F3C, #F75353) !important;
+}
+
+/* Jika layar sangat sempit, tetap 2 kolom (agar sejajar),
+   namun padding & font diperkecil sedikit */
+@media (max-width: 360px){
+  #leaderboard-host .lb-stats .stat-card{
+    padding: 8px 10px !important;
+  }
+  #leaderboard-host .lb-stats .stat-title{
+    font-size: 13px !important;
+  }
+  #leaderboard-host .lb-stats .stat-value{
+    font-size: 18px !important;
+  }
 }
