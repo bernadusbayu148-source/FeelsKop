@@ -1,6 +1,6 @@
 /* =========================================================
-   HOME — Hero Minimal & Compact (v20260127-heroMinimal-c)
-   - Paksa pakai var(--bg) dengan !important (override kuat)
+   HOME — Hero Minimal & Compact (v20260127-heroMinimal-c2)
+   - Paksa rule dengan !important (override kuat)
    - Hilangkan headroom (konten menempel ke bawah)
    - Overlay tipis untuk keterbacaan teks
    - Responsif mobile/tablet/desktop
@@ -18,7 +18,7 @@
 
 /* ===== Slide container ===== */
 .hero .slide{
-  /* Tinggi minimum lebih ringkas agar tidak ada ruang atas berlebih */
+  /* Tinggi minimum ringkas agar tidak ada ruang atas berlebih */
   min-height: clamp(220px, 42vh, 340px) !important;
 
   /* Tata letak: dorong konten ke bawah (vertikal), center horizontal */
@@ -27,11 +27,8 @@
   justify-content: flex-end !important; /* konten nempel bawah */
   align-items: center !important;       /* center horizontal */
 
-  /* Gunakan gambar dari custom property --bg + overlay tipis
-     !important memastikan rule ini menang atas CSS lain */
-  background-image:
-    linear-gradient(rgba(0,0,0,.20), rgba(0,0,0,.20)),
-    var(--bg) !important;
+  /* Jika index.html sudah set background-image inline, properti di bawah
+     memastikan perilaku tampilan konsisten */
   background-size: cover !important;
   background-position: center !important;
   background-repeat: no-repeat !important;
@@ -111,7 +108,7 @@
   .hero .slider-dots{ bottom: 4px !important; }
 }
 
-/* (Opsional) Guard kecil untuk device sangat pendek (status bar besar) */
+/* Guard kecil untuk viewport sangat pendek (status bar besar/landscape) */
 @media (max-height: 520px){
   .hero .slide{
     min-height: 220px !important;
