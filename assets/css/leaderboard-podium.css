@@ -1,10 +1,9 @@
-
 /* =========================================================
  LEADERBOARD — Single Source of Truth
  Mobile-first & stabil lintas device
  Podium bertingkat + List-card mobile (≤480px)
  Tabel tetap untuk >480px. Scope hanya di #leaderboard-host.
- ========================================================= */
+========================================================= */
 html{ -webkit-text-size-adjust: 100%; }
 :root{
   --gold:#f5b942; --silver:#cfd3da; --bronze:#d48957;
@@ -15,6 +14,7 @@ html{ -webkit-text-size-adjust: 100%; }
   --point-offset-mobile:-8px;
   --point-offset-tiny:-4px;
 }
+
 /* ====== JUDUL SEKSI berupa GAMBAR ====== */
 #leaderboard-host .section-title-img{
   display:flex; align-items:center; justify-content:center;
@@ -35,6 +35,7 @@ html{ -webkit-text-size-adjust: 100%; }
 @media (max-width:360px){
   #leaderboard-host .section-title-img img{ width:min(90%, 520px); }
 }
+
 /* ===== Host card ===== */
 #leaderboard-host .lb-card{
   background:var(--lb-bg);
@@ -44,10 +45,12 @@ html{ -webkit-text-size-adjust: 100%; }
   padding:14px;
   overflow-x:hidden;
 }
+
 /* Controls */
 #leaderboard-host .lb-controls{
   display:grid; grid-template-columns:1fr auto; gap:10px; margin-bottom:8px;
 }
+
 /* Search result inline + tombol clear (dari versi sebelumnya) */
 #leaderboard-host .search-wrap{ position:relative; }
 #leaderboard-host .search-wrap input{ padding-right:42px; }
@@ -59,6 +62,7 @@ html{ -webkit-text-size-adjust: 100%; }
 #leaderboard-host .clear-btn.visible{ display:flex; }
 #leaderboard-host .clear-btn:hover{ background:#eceef2; color:#444; }
 #leaderboard-host .clear-btn i{ font-size:16px; line-height:1; }
+
 #leaderboard-host .lb-search-inline{
   display:none; margin:6px 0 10px; padding:10px 12px;
   border:1px solid var(--lb-border); border-radius:14px;
@@ -71,10 +75,12 @@ html{ -webkit-text-size-adjust: 100%; }
 #leaderboard-host .lb-search-inline .gap{
   margin-top:6px; color:#D21F3C; font-weight:700; font-variant-numeric:tabular-nums; font-feature-settings:"tnum";
 }
+
 #leaderboard-host .rank-badge{
   display:inline-block; padding:6px 10px; border-radius:999px; font-weight:800; background:#fff;
   border:1px solid var(--lb-border); box-shadow:0 4px 10px rgba(0,0,0,.06);
 }
+
 /* ===== Podium ===== */
 #leaderboard-host .lb-podium{
   --bh: clamp(150px, 26vw, 220px);
@@ -89,6 +95,8 @@ html{ -webkit-text-size-adjust: 100%; }
   text-wrap:balance;
 }
 #leaderboard-host .p-member{ margin:0 0 8px; color:var(--muted); font-size:12.5px; }
+
+/* Kotak juara / stage */
 #leaderboard-host .stage{
   --ring:#e7e7ea;
   height: calc(var(--bh) * var(--step));
@@ -99,46 +107,57 @@ html{ -webkit-text-size-adjust: 100%; }
     linear-gradient(180deg, var(--tone1,#ffffff), var(--tone2,#fafbff));
   border:2.5px solid var(--ring);
   box-shadow: 0 12px 24px rgba(0,0,0,.06), inset 0 6px 12px rgba(255,255,255,.35);
-  display:flex; align-items:flex-start; justify-content:center;
+  display:flex; align-items:center; justify-content:center;  /* center PNG */
   padding-top:10px; margin-bottom:18px;
 }
-#leaderboard-host .trophy{
-  width:40px; height:40px; border-radius:12px;
-  background:#fff; border:1px solid #ececec;
-  box-shadow:0 8px 16px rgba(0,0,0,.08);
-  display:grid; place-items:center;
+
+/* Gaya warna per juara */
+#leaderboard-host .podium-col.first  { --step:1.00; }
+#leaderboard-host .podium-col.second { --step:0.90; }
+#leaderboard-host .podium-col.third  { --step:0.82; }
+#leaderboard-host .podium-col.first  .stage{ --ring:var(--gold);   --tone1:#fff7d0; --tone2:#fffae6; }
+#leaderboard-host .podium-col.second .stage{ --ring:var(--silver); --tone1:#f2f4f8; --tone2:#ffffff; }
+#leaderboard-host .podium-col.third  .stage{ --ring:var(--bronze); --tone1:#fde6d2; --tone2:#fff2e6; }
+
+/* ===== Gambar PNG di kotak juara ===== */
+#leaderboard-host .podium-img{
+  width: clamp(56px, 8vw, 84px);
+  height: auto;
+  display:block;
+  filter: drop-shadow(0 6px 14px rgba(0,0,0,.12));
 }
-#leaderboard-host .podium-col.first { --step:1.00; }
-#leaderboard-host .podium-col.second{ --step:0.90; }
-#leaderboard-host .podium-col.third { --step:0.82; }
-#leaderboard-host .podium-col.first .stage{ --ring:var(--gold); --tone1:#fff7d0; --tone2:#fffae6; }
-#leaderboard-host .podium-col.second .stage{ --ring:var(--silver);--tone1:#f2f4f8; --tone2:#ffffff; }
-#leaderboard-host .podium-col.third .stage{ --ring:var(--bronze);--tone1:#fde6d2; --tone2:#fff2e6; }
+
+/* ===== POIN (hilangkan chip/pill) ===== */
 #leaderboard-host .p-point{
   margin-top: var(--point-offset-desktop);
   display:inline-flex; align-items:center; gap:6px;
-  padding:6px 12px; min-height:26px;
-  border-radius:999px; background:#fff; border:1px solid var(--lb-chip-border);
-  box-shadow:0 10px 20px rgba(0,0,0,.10);
+  /* Hilangkan chip: */
+  padding:0;
+  min-height:auto;
+  border-radius:0;
+  background:transparent;
+  border:0;
+  box-shadow:none;
   font-size:13px; line-height:1.1; white-space:nowrap;
   max-width:92%;
   font-variant-numeric:tabular-nums; font-feature-settings:"tnum";
 }
 #leaderboard-host .p-point .num{ font-weight:800; }
+
 @media (max-width: 414px){
   #leaderboard-host .lb-podium{ gap:18px; }
   #leaderboard-host .p-point{
     margin-top: var(--point-offset-mobile);
-    padding:5px 10px; font-size:12.5px; gap:6px; max-width:90%;
+    font-size:12.5px; gap:6px; max-width:90%;
   }
 }
 @media (max-width: 360px){
-  #leaderboard-host .podium-col.first { --step:1.00; }
-  #leaderboard-host .podium-col.second{ --step:0.88; }
-  #leaderboard-host .podium-col.third { --step:0.80; }
+  #leaderboard-host .podium-col.first  { --step:1.00; }
+  #leaderboard-host .podium-col.second { --step:0.88; }
+  #leaderboard-host .podium-col.third  { --step:0.80; }
   #leaderboard-host .p-point{
     margin-top: var(--point-offset-tiny);
-    padding:4px 8px; font-size:11.5px; gap:5px; max-width:88%;
+    font-size:11.5px; gap:5px; max-width:88%;
   }
 }
 
