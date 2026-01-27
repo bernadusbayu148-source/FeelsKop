@@ -51,7 +51,7 @@ html{ -webkit-text-size-adjust: 100%; }
   display:grid; grid-template-columns:1fr auto; gap:10px; margin-bottom:8px;
 }
 
-/* Search result inline + tombol clear (dari versi sebelumnya) */
+/* Search result inline + tombol clear */
 #leaderboard-host .search-wrap{ position:relative; }
 #leaderboard-host .search-wrap input{ padding-right:42px; }
 #leaderboard-host .clear-btn{
@@ -106,11 +106,11 @@ html{ -webkit-text-size-adjust: 100%; }
     linear-gradient(180deg, var(--tone1,#ffffff), var(--tone2,#fafbff));
   border:2.5px solid var(--ring);
   box-shadow: 0 12px 24px rgba(0,0,0,.06), inset 0 6px 12px rgba(255,255,255,.35);
-  /* Center PNG dan jadikan container clipping agar gambar tidak keluar */
+  /* Center PNG dan jadikan container clipping */
   display:flex; align-items:center; justify-content:center;
-  padding: 8px;               /* padding tipis supaya ada napas di tepi */
+  padding: 10px;               /* sedikit napas di tepi */
   margin-bottom:18px;
-  overflow:hidden;            /* <— cegah spill keluar kotak */
+  overflow:hidden;              /* cegah spill keluar kotak—sebagai pengaman */
 }
 
 /* Gaya warna per juara */
@@ -121,16 +121,17 @@ html{ -webkit-text-size-adjust: 100%; }
 #leaderboard-host .podium-col.second .stage{ --ring:var(--silver);--tone1:#f2f4f8; --tone2:#ffffff; }
 #leaderboard-host .podium-col.third  .stage{ --ring:var(--bronze); --tone1:#fde6d2; --tone2:#fff2e6; }
 
-/* ===== PNG karakter di kotak juara (BESARKAN & IKUTI TINGGI STAGE) =====
-   - Gunakan tinggi sebagai acuan agar selalu proporsional terhadap stage.
-   - object-fit: contain memastikan tidak meluber keluar.
-   - max-height menghormati padding stage & semua ukuran device. */
+/* ===== PNG karakter di kotak juara — SELALU MUAT KEDUA SUMBU =====
+   - Tidak set height/width absolut.
+   - Batasi dengan max-width & max-height agar selalu 'contain'.
+   - width/height tetap auto supaya rasio gambar terjaga.
+   - Hasil: gambar akan membesar semaksimal mungkin di dalam stage tanpa terpotong. */
 #leaderboard-host .podium-img{
-  height: calc(100% - 12px);  /* isi hampir penuh tinggi kotak */
-  max-height: clamp(72px, calc(var(--bh) * 0.78), 240px);
-  width: auto;                 /* pertahankan rasio */
   display:block;
-  object-fit: contain;         /* pastikan tidak keluar kotak */
+  width:auto; height:auto;          /* pertahankan rasio asli */
+  max-width: calc(100% - 12px);     /* hormati padding & border */
+  max-height: calc(100% - 12px);
+  object-fit: contain;              /* jaga agar tidak meluber */
   filter: drop-shadow(0 6px 14px rgba(0,0,0,.12));
 }
 
@@ -141,10 +142,6 @@ html{ -webkit-text-size-adjust: 100%; }
     margin-top: var(--point-offset-mobile);
     font-size:12.5px; gap:6px; max-width:90%;
   }
-  /* Di mobile, beri sedikit ruang agar tidak terlalu mentok */
-  #leaderboard-host .podium-img{
-    max-height: clamp(68px, calc(var(--bh) * 0.76), 220px);
-  }
 }
 @media (max-width: 360px){
   #leaderboard-host .podium-col.first  { --step:1.00; }
@@ -154,22 +151,14 @@ html{ -webkit-text-size-adjust: 100%; }
     margin-top: var(--point-offset-tiny);
     font-size:11.5px; gap:5px; max-width:88%;
   }
-  #leaderboard-host .podium-img{
-    max-height: clamp(64px, calc(var(--bh) * 0.74), 200px);
-  }
 }
 
 /* ===== POIN (hilangkan chip/pill) ===== */
 #leaderboard-host .p-point{
   margin-top: var(--point-offset-desktop);
   display:inline-flex; align-items:center; gap:6px;
-  /* Hilangkan chip: */
-  padding:0;
-  min-height:auto;
-  border-radius:0;
-  background:transparent;
-  border:0;
-  box-shadow:none;
+  padding:0; min-height:auto; border-radius:0;
+  background:transparent; border:0; box-shadow:none;
   font-size:13px; line-height:1.1; white-space:nowrap;
   max-width:92%;
   font-variant-numeric:tabular-nums; font-feature-settings:"tnum";
