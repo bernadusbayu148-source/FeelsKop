@@ -1,39 +1,43 @@
 /* =========================================================
-   HOME — Hero Minimal & Compact (v20260127-heroMinimal-c2)
-   - Paksa rule dengan !important (override kuat)
-   - Hilangkan headroom (konten menempel ke bawah)
-   - Overlay tipis untuk keterbacaan teks
+   HOME — Hero Minimal & Compact (v20260127-heroMinimal-c3)
+   - Anti-bertumpuk: hanya .slide.is-active yang ditampilkan
+   - Paksa override dengan !important
+   - Hilangkan headroom; konten nempel ke bawah
    - Responsif mobile/tablet/desktop
 ========================================================= */
+
+/* === Slider visibility control (fix bertumpuk) === */
+#heroSlider .slide{
+  display: none !important;           /* sembunyikan semua slide */
+}
+#heroSlider .slide.is-active{
+  display: flex !important;           /* tampilkan slide aktif saja */
+}
 
 /* Pastikan tidak ada margin collapse setelah header sticky */
 .site-header + .hero{
   margin-top: 0 !important;
 }
 
-/* Hilangkan latar abu bawaan section hero (di style.css) */
+/* Hilangkan latar abu bawaan section hero */
 .hero{
-  background: transparent !important; /* override var(--bg-soft) */
+  background: transparent !important;
 }
 
 /* ===== Slide container ===== */
 .hero .slide{
-  /* Tinggi minimum ringkas agar tidak ada ruang atas berlebih */
   min-height: clamp(220px, 42vh, 340px) !important;
 
-  /* Tata letak: dorong konten ke bawah (vertikal), center horizontal */
-  display: flex !important;
+  /* layout konten */
   flex-direction: column !important;
-  justify-content: flex-end !important; /* konten nempel bawah */
-  align-items: center !important;       /* center horizontal */
+  justify-content: flex-end !important;
+  align-items: center !important;
 
-  /* Jika index.html sudah set background-image inline, properti di bawah
-     memastikan perilaku tampilan konsisten */
+  /* konsistensi tampilan gambar */
   background-size: cover !important;
   background-position: center !important;
   background-repeat: no-repeat !important;
 
-  /* Pangkas padding atas ke 0 agar tidak ada headroom */
   padding: 0 16px 6px !important;
 }
 
@@ -42,13 +46,10 @@
   width: 100% !important;
   max-width: 880px !important;
   text-align: center !important;
-
-  /* Rapatkan vertikal; tempel ke bawah */
   margin: 0 0 2px !important;
   padding: 0 0 2px !important;
 }
 
-/* Heading & subheading kompak */
 .hero .hero-title{
   margin: 0 0 6px !important;
   line-height: 1.12 !important;
@@ -58,13 +59,12 @@
   opacity: .95 !important;
 }
 
-/* Jarak antar tombol aksi */
 .hero .hero-actions{
   display: inline-flex !important;
   gap: 12px !important;
 }
 
-/* Tombol navigasi slider — minimal & mudah dijangkau */
+/* Tombol navigasi slider */
 .hero .slider-btn{
   top: 50% !important;
   transform: translateY(-50%) !important;
@@ -73,12 +73,8 @@
   box-shadow: 0 4px 14px rgba(0,0,0,.10) !important;
 }
 
-/* Dots didekatkan ke bawah */
-.hero .slider-dots{
-  bottom: 4px !important;
-}
-
-/* Dots lebih kecil & animasi ringan */
+/* Dots */
+.hero .slider-dots{ bottom: 4px !important; }
 .hero .slider-dots .dot{
   width: 9px !important;
   height: 9px !important;
@@ -88,11 +84,11 @@
   transition: transform .15s ease !important;
 }
 
-/* ===== Mobile (≤576px) — pangkas lebih agresif ===== */
+/* ===== Mobile (≤576px) ===== */
 @media (max-width: 576px){
   .hero .slide{
     min-height: clamp(200px, 40vh, 300px) !important;
-    padding: 0 12px 4px !important;     /* no top padding */
+    padding: 0 12px 4px !important;
     background-position: top center !important; /* tampilkan bagian atas foto */
   }
   .hero .slide-content{
@@ -108,9 +104,7 @@
   .hero .slider-dots{ bottom: 4px !important; }
 }
 
-/* Guard kecil untuk viewport sangat pendek (status bar besar/landscape) */
+/* Guard untuk viewport sangat pendek (landscape/status bar besar) */
 @media (max-height: 520px){
-  .hero .slide{
-    min-height: 220px !important;
-  }
+  .hero .slide{ min-height: 220px !important; }
 }
