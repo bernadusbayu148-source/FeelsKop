@@ -16,8 +16,8 @@
   <link rel="stylesheet" href="assets/css/style.css?v=20260123f">
   <!-- CSS khusus komponen Leaderboard -->
   <link rel="stylesheet" href="assets/css/leaderboard-podium.css?v=20260124-podium12">
-  <!-- ✅ CSS kecil khusus Home: hero lebih minimal & bersih -->
-  <link rel="stylesheet" href="assets/css/home-compact.css?v=20260127-heroMinimal-c2">
+  <!-- ✅ CSS kecil khusus Home -->
+  <link rel="stylesheet" href="assets/css/home-compact.css?v=20260127-heroMinimal-c3">
   <!-- Performance: preload hero background images (LCP) -->
   <link rel="preload" as="image" href="assets/img/hero-1.jpg" fetchpriority="high">
   <link rel="preload" as="image" href="assets/img/hero-2.jpeg">
@@ -91,7 +91,7 @@
       <div class="slide is-active"
            style="background-image:
                     linear-gradient(rgba(0,0,0,.20), rgba(0,0,0,.20)),
-                    url('assets/img/hero-1.jpg?v=20260127c2');">
+                    url('assets/img/hero-1.jpg?v=20260127c3');">
         <div class="slide-content">
           <h1 class="hero-title">Kopi Gerobak, Rasa Juara</h1>
           <p class="hero-subtitle">Biji pilihan • Racikan konsisten • Harga bersahabat</p>
@@ -106,7 +106,7 @@
       <div class="slide"
            style="background-image:
                     linear-gradient(rgba(0,0,0,.20), rgba(0,0,0,.20)),
-                    url('assets/img/hero-2.jpeg?v=20260127c2');">
+                    url('assets/img/hero-2.jpeg?v=20260127c3');">
         <div class="slide-content">
           <h1 class="hero-title">Semakin dekat, Semakin Bersahabat</h1>
           <p class="hero-subtitle">Lihat Stasiun terdekat dengan Anda</p>
@@ -132,6 +132,7 @@
           <img src="assets/img/leaderboard-title.png" alt="Feeling Leaderboard" loading="lazy" decoding="async">
         </picture>
       </div>
+
       <div class="lb-card">
         <!-- Controls -->
         <div class="lb-controls" role="region" aria-label="Pencarian & aksi">
@@ -140,6 +141,7 @@
         </div>
         <!-- Container hasil pencarian inline -->
         <div id="lb-search-inline" class="lb-search-inline" hidden></div>
+
         <!-- Stats -->
         <section class="lb-stats" aria-label="Ringkasan">
           <article class="stat-card">
@@ -153,13 +155,16 @@
             <div class="stat-bar"><div class="fill" id="lb-bar-avg" style="width:0%"></div></div>
           </article>
         </section>
+
         <!-- Podium -->
         <section id="lb-podium" class="lb-podium" aria-label="Podium 1–3">
           <div class="empty" aria-hidden="true" style="grid-column:1/-1; text-align:center;">Memuat data…</div>
         </section>
+
         <!-- (legacy) hasil cari lama -->
         <div id="lb-search-info" class="lb-search-info" aria-live="polite" hidden></div>
-        <!-- Tabel -->
+
+        <!-- Tabel / List -->
         <div class="lb-table-card" role="region" aria-label="Tabel/Daftar leaderboard">
           <div class="table-accent" aria-hidden="true"></div>
           <table class="lb-table">
@@ -232,9 +237,11 @@
       </div>
     </div>
   </footer>
-  <!-- SCRIPTS (hanya sekali) -->
+
+  <!-- SCRIPTS -->
   <script src="assets/js/main.js" defer></script>
   <script src="assets/js/leaderboard-inline.js?v=20260124-podium12" defer></script>
   <noscript>Website ini bekerja lebih optimal dengan JavaScript diaktifkan.</noscript>
 </body>
 </html>
+``
