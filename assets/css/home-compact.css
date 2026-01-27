@@ -1,9 +1,9 @@
 /* =========================================================
-   HOME — Hero Minimal & Compact (v20260127-heroMinimal-b)
-   Fokus:
-   - Hilangkan headroom/ruang kosong di atas hero.
-   - Konten menempel ke batas bawah hero (rapat dan bersih).
-   - Tetap readable (overlay tipis) & kompatibel lintas device.
+   HOME — Hero Minimal & Compact (v20260127-heroMinimal-c)
+   - Paksa pakai var(--bg) dengan !important (override kuat)
+   - Hilangkan headroom (konten menempel ke bawah)
+   - Overlay tipis untuk keterbacaan teks
+   - Responsif mobile/tablet/desktop
 ========================================================= */
 
 /* Pastikan tidak ada margin collapse setelah header sticky */
@@ -16,94 +16,104 @@
   background: transparent !important; /* override var(--bg-soft) */
 }
 
-/* Slide container — lebih pendek & konten dirapatkan ke bawah */
+/* ===== Slide container ===== */
 .hero .slide{
-  /* Lebih pendek dari versi sebelumnya untuk memangkas ruang atas */
-  min-height: clamp(220px, 42vh, 340px);
+  /* Tinggi minimum lebih ringkas agar tidak ada ruang atas berlebih */
+  min-height: clamp(220px, 42vh, 340px) !important;
 
-  /* Flexbox: dorong KONTEN ke bawah (sumbu utama = vertikal) */
+  /* Tata letak: dorong konten ke bawah (vertikal), center horizontal */
   display: flex !important;
   flex-direction: column !important;
-  justify-content: flex-end !important; /* <<< vertikal ke bawah */
-  align-items: center !important;       /* <<< center horizontal */
+  justify-content: flex-end !important; /* konten nempel bawah */
+  align-items: center !important;       /* center horizontal */
 
-  /* Overlay tipis agar teks tetap terbaca di atas foto */
+  /* Gunakan gambar dari custom property --bg + overlay tipis
+     !important memastikan rule ini menang atas CSS lain */
   background-image:
     linear-gradient(rgba(0,0,0,.20), rgba(0,0,0,.20)),
-    var(--bg);
+    var(--bg) !important;
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
 
-  /* Pangkas padding atas ke 0 agar tidak ada "headroom" */
-  padding: 0 16px 6px;
-  background-size: cover;
-  background-position: center;
+  /* Pangkas padding atas ke 0 agar tidak ada headroom */
+  padding: 0 16px 6px !important;
 }
 
-/* Kontainer isi hero — diringkas & dirapatkan ke bawah */
+/* ===== Konten hero ===== */
 .hero .slide-content{
-  width: 100%;
-  max-width: 880px;
-  text-align: center;
+  width: 100% !important;
+  max-width: 880px !important;
+  text-align: center !important;
 
-  /* Rapatkan vertikal, tempel ke bawah */
-  margin: 0 0 2px;   /* jarak kecil ke bawah */
-  padding: 0 0 2px;  /* pangkas padding bawah */
+  /* Rapatkan vertikal; tempel ke bawah */
+  margin: 0 0 2px !important;
+  padding: 0 0 2px !important;
 }
 
 /* Heading & subheading kompak */
 .hero .hero-title{
-  margin: 0 0 6px;
-  line-height: 1.12;
+  margin: 0 0 6px !important;
+  line-height: 1.12 !important;
 }
 .hero .hero-subtitle{
-  margin: 0 0 8px;
-  opacity: .95;
+  margin: 0 0 8px !important;
+  opacity: .95 !important;
 }
 
 /* Jarak antar tombol aksi */
 .hero .hero-actions{
-  display: inline-flex;
-  gap: 12px;
+  display: inline-flex !important;
+  gap: 12px !important;
 }
 
-/* Tombol navigasi slider — minimal & tetap mudah dijangkau */
+/* Tombol navigasi slider — minimal & mudah dijangkau */
 .hero .slider-btn{
-  top: 50%;
-  background: rgba(255,255,255,.92);
-  border: 1px solid #e6e6e9;
-  box-shadow: 0 4px 14px rgba(0,0,0,.10);
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  background: rgba(255,255,255,.92) !important;
+  border: 1px solid #e6e6e9 !important;
+  box-shadow: 0 4px 14px rgba(0,0,0,.10) !important;
 }
 
-/* Dots didekatkan ke bawah (rapat) */
+/* Dots didekatkan ke bawah */
 .hero .slider-dots{
-  bottom: 4px;
+  bottom: 4px !important;
 }
 
-/* (Opsional) Dots lebih kecil & respons animasi ringan */
+/* Dots lebih kecil & animasi ringan */
 .hero .slider-dots .dot{
-  width: 9px;
-  height: 9px;
+  width: 9px !important;
+  height: 9px !important;
 }
 .hero .slider-dots .dot.active{
-  transform: scale(1.1);
-  transition: transform .15s ease;
+  transform: scale(1.1) !important;
+  transition: transform .15s ease !important;
 }
 
 /* ===== Mobile (≤576px) — pangkas lebih agresif ===== */
 @media (max-width: 576px){
   .hero .slide{
-    min-height: clamp(200px, 40vh, 300px);
-    padding: 0 12px 4px; /* no top padding, rapat bawah */
-    background-position: center top; /* isi bagian atas dulu */
+    min-height: clamp(200px, 40vh, 300px) !important;
+    padding: 0 12px 4px !important;     /* no top padding */
+    background-position: top center !important; /* tampilkan bagian atas foto */
   }
   .hero .slide-content{
-    margin: 0 0 2px;
-    padding: 0 0 2px;
+    margin: 0 0 2px !important;
+    padding: 0 0 2px !important;
   }
-  .hero .hero-title{ margin: 0 0 6px; }
-  .hero .hero-subtitle{ margin: 0 0 8px; }
+  .hero .hero-title{ margin: 0 0 6px !important; }
+  .hero .hero-subtitle{ margin: 0 0 8px !important; }
 }
 
 /* ===== Tablet kecil (≤768px) ===== */
 @media (max-width: 768px){
-  .hero .slider-dots{ bottom: 4px; }
+  .hero .slider-dots{ bottom: 4px !important; }
+}
+
+/* (Opsional) Guard kecil untuk device sangat pendek (status bar besar) */
+@media (max-height: 520px){
+  .hero .slide{
+    min-height: 220px !important;
+  }
 }
