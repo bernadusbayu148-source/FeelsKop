@@ -1,4 +1,3 @@
-
 /* =========================
  Tema Dasar & Reset
  ========================= */
@@ -29,7 +28,6 @@ body{
   color:var(--text);
   background:var(--bg);
 }
-
 /* =========================
  Utilities
  ========================= */
@@ -48,7 +46,6 @@ body{
 .btn-primary:hover{filter:brightness(.95);transform:translateY(-1px);}
 .btn-outline{background:#fff;color:var(--brand-red);border-color:var(--brand-red);}
 .btn-outline:hover{filter:brightness(.97);}
-
 /* =========================
  Header / Navbar
  ========================= */
@@ -83,7 +80,6 @@ body.nav-open{overflow:hidden;touch-action:none;}
   .btn-wa{display:none}.nav-toggle{display:block}
 }
 .nav .nav-link:focus-visible,.btn:focus-visible,.dropdown-toggle:focus-visible{outline:2px solid #1e90ff;outline-offset:2px;}
-
 /* =========================
  Hero Slider
  ========================= */
@@ -106,7 +102,6 @@ body.nav-open{overflow:hidden;touch-action:none;}
 .slider-dots .dot{width:10px;height:10px;border-radius:50%;background:#fff;opacity:.7;cursor:pointer}
 .slider-dots .dot.active{background:var(--brand-red);opacity:1}
 @media (max-width:576px){.hero-title{font-size:clamp(24px,6vw,32px)}.slide{min-height:380px}}
-
 /* =========================
  CTA Strip (kompak)
  ========================= */
@@ -119,7 +114,6 @@ body.nav-open{overflow:hidden;touch-action:none;}
 .cta-content h3{margin:0;font-size:clamp(18px,3.5vw,22px)}
 .cta-content p{margin:0;color:var(--muted);font-size:clamp(14px,3.2vw,16px)}
 @media (max-width:768px){.cta-strip{padding:var(--cta-pad-y-mobile) 0;}}
-
 /* =========================
  Footer (kompak agresif)
  ========================= */
@@ -144,13 +138,11 @@ body.nav-open{overflow:hidden;touch-action:none;}
   .footer-about p,.footer-contact p{line-height:1.4}
   .footer-bottom{padding:8px 16px}
 }
-
 /* =========================
  Form (contact)
  ========================= */
 label{display:block;font-weight:600;margin-bottom:6px}
 input,textarea{width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:10px;font:inherit}
-
 /* =========================
  Service Tabs
  ========================= */
@@ -173,7 +165,6 @@ input,textarea{width:100%;padding:10px 12px;border:1px solid var(--border);borde
 }
 .tab-panel{display:block}
 .tab-panel[hidden]{display:none!important}
-
 /* =========================
  Services (konten) — tidak diubah
  ========================= */
@@ -198,7 +189,6 @@ input,textarea{width:100%;padding:10px 12px;border:1px solid var(--border);borde
 .final-cta .btn{display:inline-flex;gap:10px;font-size:16px;border-color:var(--brand-red);color:#fff;background:var(--brand-red);}
 @media (max-width:992px){.service-meta{grid-template-columns:1fr}}
 @media (max-width:576px){.service-intro{padding:12px 10px}.service-card .card-head h3{font-size:17px}}
-
 /* =========================
  Stations — tidak diubah
  ========================= */
@@ -211,7 +201,6 @@ input,textarea{width:100%;padding:10px 12px;border:1px solid var(--border);borde
 .station-item a.link{display:inline-flex;align-items:center;min-height:40px;color:var(--brand-red);font-weight:700;text-decoration:none;}
 .station-item a.link:hover{text-decoration:underline;}
 @media (max-width:768px){.station-list{grid-template-columns:1fr}}
-
 /* =========================
  Products Page — Menu Cards (PASTI 2 KOLOM)
  ========================= */
@@ -254,7 +243,6 @@ main .menu-grid{
   main .menu-grid{ gap:10px !important; }
   .menu-info{ padding:6px 0 0 !important; gap:6px !important; }
 }
-
 /* =========================
  Kontak — Feedback Form (tanpa perubahan)
  ========================= */
@@ -278,7 +266,6 @@ main .menu-grid{
 .consent-row input[type="checkbox"]{inline-size:18px;block-size:18px;min-width:18px;min-height:18px;border-radius:4px;accent-color:var(--brand-red)}
 .consent-text{display:inline-block;text-wrap:balance;max-width:60ch}
 @media (max-width:768px){.consent-row{gap:8px}.consent-text{max-width:100%;font-weight:600}}
-
 /* ===== SERVICES — Perbaikan input tanggal (tetap) ===== */
 .order-widget input[type="date"]{width:100%;box-sizing:border-box;appearance:none;-webkit-appearance:none;background-color:#fff;border:1px solid var(--border);border-radius:12px;padding:10px 12px;min-height:44px;font:inherit;line-height:1.2;color:var(--text)}
 .order-widget input[type="date"]::-webkit-date-and-time-value{text-align:left;padding:0;min-height:1.2em}
@@ -289,7 +276,6 @@ main .menu-grid{
   .order-widget .contact-grid{gap:8px;margin-bottom:8px}
   .order-widget label{margin-bottom:4px}
 }
-
 /* ===== MOBILE COMPACT OVERRIDES (global) ===== */
 @media (max-width: 768px){
   .cta-strip { padding: 8px 0; }
@@ -297,7 +283,7 @@ main .menu-grid{
   .cta-content h3 { font-size: 16px; line-height: 1.2; }
   .cta-content p { font-size: 13px; line-height: 1.35; }
   .footer-grid { grid-template-columns: 1fr; gap: 8px; padding: 10px 14px; }
-  .footer-logo { height: 28px; margin: 0 0 4px; }
+  .footer-logo { height: auto; max-height: 28px; }
   .footer-contact h4, .footer-menu h4 { font-size: 16px; margin: 0 0 6px; }
   .footer-about p, .footer-contact p { font-size: 13.5px; line-height: 1.35; margin: 4px 0; }
   .footer-menu li { margin: 4px 0; } .footer-menu a { font-size: 14px; }
@@ -313,16 +299,14 @@ main .menu-grid{
   main .menu-grid { gap: 10px !important; }
   .menu-info { padding: 6px 0 0 !important; gap: 6px !important; }
 }
-
 /* =========================
- Order Widget — Baris Pesanan (Menu + Qty)  >>> DIPERKUAT
+ Order Widget — Baris Pesanan (Menu + Qty) >> DIPERKUAT
  ========================= */
 /* Grid daftar baris */
 .order-widget .order-list{
   display:grid !important;
   gap:10px !important;
 }
-
 /* Setiap baris = 2 kolom field + 1 kolom kecil (hapus) */
 .order-widget .order-list .order-row{
   display:grid !important;
@@ -330,7 +314,6 @@ main .menu-grid{
   gap:10px !important;
   align-items:end !important;
 }
-
 /* Field kolom dengan label di atas kontrol */
 .order-widget .order-list .order-row .field{
   display:flex !important;
@@ -341,9 +324,8 @@ main .menu-grid{
 .order-widget .order-list .order-row .field > label{
   margin:0 !important;
   font-weight:700 !important;
-  color:#fff !important;   /* agar kontras di card merah */
+  color:#fff !important; /* agar kontras di card merah */
 }
-
 /* Tombol pilih menu */
 .order-widget .order-list .menu-picker{
   width:100% !important;
@@ -359,7 +341,6 @@ main .menu-grid{
   align-items:center !important;
   gap:10px !important;
 }
-
 /* Input Qty */
 .order-widget .order-list .qty-input{
   width:100% !important;
@@ -367,7 +348,6 @@ main .menu-grid{
   border:1px solid var(--border) !important;
   border-radius:10px !important;
 }
-
 /* Tombol hapus baris */
 .order-widget .order-list .row-remove{
   width:32px !important;
@@ -377,7 +357,6 @@ main .menu-grid{
   background:#fff !important;
   cursor:pointer !important;
 }
-
 /* Responsif */
 @media (max-width:768px){
   .order-widget .order-list .order-row{
@@ -385,7 +364,6 @@ main .menu-grid{
     gap:8px !important;
   }
 }
-
 /* ===== Modal (global) — DIPERKUAT (dari perbaikan sebelumnya) ===== */
 body .modal{
   position:fixed !important;
@@ -422,6 +400,35 @@ body .modal-body{padding:12px;overflow:auto;max-height:calc(min(86vh,720px) - 96
 body .modal-footer{padding:12px;border-top:1px solid var(--border);display:flex;justify-content:flex-end;gap:8px}
 body .modal-close{background:#fff;border:1px solid var(--border);border-radius:8px;padding:6px 10px;cursor:pointer}
 body .modal-search input{width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:10px;font:inherit}
-
 /* kunci scroll body ketika modal aktif */
 body.modal-open{overflow:hidden !important;touch-action:none !important;}
+
+/* ------------------------------------------------------------------
+   ⬇⬇⬇ TAMBAHAN BARU: LOGO SIZING UNTUK PNG (Header & Footer) ⬇⬇⬇
+------------------------------------------------------------------- */
+
+/* Logo PNG di HEADER — responsif & proporsional */
+.site-header .logo{
+  /* override tinggi fix 38px di atas dengan pendekatan fleksibel */
+  height:auto;            /* pertahankan rasio asli */
+  width:auto;
+  max-height:40px;        /* batas aman default (mobile/tablet) */
+  object-fit:contain;
+}
+@media (min-width:992px){
+  .site-header .logo{ max-height:44px; } /* sedikit lebih tinggi di desktop */
+}
+
+/* Logo PNG di FOOTER — kompak, proporsional */
+.site-footer .footer-logo{
+  height:auto;
+  width:auto;
+  max-height:var(--footer-logo-h);  /* default 32px dari :root */
+  object-fit:contain;
+}
+@media (min-width:1100px){
+  .site-footer .footer-logo{ max-height:36px; }
+}
+@media (max-width:700px){
+  .site-footer .footer-logo{ max-height:28px; }
+}
