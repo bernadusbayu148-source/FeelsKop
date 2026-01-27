@@ -1,17 +1,16 @@
-
 /* assets/js/leaderboard-inline.js — podium bertingkat + top10 + search
    Penambahan:
    - Hasil pencarian MUNCUL di bawah kolom pencarian (inline).
    - Tampilkan selisih poin ke #1.
    - Tombol 'hapus' (X) untuk membersihkan kolom pencarian.
    Mode tampilan daftar:
-   - ≤ 480px  : list-card mobile (tanpa header keterangan)
-   - > 480px  : tabel seperti biasa
+   - ≤ 480px : list-card mobile (tanpa header keterangan)
+   - > 480px : tabel seperti biasa
 */
 (() => {
   // ====== Konfigurasi ======
   const SHEET_ID = "1UBrdYls_Ed0GIXCSPghK9C3du5dEhbdx";
-  const GID      = "371192175";
+  const GID = "371192175";
   const HEADERS_EXPECT = ["No Member","Nama","Point"];
   const GVIZ_URL = (id,gid) => `https://docs.google.com/spreadsheets/d/${id}/gviz/tq?tqx=out:json&gid=${gid}`;
   const CSV_URL  = (id,gid) => `https://docs.google.com/spreadsheets/d/${id}/export?format=csv&gid=${gid}`;
@@ -19,28 +18,27 @@
   // ====== State & element ======
   const nf = new Intl.NumberFormat('id-ID');
   const el = {
-    podium:  document.getElementById('lb-podium'),
-    tbBody:  document.getElementById('lb-table-body'),
-    meta:    document.getElementById('lb-meta'),          // tidak dipakai (disembunyikan via CSS)
-    search:  document.getElementById('lb-search'),
+    podium: document.getElementById('lb-podium'),
+    tbBody: document.getElementById('lb-table-body'),
+    meta: document.getElementById('lb-meta'),
+    search: document.getElementById('lb-search'),
     refresh: document.getElementById('lb-refresh'),
-    sInfo:   document.getElementById('lb-search-info'),   // tidak dipakai lagi (diganti inline)
+    sInfo: document.getElementById('lb-search-info'),
     statTotal: document.getElementById('lb-stat-total'),
-    statAvg:   document.getElementById('lb-stat-avg'),
-    barTotal:  document.getElementById('lb-bar-total'),
-    barAvg:    document.getElementById('lb-bar-avg'),
+    statAvg: document.getElementById('lb-stat-avg'),
+    barTotal: document.getElementById('lb-bar-total'),
+    barAvg: document.getElementById('lb-bar-avg'),
   };
-
   const state = { rows: [], filtered: [], query: "", rankMap: {} };
   let currentAbort;
 
   // ====== Utils ======
   const toInt = v => {
-    const n = Number(String(v ?? '').replace(/[^\d\-\.]/g,''));
+    const n = Number(String(v ?? '').replace(/[^\d\-.]/g,''));
     return Number.isFinite(n) ? n : 0;
   };
-  function normalizeHeaderMap(headers, expects) {
-    const lower = headers.map(h => String(h||'').trim().toLowerCase());
+  function normalizeHeaderMap(headers, expects){
+    const lower = headers.map(h => String(h ?? '').trim().toLowerCase());
     const map = {};
     expects.forEach(exp => {
       const target = exp.toLowerCase();
@@ -48,14 +46,14 @@
         h === target ||
         h.replace(/\s+/g,'') === target.replace(/\s+/g,'') ||
         (exp === "No Member" && /no.*member|member.*no|nomor.*member/.test(h)) ||
-        (exp === "Point"     && /point|poin|score|nilai/.test(h))
+        (exp === "Point" && /point|poin|score|nilai/.test(h))
       );
       if (idx >= 0) map[exp] = headers[idx];
     });
     return map;
   }
   // CSV parser aman
-  function splitCsvLine(line) {
+  function splitCsvLine(line){
     const out=[]; let cur=""; let q=false;
     for (let i=0;i<line.length;i++){
       const ch=line[i];
@@ -80,7 +78,7 @@
     return { headers, rows };
   }
   function esc(s){
-    return String(s ?? '').replace(/[&<>"']/g,c=>({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' })[c]);
+    return String(s ?? '').replace(/[&<>\"']/g,c=>({'&':'&','<':'<','>':'>','"':'"','\'':'&#39;'}[c]));
   }
 
   // ====== Buat UI tambahan: wrapper search + tombol hapus + container hasil inline ======
@@ -91,7 +89,6 @@
       wrap.className = 'search-wrap';
       el.search.parentNode.insertBefore(wrap, el.search);
       wrap.appendChild(el.search);
-
       // Tombol clear
       const clr = document.createElement('button');
       clr.type = 'button';
@@ -99,7 +96,6 @@
       clr.setAttribute('aria-label', 'Bersihkan pencarian');
       clr.innerHTML = '<i class="fa-solid fa-xmark" aria-hidden="true"></i>';
       wrap.appendChild(clr);
-
       // Event clear
       clr.addEventListener('click', () => {
         el.search.value = '';
@@ -110,7 +106,6 @@
         el.search.focus();
         toggleClearButton();
       });
-
       // Toggle visibilitas tombol
       function toggleClearButton(){
         if (el.search.value.trim().length > 0) clr.classList.add('visible');
@@ -120,7 +115,6 @@
       // panggil sekali awal
       toggleClearButton();
     }
-
     // Container hasil inline di bawah baris kontrol
     if (!document.getElementById('lb-search-inline')){
       const controls = el.search.closest('.lb-controls');
@@ -140,11 +134,9 @@
     el.podium.innerHTML = `<div class="empty" style="grid-column:1/-1; text-align:center;">Memuat data…</div>`;
     el.tbBody.innerHTML = `<tr><td colspan="4" class="empty">Memuat data…</td></tr>`;
     if (el.sInfo){ el.sInfo.hidden = true; el.sInfo.innerHTML = ''; } // tidak dipakai lagi
-    if (el.meta) el.meta.textContent = '';  // disembunyikan via CSS
-
+    if (el.meta) el.meta.textContent = ''; // disembunyikan via CSS
     const okG = await tryFetchGviz(currentAbort.signal); if (okG) return;
     const okC = await tryFetchCsv(currentAbort.signal);  if (okC) return;
-
     el.tbBody.innerHTML = `<tr><td colspan="4" class="empty">Gagal memuat data. Pastikan Sheet publik & telah dipublikasikan.</td></tr>`;
   }
   async function tryFetchGviz(signal){
@@ -154,9 +146,9 @@
       const jsonStr = text.replace(/^[^\(]+\(/,"").replace(/\)\s*;?\s*$/,"");
       const payload = JSON.parse(jsonStr);
       if (!payload.table) throw new Error('payload.table kosong');
-      const headers = payload.table.cols.map(c => (c.label||'').trim());
+      const headers = payload.table.cols.map(c => (c.label ?? '').trim());
       const rows = payload.table.rows.map(r => {
-        const c = r.c || []; const o={};
+        const c = r.c ?? []; const o={};
         headers.forEach((label,i)=> o[label] = c[i]?.v ?? '');
         return o;
       });
@@ -180,29 +172,27 @@
     const data = rows.map(r => ({
       'No Member': r[map['No Member']] ?? r['No Member'] ?? '',
       'Nama'     : r[map['Nama']]      ?? r['Nama']      ?? '',
-      'Point'    : toInt(r[map['Point']] ?? r['Point'] ?? 0),
+      'Point'    : toInt(r[map['Point']] ?? r['Point']   ?? 0),
     }));
     data.sort((a,b) => b['Point'] - a['Point']);
-    const rankMap={}; data.forEach((row,i)=>{ const key=String(row['No Member']||'').trim(); if (key) rankMap[key]=i+1; });
-
+    const rankMap={}; data.forEach((row,i)=>{ const key=String(row['No Member'] ?? '').trim(); if (key) rankMap[key]=i+1; });
     state.rows = data; state.rankMap = rankMap;
-
-    ensureSearchEnhancements();  // buat UI tambahan
+    ensureSearchEnhancements(); // buat UI tambahan
     updateStats();
     renderPodium();
     applyFilter();
     renderTable();
-    renderSearchInline();        // kosongkan/isi sesuai query
+    renderSearchInline(); // kosongkan/isi sesuai query
   }
 
   function updateStats(){
     const total = state.rows.length;
-    const sumPts = state.rows.reduce((s,r)=> s + Number(r['Point']||0), 0);
+    const sumPts = state.rows.reduce((s,r)=> s + Number(r['Point'] ?? 0), 0);
     const avg = total ? (sumPts/total) : 0;
     el.statTotal.textContent = nf.format(total);
     el.statAvg.textContent   = nf.format(Math.round(avg));
-    el.barTotal.style.width = Math.min(100, (total/100)*100) + '%';
-    el.barAvg.style.width   = Math.min(100, (avg/5000)*100) + '%';
+    el.barTotal.style.width  = Math.min(100, (total/100)*100) + '%';
+    el.barAvg.style.width    = Math.min(100, (avg/5000)*100) + '%';
   }
 
   // ====== PODIUM: 2 – 1 – 3 ======
@@ -211,30 +201,23 @@
            p2 = {Nama:'—','No Member':'—','Point':0},
            p3 = {Nama:'—','No Member':'—','Point':0}] = state.rows.slice(0,3);
 
-    const svgTrophy = (rank) => {
-      const tone = rank===1
-        ? {a:'#F5C542', b:'#F6D77C'}        // emas
-        : rank===2
-        ? {a:'#C9CFD8', b:'#E9EDF3'}        // perak
-        : {a:'#CF8857', b:'#E9B692'};       // perunggu
-      return `
-        <svg viewBox="0 0 64 64" width="26" height="26" aria-hidden="true" focusable="false">
-          <defs>
-            <linearGradient id="g${rank}" x1="0" x2="0" y1="0" y2="1">
-              <stop offset="0%" stop-color="${tone.a}"/>
-              <stop offset="100%" stop-color="${tone.b}"/>
-            </linearGradient>
-          </defs>
-          <path fill="url(#g${rank})" d="M20 8h24c0 6 2 10 6 12h6v6c0 10-9 18-20 18h-8C17 44 8 36 8 26v-6h6c4-2 6-6 6-12zm8 44h8v4h-8zM10 12h6v6h-6v-6zm38 0h6v6h-6v-6z"/>
-        </svg>`;
+    // Gambar PNG per juara (pastikan file tersedia di assets/img)
+    const podiumImg = (rank) => {
+      const src = `assets/img/podium-${rank}.png`;
+      const alt = `Juara ${rank}`;
+      return `<img class="podium-img" src="${src}" alt="${alt}">`;
     };
 
+    // Kolom podium tanpa ikon piala & tanpa chip poin
     const col = (rank, cls, row) => `
       <article class="podium-col ${cls}" aria-label="Juara ${rank}">
         <h3 class="p-name">${esc(row['Nama'])}</h3>
         <p class="p-member mono">${esc(row['No Member'])}</p>
-        <div class="stage"><div class="trophy">${svgTrophy(rank)}</div></div>
-        <div class="p-point"><span>🏆</span><span class="num mono">${nf.format(Number(row['Point']||0))}</span><span>poin</span></div>
+        <div class="stage">${podiumImg(rank)}</div>
+        <div class="p-point">
+          <span class="num mono">${nf.format(Number(row['Point'] ?? 0))}</span>
+          <span>poin</span>
+        </div>
       </article>`;
 
     el.podium.innerHTML = col(2,'second',p2) + col(1,'first',p1) + col(3,'third',p3);
@@ -253,8 +236,6 @@
   function renderTable(){
     const q = state.query.trim();
     const isSearching = q.length > 0;
-
-    // (Hasil inline dipindahkan ke bawah kolom pencarian; el.sInfo tidak dipakai)
     if (el.sInfo){ el.sInfo.hidden = true; el.sInfo.innerHTML = ''; }
 
     let rowsToShow = [];
@@ -270,23 +251,20 @@
       return;
     }
 
-    // ===== TABEL (desktop/tablet) =====
     if (rowsToShow.length === 0){
       el.tbBody.innerHTML = `<tr><td colspan="4" class="empty">${isSearching ? 'Tidak ada hasil.' : 'Data kosong.'}</td></tr>`;
       return;
     }
-
     const tr = rowsToShow.map(r => {
-      const key = String(r['No Member']||'').trim();
+      const key = String(r['No Member'] ?? '').trim();
       const rank = state.rankMap[key] ?? '-';
       return `<tr>
         <td><span class="rank-badge">#${rank}</span></td>
-        <td class="mono">${esc(String(r['No Member']||''))}</td>
-        <td>${esc(String(r['Nama']||''))}</td>
-        <td class="mono" style="text-align:right">${nf.format(Number(r['Point']||0))}</td>
+        <td class="mono">${esc(String(r['No Member'] ?? ''))}</td>
+        <td>${esc(String(r['Nama'] ?? ''))}</td>
+        <td class="mono" style="text-align:right">${nf.format(Number(r['Point'] ?? 0))}</td>
       </tr>`;
     }).join('');
-
     el.tbBody.innerHTML = tr;
   }
 
@@ -294,36 +272,31 @@
   function renderListMobile(rows){
     let card = document.querySelector('#leaderboard-host .lb-table-card');
     if (!card) return;
-
     // Hapus list lama bila ada
     let oldList = card.querySelector('.lb-list');
     if (oldList) oldList.remove();
-
     // Buat list-wrap
     card.insertAdjacentHTML('beforeend', `<div class="lb-list"></div>`);
     const list = card.querySelector('.lb-list');
-
     if (rows.length === 0){
       list.innerHTML = `<div class="empty">Tidak ada data.</div>`;
       return;
     }
-
     const html = rows.map(r => {
-      const key  = String(r['No Member']||'').trim();
+      const key = String(r['No Member'] ?? '').trim();
       const rank = state.rankMap[key] ?? '-';
-      const name = esc(String(r['Nama']||''));
+      const name = esc(String(r['Nama'] ?? ''));
       const memb = esc(key);
-      const pts  = nf.format(Number(r['Point']||0));
+      const pts = nf.format(Number(r['Point'] ?? 0));
       return `<div class="lb-li">
-                <div class="rk"><span class="rank-badge">#${rank}</span></div>
-                <div class="who">
-                  <span class="nm">${name}</span>
-                  <span class="mb mono">${memb}</span>
-                </div>
-                <div class="pt mono">${pts}</div>
-              </div>`;
+        <div class="rk"><span class="rank-badge">#${rank}</span></div>
+        <div class="who">
+          <span class="nm">${name}</span>
+          <span class="mb mono">${memb}</span>
+        </div>
+        <div class="pt mono">${pts}</div>
+      </div>`;
     }).join('');
-
     list.innerHTML = html;
   }
 
@@ -331,31 +304,26 @@
   function renderSearchInline(){
     const inline = document.getElementById('lb-search-inline');
     if (!inline) return;
-
     const q = state.query.trim();
     if (!q){
       inline.style.display = 'none';
       inline.innerHTML = '';
       return;
     }
-
     if (state.filtered.length === 0){
       inline.style.display = 'block';
       inline.innerHTML = `<div class="hit"><div></div><div>Tidak ada hasil untuk "<strong>${esc(q)}</strong>"</div><div></div></div>`;
       return;
     }
-
     // Ambil hasil teratas dari filter
     const r = state.filtered[0];
-    const no = String(r['No Member']||'').trim();
-    const nama = String(r['Nama']||'').trim();
-    const pts = Number(r['Point']||0);
+    const no = String(r['No Member'] ?? '').trim();
+    const nama = String(r['Nama'] ?? '').trim();
+    const pts = Number(r['Point'] ?? 0);
     const rank = state.rankMap[no] ?? '-';
-
     // Hitung selisih dengan #1
     const top1 = Number(state.rows[0]?.['Point'] ?? 0);
     const gap = Math.max(top1 - pts, 0);
-
     inline.innerHTML = `
       <div class="hit">
         <div><span class="rank-badge">#${rank}</span></div>
