@@ -75,7 +75,6 @@ html{ -webkit-text-size-adjust: 100%; }
 #leaderboard-host .lb-search-inline .gap{
   margin-top:6px; color:#D21F3C; font-weight:700; font-variant-numeric:tabular-nums; font-feature-settings:"tnum";
 }
-
 #leaderboard-host .rank-badge{
   display:inline-block; padding:6px 10px; border-radius:999px; font-weight:800; background:#fff;
   border:1px solid var(--lb-border); box-shadow:0 4px 10px rgba(0,0,0,.06);
@@ -107,24 +106,57 @@ html{ -webkit-text-size-adjust: 100%; }
     linear-gradient(180deg, var(--tone1,#ffffff), var(--tone2,#fafbff));
   border:2.5px solid var(--ring);
   box-shadow: 0 12px 24px rgba(0,0,0,.06), inset 0 6px 12px rgba(255,255,255,.35);
-  display:flex; align-items:center; justify-content:center;  /* center PNG */
-  padding-top:10px; margin-bottom:18px;
+  /* Center PNG dan jadikan container clipping agar gambar tidak keluar */
+  display:flex; align-items:center; justify-content:center;
+  padding: 8px;               /* padding tipis supaya ada napas di tepi */
+  margin-bottom:18px;
+  overflow:hidden;            /* <— cegah spill keluar kotak */
 }
 
 /* Gaya warna per juara */
 #leaderboard-host .podium-col.first  { --step:1.00; }
 #leaderboard-host .podium-col.second { --step:0.90; }
 #leaderboard-host .podium-col.third  { --step:0.82; }
-#leaderboard-host .podium-col.first  .stage{ --ring:var(--gold);   --tone1:#fff7d0; --tone2:#fffae6; }
-#leaderboard-host .podium-col.second .stage{ --ring:var(--silver); --tone1:#f2f4f8; --tone2:#ffffff; }
+#leaderboard-host .podium-col.first  .stage{ --ring:var(--gold);  --tone1:#fff7d0; --tone2:#fffae6; }
+#leaderboard-host .podium-col.second .stage{ --ring:var(--silver);--tone1:#f2f4f8; --tone2:#ffffff; }
 #leaderboard-host .podium-col.third  .stage{ --ring:var(--bronze); --tone1:#fde6d2; --tone2:#fff2e6; }
 
-/* ===== Gambar PNG di kotak juara ===== */
+/* ===== PNG karakter di kotak juara (BESARKAN & IKUTI TINGGI STAGE) =====
+   - Gunakan tinggi sebagai acuan agar selalu proporsional terhadap stage.
+   - object-fit: contain memastikan tidak meluber keluar.
+   - max-height menghormati padding stage & semua ukuran device. */
 #leaderboard-host .podium-img{
-  width: clamp(56px, 8vw, 84px);
-  height: auto;
+  height: calc(100% - 12px);  /* isi hampir penuh tinggi kotak */
+  max-height: clamp(72px, calc(var(--bh) * 0.78), 240px);
+  width: auto;                 /* pertahankan rasio */
   display:block;
+  object-fit: contain;         /* pastikan tidak keluar kotak */
   filter: drop-shadow(0 6px 14px rgba(0,0,0,.12));
+}
+
+/* Penyesuaian kecil di layar sempit */
+@media (max-width: 414px){
+  #leaderboard-host .lb-podium{ gap:18px; }
+  #leaderboard-host .p-point{
+    margin-top: var(--point-offset-mobile);
+    font-size:12.5px; gap:6px; max-width:90%;
+  }
+  /* Di mobile, beri sedikit ruang agar tidak terlalu mentok */
+  #leaderboard-host .podium-img{
+    max-height: clamp(68px, calc(var(--bh) * 0.76), 220px);
+  }
+}
+@media (max-width: 360px){
+  #leaderboard-host .podium-col.first  { --step:1.00; }
+  #leaderboard-host .podium-col.second { --step:0.88; }
+  #leaderboard-host .podium-col.third  { --step:0.80; }
+  #leaderboard-host .p-point{
+    margin-top: var(--point-offset-tiny);
+    font-size:11.5px; gap:5px; max-width:88%;
+  }
+  #leaderboard-host .podium-img{
+    max-height: clamp(64px, calc(var(--bh) * 0.74), 200px);
+  }
 }
 
 /* ===== POIN (hilangkan chip/pill) ===== */
@@ -143,23 +175,6 @@ html{ -webkit-text-size-adjust: 100%; }
   font-variant-numeric:tabular-nums; font-feature-settings:"tnum";
 }
 #leaderboard-host .p-point .num{ font-weight:800; }
-
-@media (max-width: 414px){
-  #leaderboard-host .lb-podium{ gap:18px; }
-  #leaderboard-host .p-point{
-    margin-top: var(--point-offset-mobile);
-    font-size:12.5px; gap:6px; max-width:90%;
-  }
-}
-@media (max-width: 360px){
-  #leaderboard-host .podium-col.first  { --step:1.00; }
-  #leaderboard-host .podium-col.second { --step:0.88; }
-  #leaderboard-host .podium-col.third  { --step:0.80; }
-  #leaderboard-host .p-point{
-    margin-top: var(--point-offset-tiny);
-    font-size:11.5px; gap:5px; max-width:88%;
-  }
-}
 
 /* ===== Kartu daftar/tabel ===== */
 #leaderboard-host .lb-table-card{
