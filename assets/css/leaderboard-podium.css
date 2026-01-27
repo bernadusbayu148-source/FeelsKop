@@ -23,9 +23,7 @@ html{ -webkit-text-size-adjust: 100%; }
 #leaderboard-host .section-title-img picture{ display:block; }
 #leaderboard-host .section-title-img img{
   display:block; height:auto;
-  /* Lebar responsif dan dibatasi agar proporsional di semua device */
   width:min(82%, 560px);
-  /* Sedikit “naik” jarak atas agar rapi dengan kartu di bawahnya */
   margin-inline:auto;
   filter: drop-shadow(0 4px 10px rgba(0,0,0,.06));
 }
@@ -106,11 +104,10 @@ html{ -webkit-text-size-adjust: 100%; }
     linear-gradient(180deg, var(--tone1,#ffffff), var(--tone2,#fafbff));
   border:2.5px solid var(--ring);
   box-shadow: 0 12px 24px rgba(0,0,0,.06), inset 0 6px 12px rgba(255,255,255,.35);
-  /* Center PNG dan jadikan container clipping */
   display:flex; align-items:center; justify-content:center;
-  padding: 10px;               /* sedikit napas di tepi */
+  padding: 10px;               /* ruang aman dari border */
   margin-bottom:18px;
-  overflow:hidden;              /* cegah spill keluar kotak—sebagai pengaman */
+  overflow:hidden;             /* pengaman, tapi tidak akan terpakai dengan contain */
 }
 
 /* Gaya warna per juara */
@@ -121,17 +118,14 @@ html{ -webkit-text-size-adjust: 100%; }
 #leaderboard-host .podium-col.second .stage{ --ring:var(--silver);--tone1:#f2f4f8; --tone2:#ffffff; }
 #leaderboard-host .podium-col.third  .stage{ --ring:var(--bronze); --tone1:#fde6d2; --tone2:#fff2e6; }
 
-/* ===== PNG karakter di kotak juara — SELALU MUAT KEDUA SUMBU =====
-   - Tidak set height/width absolut.
-   - Batasi dengan max-width & max-height agar selalu 'contain'.
-   - width/height tetap auto supaya rasio gambar terjaga.
-   - Hasil: gambar akan membesar semaksimal mungkin di dalam stage tanpa terpotong. */
+/* ===== PNG karakter — isi penuh content box TANPA POTONG =====
+   Kunci: width:100% + height:100% pada <img> + object-fit:contain
+   -> Gambar selalu terlihat utuh dan proporsional di dalam stage. */
 #leaderboard-host .podium-img{
   display:block;
-  width:auto; height:auto;          /* pertahankan rasio asli */
-  max-width: calc(100% - 12px);     /* hormati padding & border */
-  max-height: calc(100% - 12px);
-  object-fit: contain;              /* jaga agar tidak meluber */
+  width:100%;
+  height:100%;
+  object-fit: contain;          /* tidak pernah crop */
   filter: drop-shadow(0 6px 14px rgba(0,0,0,.12));
 }
 
