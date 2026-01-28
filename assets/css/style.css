@@ -53,7 +53,7 @@ body{
  ========================= */
 .site-header{
   position:sticky;top:0;z-index:1000;
-  /* header MERAH */
+  /* Header merah (revisi) */
   background:var(--brand-red);
   border-bottom:1px solid rgba(255,255,255,.25);
   padding-top:env(safe-area-inset-top);
@@ -63,14 +63,11 @@ body{
 .brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:#fff;font-weight:700;}
 .logo{height:38px;width:auto}
 .brand-name{white-space:nowrap}
-
-/* Nav desktop */
 .nav{margin-left:auto}
 .nav-list{display:flex;align-items:center;gap:24px;list-style:none;margin:0;padding:0;}
-/* menu di header merah -> putih */
+/* Link menu putih di header merah */
 .nav-link{color:#fff;font-weight:700;text-decoration:none;padding:12px 4px;display:inline-flex;align-items:center;gap:6px;}
 .nav-link:hover,.nav-link.active{opacity:.88}
-
 /* Tombol WA di header -> outline putih */
 .btn-wa{margin-left:8px}
 .site-header .btn-outline{
@@ -88,11 +85,7 @@ body{
   padding:10px;border-radius:8px;cursor:pointer;
 }
 .nav-toggle-bar{display:block;width:22px;height:2px;background:#fff;margin:4px 0}
-
-/* Body guard ketika nav dibuka */
 body.nav-open{overflow:hidden;touch-action:none;}
-
-/* Nav mobile panel tetap putih */
 @media (max-width:992px){
   .nav{
     display:none;position:fixed;inset:64px 0 0 0;height:calc(100vh - 64px);
@@ -103,7 +96,6 @@ body.nav-open{overflow:hidden;touch-action:none;}
   .btn-wa{display:none}
   .nav-toggle{display:block}
 }
-
 /* Fokus aksesibilitas */
 .nav .nav-link:focus-visible,.btn:focus-visible,.dropdown-toggle:focus-visible{outline:2px solid #1e90ff;outline-offset:2px;}
 
@@ -156,19 +148,24 @@ body.nav-open{overflow:hidden;touch-action:none;}
 .footer-contact h4,.footer-menu h4{margin:0 0 8px;font-size:var(--footer-h4);}
 .footer-menu ul{list-style:none;padding:0;margin:0}
 .footer-menu li{margin:6px 0}
+/* Link di footer-menu putih (sudah), dan override link di footer-contact agar putih juga */
 .footer-menu a{color:#fff;text-decoration:none}
 .footer-menu a:hover{text-decoration:underline}
-.footer-bottom{border-top:1px solid rgba(255,255,255,.3);display:flex;align-items:center;justify-content:space-between;padding:var(--footer-bottom-pad-y) 16px;font-size:13.5px;}
-.socials a{color:#fff;margin-left:10px;font-size:var(--social-size);line-height:1}
+.site-footer .footer-contact a{color:#fff;text-decoration:none}
+.site-footer .footer-contact a:hover{text-decoration:underline}
 
-/* ── PEMBATAS PUTIH: pengganti judul "Menu Cepat" ── */
-.footer-divider{
-  border:0;
+/* Separator pengganti tulisan "Menu Cepat" */
+.footer-separator{
+  display:block;
+  width:100%;
   height:0;
-  border-top:1.5px solid rgba(255,255,255,.55);
-  margin:4px 0 10px;
+  border:0;
+  border-top:2px solid rgba(255,255,255,.75);
+  margin:2px 0 10px;
 }
 
+.footer-bottom{border-top:1px solid rgba(255,255,255,.3);display:flex;align-items:center;justify-content:space-between;padding:var(--footer-bottom-pad-y) 16px;font-size:13.5px;}
+.socials a{color:#fff;margin-left:10px;font-size:var(--social-size);line-height:1}
 @media (max-width:1100px){.footer-grid{grid-template-columns:1.6fr 1.2fr 1fr;padding:var(--footer-pad-y-tablet) 16px}}
 @media (max-width:900px){.footer-grid{grid-template-columns:1fr 1fr;gap:12px}}
 @media (max-width:700px){
@@ -323,7 +320,7 @@ main .menu-grid{
   .order-widget label{margin-bottom:4px}
 }
 
-/* ===== MOBILE COMPACT OVERRIDES (global) ===== */
+/* ===== MOBILE COMPACT OVERRIDES ===== */
 @media (max-width: 768px){
   .cta-strip { padding: 8px 0; }
   .cta-content { gap: 8px; }
@@ -350,10 +347,7 @@ main .menu-grid{
 /* =========================
  Order Widget — Baris Pesanan
  ========================= */
-.order-widget .order-list{
-  display:grid !important;
-  gap:10px !important;
-}
+.order-widget .order-list{display:grid !important;gap:10px !important;}
 .order-widget .order-list .order-row{
   display:grid !important;
   grid-template-columns: 1.4fr 120px 32px !important; /* Menu | Qty | x */
@@ -361,81 +355,30 @@ main .menu-grid{
   align-items:end !important;
 }
 .order-widget .order-list .order-row .field{
-  display:flex !important;
-  flex-direction:column !important;
-  gap:6px !important;
-  min-width:0 !important;
+  display:flex !important;flex-direction:column !important;gap:6px !important;min-width:0 !important;
 }
 .order-widget .order-list .order-row .field > label{
-  margin:0 !important;
-  font-weight:700 !important;
-  color:#fff !important; /* kontras di card merah */
+  margin:0 !important;font-weight:700 !important;color:#fff !important;
 }
 .order-widget .order-list .menu-picker{
-  width:100% !important;
-  text-align:left !important;
-  padding:10px 12px !important;
-  min-height:44px !important;
-  border:1px solid var(--border) !important;
-  border-radius:10px !important;
-  background:#fff !important;
-  color:var(--text) !important;
-  display:flex !important;
-  justify-content:space-between !important;
-  align-items:center !important;
-  gap:10px !important;
+  width:100% !important;text-align:left !important;padding:10px 12px !important;min-height:44px !important;
+  border:1px solid var(--border) !important;border-radius:10px !important;background:#fff !important;color:var(--text) !important;
+  display:flex !important;justify-content:space-between !important;align-items:center !important;gap:10px !important;
 }
-.order-widget .order-list .qty-input{
-  width:100% !important;
-  padding:10px 12px !important;
-  border:1px solid var(--border) !important;
-  border-radius:10px !important;
-}
-.order-widget .order-list .row-remove{
-  width:32px !important;
-  height:32px !important;
-  border-radius:8px !important;
-  border:1px solid var(--border) !important;
-  background:#fff !important;
-  cursor:pointer !important;
-}
+.order-widget .order-list .qty-input{width:100% !important;padding:10px 12px !important;border:1px solid var(--border) !important;border-radius:10px !important;}
+.order-widget .order-list .row-remove{width:32px !important;height:32px !important;border-radius:8px !important;border:1px solid var(--border) !important;background:#fff !important;cursor:pointer !important;}
 @media (max-width:768px){
-  .order-widget .order-list .order-row{
-    grid-template-columns: 1fr 100px 32px !important;
-    gap:8px !important;
-  }
+  .order-widget .order-list .order-row{grid-template-columns: 1fr 100px 32px !important;gap:8px !important;}
 }
 
 /* ===== Modal (global) ===== */
-body .modal{
-  position:fixed !important;
-  inset:0 !important;
-  z-index:4000 !important;
-  display:block !important;
-}
+body .modal{position:fixed !important;inset:0 !important;z-index:4000 !important;display:block !important;}
 body .modal[hidden]{display:none !important;}
-body .modal-backdrop{
-  position:fixed !important;
-  inset:0 !important;
-  background:rgba(0,0,0,.45) !important;
-  backdrop-filter:saturate(120%) blur(2px) !important;
-  z-index:4001 !important;
-}
+body .modal-backdrop{position:fixed !important;inset:0 !important;background:rgba(0,0,0,.45) !important;backdrop-filter:saturate(120%) blur(2px) !important;z-index:4001 !important;}
 body .modal-dialog{
-  position:fixed !important;
-  top:50% !important;
-  left:50% !important;
-  transform:translate(-50%,-50%) !important;
-  width:min(92vw, 720px) !important;
-  max-height:min(86vh, 720px) !important;
-  background:#fff !important;
-  border-radius:14px !important;
-  border:1px solid var(--border) !important;
-  box-shadow:var(--shadow) !important;
-  display:flex !important;
-  flex-direction:column !important;
-  overflow:hidden !important;
-  z-index:4002 !important;
+  position:fixed !important;top:50% !important;left:50% !important;transform:translate(-50%,-50%) !important;
+  width:min(92vw, 720px) !important;max-height:min(86vh, 720px) !important;background:#fff !important;border-radius:14px !important;
+  border:1px solid var(--border) !important;box-shadow:var(--shadow) !important;display:flex !important;flex-direction:column !important;overflow:hidden !important;z-index:4002 !important;
 }
 body .modal-header{display:flex;align-items:center;justify-content:space-between;padding:12px 14px;border-bottom:1px solid var(--border);}
 body .modal-body{padding:12px;overflow:auto;max-height:calc(min(86vh,720px) - 96px);}
@@ -445,27 +388,11 @@ body .modal-search input{width:100%;padding:10px 12px;border:1px solid var(--bor
 /* kunci scroll body ketika modal aktif */
 body.modal-open{overflow:hidden !important;touch-action:none !important;}
 
-/* ───────────────────────────────────────────
-   LOGO PNG (Header & Footer) — responsif
-   ─────────────────────────────────────────── */
-.site-header .logo{
-  height:auto;
-  width:auto;
-  max-height:40px;
-  object-fit:contain;
-}
-@media (min-width:992px){
-  .site-header .logo{ max-height:44px; }
-}
-.site-footer .footer-logo{
-  height:auto;
-  width:auto;
-  max-height:var(--footer-logo-h);
-  object-fit:contain;
-}
-@media (min-width:1100px){
-  .site-footer .footer-logo{ max-height:36px; }
-}
-@media (max-width:700px){
-  .site-footer .footer-logo{ max-height:28px; }
-}
+/* ─────────────────────────────────────────────────────────
+   LOGO PNG (Header & Footer)
+   ───────────────────────────────────────────────────────── */
+.site-header .logo{height:auto;width:auto;max-height:40px;object-fit:contain;}
+@media (min-width:992px){.site-header .logo{max-height:44px;}}
+.site-footer .footer-logo{height:auto;width:auto;max-height:var(--footer-logo-h);object-fit:contain;}
+@media (min-width:1100px){.site-footer .footer-logo{max-height:36px;}}
+@media (max-width:700px){.site-footer .footer-logo{max-height:28px;}}
