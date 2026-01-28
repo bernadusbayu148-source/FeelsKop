@@ -53,7 +53,7 @@ body{
  ========================= */
 .site-header{
   position:sticky;top:0;z-index:1000;
-  /* === PERMINTAAN: header jadi MERAH === */
+  /* header MERAH */
   background:var(--brand-red);
   border-bottom:1px solid rgba(255,255,255,.25);
   padding-top:env(safe-area-inset-top);
@@ -67,11 +67,11 @@ body{
 /* Nav desktop */
 .nav{margin-left:auto}
 .nav-list{display:flex;align-items:center;gap:24px;list-style:none;margin:0;padding:0;}
-/* === PERMINTAAN: link menu jadi putih di header merah === */
+/* menu di header merah -> putih */
 .nav-link{color:#fff;font-weight:700;text-decoration:none;padding:12px 4px;display:inline-flex;align-items:center;gap:6px;}
 .nav-link:hover,.nav-link.active{opacity:.88}
 
-/* Tombol WA di header -> outline putih agar kontras */
+/* Tombol WA di header -> outline putih */
 .btn-wa{margin-left:8px}
 .site-header .btn-outline{
   background:transparent;
@@ -80,7 +80,7 @@ body{
 }
 .site-header .btn-outline:hover{background:rgba(255,255,255,.12);}
 
-/* Toggle (mobile) di atas header merah */
+/* Toggle (mobile) */
 .nav-toggle{
   display:none;margin-left:auto;
   background:transparent;
@@ -92,7 +92,7 @@ body{
 /* Body guard ketika nav dibuka */
 body.nav-open{overflow:hidden;touch-action:none;}
 
-/* Nav mobile panel: tetap putih (hanya bar header yang merah sesuai permintaan) */
+/* Nav mobile panel tetap putih */
 @media (max-width:992px){
   .nav{
     display:none;position:fixed;inset:64px 0 0 0;height:calc(100vh - 64px);
@@ -160,6 +160,15 @@ body.nav-open{overflow:hidden;touch-action:none;}
 .footer-menu a:hover{text-decoration:underline}
 .footer-bottom{border-top:1px solid rgba(255,255,255,.3);display:flex;align-items:center;justify-content:space-between;padding:var(--footer-bottom-pad-y) 16px;font-size:13.5px;}
 .socials a{color:#fff;margin-left:10px;font-size:var(--social-size);line-height:1}
+
+/* ── PEMBATAS PUTIH: pengganti judul "Menu Cepat" ── */
+.footer-divider{
+  border:0;
+  height:0;
+  border-top:1.5px solid rgba(255,255,255,.55);
+  margin:4px 0 10px;
+}
+
 @media (max-width:1100px){.footer-grid{grid-template-columns:1.6fr 1.2fr 1fr;padding:var(--footer-pad-y-tablet) 16px}}
 @media (max-width:900px){.footer-grid{grid-template-columns:1fr 1fr;gap:12px}}
 @media (max-width:700px){
@@ -198,7 +207,7 @@ input,textarea{width:100%;padding:10px 12px;border:1px solid var(--border);borde
 .tab-panel[hidden]{display:none!important}
 
 /* =========================
- Services (konten) — tidak diubah
+ Services (konten)
  ========================= */
 .service-intro{background:var(--brand-red);color:#fff;border-radius:16px;padding:16px 14px;box-shadow:var(--shadow);margin-bottom:14px;}
 .service-intro h3{margin:0 0 6px;font-size:clamp(20px,4.5vw,24px);}
@@ -223,7 +232,7 @@ input,textarea{width:100%;padding:10px 12px;border:1px solid var(--border);borde
 @media (max-width:576px){.service-intro{padding:12px 10px}.service-card .card-head h3{font-size:17px}}
 
 /* =========================
- Stations — tidak diubah
+ Stations
  ========================= */
 .count-badge{display:inline-block;margin-left:8px;padding:2px 8px;font-size:.85em;border-radius:999px;border:2px solid var(--brand-red);color:var(--brand-red);background:#fff;}
 .service-tabs .tab.is-active .count-badge{border-color:#fff;color:var(--brand-red);background:#fff;}
@@ -279,7 +288,7 @@ main .menu-grid{
 }
 
 /* =========================
- Kontak — Feedback Form (tanpa perubahan)
+ Kontak — Feedback Form
  ========================= */
 .feedback-form .req{color:#d22;font-weight:800}
 .feedback-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
@@ -303,7 +312,7 @@ main .menu-grid{
 .consent-text{display:inline-block;text-wrap:balance;max-width:60ch}
 @media (max-width:768px){.consent-row{gap:8px}.consent-text{max-width:100%;font-weight:600}}
 
-/* ===== SERVICES — Perbaikan input tanggal (tetap) ===== */
+/* ===== SERVICES — Perbaikan input tanggal ===== */
 .order-widget input[type="date"]{width:100%;box-sizing:border-box;appearance:none;-webkit-appearance:none;background-color:#fff;border:1px solid var(--border);border-radius:12px;padding:10px 12px;min-height:44px;font:inherit;line-height:1.2;color:var(--text)}
 .order-widget input[type="date"]::-webkit-date-and-time-value{text-align:left;padding:0;min-height:1.2em}
 .order-widget input[type="date"]::-webkit-calendar-picker-indicator{padding:0 6px;margin:0;opacity:.8}
@@ -339,21 +348,18 @@ main .menu-grid{
 }
 
 /* =========================
- Order Widget — Baris Pesanan (Menu + Qty) >> DIPERKUAT
+ Order Widget — Baris Pesanan
  ========================= */
-/* Grid daftar baris */
 .order-widget .order-list{
   display:grid !important;
   gap:10px !important;
 }
-/* Setiap baris = 2 kolom field + 1 kolom kecil (hapus) */
 .order-widget .order-list .order-row{
   display:grid !important;
   grid-template-columns: 1.4fr 120px 32px !important; /* Menu | Qty | x */
   gap:10px !important;
   align-items:end !important;
 }
-/* Field kolom dengan label di atas kontrol */
 .order-widget .order-list .order-row .field{
   display:flex !important;
   flex-direction:column !important;
@@ -363,9 +369,8 @@ main .menu-grid{
 .order-widget .order-list .order-row .field > label{
   margin:0 !important;
   font-weight:700 !important;
-  color:#fff !important; /* agar kontras di card merah */
+  color:#fff !important; /* kontras di card merah */
 }
-/* Tombol pilih menu */
 .order-widget .order-list .menu-picker{
   width:100% !important;
   text-align:left !important;
@@ -380,14 +385,12 @@ main .menu-grid{
   align-items:center !important;
   gap:10px !important;
 }
-/* Input Qty */
 .order-widget .order-list .qty-input{
   width:100% !important;
   padding:10px 12px !important;
   border:1px solid var(--border) !important;
   border-radius:10px !important;
 }
-/* Tombol hapus baris */
 .order-widget .order-list .row-remove{
   width:32px !important;
   height:32px !important;
@@ -396,7 +399,6 @@ main .menu-grid{
   background:#fff !important;
   cursor:pointer !important;
 }
-/* Responsif */
 @media (max-width:768px){
   .order-widget .order-list .order-row{
     grid-template-columns: 1fr 100px 32px !important;
@@ -404,7 +406,7 @@ main .menu-grid{
   }
 }
 
-/* ===== Modal (global) — DIPERKUAT ===== */
+/* ===== Modal (global) ===== */
 body .modal{
   position:fixed !important;
   inset:0 !important;
@@ -443,25 +445,22 @@ body .modal-search input{width:100%;padding:10px 12px;border:1px solid var(--bor
 /* kunci scroll body ketika modal aktif */
 body.modal-open{overflow:hidden !important;touch-action:none !important;}
 
-/* ─────────────────────────────────────────────────────────
-   TAMBAHAN BARU: LOGO SIZING UNTUK PNG (Header & Footer)
-   ───────────────────────────────────────────────────────── */
- /* Logo PNG di HEADER — responsif & proporsional */
+/* ───────────────────────────────────────────
+   LOGO PNG (Header & Footer) — responsif
+   ─────────────────────────────────────────── */
 .site-header .logo{
-  /* override tinggi fix 38px di atas dengan pendekatan fleksibel */
-  height:auto; /* pertahankan rasio asli */
+  height:auto;
   width:auto;
-  max-height:40px; /* batas aman default (mobile/tablet) */
+  max-height:40px;
   object-fit:contain;
 }
 @media (min-width:992px){
-  .site-header .logo{ max-height:44px; } /* sedikit lebih tinggi di desktop */
+  .site-header .logo{ max-height:44px; }
 }
-/* Logo PNG di FOOTER — kompak, proporsional */
 .site-footer .footer-logo{
   height:auto;
   width:auto;
-  max-height:var(--footer-logo-h); /* default 32px dari :root */
+  max-height:var(--footer-logo-h);
   object-fit:contain;
 }
 @media (min-width:1100px){
@@ -470,4 +469,3 @@ body.modal-open{overflow:hidden !important;touch-action:none !important;}
 @media (max-width:700px){
   .site-footer .footer-logo{ max-height:28px; }
 }
-``
