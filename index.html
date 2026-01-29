@@ -7,21 +7,20 @@
   <meta name="description" content="Kopi Feeling, brand kopi gerobak nomor 1 di Banjarmasin. Rasa mantap, harga bersahabat, pengantaran tepat waktu.">
   <link rel="canonical" href="https://bernadusbayu148-source.github.io/FeelsKop/" />
   <meta name="theme-color" content="#b5121b" />
-
   <!-- Fonts & Icons -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <!-- Nunito (bold for headings) + Plus Jakarta Sans (regular for body) -->
-  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800;900&family=Plus+Jakarta+Sans:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
-
-  <!-- Main CSS -->
-  <link rel="stylesheet" href="assets/css/style.css?v=20260129-fonts" />
-  <!-- CSS khusus Leaderboard -->
-  <link rel="stylesheet" href="assets/css/leaderboard-podium.css?v=20260124-podium12" />
-  <!-- CSS kecil khusus Home (pakai versi terbaru) -->
-  <link rel="stylesheet" href="assets/css/home-compact.css?v=20260127-heroMinimal-c7" />
-
+  <!-- Main CSS (wajib) -->
+  <link rel="stylesheet" href="assets/css/style.css?v=20260123f">
+  <!-- CSS khusus komponen Leaderboard -->
+  <link rel="stylesheet" href="assets/css/leaderboard-podium.css?v=20260124-podium12">
+  <!-- ✅ CSS kecil khusus Home -->
+  <link rel="stylesheet" href="assets/css/home-compact.css?v=20260127-heroMinimal-c3">
+  <!-- Performance: preload hero background images (LCP) -->
+  <link rel="preload" as="image" href="assets/img/hero-1.jpg" fetchpriority="high">
+  <link rel="preload" as="image" href="assets/img/hero-2.jpg">
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Kopi Feeling — Brand Kopi Gerobak #1 di Banjarmasin" />
@@ -34,7 +33,6 @@
   <meta name="twitter:title" content="Kopi Feeling — Brand Kopi Gerobak #1 di Banjarmasin" />
   <meta name="twitter:description" content="Rasa mantap, harga bersahabat, pengantaran tepat waktu." />
   <meta name="twitter:image" content="https://bernadusbayu148-source.github.io/FeelsKop/assets/img/og-cover.jpg" />
-
   <!-- Structured Data -->
   <script type="application/ld+json">
   {
@@ -55,16 +53,6 @@
     "servesCuisine": "Coffee"
   }
   </script>
-
-  <!-- Inline font binding: judul memakai Nunito, isi memakai Plus Jakarta Sans -->
-  <style>
-    :root{
-      --font-headline: 'Nunito', system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
-      --font-body: 'Plus Jakarta Sans', system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
-    }
-    body{ font-family: var(--font-body); }
-    h1,h2,h3,.section-title,.hero-title{ font-family: var(--font-headline); font-weight: 800; }
-  </style>
 </head>
 <body>
   <!-- HEADER / NAVBAR -->
@@ -99,64 +87,58 @@
   <!-- HERO SLIDER -->
   <section class="hero">
     <div class="slider" id="heroSlider" aria-label="Hero banner">
-      <!-- Slide 1 (Active) -->
+      <!-- Slide 1 -->
       <div class="slide is-active"
-        style="background-image:
-          linear-gradient(rgba(0,0,0,.20), rgba(0,0,0,.20)),
-          url('assets/img/hero-1.jpg?v=20260127c3');">
+           style="background-image:
+                    linear-gradient(rgba(0,0,0,.20), rgba(0,0,0,.20)),
+                    url('assets/img/hero-1.jpg?v=20260127c3');">
         <div class="slide-content">
           <h1 class="hero-title">Kopi Gerobak, Rasa Juara</h1>
           <div class="hero-actions">
-            <a class="btn btn-primary btn--hero-sm" href="products.html">Lihat Menu</a>
-            <a class="btn btn-outline btn--hero-sm" href="services.html">Pesan Sekarang</a>
-            <a class="btn btn-primary btn--hero-sm" href="stations.html">Lokasi &amp; Coverage</a>
+            <a class="btn btn-primary" href="products.html">Lihat Menu</a>
+            <a class="btn btn-outline" href="services.html">Pesan Sekarang</a>
           </div>
         </div>
       </div>
 
       <!-- Slide 2 -->
       <div class="slide"
-        style="background-image:
-          linear-gradient(rgba(0,0,0,.20), rgba(0,0,0,.20)),
-          url('assets/img/hero-2.jpg?v=20260127c3');">
+           style="background-image:
+                    linear-gradient(rgba(0,0,0,.20), rgba(0,0,0,.20)),
+                    url('assets/img/hero-2.jpg?v=20260127c3');">
         <div class="slide-content">
           <h1 class="hero-title">Semakin dekat, Semakin Bersahabat</h1>
           <p class="hero-subtitle">Lihat Stasiun terdekat dengan Anda</p>
           <div class="hero-actions">
-            <a class="btn btn-primary btn--hero-sm" href="products.html">Lihat Menu</a>
-            <a class="btn btn-outline btn--hero-sm" href="services.html">Pesan Sekarang</a>
-            <a class="btn btn-primary btn--hero-sm" href="stations.html">Lokasi &amp; Coverage</a>
+            <a class="btn btn-primary" href="stations.html">Lokasi & Coverage</a>
           </div>
         </div>
       </div>
 
       <!-- Slide 3 -->
-      <div class="slide"
-        style="background-image:
-          linear-gradient(rgba(0,0,0,.20), rgba(0,0,0,.20)),
-          url('assets/img/hero-3.jpg?v=20260127c3');">
+      <div class="slide is-active"
+           style="background-image:
+                    linear-gradient(rgba(0,0,0,.20), rgba(0,0,0,.20)),
+                    url('assets/img/hero-3.jpg?v=20260127c3');">
         <div class="slide-content">
           <h1 class="hero-title">Kopi Gerobak, Rasa Juara</h1>
           <div class="hero-actions">
-            <a class="btn btn-primary btn--hero-sm" href="products.html">Lihat Menu</a>
-            <a class="btn btn-outline btn--hero-sm" href="services.html">Pesan Sekarang</a>
-            <a class="btn btn-primary btn--hero-sm" href="stations.html">Lokasi &amp; Coverage</a>
+            <a class="btn btn-primary" href="products.html">Lihat Menu</a>
+            <a class="btn btn-outline" href="services.html">Pesan Sekarang</a>
           </div>
         </div>
       </div>
 
       <!-- Slide 4 -->
       <div class="slide"
-        style="background-image:
-          linear-gradient(rgba(0,0,0,.20), rgba(0,0,0,.20)),
-          url('assets/img/hero-4.jpg?v=20260127c3');">
+           style="background-image:
+                    linear-gradient(rgba(0,0,0,.20), rgba(0,0,0,.20)),
+                    url('assets/img/hero-4.jpg?v=20260127c3');">
         <div class="slide-content">
           <h1 class="hero-title">Semakin dekat, Semakin Bersahabat</h1>
           <p class="hero-subtitle">Lihat Stasiun terdekat dengan Anda</p>
           <div class="hero-actions">
-            <a class="btn btn-primary btn--hero-sm" href="products.html">Lihat Menu</a>
-            <a class="btn btn-outline btn--hero-sm" href="services.html">Pesan Sekarang</a>
-            <a class="btn btn-primary btn--hero-sm" href="stations.html">Lokasi &amp; Coverage</a>
+            <a class="btn btn-primary" href="stations.html">Lokasi & Coverage</a>
           </div>
         </div>
       </div>
@@ -184,7 +166,6 @@
           <input id="lb-search" type="search" placeholder="Cari nama atau No Member…" aria-label="Cari" />
           <button id="lb-refresh" class="btn btn-primary" aria-label="Muat ulang data">Muat Ulang</button>
         </div>
-
         <!-- Container hasil pencarian inline -->
         <div id="lb-search-inline" class="lb-search-inline" hidden></div>
 
@@ -252,6 +233,7 @@
         <img src="assets/img/logo-footer.png" alt="Logo Kopi Feeling" class="footer-logo" />
         <!-- Deskripsi dihapus sesuai permintaan -->
       </div>
+
       <div class="footer-contact">
         <h4>Alamat & Kontak</h4>
         <p><i class="fa-solid fa-location-dot" aria-hidden="true"></i>
@@ -265,8 +247,10 @@
           <a class="link" href="mailto:kopifeeling.bjb@gmail.com">kopifeeling.bjb@gmail.com</a>
         </p>
       </div>
+
       <div class="footer-menu">
-        <hr class="footer-separator" aria-hidden="true">
+        <!-- Ganti “Menu Cepat” menjadi garis pembatas putih -->
+        <hr class="footer-divider" aria-hidden="true">
         <ul>
           <li><a href="products.html">Menu</a></li>
           <li><a href="services.html">Layanan</a></li>
@@ -276,6 +260,7 @@
         </ul>
       </div>
     </div>
+
     <div class="footer-bottom">
       <p>© <span id="year"></span> Kopi Feeling. All rights reserved.</p>
       <div class="socials">
@@ -286,7 +271,7 @@
     </div>
   </footer>
 
-  <!-- Scripts -->
+  <!-- SCRIPTS -->
   <script src="assets/js/main.js" defer></script>
   <script src="assets/js/leaderboard-inline.js?v=20260124-podium12" defer></script>
   <noscript>Website ini bekerja lebih optimal dengan JavaScript diaktifkan.</noscript>
