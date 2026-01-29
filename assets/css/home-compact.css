@@ -1,9 +1,12 @@
 /* =========================================================
- HOME — Hero Minimal & Compact (v20260127-heroMinimal-c4)
- - Anti-bertumpuk: hanya .slide.is-active yang ditampilkan
- - Tombol hero diperkecil (semua slide) → via .btn--hero-sm
- - "Rata-rata Poin" sejajar dengan "Total Member" (2 kolom)
- - Override dengan !important (aman lintas CSS lain)
+ HOME — Hero Minimal & Compact (v20260127-heroMinimal-c5)
+ - Slide aktif saja yang tampil (anti-bertumpuk)
+ - Tombol hero kecil ( .btn--hero-sm )
+ - BARU: .hero-actions pakai CSS GRID 3 kolom (tidak pernah turun)
+ - Spacing tombol vs dots stabil lintas device
+ - Dots bulat sempurna
+ - Leaderboard stats 2 kolom (tetap)
+ - Semua override pakai !important agar menang
 ========================================================= */
 
 /* === Slider visibility control === */
@@ -18,14 +21,20 @@
 
 /* ===== Slide container ===== */
 .hero .slide{
+  /* Tinggi minimal hero yang fleksibel */
   min-height: clamp(220px, 42vh, 340px) !important;
+  display: flex !important;
   flex-direction: column !important;
   justify-content: flex-end !important;
   align-items: center !important;
+
+  /* Gambar latar */
   background-size: cover !important;
   background-position: center !important;
   background-repeat: no-repeat !important;
-  padding: 0 16px 6px !important;
+
+  /* ➜ 'Lantai' untuk tombol + dots supaya tidak saling tindih */
+  padding: 0 16px 56px !important; /* bottom cukup untuk 1 baris tombol + dots */
 }
 
 /* ===== Konten hero ===== */
@@ -33,23 +42,41 @@
   width: 100% !important;
   max-width: 880px !important;
   text-align: center !important;
-  margin: 0 0 2px !important;
-  padding: 0 0 2px !important;
+  margin: 0 !important;
+  padding: 0 0 12px !important; /* buffer internal */
+
+  /* Pastikan konten (judul + tombol) selalu di atas dots */
+  position: relative !important;
+  z-index: 2 !important;
 }
 
 /* Judul & subjudul */
-.hero .hero-title{ margin: 0 0 6px !important; line-height: 1.12 !important; }
-.hero .hero-subtitle{ margin: 0 0 8px !important; opacity: .95 !important; }
-
-/* ===== Tombol hero: kecil & rapi ===== */
-.hero .hero-actions{
-  display: inline-flex !important;
-  gap: 8px !important;             /* jarak antar tombol */
-  flex-wrap: wrap !important;      /* boleh turun baris */
-  margin-bottom: 6px !important;   /* buffer awal (nanti di-hotfix) */
+.hero .hero-title{
+  margin: 0 0 6px !important;
+  line-height: 1.12 !important;
+}
+.hero .hero-subtitle{
+  margin: 0 0 8px !important;
+  opacity: .95 !important;
 }
 
-/* Utilitas ukuran kecil khusus tombol hero */
+/* ====== TOMBOL HERO — GRID 3 KOLOM (selalu 1 baris) ====== */
+.hero .hero-actions{
+  /* Grid 3 kolom sama lebar, tombol center */
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr) !important;
+  gap: 10px !important;
+
+  /* Lebar penuh konten, rata tengah */
+  width: 100% !important;
+  margin: 0 auto 18px !important;
+
+  /* Jaga konten tombol tetap di satu baris (tanpa wrap) */
+  align-items: center !important;
+  justify-items: center !important;
+}
+
+/* Tombol kecil + kunci tipografi supaya tinggi stabil */
 .hero .btn--hero-sm{
   padding: 8px 12px !important;
   min-height: 34px !important;
@@ -57,17 +84,23 @@
   border-width: 2px !important;
   border-radius: 999px !important;
   line-height: 1.1 !important;
+  white-space: nowrap !important;   /* teks tidak pecah baris */
+
+  /* Biar tombol 'mengisi' kolom grid, tapi tetap sesuai konten */
+  width: max-content !important;    /* ukuran mengikuti isi */
+  max-width: 100% !important;       /* tidak meluber kolom */
+  justify-self: center !important;  /* center di kolomnya */
+  display: inline-flex !important;
+  align-items: center !important;
 }
 
-/* Tombol navigasi slider */
+/* ===== Slider nav buttons: pastikan bulat ===== */
 .hero .slider-btn{
-  top: 50% !important;
-  transform: translateY(-50%) !important;
+  top: 50% !important; transform: translateY(-50%) !important;
   background: rgba(255,255,255,.92) !important;
   border: 1px solid #e6e6e9 !important;
   box-shadow: 0 4px 14px rgba(0,0,0,.10) !important;
 
-  /* Guard: pastikan bulat sempurna */
   width: 42px !important;
   height: 42px !important;
   aspect-ratio: 1 / 1 !important;
@@ -78,8 +111,11 @@
   line-height: 1 !important;
 }
 
-/* Dots */
-.hero .slider-dots{ bottom: 4px !important; }
+/* ===== Pagination dots: bulat & punya jarak aman ===== */
+.hero .slider-dots{
+  bottom: 14px !important;  /* dots agak turun agar tidak 'menyentuh' tombol */
+  z-index: 1 !important;    /* selalu di bawah konten */
+}
 .hero .slider-dots .dot{
   width: 10px !important;
   height: 10px !important;
@@ -98,25 +134,31 @@
 @media (max-width: 576px){
   .hero .slide{
     min-height: clamp(200px, 40vh, 300px) !important;
-    padding: 0 12px 4px !important;
+    padding: 0 12px 52px !important;         /* lantai sedikit disesuaikan */
     background-position: top center !important;
   }
-  .hero .slide-content{
-    margin: 0 0 2px !important;
-    padding: 0 0 2px !important;
+
+  /* Jaga grid tetap 3 kolom di mobile — tombol mengecil tapi 1 baris */
+  .hero .hero-actions{
+    gap: 8px !important;
   }
-  .hero .hero-title{ margin: 0 0 6px !important; }
-  .hero .hero-subtitle{ margin: 0 0 8px !important; }
+
+  /* Mikro penyesuaian ukuran tombol di layar sempit */
+  .hero .btn--hero-sm{
+    padding: 7px 11px !important;
+    min-height: 32px !important;
+    font-size: 13px !important;
+  }
+
+  .hero .slider-dots{ bottom: 12px !important; }
+  .hero .slide-content{ padding-bottom: 8px !important; }
 }
 
-/* ===== Tablet kecil (≤768px) ===== */
-@media (max-width: 768px){
-  .hero .slider-dots{ bottom: 4px !important; }
-}
-
-/* Guard untuk viewport sangat pendek (landscape/status bar besar) */
-@media (max-height: 520px){
-  .hero .slide{ min-height: 220px !important; }
+/* ===== Device dengan tinggi viewport rendah (landscape/compact) ===== */
+@media (max-height: 540px){
+  .hero .slide{ padding-bottom: 48px !important; }
+  .hero .hero-actions{ margin-bottom: 12px !important; }
+  .hero .slider-dots{ bottom: 10px !important; }
 }
 
 /* =========================================================
@@ -128,7 +170,6 @@
   gap: 10px !important;
   margin: 10px 0 12px !important;
 }
-/* Kartu stat seragam */
 #leaderboard-host .lb-stats .stat-card{
   background: #fff !important;
   border: 1px solid var(--lb-border, #e7e7ea) !important;
@@ -136,7 +177,6 @@
   padding: 10px 12px !important;
   box-shadow: 0 8px 18px rgba(0,0,0,.06) !important;
 }
-/* Teks di dalam kartu stat */
 #leaderboard-host .lb-stats .stat-title{
   margin: 0 0 4px !important;
   color: var(--muted, #6b7280) !important;
@@ -146,7 +186,6 @@
   margin: 0 0 8px !important;
   font-weight: 800 !important;
 }
-/* Progress bar di kartu stat */
 #leaderboard-host .lb-stats .stat-bar{
   height: 6px !important;
   border-radius: 999px !important;
@@ -157,78 +196,8 @@
   height: 100% !important;
   background: linear-gradient(90deg, #D21F3C, #F75353) !important;
 }
-/* Jika layar sangat sempit, tetap 2 kolom, padding & font diperkecil */
 @media (max-width: 360px){
   #leaderboard-host .lb-stats .stat-card{ padding: 8px 10px !important; }
   #leaderboard-host .lb-stats .stat-title{ font-size: 13px !important; }
   #leaderboard-host .lb-stats .stat-value{ font-size: 18px !important; }
-}
-
-/* =========================================================
- 🔥 HOTFIX SPACING & STABILITAS LINTAS DEVICE (HERO)
- - Pastikan tombol tidak menempel dengan dots
- - Pastikan posisi tombol stabil (center) di berbagai smartphone
-========================================================= */
-
-/* 0) 'Lantai' khusus untuk dots di bagian bawah slide */
-.hero .slide {
-  padding-bottom: 56px !important;  /* ruang aman: tombol 1–2 baris + dots */
-}
-
-/* 1) Slide-content sebagai konteks posisi + tombol di atas dots */
-.hero .slide-content {
-  position: relative !important;
-  z-index: 2 !important;            /* konten selalu di atas dots */
-  padding-bottom: 12px !important;  /* buffer internal */
-}
-
-/* 2) Baris tombol: center, tinggi stabil, jarak konsisten */
-.hero .hero-actions {
-  display: inline-flex !important;
-  justify-content: center !important;
-  align-items: center !important;
-  gap: 10px !important;
-  flex-wrap: wrap !important;
-  margin: 0 auto 18px !important;   /* jarak jelas dari dots */
-  width: 100% !important;
-}
-
-/* 3) Tombol kecil: cegah 'melar' karena line-height/teks terbungkus */
-.hero .btn--hero-sm {
-  padding: 8px 12px !important;
-  min-height: 34px !important;
-  font-size: 13.5px !important;
-  border-width: 2px !important;
-  border-radius: 999px !important;
-  line-height: 1.1 !important;
-  white-space: nowrap !important;   /* label tidak pecah jadi 2 baris */
-  display: inline-flex !important;
-  align-items: center !important;
-}
-
-/* 4) Dots: sedikit lebih turun & berada di bawah konten */
-.hero .slider-dots {
-  bottom: 14px !important;
-  z-index: 1 !important;
-}
-
-/* 5) Responsif: tetap proporsional di layar kecil */
-@media (max-width: 576px) {
-  .hero .slide { padding-bottom: 52px !important; }
-  .hero .hero-actions { gap: 8px !important; margin-bottom: 16px !important; }
-  .hero .slider-dots { bottom: 12px !important; }
-  .hero .slide-content { padding-bottom: 8px !important; }
-
-  .hero .btn--hero-sm {
-    padding: 7px 11px !important;
-    min-height: 32px !important;
-    font-size: 13px !important;
-  }
-}
-
-/* 6) Device dengan tinggi viewport rendah (landscape/compact) */
-@media (max-height: 540px) {
-  .hero .slide { padding-bottom: 48px !important; }
-  .hero .hero-actions { margin-bottom: 12px !important; }
-  .hero .slider-dots { bottom: 10px !important; }
 }
