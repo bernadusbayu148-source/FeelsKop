@@ -3,38 +3,31 @@
  - Anti-bertumpuk: hanya .slide.is-active yang ditampilkan
  - Tombol hero diperkecil (semua slide) → via .btn--hero-sm
  - "Rata-rata Poin" sejajar dengan "Total Member" (2 kolom)
- - Paksa override dengan !important (aman lintas CSS lain)
- - Hilangkan headroom; konten nempel ke bawah
- - Responsif mobile/tablet/desktop
+ - Override dengan !important (aman lintas CSS lain)
 ========================================================= */
-/* === Slider visibility control (fix bertumpuk) === */
-#heroSlider .slide{
-  display: none !important; /* sembunyikan semua slide */
-}
-#heroSlider .slide.is-active{
-  display: flex !important; /* tampilkan slide aktif saja */
-}
-/* Pastikan tidak ada margin collapse setelah header sticky */
-.site-header + .hero{
-  margin-top: 0 !important;
-}
+
+/* === Slider visibility control === */
+#heroSlider .slide{ display: none !important; }
+#heroSlider .slide.is-active{ display: flex !important; }
+
+/* Tidak ada headroom setelah header sticky */
+.site-header + .hero{ margin-top: 0 !important; }
+
 /* Hilangkan latar abu bawaan section hero */
-.hero{
-  background: transparent !important;
-}
+.hero{ background: transparent !important; }
+
 /* ===== Slide container ===== */
 .hero .slide{
   min-height: clamp(220px, 42vh, 340px) !important;
-  /* layout konten */
   flex-direction: column !important;
   justify-content: flex-end !important;
   align-items: center !important;
-  /* konsistensi tampilan gambar */
   background-size: cover !important;
   background-position: center !important;
   background-repeat: no-repeat !important;
   padding: 0 16px 6px !important;
 }
+
 /* ===== Konten hero ===== */
 .hero .slide-content{
   width: 100% !important;
@@ -43,22 +36,19 @@
   margin: 0 0 2px !important;
   padding: 0 0 2px !important;
 }
-.hero .hero-title{
-  margin: 0 0 6px !important;
-  line-height: 1.12 !important;
-}
-.hero .hero-subtitle{
-  margin: 0 0 8px !important;
-  opacity: .95 !important;
-}
 
-/* ====== PERMINTAAN: KECILKAN TOMBOL HERO (SEMUA SLIDE) ====== */
+/* Judul & subjudul */
+.hero .hero-title{ margin: 0 0 6px !important; line-height: 1.12 !important; }
+.hero .hero-subtitle{ margin: 0 0 8px !important; opacity: .95 !important; }
+
+/* ===== Tombol hero: kecil & rapi ===== */
 .hero .hero-actions{
   display: inline-flex !important;
-  gap: 8px !important; /* lebih rapat */
-  flex-wrap: wrap !important; /* boleh turun baris */
-  margin-bottom: 6px !important; /* beri jarak dari dots */
+  gap: 8px !important;             /* jarak antar tombol */
+  flex-wrap: wrap !important;      /* boleh turun baris */
+  margin-bottom: 14px !important;  /* ➕ ruang dari slider-dots */
 }
+
 /* Utilitas ukuran kecil khusus tombol hero */
 .hero .btn--hero-sm{
   padding: 8px 12px !important;
@@ -68,23 +58,14 @@
   border-radius: 999px !important;
   line-height: 1.1 !important;
 }
-@media (max-width: 576px){
-  .hero .btn--hero-sm{
-    padding: 7px 11px !important;
-    min-height: 32px !important;
-    font-size: 13px !important;
-  }
-}
 
-/* Tombol navigasi slider */
+/* ===== Slider nav buttons: kunci bulat ===== */
 .hero .slider-btn{
-  top: 50% !important;
-  transform: translateY(-50%) !important;
+  top: 50% !important; transform: translateY(-50%) !important;
   background: rgba(255,255,255,.92) !important;
   border: 1px solid #e6e6e9 !important;
   box-shadow: 0 4px 14px rgba(0,0,0,.10) !important;
 
-  /* ➕ Guard: pastikan bulat sempurna */
   width: 42px !important;
   height: 42px !important;
   aspect-ratio: 1 / 1 !important;
@@ -95,9 +76,10 @@
   line-height: 1 !important;
 }
 
-/* Dots */
-.hero .slider-dots{ bottom: 4px !important; }
-/* ➕ Guard: dots selalu bulat (hindari oval karena override lain) */
+/* ===== Pagination dots: bulat & tidak menempel tombol ===== */
+.hero .slider-dots{
+  bottom: 12px !important;         /* ➕ geser dots sedikit ke bawah */
+}
 .hero .slider-dots .dot{
   width: 10px !important;
   height: 10px !important;
@@ -112,44 +94,48 @@
   transition: transform .15s ease !important;
 }
 
+/* (Opsional) ruang aman di bawah konten hero */
+.hero .slide-content{
+  padding-bottom: 10px !important;
+}
+
 /* ===== Mobile (≤576px) ===== */
 @media (max-width: 576px){
   .hero .slide{
     min-height: clamp(200px, 40vh, 300px) !important;
     padding: 0 12px 4px !important;
-    background-position: top center !important; /* tampilkan bagian atas foto */
+    background-position: top center !important;
   }
-  .hero .slide-content{
-    margin: 0 0 2px !important;
-    padding: 0 0 2px !important;
+  .hero .hero-actions{ margin-bottom: 12px !important; }
+  .hero .slider-dots{ bottom: 10px !important; }
+  .hero .slide-content{ padding-bottom: 8px !important; }
+
+  .hero .btn--hero-sm{
+    padding: 7px 11px !important;
+    min-height: 32px !important;
+    font-size: 13px !important;
   }
-  .hero .hero-title{ margin: 0 0 6px !important; }
-  .hero .hero-subtitle{ margin: 0 0 8px !important; }
 }
 
 /* ===== Tablet kecil (≤768px) ===== */
 @media (max-width: 768px){
-  .hero .slider-dots{ bottom: 4px !important; }
+  .hero .slider-dots{ bottom: 10px !important; }
 }
 
-/* Guard untuk viewport sangat pendek (landscape/status bar besar) */
+/* Guard untuk viewport sangat pendek (landscape) */
 @media (max-height: 520px){
   .hero .slide{ min-height: 220px !important; }
 }
 
 /* =========================================================
- PERMINTAAN: "Rata-rata Poin" sejajar dengan "Total Member"
- - Tampilkan keduanya sebagai 2 kolom di dalam .lb-stats
- - Masing-masing di dalam kartu/kotak khusus
- - Hanya mempengaruhi halaman Home (host leaderboard di Home)
+ "Rata-rata Poin" sejajar dengan "Total Member"
 ========================================================= */
 #leaderboard-host .lb-stats{
   display: grid !important;
-  grid-template-columns: repeat(2, 1fr) !important; /* 2 kolom sejajar */
+  grid-template-columns: repeat(2, 1fr) !important;
   gap: 10px !important;
   margin: 10px 0 12px !important;
 }
-/* Kartu stat seragam */
 #leaderboard-host .lb-stats .stat-card{
   background: #fff !important;
   border: 1px solid var(--lb-border, #e7e7ea) !important;
@@ -157,7 +143,6 @@
   padding: 10px 12px !important;
   box-shadow: 0 8px 18px rgba(0,0,0,.06) !important;
 }
-/* Teks di dalam kartu stat */
 #leaderboard-host .lb-stats .stat-title{
   margin: 0 0 4px !important;
   color: var(--muted, #6b7280) !important;
@@ -167,7 +152,6 @@
   margin: 0 0 8px !important;
   font-weight: 800 !important;
 }
-/* Progress bar di kartu stat */
 #leaderboard-host .lb-stats .stat-bar{
   height: 6px !important;
   border-radius: 999px !important;
@@ -178,16 +162,8 @@
   height: 100% !important;
   background: linear-gradient(90deg, #D21F3C, #F75353) !important;
 }
-/* Jika layar sangat sempit, tetap 2 kolom (agar sejajar),
- namun padding & font diperkecil sedikit */
 @media (max-width: 360px){
-  #leaderboard-host .lb-stats .stat-card{
-    padding: 8px 10px !important;
-  }
-  #leaderboard-host .lb-stats .stat-title{
-    font-size: 13px !important;
-  }
-  #leaderboard-host .lb-stats .stat-value{
-    font-size: 18px !important;
-  }
+  #leaderboard-host .lb-stats .stat-card{ padding: 8px 10px !important; }
+  #leaderboard-host .lb-stats .stat-title{ font-size: 13px !important; }
+  #leaderboard-host .lb-stats .stat-value{ font-size: 18px !important; }
 }
