@@ -80,27 +80,14 @@
     <!-- TAB KATEGORI -->
     <nav class="service-tabs" role="tablist" aria-label="Kategori Menu">
       <button class="tab is-active" role="tab" aria-selected="true"
-              aria-controls="panel-coffee" id="tab-coffee" data-tab="coffee">Coffee</button>
+              aria-controls="panel-coffee" id="tab-coffee" data-tab="coffee">Special Menu</button>
       <button class="tab" role="tab" aria-selected="false"
-              aria-controls="panel-noncoffee" id="tab-noncoffee" data-tab="noncoffee">Non-Coffee</button>
+              aria-controls="panel-noncoffee" id="tab-noncoffee" data-tab="noncoffee">Reguler Menu</button>
     </nav>
 
     <!-- PANEL: Coffee -->
     <section class="tab-panel is-active" role="tabpanel" id="panel-coffee" aria-labelledby="tab-coffee">
       <div class="menu-grid">
-        <!-- Be Carefeels -->
-        <article class="menu-card">
-          <img src="assets/img/menu-becarefeels.png"
-               alt="Be Carefeels — Creamy Caramel" loading="lazy" decoding="async" width="640" height="480" />
-          <div class="menu-info">
-            <h3>Be Carefeels</h3>
-            <p class="menu-sub">Creamy Caramel</p>
-            <p class="menu-desc">
-              Perpaduan espresso dan karamel lembut, berpadu susu creamy. Manis pas—comfort drink yang bikin hari
-              terasa lebih “care”.
-            </p>
-          </div>
-        </article>
 
         <!-- Our Feeling -->
         <article class="menu-card">
@@ -128,6 +115,25 @@
           </div>
         </article>
 
+        <!-- Be Carefeels -->
+        <article class="menu-card">
+          <img src="assets/img/menu-becarefeels.png"
+               alt="Be Carefeels — Creamy Caramel" loading="lazy" decoding="async" width="640" height="480" />
+          <div class="menu-info">
+            <h3>Be Carefeels</h3>
+            <p class="menu-sub">Creamy Caramel</p>
+            <p class="menu-desc">
+              Perpaduan espresso dan karamel lembut, berpadu susu creamy. Manis pas—comfort drink yang bikin hari
+              terasa lebih “care”.
+            </p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- PANEL: Non-Coffee -->
+    <section class="tab-panel" role="tabpanel" id="panel-noncoffee" aria-labelledby="tab-noncoffee" hidden>
+      <div class="menu-grid">
         <!-- Mocafeels -->
         <article class="menu-card">
           <img src="assets/img/menu-mocafeels.png"
@@ -192,12 +198,7 @@
             </p>
           </div>
         </article>
-      </div>
-    </section>
-
-    <!-- PANEL: Non-Coffee -->
-    <section class="tab-panel" role="tabpanel" id="panel-noncoffee" aria-labelledby="tab-noncoffee" hidden>
-      <div class="menu-grid">
+        
         <!-- Chocofeels -->
         <article class="menu-card">
           <img src="assets/img/menu-chocofeels.png"
