@@ -53,8 +53,7 @@ body{
  ========================= */
 .site-header{
   position:sticky;top:0;z-index:1000;
-  /* Header merah (revisi) */
-  background:var(--brand-red);
+  background:var(--brand-red); /* header merah */
   border-bottom:1px solid rgba(255,255,255,.25);
   padding-top:env(safe-area-inset-top);
 }
@@ -65,9 +64,13 @@ body{
 .brand-name{white-space:nowrap}
 .nav{margin-left:auto}
 .nav-list{display:flex;align-items:center;gap:24px;list-style:none;margin:0;padding:0;}
-/* Link menu putih di header merah */
-.nav-link{color:#fff;font-weight:700;text-decoration:none;padding:12px 4px;display:inline-flex;align-items:center;gap:6px;}
-.nav-link:hover,.nav-link.active{opacity:.88}
+
+/* ❄️ DESKTOP ONLY: link navbar putih di atas header merah */
+@media (min-width:993px){
+  .nav-link{color:#fff;font-weight:700;text-decoration:none;padding:12px 4px;display:inline-flex;align-items:center;gap:6px;}
+  .nav-link:hover,.nav-link.active{opacity:.88}
+}
+
 /* Tombol WA di header -> outline putih */
 .btn-wa{margin-left:8px}
 .site-header .btn-outline{
@@ -86,16 +89,37 @@ body{
 }
 .nav-toggle-bar{display:block;width:22px;height:2px;background:#fff;margin:4px 0}
 body.nav-open{overflow:hidden;touch-action:none;}
+
+/* 📱 MOBILE NAV PANEL (perbaikan warna + posisi aman untuk iPhone) */
 @media (max-width:992px){
   .nav{
-    display:none;position:fixed;inset:64px 0 0 0;height:calc(100vh - 64px);
-    background:#fff;border-top:1px solid var(--border);overflow-y:auto;-webkit-overflow-scrolling:touch;
+    display:none;
+    position:fixed;
+    /* mulai tepat di bawah header, memperhitungkan safe-area */
+    inset: calc(64px + env(safe-area-inset-top)) 0 0 0;
+    height: calc(100vh - (64px + env(safe-area-inset-top)));
+    background:#fff;
+    border-top:1px solid var(--border);
+    overflow-y:auto;
+    -webkit-overflow-scrolling:touch;
   }
   .nav.open{display:block}
   .nav-list{flex-direction:column;align-items:flex-start;padding:12px}
+
+  /* ✅ FIX: Link pada panel (latar putih) harus MERAH */
+  .nav .nav-link{
+    color:var(--brand-red);
+    font-weight:700;
+    text-decoration:none;
+    padding:12px 4px;
+    display:inline-flex;align-items:center;gap:6px;
+  }
+  .nav .nav-link:hover,.nav .nav-link.active{opacity:.9}
+
   .btn-wa{display:none}
   .nav-toggle{display:block}
 }
+
 /* Fokus aksesibilitas */
 .nav .nav-link:focus-visible,.btn:focus-visible,.dropdown-toggle:focus-visible{outline:2px solid #1e90ff;outline-offset:2px;}
 
@@ -148,6 +172,7 @@ body.nav-open{overflow:hidden;touch-action:none;}
 .footer-contact h4,.footer-menu h4{margin:0 0 8px;font-size:var(--footer-h4);}
 .footer-menu ul{list-style:none;padding:0;margin:0}
 .footer-menu li{margin:6px 0}
+
 /* Link di footer-menu putih (sudah), dan override link di footer-contact agar putih juga */
 .footer-menu a{color:#fff;text-decoration:none}
 .footer-menu a:hover{text-decoration:underline}
@@ -392,7 +417,7 @@ body.modal-open{overflow:hidden !important;touch-action:none !important;}
    LOGO PNG (Header & Footer)
    ───────────────────────────────────────────────────────── */
 .site-header .logo{height:auto;width:auto;max-height:40px;object-fit:contain;}
-@media (min-width:992px){.site-header .logo{max-height:44px;}}
+@media (min-width:993px){.site-header .logo{max-height:44px;}}
 .site-footer .footer-logo{height:auto;width:auto;max-height:var(--footer-logo-h);object-fit:contain;}
 @media (min-width:1100px){.site-footer .footer-logo{max-height:36px;}}
 @media (max-width:700px){.site-footer .footer-logo{max-height:28px;}}
