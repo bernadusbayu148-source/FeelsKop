@@ -191,3 +191,27 @@
     font-size: 18px !important;
   }
 }
+
+/* --- SPACING antara tombol hero dan pagination dots --- */
+
+/* 1) Ruang ekstra di bawah baris tombol */
+.hero .hero-actions {
+  margin-bottom: 14px !important;   /* dari 6px -> 14px, agar tidak menempel */
+}
+
+/* 2) Geser titik pagination sedikit turun */
+.hero .slider-dots {
+  bottom: 12px !important;          /* dari 4px -> 12px, beri jarak dari tombol */
+}
+
+/* 3) (Opsional) Tambahan ruang aman di dalam konten slide */
+.hero .slide-content {
+  padding-bottom: 10px !important;  /* bantu stabilkan jarak di berbagai device */
+}
+
+/* 4) Responsif layar kecil: tetap proporsional tapi tidak terlalu jauh */
+@media (max-width: 576px) {
+  .hero .hero-actions { margin-bottom: 12px !important; }
+  .hero .slider-dots  { bottom: 10px !important; }
+  .hero .slide-content{ padding-bottom: 8px !important; }
+}
