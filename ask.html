@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Tanya via WhatsApp — Kopi Feeling</title>
+  <meta name="description" content="Kirim pertanyaan ke Kopi Feeling via WhatsApp. Cepat & mudah.">
+  <link rel="canonical" href="https://bernadusbayu148-source.github.io/FeelsKop/ask.html" />
+  <meta name="theme-color" content="#b5121b" />
+
+  <!-- Fonts & Icons (sama seperti halaman lain) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
+  <!-- Main CSS -->
+  <link rel="stylesheet" href="assets/css/style.css?v=ask-wa-1" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Tanya via WhatsApp — Kopi Feeling" />
+  <meta property="og:description" content="Kirim pertanyaan ke Kopi Feeling via WhatsApp. Cepat & mudah." />
+  <meta property="og:url" content="https://bernadusbayu148-source.github.io/FeelsKop/ask.html" />
+  <meta property="og:image" content="https://bernadusbayu148-source.github.io/FeelsKop/assets/img/og-cover.jpg" />
+  <meta property="og:locale" content="id_ID" />
+  <meta name="twitter:card" content="summary_large_image" />
+</head>
+<body>
+  <!-- HEADER -->
+  <header class="site-header" id="siteHeader">
+    <div class="container nav-container">
+      <a class="brand" href="index.html" aria-label="Halaman utama">
+        <img src="assets/img/logo-header.png" alt="Logo Kopi Feeling" class="logo" />
+      </a>
+      <button class="nav-toggle" aria-label="Buka menu" aria-expanded="false" aria-controls="primaryNav">
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+      </button>
+      <nav class="nav" id="primaryNav" aria-label="Navigasi utama">
+        <ul class="nav-list">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="products.html">Menu</a></li>
+          <li class="nav-item"><a class="nav-link" href="services.html">Layanan</a></li>
+          <li class="nav-item"><a class="nav-link" href="stations.html">Lokasi & Coverage</a></li>
+          <li class="nav-item"><a class="nav-link" href="contact.html">Kontak</a></li>
+          <li class="nav-item"><a class="nav-link active" aria-current="page" href="ask.html">Tanya WA</a></li>
+        </ul>
+      </nav>
+      <a class="btn btn-outline btn-wa"
+         href="https://wa.me/6281254913064?text=Halo%20Kopi%20Feeling,%20saya%20ingin%20bertanya%20tentang%20menu%20dan%20pemesanan."
+         target="_blank" rel="noopener">
+        <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> WhatsApp
+      </a>
+    </div>
+  </header>
+
+  <!-- MAIN -->
+  <main class="section container" id="askPage">
+    <h2 class="section-title">Tanya via WhatsApp</h2>
+
+    <!-- Intro singkat -->
+    <section class="service-intro" style="margin-bottom:14px">
+      <h3>Ada yang ingin ditanyakan?</h3>
+      <p>Tulis pertanyaanmu di bawah ini. Sistem akan merangkum otomatis dan membuka WhatsApp.</p>
+    </section>
+
+    <!-- FORM PERTANYAAN -->
+    <form id="askForm" class="feedback-form" onsubmit="return false;" aria-label="Form pertanyaan via WhatsApp">
+      <div class="feedback-grid">
+        <div>
+          <label for="askName">Nama <span class="req">*</span></label>
+          <input id="askName" name="name" type="text" required autocomplete="name" />
+        </div>
+        <div>
+          <label for="askTopic">Topik Pertanyaan</label>
+          <select id="askTopic" name="topic">
+            <option value="">(Opsional) Pilih topik…</option>
+            <option>Menu & Rasa</option>
+            <option>Harga & Promo</option>
+            <option>Pengantaran</option>
+            <option>Acara / Paket</option>
+            <option>Lainnya</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="feedback-grid">
+        <div>
+          <label for="askPhone">Nomor HP</label>
+          <input id="askPhone" name="phone" type="tel" inputmode="tel" pattern="\+?\d{9,15}" autocomplete="tel" placeholder="Opsional" />
+        </div>
+        <div>
+          <label for="askEmail">Email</label>
+          <input id="askEmail" name="email" type="email" autocomplete="email" placeholder="Opsional" />
+        </div>
+      </div>
+
+      <div class="feedback-field">
+        <label for="askMessage">Pertanyaan <span class="req">*</span></label>
+        <textarea id="askMessage" name="message" rows="6" maxlength="1000" placeholder="Tulis pertanyaanmu di sini…" required></textarea>
+        <div class="input-hint">
+          <span id="askCount">0</span>/1000 karakter
+        </div>
+      </div>
+
+      <!-- Kirim -->
+      <div class="send-actions">
+        <a id="askSendBtn" class="btn btn-primary" href="#" target="_blank" rel="noopener" aria-disabled="true">
+          <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Kirim ke WhatsApp
+        </a>
+        <small class="send-hint">Pertanyaan akan dirangkum otomatis ke format WhatsApp.</small>
+      </div>
+    </form>
+  </main>
+
+  <!-- FOOTER (pakai footer versi barumu) -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-about">
+        <img src="assets/img/logo-footer.png" alt="Logo Kopi Feeling" class="footer-logo" />
+        <!-- Deskripsi brand dihilangkan sesuai permintaan -->
+      </div>
+      <div class="footer-contact">
+        <h4>Alamat & Kontak</h4>
+        <p>
+          <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
+          <strong>Feeling Headquarter</strong><br>
+          Jl. Irigasi No.08, Mentaos, Banjarbaru
+        </p>
+        <p>
+          <i class="fa-solid fa-phone" aria-hidden="true"></i>
+          <a class="link" href="tel:+6289519035430">0895-1903-5430</a>
+        </p>
+        <p>
+          <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+          <a class="link" href="mailto:kopifeeling.bjb@gmail.com">kopifeeling.bjb@gmail.com</a>
+        </p>
+      </div>
+      <div class="footer-menu">
+        <hr class="footer-separator" aria-hidden="true">
+        <ul>
+          <li><a href="products.html">Menu</a></li>
+          <li><a href="services.html">Layanan</a></li>
+          <li><a href="stations.html">Lokasi & Coverage</a></li>
+          <li><a href="contact.html">Kontak</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© <span id="year"></span> Kopi Feeling. All rights reserved.</p>
+      <div class="socials">
+        <a href="https://www.instagram.com/kopifeeling_?igsh=NHlhY3V5dDVkMGFl" aria-label="Instagram"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a>
+        <a href="https://wa.me/6281254913064?text=Hallo%20Min%20Feels,%20saya%20ingin%20bertanya." aria-label="WhatsApp"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i></a>
+        <a href="mailto:kopifeeling.bjb@gmail.com" aria-label="Email"><i class="fa-regular fa-envelope" aria-hidden="true"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="assets/js/main.js" defer></script>
+
+  <!-- Inline JS: rangkum pertanyaan ke WhatsApp -->
+  <script>
+    (function () {
+      // Ganti nomor WA tujuan jika perlu
+      var WA_NUMBER = '6281254913064';
+
+      var qs = function (s, r) { return (r || document).querySelector(s); };
+      var qsv = function (id) { var el = qs('#' + id); return el ? String(el.value || '').trim() : ''; };
+
+      var btn = qs('#askSendBtn');
+      var msgBox = qs('#askMessage');
+      var charCount = qs('#askCount');
+
+      function buildMessage() {
+        var name  = qsv('askName');
+        var phone = qsv('askPhone');
+        var email = qsv('askEmail');
+        var topic = qsv('askTopic');
+        var text  = qsv('askMessage');
+
+        var lines = [];
+        lines.push('*Pertanyaan — Kopi Feeling*');
+        if (topic) lines.push('Topik: ' + topic);
+        lines.push('');
+        lines.push('Pesan:');
+        lines.push(text || '(kosong)');
+        lines.push('');
+        lines.push('— Identitas —');
+        if (name)  lines.push('Nama: ' + name);
+        if (phone) lines.push('Nomor HP: ' + phone);
+        if (email) lines.push('Email: ' + email);
+        lines.push('');
+        lines.push('Terima kasih 🙏');
+
+        return lines.join('\n');
+      }
+
+      function validate() {
+        // Wajib: Nama & Pesan
+        var ok = qsv('askName') && qsv('askMessage');
+        btn.setAttribute('aria-disabled', ok ? 'false' : 'true');
+        btn.href = ok
+          ? ('https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(buildMessage()))
+          : '#';
+      }
+
+      // Bind input untuk validasi & counter
+      ['askName','askTopic','askPhone','askEmail','askMessage'].forEach(function(id){
+        var el = qs('#' + id);
+        if (!el) return;
+        el.addEventListener('input', validate);
+        el.addEventListener('change', validate);
+      });
+
+      // Hitung karakter pesan
+      if (msgBox && charCount) {
+        var updateCount = function(){
+          charCount.textContent = String((msgBox.value || '').length);
+        };
+        msgBox.addEventListener('input', updateCount);
+        updateCount();
+      }
+
+      // Guard klik jika belum valid
+      btn.addEventListener('click', function(e){
+        if (btn.getAttribute('aria-disabled') === 'true') {
+          e.preventDefault();
+          e.stopPropagation();
+        }
+      });
+
+      // Init
+      validate();
+    })();
+  </script>
+
+  <noscript>Halaman ini bekerja optimal dengan JavaScript diaktifkan.</noscript>
+</body>
+</html>
