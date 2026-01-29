@@ -1,421 +1,320 @@
-/* =========================
- Tema Dasar & Reset
- ========================= */
-:root{
-  --brand-red:#b5121b;
-  --brand-dark:#1f1f1f;
-  --text:#333;
-  --muted:#6b7280;
-  --bg:#ffffff;
-  --bg-soft:#f7f7f8;
-  --border:#eaeaea;
-  --shadow:0 8px 24px rgba(0,0,0,.08);
-  /* Skala spacing */
-  --sp-0:0px; --sp-1:4px; --sp-2:6px; --sp-3:8px; --sp-4:10px;
-  --sp-5:12px; --sp-6:14px; --sp-7:16px; --sp-8:18px;
-  /* Footer (kompak) */
-  --footer-pad-y-desktop:16px; --footer-pad-y-tablet:14px; --footer-pad-y-mobile:12px;
-  --footer-gap-desktop:14px; --footer-bottom-pad-y:8px;
-  --footer-logo-h:32px; --footer-h4:18px; --footer-p:15px; --social-size:18px;
-  /* CTA strip (kompak) */
-  --cta-pad-y-desktop:14px; --cta-pad-y-mobile:10px;
-}
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{
-  margin:0;
-  font-family:Poppins,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
-  color:var(--text);
-  background:var(--bg);
-}
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Menu — Kopi Feeling</title>
+  <meta name="description" content="Pilih menu Coffee & Non-Coffee dari Kopi Feeling: rasa premium, racikan konsisten, siap antar." />
+  <!-- Canonical & OG/Twitter -->
+  <link rel="canonical" href="https://bernadusbayu148-source.github.io/FeelsKop/products.html" />
+  <meta name="theme-color" content="#b5121b" />
 
-/* =========================
- Utilities
- ========================= */
-.container{max-width:1140px;margin-inline:auto;padding:0 16px;}
-.section{padding:64px 0;}
-.section-title{font-size:clamp(22px,4vw,28px);font-weight:700;text-align:center;margin:0 0 24px;}
-.link{color:var(--brand-red);font-weight:600;text-decoration:none;}
-.link:hover{text-decoration:underline}
-.btn{
-  display:inline-flex;align-items:center;gap:8px;
-  padding:12px 18px;border-radius:999px;
-  font-weight:700;text-decoration:none;transition:.2s;
-  border:2px solid transparent;cursor:pointer;min-height:44px;
-}
-.btn-primary{background:var(--brand-red);color:#fff;}
-.btn-primary:hover{filter:brightness(.95);transform:translateY(-1px);}
-.btn-outline{background:#fff;color:var(--brand-red);border-color:var(--brand-red);}
-.btn-outline:hover{filter:brightness(.97);}
+  <!-- Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <!-- Pakai stack font yang sudah jalan (boleh ganti Nunito/Plus Jakarta Sans bila sudah dipasang) -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
 
-/* =========================
- Header / Navbar
- ========================= */
-.site-header{
-  position:sticky;top:0;z-index:1000;
-  background:var(--brand-red); /* header merah */
-  border-bottom:1px solid rgba(255,255,255,.25);
-  padding-top:env(safe-area-inset-top);
-}
-.site-header.scrolled{box-shadow:var(--shadow)}
-.nav-container{display:flex;align-items:center;gap:16px;padding:8px 0;}
-.brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:#fff;font-weight:700;}
-.logo{height:38px;width:auto}
-.brand-name{white-space:nowrap}
-.nav{margin-left:auto}
-.nav-list{display:flex;align-items:center;gap:24px;list-style:none;margin:0;padding:0;}
+  <!-- Main CSS -->
+  <link rel="stylesheet" href="assets/css/style.css?v=20260129-fixProducts" />
 
-/* ❄️ DESKTOP ONLY: link navbar putih di atas header merah */
-@media (min-width:993px){
-  .nav-link{color:#fff;font-weight:700;text-decoration:none;padding:12px 4px;display:inline-flex;align-items:center;gap:6px;}
-  .nav-link:hover,.nav-link.active{opacity:.88}
-}
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Menu — Kopi Feeling" />
+  <meta property="og:description" content="Menu Coffee & Non-Coffee: rasa premium, racikan konsisten, siap antar." />
+  <meta property="og:url" content="https://bernadusbayu148-source.github.io/FeelsKop/products.html" />
+  <meta property="og:image" content="https://bernadusbayu148-source.github.io/FeelsKop/assets/img/og-cover.jpg" />
+  <meta property="og:locale" content="id_ID" />
+  <meta name="twitter:card" content="summary_large_image" />
+</head>
+<body>
+  <!-- HEADER -->
+  <header class="site-header" id="siteHeader">
+    <div class="container nav-container">
+      <a href="index.html" class="brand" aria-label="Halaman utama">
+        <img src="assets/img/logo-header.png" alt="Logo Kopi Feeling" class="logo" />
+      </a>
 
-/* Tombol WA di header -> outline putih */
-.btn-wa{margin-left:8px}
-.site-header .btn-outline{
-  background:transparent;
-  color:#fff;
-  border-color:#fff;
-}
-.site-header .btn-outline:hover{background:rgba(255,255,255,.12);}
+      <button class="nav-toggle" aria-label="Buka menu" aria-expanded="false" aria-controls="primaryNav">
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+      </button>
 
-/* Toggle (mobile) */
-.nav-toggle{
-  display:none;margin-left:auto;
-  background:transparent;
-  border:1px solid rgba(255,255,255,.5);
-  padding:10px;border-radius:8px;cursor:pointer;
-}
-.nav-toggle-bar{display:block;width:22px;height:2px;background:#fff;margin:4px 0}
-body.nav-open{overflow:hidden;touch-action:none;}
+      <nav class="nav" id="primaryNav" aria-label="Navigasi utama">
+        <ul class="nav-list">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link active" aria-current="page" href="products.html">Menu</a></li>
+          <li class="nav-item"><a class="nav-link" href="services.html">Layanan</a></li>
+          <li class="nav-item"><a class="nav-link" href="stations.html">Lokasi & Coverage</a></li>
+          <li class="nav-item"><a class="nav-link" href="contact.html">Komplain & Saran</a></li>
+          <!-- Opsional: halaman pertanyaan -->
+          <!-- <li class="nav-item"><a class="nav-link" href="ask.html">Tanya WA</a></li> -->
+        </ul>
+      </nav>
 
-/* 📱 MOBILE NAV PANEL (warna link merah + posisi aman iPhone) */
-@media (max-width:992px){
-  .nav{
-    display:none;
-    position:fixed;
-    /* mulai tepat di bawah header + safe-area notch */
-    inset: calc(64px + env(safe-area-inset-top)) 0 0 0;
-    height: calc(100vh - (64px + env(safe-area-inset-top)));
-    background:#fff;
-    border-top:1px solid var(--border);
-    overflow-y:auto;
-    -webkit-overflow-scrolling:touch;
-  }
-  .nav.open{display:block}
-  .nav-list{flex-direction:column;align-items:flex-start;padding:12px}
+      <a class="btn btn-outline btn-wa"
+         href="https://wa.me/6281254913064?text=Halo%20Kopi%20Feeling,%20minta%20daftar%20menu%20dan%20harga."
+         target="_blank" rel="noopener">
+        <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> WhatsApp
+      </a>
+    </div>
+  </header>
 
-  /* ✅ Warna link di panel (latar putih) harus MERAH.
-     Tambah spesifisitas + !important agar pasti menang atas aturan lain. */
-  .site-header #primaryNav.nav.open .nav-link{
-    color:var(--brand-red) !important;
-  }
-  .site-header #primaryNav.nav.open .nav-link:hover,
-  .site-header #primaryNav.nav.open .nav-link.active{
-    opacity:.9 !important;
-  }
+  <!-- MAIN -->
+  <main class="section container">
+    <h2 class="section-title">Menu Kopi Feeling</h2>
 
-  .btn-wa{display:none}
-  .nav-toggle{display:block}
-}
+    <!-- Ajakan singkat -->
+    <section class="service-intro" style="margin-bottom:18px">
+      <h3>Rasa Premium, Siap Antar!</h3>
+      <p>
+        Pilih menu favoritmu—dari creamy caramel sampai red velvet. Diseduh segar, rasanya konsisten,
+        siap mengantar harimu jadi lebih <em>feels good</em>. Pesan sekarang—<strong>Gratis Ongkir</strong>
+        area Banjarmasin, Banjarbaru, Martapura!
+      </p>
+    </section>
 
-/* Fokus aksesibilitas */
-.nav .nav-link:focus-visible,.btn:focus-visible,.dropdown-toggle:focus-visible{outline:2px solid #1e90ff;outline-offset:2px;}
+    <!-- TAB KATEGORI -->
+    <nav class="service-tabs" role="tablist" aria-label="Kategori Menu">
+      <button class="tab is-active" role="tab" aria-selected="true"
+              aria-controls="panel-coffee" id="tab-coffee" data-tab="coffee">Coffee</button>
+      <button class="tab" role="tab" aria-selected="false"
+              aria-controls="panel-noncoffee" id="tab-noncoffee" data-tab="noncoffee">Non-Coffee</button>
+    </nav>
 
-/* =========================
- Hero Slider
- ========================= */
-.hero{position:relative;background:var(--bg-soft)}
-.slider{position:relative}
-.slide{
-  min-height:480px;display:grid;place-items:center;text-align:center;color:#fff;
-  background-image:linear-gradient(rgba(0,0,0,.35),rgba(0,0,0,.35)),var(--bg);
-  background-size:cover;background-position:center;
-}
-.slide-content{max-width:820px;padding:0 16px}
-.hero-title{font-size:clamp(28px,5vw,42px);font-weight:700;margin:0 0 10px}
-.hero-subtitle{font-size:clamp(16px,3.2vw,18px);margin:0 0 18px;opacity:.95}
-.slider-btn{
-  position:absolute;top:50%;transform:translateY(-50%);background:#fff;border:1px solid var(--border);
-  width:40px;height:40px;border-radius:50%;display:grid;place-items:center;cursor:pointer;
-}
-.slider-btn.prev{left:16px}.slider-btn.next{right:16px}
-.slider-dots{position:absolute;bottom:16px;left:50%;transform:translateX(-50%);display:flex;gap:8px}
-.slider-dots .dot{width:10px;height:10px;border-radius:50%;background:#fff;opacity:.7;cursor:pointer}
-.slider-dots .dot.active{background:var(--brand-red);opacity:1}
-@media (max-width:576px){.hero-title{font-size:clamp(24px,6vw,32px)}.slide{min-height:380px}}
+    <!-- PANEL: Coffee -->
+    <section class="tab-panel is-active" role="tabpanel" id="panel-coffee" aria-labelledby="tab-coffee">
+      <div class="menu-grid">
+        <!-- Be Carefeels -->
+        <article class="menu-card">
+          <img src="assets/img/menu-becarefeels.png"
+               alt="Be Carefeels — Creamy Caramel" loading="lazy" decoding="async" width="640" height="480" />
+          <div class="menu-info">
+            <h3>Be Carefeels</h3>
+            <p class="menu-sub">Creamy Caramel</p>
+            <p class="menu-desc">
+              Perpaduan espresso dan karamel lembut, berpadu susu creamy. Manis pas—comfort drink yang bikin hari
+              terasa lebih “care”.
+            </p>
+          </div>
+        </article>
 
-/* =========================
- CTA Strip (kompak)
- ========================= */
-.cta-strip{
-  background:#fbeaed;
-  padding:var(--cta-pad-y-desktop) 0;
-  border-top:1px solid var(--border);border-bottom:1px solid var(--border)
-}
-.cta-content{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
-.cta-content h3{margin:0;font-size:clamp(18px,3.5vw,22px)}
-.cta-content p{margin:0;color:var(--muted);font-size:clamp(14px,3.2vw,16px)}
-@media (max-width:768px){.cta-strip{padding:var(--cta-pad-y-mobile) 0;}}
+        <!-- Our Feeling -->
+        <article class="menu-card">
+          <img src="assets/img/menu-ourfeeling.png"
+               alt="Our Feeling — Sugar Palm" loading="lazy" decoding="async" width="640" height="480" />
+          <div class="menu-info">
+            <h3>Our Feeling</h3>
+            <p class="menu-sub">Sugar Palm</p>
+            <p class="menu-desc">
+              Signature gula aren dengan espresso bold. Rasa legit alami, aftertaste hangat—favorit para pecinta kopi gula aren.
+            </p>
+          </div>
+        </article>
 
-/* =========================
- Footer (kompak agresif)
- ========================= */
-.site-footer{background:#8f0e22;color:#fff;margin-top:32px}
-.footer-grid{
-  display:grid;grid-template-columns:2fr 1.4fr 1fr;gap:var(--footer-gap-desktop);padding:var(--footer-pad-y-desktop) 16px;
-}
-.footer-logo{height:var(--footer-logo-h);margin:0 0 6px}
-.footer-about p,.footer-contact p{margin:6px 0;line-height:1.45;font-size:var(--footer-p);}
-.footer-contact i{margin-right:8px}
-.footer-contact h4,.footer-menu h4{margin:0 0 8px;font-size:var(--footer-h4);}
-.footer-menu ul{list-style:none;padding:0;margin:0}
-.footer-menu li{margin:6px 0}
+        <!-- Happy Feels -->
+        <article class="menu-card">
+          <img src="assets/img/menu-happyfeels.png"
+               alt="Happy Feels — Butterscotch Sea Salt" loading="lazy" decoding="async" width="640" height="480" />
+          <div class="menu-info">
+            <h3>Happy Feels</h3>
+            <p class="menu-sub">Butterscotch Sea Salt</p>
+            <p class="menu-desc">
+              Buttery butterscotch yang diperkaya sea salt lembut—manis-gurih unik, bikin senyum muncul di setiap teguk.
+            </p>
+          </div>
+        </article>
 
-/* Link di footer-menu putih, dan override link di footer-contact agar putih juga */
-.footer-menu a{color:#fff;text-decoration:none}
-.footer-menu a:hover{text-decoration:underline}
-.site-footer .footer-contact a{color:#fff;text-decoration:none}
-.site-footer .footer-contact a:hover{text-decoration:underline}
+        <!-- Mocafeels -->
+        <article class="menu-card">
+          <img src="assets/img/menu-mocafeels.png"
+               alt="Mocafeels — Moccacino" loading="lazy" decoding="async" width="640" height="480" />
+          <div class="menu-info">
+            <h3>Mocafeels</h3>
+            <p class="menu-sub">Moccacino</p>
+            <p class="menu-desc">
+              Kombinasi espresso, susu, dan cokelat—seimbang, smooth, dan selalu jadi pilihan aman untuk semua momen.
+            </p>
+          </div>
+        </article>
 
-/* Separator pengganti teks "Menu Cepat" */
-.footer-separator{
-  display:block;width:100%;height:0;border:0;
-  border-top:2px solid rgba(255,255,255,.75);
-  margin:2px 0 10px;
-}
+        <!-- Rushfeels -->
+        <article class="menu-card">
+          <img src="assets/img/menu-rushfeels.png"
+               alt="Rushfeels — Irish Coffee" loading="lazy" decoding="async" width="640" height="480" />
+          <div class="menu-info">
+            <h3>Rushfeels</h3>
+            <p class="menu-sub">Irish Coffee</p>
+            <p class="menu-desc">
+              Espresso intens dengan aroma khas “irish style”—memberi dorongan semangat, cocok saat butuh pace lebih cepat.
+            </p>
+          </div>
+        </article>
 
-.footer-bottom{border-top:1px solid rgba(255,255,255,.3);display:flex;align-items:center;justify-content:space-between;padding:var(--footer-bottom-pad-y) 16px;font-size:13.5px;}
-.socials a{color:#fff;margin-left:10px;font-size:var(--social-size);line-height:1}
-@media (max-width:1100px){.footer-grid{grid-template-columns:1.6fr 1.2fr 1fr;padding:var(--footer-pad-y-tablet) 16px}}
-@media (max-width:900px){.footer-grid{grid-template-columns:1fr 1fr;gap:12px}}
-@media (max-width:700px){
-  .footer-grid{grid\\-template\\-columns:1fr;padding:var(--footer-pad-y-mobile) 16px;}
-  .footer-about p,.footer-contact p{line-height:1.4}
-  .footer-bottom{padding:8px 16px}
-}
+        <!-- Vanfeels -->
+        <article class="menu-card">
+          <img src="assets/img/menu-vanfeels.png"
+               alt="Vanfeels — Vanilla Cream" loading="lazy" decoding="async" width="640" height="480" />
+          <div class="menu-info">
+            <h3>Vanfeels</h3>
+            <p class="menu-sub">Vanilla Cream</p>
+            <p class="menu-desc">
+              Creamy vanilla yang wangi dan halus, menyatukan espresso jadi minuman lembut yang menenangkan.
+            </p>
+          </div>
+        </article>
 
-/* =========================
- Form (contact)
- ========================= */
-label{display:block;font-weight:600;margin-bottom:6px}
-input,textarea{width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:10px;font:inherit}
+        <!-- Nutfeels -->
+        <article class="menu-card">
+          <img src="assets/img/menu-nutfeels.png"
+               alt="Nutfeels — Hazelnut" loading="lazy" decoding="async" width="640" height="480" />
+          <div class="menu-info">
+            <h3>Nutfeels</h3>
+            <p class="menu-sub">Hazelnut</p>
+            <p class="menu-desc">
+              Perpaduan espresso dengan hazelnut aromatik—nutty, wangi, dan comforting. Cocok untuk penikmat rasa kacang.
+            </p>
+          </div>
+        </article>
 
-/* =========================
- Service Tabs
- ========================= */
-.service-tabs{
-  display:flex;gap:12px;justify-content:center;align-items:center;
-  flex-wrap:wrap;margin:0 0 16px;
-  overflow-x:auto;scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch;
-}
-.service-tabs .tab{
-  appearance:none;border:2px solid var(--brand-red);background:#fff;color:var(--brand-red);
-  padding:10px 16px;border-radius:999px;font-weight:700;cursor:pointer;transition:.2s;
-  box-shadow:0 2px 8px rgba(0,0,0,.06);min-height:42px;scroll-snap-align:start;
-}
-.service-tabs .tab:hover{filter:brightness(.97);}
-.service-tabs .tab.is-active{background:var(--brand-red);color:#fff;box-shadow:0 8px 18px rgba(181,18,27,.25);}
-.service-tabs::after{
-  content:"";display:block;width:100%;max-width:880px;height:2px;margin:6px auto 0;
-  background:linear-gradient(90deg,var(--brand-red) 30%,transparent 30% 70%,var(--brand-red) 70%);
-  opacity:.35;
-}
-.tab-panel{display:block}
-.tab-panel[hidden]{display:none!important}
+        <!-- Blackfeels -->
+        <article class="menu-card">
+          <img src="assets/img/menu-blackfeels.png"
+               alt="Blackfeels — Americano" loading="lazy" decoding="async" width="640" height="480" />
+          <div class="menu-info">
+            <h3>Blackfeels</h3>
+            <p class="menu-sub">Americano</p>
+            <p class="menu-desc">
+              Espresso yang dilunakkan air panas—clean, ringkas, dan jernih. Pilihan tepat untuk pecinta kopi tanpa susu.
+            </p>
+          </div>
+        </article>
+      </div>
+    </section>
 
-/* =========================
- Services (konten)
- ========================= */
-.service-intro{background:var(--brand-red);color:#fff;border-radius:16px;padding:16px 14px;box-shadow:var(--shadow);margin-bottom:14px;}
-.service-intro h3{margin:0 0 6px;font-size:clamp(20px,4.5vw,24px);}
-.service-intro p{margin:0;line-height:1.55;}
-.service-hero{margin:12px 0 18px;display:grid;gap:8px;}
-.service-hero img{width:100%;height:auto;border-radius:14px;border:1px solid var(--border);box-shadow:var(--shadow);}
-.service-hero figcaption{font-size:14px;color:var(--muted);}
-.service-card{background:#b5121b;color:#fff;border-radius:16px;overflow:hidden;box-shadow:var(--shadow);}
-.service-card .card-head{padding:12px 14px 6px;}
-.service-card .card-head h3{display:inline-block;margin:0;padding:6px 12px;background:#fff;color:#b5121b;border-radius:12px;font-weight:800;}
-.service-card .card-body{padding:8px 14px 14px;}
-.service-card .card-body p{margin:0 0 10px;line-height:1.6;}
-.service-card .card-image{margin:8px 0 12px;}
-.service-card .card-image img{width:100%;height:auto;border-radius:12px;border:1px solid var(--border);}
-.service-card .btn{margin-top:6px;border-color:#fff;color:#fff;background:transparent;}
-.service-card .btn:hover{background:rgba(255,255,255,.12);}
-.final-cta{text-align:center;margin-top:18px;}
-.final-cta .final-note{color:var(--muted);margin:0 0 6px;}
-.final-cta .final-title{color:var(--brand-red);margin:0 0 8px;font-size:clamp(18px,4.2vw,22px);}
-.final-cta .btn{display:inline-flex;gap:10px;font-size:16px;border-color:var(--brand-red);color:#fff;background:var(--brand-red);}
-@media (max-width:992px){.service-meta{grid-template-columns:1fr}}
-@media (max-width:576px){.service-intro{padding:12px 10px}.service-card .card-head h3{font-size:17px}}
+    <!-- PANEL: Non-Coffee -->
+    <section class="tab-panel" role="tabpanel" id="panel-noncoffee" aria-labelledby="tab-noncoffee" hidden>
+      <div class="menu-grid">
+        <!-- Chocofeels -->
+        <article class="menu-card">
+          <img src="assets/img/menu-chocofeels.png"
+               alt="Chocofeels — Cokelat Belgian" loading="lazy" decoding="async" width="640" height="480" />
+          <div class="menu-info">
+            <h3>Chocofeels</h3>
+            <p class="menu-sub">Cokelat Belgian</p>
+            <p class="menu-desc">
+              Cokelat belgian yang kaya & indulgent—tekstur lembut, rasa legit. Cocok buat mood booster tanpa kafein.
+            </p>
+          </div>
+        </article>
 
-/* =========================
- Stations
- ========================= */
-.count-badge{display:inline-block;margin-left:8px;padding:2px 8px;font-size:.85em;border-radius:999px;border:2px solid var(--brand-red);color:var(--brand-red);background:#fff;}
-.service-tabs .tab.is-active .count-badge{border-color:#fff;color:var(--brand-red);background:#fff;}
-.station-list{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:8px;}
-.station-item{background:#fff;border:1px solid var(--border);border-radius:12px;padding:12px;box-shadow:var(--shadow);}
-.station-item h4{margin:0 0 6px;font-size:16px;color:var(--brand-red);}
-.station-item p{margin:0 0 6px;color:var(--text);}
-.station-item a.link{display:inline-flex;align-items:center;min-height:40px;color:var(--brand-red);font-weight:700;text-decoration:none;}
-.station-item a.link:hover{text-decoration:underline;}
-@media (max-width:768px){.station-list{grid-template-columns:1fr}}
+        <!-- Greenfeels -->
+        <article class="menu-card">
+          <img src="assets/img/menu-greenfeels.png"
+               alt="Greenfeels — Sweet Matcha (+ Pistachio IDR 3K)" loading="lazy" decoding="async" width="640" height="480" />
+          <div class="menu-info">
+            <h3>Greenfeels</h3>
+            <p class="menu-sub">Sweet Matcha <span class="addon">( + Pistachio IDR 3K)</span></p>
+            <p class="menu-desc">
+              Matcha manis lembut yang menenangkan. Add‑on Pistachio menambah nuansa nutty premium—unik & nagih!
+            </p>
+          </div>
+        </article>
 
-/* =========================
- Products Page — Menu Cards (PASTI 2 KOLOM)
- ========================= */
-main .menu-grid{
-  display:grid !important;
-  grid-template-columns:repeat(2, minmax(0, 1fr)) !important;
-  gap:14px !important;
-}
-.menu-card{
-  background:transparent !important;
-  border:0 !important;
-  border-radius:0 !important;
-  box-shadow:none !important;
-  display:flex !important;
-  flex-direction:column !important;
-  align-items:center !important;
-  text-align:left !important;
-  width:100% !important;
-}
-.menu-card img{
-  width:100% !important;
-  height:auto !important;
-  object-fit:contain !important;
-  background:transparent !important;
-  display:block !important;
-}
-.menu-info{
-  width:100% !important;
-  padding:6px 2px 0 !important;
-  display:flex !important;
-  flex-direction:column !important;
-  gap:6px !important;
-  background:transparent !important;
-}
-.menu-info h3{margin:0;font-size:18px;color:var(--brand-red);}
-.menu-sub{margin:0;color:var(--muted);font-weight:600;}
-.menu-desc{margin:0;color:var(--text);line-height:1.55;}
-.menu-card .btn{display:none !important;}
-@media (max-width:576px){
-  main .menu-grid{ gap:10px !important; }
-  .menu-info{ padding:6px 0 0 !important; gap:6px !important; }
-}
+        <!-- Red Deveels -->
+        <article class="menu-card">
+          <img src="assets/img/menu-reddeveels.png"
+               alt="Red Deveels — Red Velvet" loading="lazy" decoding="async" width="640" height="480" />
+          <div class="menu-info">
+            <h3>Red Deveels</h3>
+            <p class="menu-sub">Red Velvet</p>
+            <p class="menu-desc">
+              Red velvet creamy dengan aroma vanila & kakao—dengan warna ikonik yang bikin momen jadi lebih berkesan.
+            </p>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
 
-/* =========================
- Kontak — Feedback Form
- ========================= */
-.feedback-form .req{color:#d22;font-weight:800}
-.feedback-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
-.feedback-field{margin:10px 0}
-.feedback-field textarea{width:100%;padding:12px 14px;border:1px solid var(--border);border-radius:12px;resize:vertical;min-height:160px;font:inherit;line-height:1.55}
-.input-hint{color:#888;font-size:13px;margin-top:6px}
-.feedback-form input[type="text"],.feedback-form input[type="email"],.feedback-form input[type="tel"],.feedback-form select{width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:10px;font:inherit;background:#fff}
-.feedback-check{display:flex;gap:10px;align-items:flex-start;margin-top:6px;margin-bottom:8px}
-.feedback-check input{margin-top:4px}
-@media (max-width:768px){
-  .feedback-grid{grid-template-columns:1fr;gap:8px;margin-bottom:8px}
-  .feedback-field textarea{min-height:140px;padding:10px 12px}
-  .input-hint{font-size:12.5px}
-  .feedback-check{gap:8px}
-}
+  <!-- CTA Strip -->
+  <section class="cta-strip" role="complementary" aria-label="Bantuan pelanggan & keluhan">
+    <div class="container cta-content">
+      <div class="cta-text">
+        <h3>Ada pertanyaan atau keluhan?</h3>
+        <p>Kami siap membantu. Pilih salah satu tombol di kanan.</p>
+      </div>
+      <div class="cta-actions">
+        <a class="btn btn-primary" href="contact.html" aria-label="Buka halaman kontak">
+          <i class="fa-regular fa-envelope" aria-hidden="true"></i> Hubungi Kami
+        </a>
+        <!-- Opsional: tombol ke halaman pertanyaan -->
+        <!-- <a class="btn btn-outline" href="ask.html">
+          <i class="fa-regular fa-circle-question" aria-hidden="true"></i> Tanya WA
+        </a> -->
+      </div>
+    </div>
+  </section>
 
-/* Consent row */
-.consent-fieldset{margin:10px 0 8px;padding:0;border:0}
-.consent-row{display:inline-flex;align-items:center;gap:10px;line-height:1.35;font-weight:600;color:var(--text);cursor:pointer}
-.consent-row input[type="checkbox"]{inline-size:18px;block-size:18px;min-width:18px;min-height:18px;border-radius:4px;accent-color:var(--brand-red)}
-.consent-text{display:inline-block;text-wrap:balance;max-width:60ch}
-@media (max-width:768px){.consent-row{gap:8px}.consent-text{max-width:100%;font-weight:600}}
+  <!-- FOOTER (versi baru sesuai revisi) -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-about">
+        <img src="assets/img/logo-footer.png" alt="Logo Kopi Feeling" class="footer-logo" />
+        <!-- Deskripsi brand dihilangkan sesuai permintaan -->
+      </div>
 
-/* ===== SERVICES — Perbaikan input tanggal ===== */
-.order-widget input[type="date"]{width:100%;box-sizing:border-box;appearance:none;-webkit-appearance:none;background-color:#fff;border:1px solid var(--border);border-radius:12px;padding:10px 12px;min-height:44px;font:inherit;line-height:1.2;color:var(--text)}
-.order-widget input[type="date"]::-webkit-date-and-time-value{text-align:left;padding:0;min-height:1.2em}
-.order-widget input[type="date"]::-webkit-calendar-picker-indicator{padding:0 6px;margin:0;opacity:.8}
-@supports (-moz-appearance: none){.order-widget input[type="date"]{padding-block:10px}}
-@media (max-width:768px){
-  #panel-everyday .contact-grid{grid-template-columns:1fr;gap:8px}
-  .order-widget .contact-grid{gap:8px;margin-bottom:8px}
-  .order-widget label{margin-bottom:4px}
-}
+      <div class="footer-contact">
+        <h4>Alamat & Kontak</h4>
+        <p>
+          <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
+          <strong>Feeling Headquarter</strong><br>
+          Jl. Irigasi No.08, Mentaos, Banjarbaru
+        </p>
+        <p>
+          <i class="fa-solid fa-phone" aria-hidden="true"></i>
+          <a class="link" href="tel:+6289519035430">0895-1903-5430</a>
+        </p>
+        <p>
+          <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+          <a class="link" href="mailto:kopifeeling.bjb@gmail.com">kopifeeling.bjb@gmail.com</a>
+        </p>
+      </div>
 
-/* ===== MOBILE COMPACT OVERRIDES ===== */
-@media (max-width: 768px){
-  .cta-strip { padding: 8px 0; }
-  .cta-content { gap: 8px; }
-  .cta-content h3 { font-size: 16px; line-height: 1.2; }
-  .cta-content p { font-size: 13px; line-height: 1.35; }
-  .footer-grid { grid-template-columns: 1fr; gap: 8px; padding: 10px 14px; }
-  .footer-logo { height: auto; max-height: 28px; }
-  .footer-contact h4, .footer-menu h4 { font-size: 16px; margin: 0 0 6px; }
-  .footer-about p, .footer-contact p { font-size: 13.5px; line-height: 1.35; margin: 4px 0; }
-  .footer-menu li { margin: 4px 0; } .footer-menu a { font-size: 14px; }
-  .footer-bottom { padding: 6px 14px; font-size: 12.5px; }
-  .socials a { font-size: 16px; margin-left: 8px; }
-  .section { padding: 42px 0; }
-  .service-intro { padding: 10px 10px; } .service-intro p { line-height: 1.45; }
-  .service-hero { margin: 10px 0 14px; }
-  .service-tabs { gap: 8px; margin-bottom: 12px; }
-  .service-tabs .tab { padding: 9px 14px; min-height: 38px; }
-  .station-list { gap: 10px; margin-top: 6px; }
-  .station-item { padding: 10px; }
-  main .menu-grid { gap: 10px !important; }
-  .menu-info { padding: 6px 0 0 !important; gap: 6px !important; }
-}
+      <div class="footer-menu">
+        <hr class="footer-separator" aria-hidden="true">
+        <ul>
+          <li><a href="products.html" aria-current="page">Menu</a></li>
+          <li><a href="services.html">Layanan</a></li>
+          <li><a href="stations.html">Lokasi & Coverage</a></li>
+          <li><a href="contact.html">Komplain & Saran</a></li>
+        </ul>
+      </div>
+    </div>
 
-/* =========================
- Order Widget — Baris Pesanan
- ========================= */
-.order-widget .order-list{display:grid !important;gap:10px !important;}
-.order-widget .order-list .order-row{
-  display:grid !important;
-  grid-template-columns: 1.4fr 120px 32px !important; /* Menu | Qty | x */
-  gap:10px !important;
-  align-items:end !important;
-}
-.order-widget .order-list .order-row .field{
-  display:flex !important;flex-direction:column !important;gap:6px !important;min-width:0 !important;
-}
-.order-widget .order-list .order-row .field > label{
-  margin:0 !important;font-weight:700 !important;color:#fff !important;
-}
-.order-widget .order-list .menu-picker{
-  width:100% !important;text-align:left !important;padding:10px 12px !important;min-height:44px !important;
-  border:1px solid var(--border) !important;border-radius:10px !important;background:#fff !important;color:var(--text) !important;
-  display:flex !important;justify-content:space-between !important;align-items:center !important;gap:10px !important;
-}
-.order-widget .order-list .qty-input{width:100% !important;padding:10px 12px !important;border:1px solid var(--border) !important;border-radius:10px !important;}
-.order-widget .order-list .row-remove{width:32px !important;height:32px !important;border-radius:8px !important;border:1px solid var(--border) !important;background:#fff !important;cursor:pointer !important;}
-@media (max-width:768px){
-  .order-widget .order-list .order-row{grid-template-columns: 1fr 100px 32px !important;gap:8px !important;}
-}
+    <div class="footer-bottom">
+      <p>© <span id="year"></span> Kopi Feeling. All rights reserved.</p>
+      <div class="socials">
+        <!-- Instagram -->
+        <a href="https://www.instagram.com/kopifeeling_?igsh=NHlhY3V5dDVkMGFl" target="_blank" rel="noopener" aria-label="Instagram">
+          <i class="fa-brands fa-instagram" aria-hidden="true"></i>
+        </a>
+        <!-- WhatsApp -->
+        <a href="https://wa.me/6281254913064?text=Hallo%20Min%20Feels,%20saya%20ingin%20bertanya." target="_blank" rel="noopener" aria-label="WhatsApp">
+          <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
+        </a>
+        <!-- Email -->
+        <a href="mailto:kopifeeling.bjb@gmail.com" aria-label="Email">
+          <i class="fa-regular fa-envelope" aria-hidden="true"></i>
+        </a>
+      </div>
+    </div>
+  </footer>
 
-/* ===== Modal (global) ===== */
-body .modal{position:fixed !important;inset:0 !important;z-index:4000 !important;display:block !important;}
-body .modal[hidden]{display:none !important;}
-body .modal-backdrop{position:fixed !important;inset:0 !important;background:rgba(0,0,0,.45) !important;backdrop-filter:saturate(120%) blur(2px) !important;z-index:4001 !important;}
-body .modal-dialog{
-  position:fixed !important;top:50% !important;left:50% !important;transform:translate(-50%,-50%) !important;
-  width:min(92vw, 720px) !important;max-height:min(86vh, 720px) !important;background:#fff !important;border-radius:14px !important;
-  border:1px solid var(--border) !important;box-shadow:var(--shadow) !important;display:flex !important;flex-direction:column !important;overflow:hidden !important;z-index:4002 !important;
-}
-body .modal-header{display:flex;align-items:center;justify-content:space-between;padding:12px 14px;border-bottom:1px solid var(--border);}
-body .modal-body{padding:12px;overflow:auto;max-height:calc(min(86vh,720px) - 96px);}
-body .modal-footer{padding:12px;border-top:1px solid var(--border);display:flex;justify-content:flex-end;gap:8px}
-body .modal-close{background:#fff;border:1px solid var(--border);border-radius:8px;padding:6px 10px;cursor:pointer}
-body .modal-search input{width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:10px;font:inherit}
-/* kunci scroll body ketika modal aktif */
-body.modal-open{overflow:hidden !important;touch-action:none !important;}
-
-/* ─────────────────────────────────────────────────────────
-   LOGO PNG (Header & Footer)
-   ───────────────────────────────────────────────────────── */
-.site-header .logo{height:auto;width:auto;max-height:40px;object-fit:contain;}
-@media (min-width:993px){.site-header .logo{max-height:44px;}}
-.site-footer .footer-logo{height:auto;width:auto;max-height:var(--footer-logo-h);object-fit:contain;}
-@media (min-width:1100px){.site-footer .footer-logo{max-height:36px;}}
-@media (max-width:700px){.site-footer .footer-logo{max-height:28px;}}
-``
+  <!-- Script utama -->
+  <script src="assets/js/main.js" defer></script>
+  <noscript>Website ini bekerja lebih optimal dengan JavaScript diaktifkan.</noscript>
+</body>
+</html>
