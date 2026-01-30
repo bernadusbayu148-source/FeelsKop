@@ -8,10 +8,10 @@
   <link rel="canonical" href="https://bernadusbayu148-source.github.io/FeelsKop/stations.html">
   <meta name="theme-color" content="#b5121b" />
 
-  <!-- Fonts & Icons (biarkan sesuai yang berjalan di project kamu) -->
+  <!-- Fonts & Icons (biarkan sama dengan yang sudah jalan di project kamu) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <!-- Jika sudah migrasi font global ke Nunito + Plus Jakarta Sans, ganti link ini sesuai revisi sebelumnya -->
+  <!-- Jika sebelumnya sudah migrasi ke Nunito + Plus Jakarta Sans, ganti href ini sesuai revisi font -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
 
@@ -27,32 +27,67 @@
   <meta property="og:locale" content="id_ID">
   <meta name="twitter:card" content="summary_large_image">
 
-  <!-- ===== CSS kecil khusus halaman ini (posisi & ukuran tombol + select tersembunyi) ===== -->
+  <!-- ===== CSS kecil khusus halaman ini ===== -->
   <style>
-    /* Bar tindakan di bawah judul */
-    .actions-bar{
-      display:flex; align-items:flex-start; justify-content:space-between;
-      gap:12px; margin-bottom:10px; flex-wrap:wrap;
+    /* Bar judul + live station di kanan atas */
+    .title-row{
+      position:relative;
+      display:flex;
+      align-items:flex-start;
+      justify-content:center;
+      margin-bottom:12px;
     }
-    /* Ukuran tombol kecil konsisten */
-    .btn--sm{ padding:8px 12px; min-height:34px; font-size:13px; border-width:2px; border-radius:999px; }
+    .title-row .section-title{
+      margin:0; /* hilangkan margin bawaan agar pengukuran tepat */
+      padding-top:4px;
+      padding-bottom:8px;
+      text-align:center;
+      width:100%;
+    }
+    /* Live Station: di kanan atas judul */
+    .live-wrap{
+      position:absolute;
+      right:0;
+      top:0;
+      display:flex;
+      flex-direction:column;
+      align-items:flex-end;
+      gap:6px;
+    }
+    .live-hint{
+      color:#6b7280; /* muted */
+      font-size:12.5px;
+      line-height:1;
+      white-space:nowrap;
+    }
+    .btn--sm{
+      padding:8px 12px;
+      min-height:34px;
+      font-size:13px;
+      border-width:2px;
+      border-radius:999px;
+    }
 
-    /* Live Station di pojok kanan atas area aksi */
-    .live-wrap{ display:flex; flex-direction:column; align-items:flex-end; gap:6px; margin-left:auto; }
-    .live-hint{ color:#6b7280; font-size:12.5px; line-height:1; }
+    /* Bar aksi di bawah judul: kiri = pilih regional */
+    .actions-bar{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      margin:6px 0 8px;
+      flex-wrap:wrap;
+    }
 
-    /* Select asli (native) disembunyikan namun tetap fokusable via JS */
+    /* Select asli disembunyikan (tetap bisa dipanggil) */
     .visually-hidden-select{
       position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden;
     }
 
-    /* Spasi kecil antara pembuka pilihan dan konten daftar (bila nanti diperlukan) */
-    #regionChooser{ margin:6px 0 4px; }
-
-    @media (max-width:576px){
-      .actions-bar{ gap:10px; }
-      .live-wrap{ width:100%; align-items:flex-end; }
+    /* Responsif: kalau layar sempit, posisikan Live Station turun rapi */
+    @media (max-width: 576px){
       .live-hint{ font-size:12px; }
+      .title-row{ padding-right:96px; } /* beri ruang agar teks judul tidak ketutup tombol */
+      /* Jika masih terlalu sempit, bisa pakai versi stack:
+         .live-wrap{ position:static; align-items:flex-end; margin-left:auto; } */
     }
   </style>
 </head>
@@ -64,7 +99,9 @@
         <img src="assets/img/logo-header.png" class="logo" alt="Logo Kopi Feeling">
       </a>
       <button class="nav-toggle" aria-label="Buka menu" aria-expanded="false" aria-controls="primaryNav">
-        <span class="nav-toggle-bar"></span><span class="nav-toggle-bar"></span><span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
       </button>
       <nav class="nav" id="primaryNav" aria-label="Navigasi utama">
         <ul class="nav-list">
@@ -85,11 +122,23 @@
   </header>
 
   <main class="section container">
-    <h2 class="section-title">Lokasi & Coverage</h2>
+    <!-- ROW: Judul + Live Station (kanan atas) -->
+    <div class="title-row">
+      <h2 class="section-title">Lokasi & Coverage</h2>
 
-    <!-- ===== BAR TOMBOL: kiri = Pilih Regional (popup native); kanan = Live Station ===== -->
+      <div class="live-wrap" aria-label="Info status station">
+        <div class="live-hint">Cek Status Station Disini Ya</div>
+        <a class="btn btn-primary btn--sm"
+           href="https://docs.google.com/spreadsheets/d/1VBsdFLYhxcFpYD8zmzR_RFpSRUIc_uRYFitKQKhuOs0/edit?usp=drivesdk"
+           target="_blank" rel="noopener">
+          <i class="fa-solid fa-signal" aria-hidden="true"></i>
+          Live Station
+        </a>
+      </div>
+    </div>
+
+    <!-- BAR AKSI: tombol pilih regional -->
     <div class="actions-bar">
-      <!-- KIRI: tombol pemicu native select -->
       <button id="regionBtn"
               class="btn btn-outline btn--sm"
               type="button"
@@ -99,26 +148,15 @@
         <span id="regionBtnLabel">Pilih Regional</span>
       </button>
 
-      <!-- Select native tersembunyi (memunculkan popup ala OS) -->
+      <!-- Select native disembunyikan (memicu popup OS) -->
       <select id="regionSelect" class="visually-hidden-select" aria-label="Pilih Regional Station">
         <option value="banjarbaru">Banjarbaru (10)</option>
         <option value="banjarmasin">Banjarmasin (5)</option>
         <option value="martapura">Martapura (6)</option>
       </select>
-
-      <!-- KANAN: label & tombol Live Station (pojok kanan atas area aksi) -->
-      <div class="live-wrap">
-        <div class="live-hint">Cek Status Station Disini Ya</div>
-        <a href="https://docs.google.com/spreadsheets/d/1VBsdFLYhxcFpYD8zmzR_RFpSRUIc_uRYFitKQKhuOs0/edit?usp=drivesdk"
-           target="_blank" rel="noopener"
-           class="btn btn-primary btn--sm">
-          <i class="fa-solid fa-signal" aria-hidden="true"></i>
-          Live Station
-        </a>
-      </div>
     </div>
 
-    <!-- ===== PANEL PER REGIONAL (tetap sama; dikendalikan via hash oleh main.js) ===== -->
+    <!-- ===================== PANELS: Daftar Station ===================== -->
 
     <!-- Banjarbaru (10) -->
     <section class="tab-panel is-active" role="tabpanel" id="panel-banjarbaru" aria-labelledby="tab-banjarbaru">
@@ -214,52 +252,68 @@
   <!-- SCRIPTS -->
   <script src="assets/js/main.js" defer></script>
 
-  <!-- Inline JS kecil: tombol -> popup native select, lalu sinkron ke panel via hash -->
+  <!-- Inline JS kecil: tombol -> popup native select, lalu ganti panel -->
   <script>
     (function () {
-      var btn = document.getElementById('regionBtn');
-      var label = document.getElementById('regionBtnLabel');
-      var sel = document.getElementById('regionSelect');
+      var btn    = document.getElementById('regionBtn');
+      var label  = document.getElementById('regionBtnLabel');
+      var select = document.getElementById('regionSelect');
 
-      if (!btn || !sel || !label) return;
+      var panels = {
+        banjarbaru : document.getElementById('panel-banjarbaru'),
+        banjarmasin: document.getElementById('panel-banjarmasin'),
+        martapura  : document.getElementById('panel-martapura')
+      };
 
-      // Buka popup native saat tombol ditekan
-      btn.addEventListener('click', function(){
-        // beri hint untuk screen reader
-        btn.setAttribute('aria-expanded', 'true');
-        try { sel.focus(); } catch(e) {}
-        sel.click(); // iOS/Android akan memunculkan pilihan native
-      });
-
-      // Setelah memilih regional, pindahkan hash agar main.js mengganti panel
-      sel.addEventListener('change', function(){
-        var val = sel.value || '';
-        var txt = sel.options[sel.selectedIndex].textContent || 'Pilih Regional';
-        label.textContent = txt;
-        btn.setAttribute('aria-expanded', 'false');
-
-        // Ubah hash (#banjarbaru|#banjarmasin|#martapura)
-        if (val) {
-          // replaceState agar tidak menumpuk history (opsional)
-          try { history.replaceState(null, '', '#' + val); } catch(e) { location.hash = val; }
-          // Trigger manual hashchange untuk browser yang tidak firing setelah replaceState
-          window.dispatchEvent(new Event('hashchange'));
-        }
-      });
-
-      // Sinkronisasi label saat halaman dibuka lewat hash
-      function syncFromHash(){
-        var key = (location.hash || '').replace('#','');
-        if (!key) return;
-        for (var i=0;i<sel.options.length;i++){
-          if (sel.options[i].value === key){
-            sel.selectedIndex = i;
-            label.textContent = sel.options[i].textContent;
-            break;
-          }
+      function showPanel(key){
+        // Sembunyikan semua
+        Object.keys(panels).forEach(function(k){
+          if (!panels[k]) return;
+          panels[k].classList.remove('is-active');
+          panels[k].setAttribute('hidden','');
+        });
+        // Tampilkan yang dipilih
+        if (panels[key]){
+          panels[key].classList.add('is-active');
+          panels[key].removeAttribute('hidden');
         }
       }
+
+      // Ketika tombol ditekan → munculkan popup native select
+      btn.addEventListener('click', function(){
+        btn.setAttribute('aria-expanded','true');
+        try { select.focus(); } catch(e){}
+        select.click();
+      });
+
+      // Setelah user memilih regional
+      select.addEventListener('change', function(){
+        var key = select.value || 'banjarbaru';
+        var txt = select.options[select.selectedIndex].textContent || 'Pilih Regional';
+        label.textContent = txt;
+        btn.setAttribute('aria-expanded','false');
+
+        // Ganti panel langsung (tidak mengandalkan .service-tabs)
+        showPanel(key);
+
+        // Perbarui hash agar URL konsisten (opsional)
+        try{ history.replaceState(null,'','#'+key); }catch(e){ location.hash = key; }
+      });
+
+      // Sinkronkan saat halaman dibuka via hash
+      function syncFromHash(){
+        var key = (location.hash||'').replace('#','');
+        if (!key || !panels[key]) return;
+        // update select & label
+        for (var i=0;i<select.options.length;i++){
+          if (select.options[i].value === key){ select.selectedIndex = i; label.textContent = select.options[i].textContent; break; }
+        }
+        showPanel(key);
+      }
+      // Inisialisasi dari hash (atau default Banjarbaru)
       syncFromHash();
+
+      // Jika pengguna mengetik hash manual
       window.addEventListener('hashchange', syncFromHash);
     })();
   </script>
