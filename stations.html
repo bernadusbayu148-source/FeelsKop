@@ -1,22 +1,27 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>Lokasi & Coverage — Kopi Feeling</title>
   <meta name="description" content="Lokasi gerobak & jangkauan pengantaran Kopi Feeling. Antar cepat area Banjarmasin, Banjarbaru, Martapura.">
   <link rel="canonical" href="https://bernadusbayu148-source.github.io/FeelsKop/stations.html">
   <meta name="theme-color" content="#b5121b" />
+
   <!-- Fonts: Plus Jakarta Sans (400/600/700) + Nunito (700/800) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-  href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap"
-  rel="stylesheet">
+    href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap"
+    rel="stylesheet">
+
+  <!-- Font Awesome (agar ikon tampil) -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
+
   <!-- Main CSS -->
   <link rel="stylesheet" href="assets/css/style.css?v=20260123f">
 
-  <!-- Open Graph -->
+  <!-- Open Graph / Twitter -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="Lokasi & Coverage — Kopi Feeling">
   <meta property="og:description" content="Antar cepat area Banjarmasin, Banjarbaru, Martapura.">
@@ -33,11 +38,11 @@
     /* Bar tindakan tepat di bawah judul */
     .actions-bar{
       display:flex;
-      align-items:center;          /* pastikan tombol kiri-kanan sejajar vertikal */
+      align-items:center;          /* sejajarkan vertikal kedua tombol */
       justify-content:space-between;
       gap:12px;
       margin:8px 0 6px;
-      flex-wrap:wrap;              /* jika sangat sempit, boleh turun baris */
+      flex-wrap:wrap;              /* kalau amat sempit, boleh turun baris */
     }
     .actions-left,
     .actions-right{
@@ -47,28 +52,33 @@
       flex-wrap:nowrap;
     }
 
-    /* Tombol versi kecil (lebih mungil dari default) */
+    /* Tombol versi kecil */
     .btn--sm{
-      padding:6px 10px;            /* lebih kecil dari 8x12 */
+      padding:6px 10px;
       min-height:30px;
       font-size:12.5px;
       border-width:2px;
       border-radius:999px;
       line-height:1.15;
-      white-space:nowrap;          /* cegah patah baris di dalam tombol */
+      white-space:nowrap;
     }
-    /* Ikon di dalam tombol punya jarak kecil */
-    .btn--sm i{ font-size:14px; line-height:1; margin-right:6px; }
+    /* Ikon pada tombol */
+    .btn--sm i{
+      display:inline-block;       /* pastikan ikon tampil lintas browser */
+      font-size:14px;
+      line-height:1;
+      margin-right:6px;
+    }
 
-    /* Live Station: label di atas tombol, namun tidak mendorong tombol turun */
+    /* Live Station: label di atas tombol, tidak mendorong tombol turun */
     .live-wrap{
-      position:relative;           /* wadah untuk posisi absolut label */
+      position:relative;          /* anchor untuk label absolut */
       display:flex;
-      align-items:center;          /* pusatkan tombol secara vertikal */
+      align-items:center;         /* tombol center secara vertikal */
     }
     .live-hint{
-      position:absolute;           /* keluarkan label dari aliran normal */
-      top:-16px;                   /* posisi di atas tombol */
+      position:absolute;
+      top:-16px;                  /* muncul di atas tombol */
       right:0;
       color:#6b7280;
       font-size:12px;
@@ -261,7 +271,7 @@
   <!-- SCRIPTS -->
   <script src="assets/js/main.js" defer></script>
 
-  <!-- Inline JS: toggle pilihan regional (tetap seperti versimu) -->
+  <!-- Inline JS: toggle pilihan regional (versimu) -->
   <script>
     (function () {
       var toggleBtn = document.getElementById('regionToggle');
