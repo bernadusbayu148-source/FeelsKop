@@ -9,8 +9,8 @@
   <meta name="theme-color" content="#b5121b" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <!-- GANTI: Poppins -> Nunito + Plus Jakarta Sans -->
-  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  <!-- (Biarkan sesuai file aslinya; bila sudah migrasi font global, bisa disamakan) -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/style.css?v=20260123f">
   <meta property="og:type" content="website">
@@ -36,10 +36,10 @@
       </button>
       <nav class="nav" id="primaryNav" aria-label="Navigasi utama">
         <ul class="nav-list">
-          <li class="nav-item"><a href="index.html" class="nav-link">Beranda</a></li>
+          <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
           <li class="nav-item"><a href="products.html" class="nav-link">Menu</a></li>
           <li class="nav-item"><a href="services.html" class="nav-link">Layanan</a></li>
-          <li class="nav-item"><a href="stations.html" class="nav-link active" aria-current="page">Station Kami</a></li>
+          <li class="nav-item"><a href="stations.html" class="nav-link active" aria-current="page">Lokasi & Coverage</a></li>
           <li class="nav-item"><a href="contact.html" class="nav-link">Komplain & Saran</a></li>
           <li class="nav-item"><a class="nav-link" href="ask.html">Tanya MinFeels</a></li>
         </ul>
@@ -51,20 +51,55 @@
       </a>
     </div>
   </header>
+
   <main class="section container">
-    <h2 class="section-title">Station Kami</h2>
-    <!-- Tabs regional -->
-    <nav class="service-tabs" role="tablist" aria-label="Pilih Regional">
-      <button class="tab is-active" role="tab" aria-selected="true" aria-controls="panel-banjarbaru" id="tab-banjarbaru" data-tab="banjarbaru">
-        Banjarbaru <span class="count-badge">10</span>
+    <h2 class="section-title">Lokasi & Coverage</h2>
+
+    <!-- ====== REGION ACTIONS: 1 tombol pemicu + tombol Live Station ====== -->
+    <div class="region-actions" style="display:flex;gap:10px;align-items:center;justify-content:center;margin-bottom:12px;flex-wrap:wrap">
+      <!-- Tombol pemicu pilihan regional -->
+      <button id="regionToggle"
+              class="btn btn-outline"
+              type="button"
+              aria-expanded="false"
+              aria-controls="regionChooser">
+        <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
+        Pilih Regional
       </button>
-      <button class="tab" role="tab" aria-selected="false" aria-controls="panel-banjarmasin" id="tab-banjarmasin" data-tab="banjarmasin">
-        Banjarmasin <span class="count-badge">5</span>
-      </button>
-      <button class="tab" role="tab" aria-selected="false" aria-controls="panel-martapura" id="tab-martapura" data-tab="martapura">
-        Martapura <span class="count-badge">6</span>
-      </button>
-    </nav>
+
+      <!-- Tombol Live Station -->
+      <a class="btn btn-primary" target="_blank" rel="noopener"
+         href="https://docs.google.com/spreadsheets/d/1VBsdFLYhxcFpYD8zmzR_RFpSRUIc_uRYFitKQKhuOs0/edit?usp=drivesdk"
+         aria-describedby="liveHint">
+        <i class="fa-solid fa-signal" aria-hidden="true"></i>
+        Live Station
+      </a>
+      <small id="liveHint" style="display:block;flex-basis:100%;text-align:center;color:#6b7280;margin-top:-4px">
+        Cek Status Station Disini Ya
+      </small>
+    </div>
+
+    <!-- ====== REGION CHOOSER: muncul setelah tombol ditekan ====== -->
+    <div id="regionChooser" hidden>
+      <!-- Pilihan regional tetap memakai struktur .service-tabs -->
+      <nav class="service-tabs" role="tablist" aria-label="Pilih Regional">
+        <button class="tab is-active" role="tab" aria-selected="true"
+                aria-controls="panel-banjarbaru" id="tab-banjarbaru" data-tab="banjarbaru">
+          Banjarbaru <span class="count-badge">10</span>
+        </button>
+        <button class="tab" role="tab" aria-selected="false"
+                aria-controls="panel-banjarmasin" id="tab-banjarmasin" data-tab="banjarmasin">
+          Banjarmasin <span class="count-badge">5</span>
+        </button>
+        <button class="tab" role="tab" aria-selected="false"
+                aria-controls="panel-martapura" id="tab-martapura" data-tab="martapura">
+          Martapura <span class="count-badge">6</span>
+        </button>
+      </nav>
+    </div>
+
+    <!-- ====== PANELS: konten tetap sama ====== -->
+
     <!-- Banjarbaru (10) -->
     <section class="tab-panel is-active" role="tabpanel" id="panel-banjarbaru" aria-labelledby="tab-banjarbaru">
       <div class="station-list">
@@ -80,6 +115,7 @@
         <article class="station-item"><h4>Feeling Station — Banjarbaru Selatan</h4><p>Jl. Dharma Praja, Banjarbaru Selatan</p><a class="link" href="https://maps.google.com/?q=-3.457500,114.835500" target="_blank" rel="noopener">Buka di Google Maps →</a></article>
       </div>
     </section>
+
     <!-- Banjarmasin (5) -->
     <section class="tab-panel" role="tabpanel" id="panel-banjarmasin" aria-labelledby="tab-banjarmasin" hidden>
       <div class="station-list">
@@ -90,6 +126,7 @@
         <article class="station-item"><h4>Feeling Station — Kertak Hanyar</h4><p>Jl. Trans Kalimantan, Kertak Hanyar</p><a class="link" href="https://maps.google.com/?q=-3.370200,114.664300" target="_blank" rel="noopener">Buka di Google Maps →</a></article>
       </div>
     </section>
+
     <!-- Martapura (6) -->
     <section class="tab-panel" role="tabpanel" id="panel-martapura" aria-labelledby="tab-martapura" hidden>
       <div class="station-list">
@@ -102,6 +139,7 @@
       </div>
     </section>
   </main>
+
   <!-- CTA STRIP -->
   <section class="cta-strip" role="complementary" aria-label="Bantuan pelanggan & keluhan">
     <div class="container cta-content">
@@ -112,6 +150,7 @@
       </a>
     </div>
   </section>
+
   <!-- FOOTER -->
   <footer class="site-footer">
     <div class="container footer-grid">
@@ -138,7 +177,7 @@
         <ul>
           <li><a href="products.html">Menu</a></li>
           <li><a href="services.html">Layanan</a></li>
-          <li><a href="stations.html">Station Kami</a></li>
+          <li><a href="stations.html">Lokasi & Coverage</a></li>
           <li><a href="contact.html">Komplain & Saran</a></li>
           <li class="nav-item"><a class="nav-link" href="ask.html">Tanya MinFeels</a></li>
         </ul>
@@ -153,6 +192,48 @@
       </div>
     </div>
   </footer>
+
+  <!-- SCRIPTS -->
   <script src="assets/js/main.js" defer></script>
+
+  <!-- Inline JS kecil untuk toggle pilihan regional -->
+  <script>
+    (function () {
+      var toggleBtn = document.getElementById('regionToggle');
+      var chooser = document.getElementById('regionChooser');
+
+      if (!toggleBtn || !chooser) return;
+
+      function setOpen(open) {
+        if (open) {
+          chooser.removeAttribute('hidden');
+          toggleBtn.setAttribute('aria-expanded', 'true');
+        } else {
+          chooser.setAttribute('hidden', '');
+          toggleBtn.setAttribute('aria-expanded', 'false');
+        }
+      }
+
+      toggleBtn.addEventListener('click', function () {
+        var open = toggleBtn.getAttribute('aria-expanded') === 'true';
+        setOpen(!open);
+      });
+
+      // Tutup chooser setelah salah satu regional dipilih
+      chooser.addEventListener('click', function (e) {
+        var btn = e.target.closest('.service-tabs .tab');
+        if (btn) {
+          // Beri sedikit jeda agar scroll/aktivasi panel tidak terasa "terpotong"
+          setTimeout(function(){ setOpen(false); }, 50);
+        }
+      });
+
+      // Jika user memilih lewat hash (#banjarbaru, dll), tampilkan chooser sebentar lalu tutup
+      window.addEventListener('hashchange', function(){
+        // biarkan main.js yang mengaktifkan panel; kita tidak perlu buka chooser lagi
+        setOpen(false);
+      });
+    })();
+  </script>
 </body>
 </html>
