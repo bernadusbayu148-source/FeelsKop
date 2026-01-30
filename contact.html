@@ -1,25 +1,24 @@
-
 <!DOCTYPE html>
 <html lang="id">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <title>Kontak — Kritik & Saran
+  <title>Kontak — Kritik & Saran 
  Kopi Feeling</title>
   <meta name="description" content="Kirim kritik, saran, atau pertanyaan untuk Kopi Feeling. Kami senang mendengar masukan Anda agar bisa terus menjadi lebih baik." />
   <link rel="canonical" href="https://bernadusbayu148-source.github.io/FeelsKop/contact.html" />
   <meta name="theme-color" content="#b5121b" />
-
   <!-- Fonts & Icons -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+  <!-- GANTI: Poppins -> Nunito + Plus Jakarta Sans -->
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet" />
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
   <!-- Main CSS (cache-buster) -->
   <link rel="stylesheet" href="assets/css/style.css?v=20260123f">
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="Kontak — Kritik & Saran
+  <meta property="og:title" content="Kontak — Kritik & Saran 
  Kopi Feeling" />
   <meta property="og:description" content="Kirim kritik, saran, atau pertanyaan Anda untuk Kopi Feeling. Kami siap mendengar dan menindaklanjuti." />
   <meta property="og:url" content="https://bernadusbayu148-source.github.io/FeelsKop/contact.html" />
@@ -27,7 +26,7 @@
   <meta property="og:locale" content="id_ID" />
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Kontak — Kritik & Saran
+  <meta name="twitter:title" content="Kontak — Kritik & Saran 
  Kopi Feeling" />
   <meta name="twitter:description" content="Kirim kritik, saran, atau pertanyaan Anda untuk Kopi Feeling. Kami siap mendengar dan menindaklanjuti." />
   <meta name="twitter:image" content="https://bernadusbayu148-source.github.io/FeelsKop/assets/img/og-cover.jpg" />
@@ -61,11 +60,9 @@
       </a>
     </div>
   </header>
-
   <!-- MAIN -->
   <main class="section container" id="contactPage">
     <h2 class="section-title">Kritik & Saran</h2>
-
     <!-- FEEDBACK FORM -->
     <form id="feedbackForm" class="feedback-form" onsubmit="return false;" aria-label="Form kritik dan saran">
       <!-- Identitas ringkas -->
@@ -75,7 +72,7 @@
           <input id="fbName" name="name" type="text" required autocomplete="name" />
         </div>
         <div>
-          <label for="fbEmail">Email </span></label>
+          <label for="fbEmail">Email </label>
           <input id="fbEmail" name="email" type="email" required autocomplete="email" />
         </div>
         <div>
@@ -92,7 +89,6 @@
           </select>
         </div>
       </div>
-
       <!-- Topik + rating singkat -->
       <div class="feedback-grid">
         <div>
@@ -118,7 +114,6 @@
           </select>
         </div>
       </div>
-
       <!-- Pesan -->
       <div class="feedback-field">
         <label for="fbMessage">Pesan <span class="req">*</span></label>
@@ -128,7 +123,6 @@
           <span id="charCount">0</span>/1200 karakter
         </div>
       </div>
-
       <!-- Persetujuan follow-up -->
       <fieldset class="consent-fieldset" aria-label="Persetujuan tindak lanjut">
         <legend class="sr-only">Persetujuan tindak lanjut</legend>
@@ -137,7 +131,6 @@
           <span class="consent-text">Saya bersedia dihubungi tim Kopi Feeling untuk menindaklanjuti pesan ini.</span>
         </label>
       </fieldset>
-
       <!-- Kirim -->
       <div class="send-actions">
         <a id="fbSendBtn" class="btn btn-primary" href="#" target="_blank" rel="noopener" aria-disabled="true">
@@ -147,7 +140,6 @@
       </div>
     </form>
   </main>
-
   <!-- FOOTER -->
   <footer class="site-footer">
     <div class="container footer-grid">
@@ -155,7 +147,6 @@
         <img src="assets/img/logo-footer.png" alt="Logo Kopi Feeling" class="footer-logo" />
         <!-- Deskripsi dihapus sesuai permintaan -->
       </div>
-
       <div class="footer-contact">
         <h4>Alamat & Kontak</h4>
         <p><i class="fa-solid fa-location-dot" aria-hidden="true"></i>
@@ -169,7 +160,6 @@
           <a class="link" href="mailto:kopifeeling.bjb@gmail.com">kopifeeling.bjb@gmail.com</a>
         </p>
       </div>
-
       <div class="footer-menu">
         <!-- Ganti “Menu Cepat” menjadi garis pembatas putih -->
         <hr class="footer-divider" aria-hidden="true">
@@ -182,7 +172,6 @@
         </ul>
       </div>
     </div>
-
     <div class="footer-bottom">
       <p>© <span id="year"></span> Kopi Feeling. All rights reserved.</p>
       <div class="socials">
@@ -192,7 +181,6 @@
       </div>
     </div>
   </footer>
-
   <!-- SCRIPTS -->
   <script src="assets/js/main.js" defer></script>
   <!-- Inline JS — rangkum form ke WhatsApp -->
@@ -205,7 +193,6 @@
     const fields = ['fbName','fbEmail','fbPhone','fbType','fbTopic','fbRating','fbMessage'];
     const charCount = qs('#charCount');
     const msgBox = qs('#fbMessage');
-
     function buildMessage(){
       const name = qsv('fbName');
       const email = qsv('fbEmail');
@@ -217,7 +204,7 @@
       const consent= qs('#fbConsent')?.checked ? 'Ya' : 'Tidak';
       const lines = [];
       lines.push('*Kritik & Saran — Kopi Feeling*');
-      if (type)  lines.push(`Jenis: ${type}`);
+      if (type) lines.push(`Jenis: ${type}`);
       if (topic) lines.push(`Topik: ${topic}`);
       if (rating)lines.push(`Penilaian: ${rating}`);
       lines.push('');
@@ -225,7 +212,7 @@
       lines.push(msg ? msg : '(kosong)');
       lines.push('');
       lines.push('— Identitas Pengirim —');
-      if (name)  lines.push(`Nama: ${name}`);
+      if (name) lines.push(`Nama: ${name}`);
       if (email) lines.push(`Email: ${email}`);
       if (phone) lines.push(`Nomor HP: ${phone}`);
       lines.push(`Bersedia dihubungi: ${consent}`);
@@ -233,7 +220,6 @@
       lines.push('Terima kasih 🙏');
       return lines.join('\n');
     }
-
     function validate(){
       // wajib: nama, email, jenis, pesan
       const ok =
@@ -244,7 +230,6 @@
       btn.setAttribute('aria-disabled', ok ? 'false' : 'true');
       btn.href = ok ? `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(buildMessage())}` : '#';
     }
-
     // Bind inputs
     fields.forEach(id => {
       const el = qs('#'+id);
@@ -252,12 +237,10 @@
       el.addEventListener('input', validate);
       el.addEventListener('change', validate);
     });
-
     // Karakter pesan
     msgBox.addEventListener('input', () => {
       charCount.textContent = String((msgBox.value || '').length);
     });
-
     // Init
     validate();
     charCount.textContent = String((msgBox.value || '').length);
