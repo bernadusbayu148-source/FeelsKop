@@ -24,9 +24,21 @@
 html{scroll-behavior:smooth}
 body{
   margin:0;
-  font-family:Poppins,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+  /* GANTI: font-family Poppins -> Plus Jakarta Sans  */
+  font-family:"Plus Jakarta Sans",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+  font-weight:400; /* Regular untuk isi */
   color:var(--text);
   background:var(--bg);
+}
+
+/* Headline pakai Nunito Bold */
+h1,h2,h3,h4,h5,h6,
+.section-title,
+.hero-title,
+.service-card .card-head h3{
+  font-family:"Nunito",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+  font-weight:800;
+  letter-spacing:.1px;
 }
 
 /* =========================
@@ -67,12 +79,10 @@ body{
 .brand-name{white-space:nowrap}
 .nav{margin-left:auto}
 .nav-list{display:flex;align-items:center;gap:24px;list-style:none;margin:0;padding:0;}
-
 @media (min-width:993px){
   .nav-link{color:#fff;font-weight:700;text-decoration:none;padding:12px 4px;display:inline-flex;align-items:center;gap:6px;}
   .nav-link:hover,.nav-link.active{opacity:.88}
 }
-
 /* Tombol WA di header -> outline putih */
 .btn-wa{margin-left:8px}
 .site-header .btn-outline{
@@ -81,7 +91,6 @@ body{
   border-color:#fff;
 }
 .site-header .btn-outline:hover{background:rgba(255,255,255,.12);}
-
 /* Toggle (mobile) */
 .nav-toggle{
   display:none;margin-left:auto;
@@ -91,7 +100,6 @@ body{
 }
 .nav-toggle-bar{display:block;width:22px;height:2px;background:#fff;margin:4px 0}
 body.nav-open{overflow:hidden;touch-action:none;}
-
 @media (max-width:992px){
   .nav{
     display:none; position:fixed;
@@ -110,7 +118,6 @@ body.nav-open{overflow:hidden;touch-action:none;}
   .btn-wa{display:none}
   .nav-toggle{display:block}
 }
-
 /* Fokus aksesibilitas */
 .nav .nav-link:focus-visible,.btn:focus-visible,.dropdown-toggle:focus-visible{outline:2px solid #1e90ff;outline-offset:2px;}
 
@@ -127,7 +134,6 @@ body.nav-open{overflow:hidden;touch-action:none;}
 .slide-content{max-width:820px;padding:0 16px}
 .hero-title{font-size:clamp(28px,5vw,42px);font-weight:700;margin:0 0 10px}
 .hero-subtitle{font-size:clamp(16px,3.2vw,18px);margin:0 0 18px;opacity:.95}
-
 /* Tombol navigasi slider (kiri/kanan) */
 .slider-btn{
   position:absolute;top:50%;transform:translateY(-50%);background:#fff;border:1px solid var(--border);
@@ -136,7 +142,6 @@ body.nav-open{overflow:hidden;touch-action:none;}
 }
 .slider-btn.prev{left:16px}.slider-btn.next{right:16px}
 .slider-btn i{font-size:16px;line-height:1}
-
 /* Pagination dots: SELALU bulat sempurna */
 .slider-dots{position:absolute;bottom:16px;left:50%;transform:translateX(-50%);display:flex;gap:8px}
 .slider-dots .dot{
@@ -144,7 +149,6 @@ body.nav-open{overflow:hidden;touch-action:none;}
   background:#fff;opacity:.7;cursor:pointer;display:inline-block;line-height:0;padding:0;
 }
 .slider-dots .dot.active{background:var(--brand-red);opacity:1}
-
 @media (max-width:576px){
   .hero-title{font-size:clamp(24px,6vw,32px)}
   .slide{min-height:380px}
