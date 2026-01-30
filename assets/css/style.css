@@ -440,3 +440,30 @@ body.modal-open{overflow:hidden !important;touch-action:none !important;}
     padding-bottom: 42px !important;
   }
 }
+
+/* === HEADER SPACING: Lebarkan jarak logo ↔ tombol menu di semua halaman === */
+/* Variabel lebar padding header */
+:root{
+  --header-pad-x-mobile: 24px;   /* saran mobile */
+  --header-pad-x-desktop: 28px;  /* saran tablet/desktop */
+}
+
+/* Default (desktop & tablet) */
+.site-header{
+  padding-left: max(var(--header-pad-x-desktop), env(safe-area-inset-left)) !important;
+  padding-right: max(var(--header-pad-x-desktop), env(safe-area-inset-right)) !important;
+}
+
+/* Mobile (≤992px) — lebarkan juga dan tambah sedikit gap internal */
+@media (max-width: 992px){
+  .site-header{
+    padding-left: max(var(--header-pad-x-mobile), env(safe-area-inset-left)) !important;
+    padding-right: max(var(--header-pad-x-mobile), env(safe-area-inset-right)) !important;
+  }
+  .nav-container{ gap: 20px !important; } /* semula 16px */
+}
+
+/* Extra kecil (≤380px) — jaga agar tidak terlalu renggang */
+@media (max-width: 380px){
+  .nav-container{ gap: 14px !important; }
+}
