@@ -7,12 +7,16 @@
   <meta name="description" content="Lokasi gerobak & jangkauan pengantaran Kopi Feeling. Antar cepat area Banjarmasin, Banjarbaru, Martapura.">
   <link rel="canonical" href="https://bernadusbayu148-source.github.io/FeelsKop/stations.html">
   <meta name="theme-color" content="#b5121b" />
+  <!-- Fonts & Icons -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <!-- (Biarkan sesuai file aslinya; bila sudah migrasi font global, bisa disamakan) -->
+  <!-- (Biarkan sama seperti versi berjalan bila kamu belum migrasi font global) -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  <!-- Main CSS -->
   <link rel="stylesheet" href="assets/css/style.css?v=20260123f">
+
+  <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="Lokasi & Coverage — Kopi Feeling">
   <meta property="og:description" content="Antar cepat area Banjarmasin, Banjarbaru, Martapura.">
@@ -23,12 +27,37 @@
   <meta name="twitter:title" content="Lokasi & Coverage — Kopi Feeling">
   <meta name="twitter:description" content="Antar cepat area Banjarmasin, Banjarbaru, Martapura.">
   <meta name="twitter:image" content="https://bernadusbayu148-source.github.io/FeelsKop/assets/img/og-cover.jpg">
+
+  <!-- ===== CSS kecil khusus halaman ini (posisi & ukuran tombol) ===== -->
+  <style>
+    /* Bar tindakan di bawah judul */
+    .actions-bar{
+      display:flex; align-items:flex-start; justify-content:space-between;
+      gap:12px; margin-bottom:10px; flex-wrap:wrap;
+    }
+    /* Ukuran tombol kecil yang konsisten dengan gaya situs */
+    .btn--sm{ padding:8px 12px; min-height:34px; font-size:13px; border-width:2px; border-radius:999px; }
+
+    /* Live Station di pojok kanan atas area judul/aksi */
+    .live-wrap{ display:flex; flex-direction:column; align-items:flex-end; gap:6px; margin-left:auto; }
+    .live-hint{ color:#6b7280; font-size:12.5px; line-height:1; }
+
+    /* Agar group pilihan regional (dropdown) punya jarak rapi dari konten */
+    #regionChooser{ margin:6px 0 4px; }
+
+    /* Mobile tweaks: jaga agar tombol tetap muat berdampingan */
+    @media (max-width:576px){
+      .actions-bar{ gap:10px; }
+      .live-wrap{ width:100%; align-items:flex-end; }
+      .live-hint{ font-size:12px; }
+    }
+  </style>
 </head>
 <body>
   <!-- HEADER -->
   <header class="site-header" id="siteHeader">
     <div class="container nav-container">
-      <a href="index.html" class="brand">
+      <a href="index.html" class="brand" aria-label="Halaman utama">
         <img src="assets/img/logo-header.png" class="logo" alt="Logo Kopi Feeling">
       </a>
       <button class="nav-toggle" aria-label="Buka menu" aria-expanded="false" aria-controls="primaryNav">
@@ -41,7 +70,7 @@
           <li class="nav-item"><a href="services.html" class="nav-link">Layanan</a></li>
           <li class="nav-item"><a href="stations.html" class="nav-link active" aria-current="page">Lokasi & Coverage</a></li>
           <li class="nav-item"><a href="contact.html" class="nav-link">Komplain & Saran</a></li>
-          <li class="nav-item"><a class="nav-link" href="ask.html">Tanya MinFeels</a></li>
+          <li class="nav-item"><a href="ask.html" class="nav-link">Tanya MinFeels</a></li>
         </ul>
       </nav>
       <a class="btn btn-outline btn-wa"
@@ -55,11 +84,11 @@
   <main class="section container">
     <h2 class="section-title">Lokasi & Coverage</h2>
 
-    <!-- ====== REGION ACTIONS: 1 tombol pemicu + tombol Live Station ====== -->
-    <div class="region-actions" style="display:flex;gap:10px;align-items:center;justify-content:center;margin-bottom:12px;flex-wrap:wrap">
-      <!-- Tombol pemicu pilihan regional -->
+    <!-- ===== BAR TOMBOL: kiri = Pilih Regional; kanan = Live Station (lebih kecil) ===== -->
+    <div class="actions-bar">
+      <!-- KIRI: tombol pemicu dropdown regional -->
       <button id="regionToggle"
-              class="btn btn-outline"
+              class="btn btn-outline btn--sm"
               type="button"
               aria-expanded="false"
               aria-controls="regionChooser">
@@ -67,21 +96,20 @@
         Pilih Regional
       </button>
 
-      <!-- Tombol Live Station -->
-      <a class="btn btn-primary" target="_blank" rel="noopener"
-         href="https://docs.google.com/spreadsheets/d/1VBsdFLYhxcFpYD8zmzR_RFpSRUIc_uRYFitKQKhuOs0/edit?usp=drivesdk"
-         aria-describedby="liveHint">
-        <i class="fa-solid fa-signal" aria-hidden="true"></i>
-        Live Station
-      </a>
-      <small id="liveHint" style="display:block;flex-basis:100%;text-align:center;color:#6b7280;margin-top:-4px">
-        Cek Status Station Disini Ya
-      </small>
+      <!-- KANAN: label & tombol Live Station (pojok kanan atas area konten) -->
+      <div class="live-wrap">
+        <div class="live-hint">Cek Status Station Disini Ya</div>
+        <a class="btn btn-primary btn--sm"
+           href="https://docs.google.com/spreadsheets/d/1VBsdFLYhxcFpYD8zmzR_RFpSRUIc_uRYFitKQKhuOs0/edit?usp=drivesdk"
+           target="_blank" rel="noopener">
+          <i class="fa-solid fa-signal" aria-hidden="true"></i>
+          Live Station
+        </a>
+      </div>
     </div>
 
-    <!-- ====== REGION CHOOSER: muncul setelah tombol ditekan ====== -->
+    <!-- ===== PILIHAN REGIONAL (muncul setelah tombol ditekan) ===== -->
     <div id="regionChooser" hidden>
-      <!-- Pilihan regional tetap memakai struktur .service-tabs -->
       <nav class="service-tabs" role="tablist" aria-label="Pilih Regional">
         <button class="tab is-active" role="tab" aria-selected="true"
                 aria-controls="panel-banjarbaru" id="tab-banjarbaru" data-tab="banjarbaru">
@@ -98,7 +126,7 @@
       </nav>
     </div>
 
-    <!-- ====== PANELS: konten tetap sama ====== -->
+    <!-- ===== PANELS: konten station tetap sama ===== -->
 
     <!-- Banjarbaru (10) -->
     <section class="tab-panel is-active" role="tabpanel" id="panel-banjarbaru" aria-labelledby="tab-banjarbaru">
@@ -172,7 +200,6 @@
         </p>
       </div>
       <div class="footer-menu">
-        <!-- Ganti “Menu Cepat” menjadi garis pembatas putih -->
         <hr class="footer-divider" aria-hidden="true">
         <ul>
           <li><a href="products.html">Menu</a></li>
@@ -223,14 +250,13 @@
       chooser.addEventListener('click', function (e) {
         var btn = e.target.closest('.service-tabs .tab');
         if (btn) {
-          // Beri sedikit jeda agar scroll/aktivasi panel tidak terasa "terpotong"
+          // beri sedikit jeda agar panel aktif berganti dulu oleh main.js
           setTimeout(function(){ setOpen(false); }, 50);
         }
       });
 
-      // Jika user memilih lewat hash (#banjarbaru, dll), tampilkan chooser sebentar lalu tutup
+      // Jika hash berubah (mis. #banjarbaru), tetap tutup chooser
       window.addEventListener('hashchange', function(){
-        // biarkan main.js yang mengaktifkan panel; kita tidak perlu buka chooser lagi
         setOpen(false);
       });
     })();
