@@ -28,28 +28,61 @@
   <meta name="twitter:description" content="Antar cepat area Banjarmasin, Banjarbaru, Martapura.">
   <meta name="twitter:image" content="https://bernadusbayu148-source.github.io/FeelsKop/assets/img/og-cover.jpg">
 
-  <!-- ===== CSS kecil khusus halaman ini (posisi & ukuran tombol) ===== -->
+  <!-- ===== CSS kecil khusus halaman ini (ukuran & perataan tombol) ===== -->
   <style>
-    /* Bar tindakan di bawah judul */
+    /* Bar tindakan tepat di bawah judul */
     .actions-bar{
-      display:flex; align-items:flex-start; justify-content:space-between;
-      gap:12px; margin-bottom:10px; flex-wrap:wrap;
+      display:flex;
+      align-items:flex-start;      /* sejajarkan bagian atas tombol kiri & kanan */
+      justify-content:space-between;
+      gap:12px;
+      margin:8px 0 6px;
+      flex-wrap:wrap;              /* jika sangat sempit, boleh turun baris */
     }
-    /* Ukuran tombol kecil yang konsisten dengan gaya situs */
-    .btn--sm{ padding:8px 12px; min-height:34px; font-size:13px; border-width:2px; border-radius:999px; }
+    .actions-left,
+    .actions-right{
+      display:flex;
+      align-items:flex-start;
+      gap:10px;
+      flex-wrap:nowrap;
+    }
 
-    /* Live Station di pojok kanan atas area judul/aksi */
-    .live-wrap{ display:flex; flex-direction:column; align-items:flex-end; gap:6px; margin-left:auto; }
-    .live-hint{ color:#6b7280; font-size:12.5px; line-height:1; }
+    /* Tombol versi kecil (lebih mungil dari default) */
+    .btn--sm{
+      padding:6px 10px;           /* lebih kecil dari 8x12 */
+      min-height:30px;
+      font-size:12.5px;
+      border-width:2px;
+      border-radius:999px;
+      line-height:1.15;
+      white-space:nowrap;         /* cegah patah baris di dalam tombol */
+    }
+    /* Ikon di dalam tombol punya jarak kecil */
+    .btn--sm i{ font-size:14px; line-height:1; margin-right:6px; }
 
-    /* Agar group pilihan regional (dropdown) punya jarak rapi dari konten */
-    #regionChooser{ margin:6px 0 4px; }
+    /* Live Station: label di atas, tombol di bawah, rata kanan */
+    .live-wrap{
+      display:flex;
+      flex-direction:column;
+      align-items:flex-end;
+      gap:4px;                    /* jarak label ke tombol */
+      min-width:0;
+    }
+    .live-hint{
+      color:#6b7280;
+      font-size:12px;             /* sedikit lebih kecil agar rapi */
+      line-height:1;
+      white-space:nowrap;
+    }
 
-    /* Mobile tweaks: jaga agar tombol tetap muat berdampingan */
-    @media (max-width:576px){
+    /* Responsif: upayakan tetap sebaris; jika mepet, beri prioritas shrink */
+    .actions-left { flex:1 1 auto; min-width:0; }
+    .actions-right{ flex:0 0 auto; }
+
+    @media (max-width:480px){
       .actions-bar{ gap:10px; }
-      .live-wrap{ width:100%; align-items:flex-end; }
-      .live-hint{ font-size:12px; }
+      .btn--sm{ padding:6px 9px; font-size:12px; }
+      .live-hint{ font-size:11.5px; }
     }
   </style>
 </head>
@@ -84,27 +117,30 @@
   <main class="section container">
     <h2 class="section-title">Lokasi & Coverage</h2>
 
-    <!-- ===== BAR TOMBOL: kiri = Pilih Regional; kanan = Live Station (lebih kecil) ===== -->
+    <!-- ===== BAR TOMBOL: kiri = Pilih Regional; kanan = Live Station ===== -->
     <div class="actions-bar">
-      <!-- KIRI: tombol pemicu dropdown regional -->
-      <button id="regionToggle"
-              class="btn btn-outline btn--sm"
-              type="button"
-              aria-expanded="false"
-              aria-controls="regionChooser">
-        <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
-        Pilih Regional
-      </button>
+      <div class="actions-left">
+        <!-- Tombol pemicu dropdown regional -->
+        <button id="regionToggle"
+                class="btn btn-outline btn--sm"
+                type="button"
+                aria-expanded="false"
+                aria-controls="regionChooser">
+          <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
+          Pilih Regional
+        </button>
+      </div>
 
-      <!-- KANAN: label & tombol Live Station (pojok kanan atas area konten) -->
-      <div class="live-wrap">
-        <div class="live-hint">Cek Status Station Disini Ya</div>
-        <a class="btn btn-primary btn--sm"
-           href="https://docs.google.com/spreadsheets/d/1VBsdFLYhxcFpYD8zmzR_RFpSRUIc_uRYFitKQKhuOs0/edit?usp=drivesdk"
-           target="_blank" rel="noopener">
-          <i class="fa-solid fa-signal" aria-hidden="true"></i>
-          Live Station
-        </a>
+      <div class="actions-right">
+        <div class="live-wrap">
+          <div class="live-hint">Cek Status Station Disini Ya</div>
+          <a class="btn btn-primary btn--sm"
+             href="https://docs.google.com/spreadsheets/d/1VBsdFLYhxcFpYD8zmzR_RFpSRUIc_uRYFitKQKhuOs0/edit?usp=drivesdk"
+             target="_blank" rel="noopener">
+            <i class="fa-solid fa-signal" aria-hidden="true"></i>
+            Live Station
+          </a>
+        </div>
       </div>
     </div>
 
@@ -223,7 +259,7 @@
   <!-- SCRIPTS -->
   <script src="assets/js/main.js" defer></script>
 
-  <!-- Inline JS kecil untuk toggle pilihan regional -->
+  <!-- Inline JS: toggle pilihan regional (tetap seperti versimu) -->
   <script>
     (function () {
       var toggleBtn = document.getElementById('regionToggle');
@@ -250,7 +286,6 @@
       chooser.addEventListener('click', function (e) {
         var btn = e.target.closest('.service-tabs .tab');
         if (btn) {
-          // beri sedikit jeda agar panel aktif berganti dulu oleh main.js
           setTimeout(function(){ setOpen(false); }, 50);
         }
       });
