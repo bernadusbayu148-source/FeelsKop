@@ -418,10 +418,9 @@ body.modal-open{overflow:hidden !important;touch-action:none !important;}
 @media (min-width:1100px){.site-footer .footer-logo{max-height:36px;}}
 @media (max-width:700px){.site-footer .footer-logo{max-height:28px;}}
 
-/* === Mobile gutters: cegah konten menempel ke tepi layar === */
+/* === Mobile gutters: cegah konten menempel ke tepi layar (tanpa mengubah header) === */
 @media (max-width: 768px) {
-  /* Naikkan padding sisi container di mobile + hormati safe-area iOS */
-  .container,
+  /* Terapkan hanya ke area konten, CTA, dan footer */
   main.section.container,
   .cta-strip .container,
   .site-footer .container {
@@ -429,9 +428,15 @@ body.modal-open{overflow:hidden !important;touch-action:none !important;}
     padding-right: max(20px, env(safe-area-inset-right));
   }
 
-  /* Tambah sedikit ruang vertikal pada main agar tetap lega */
+  /* Ruang vertikal aman untuk konten utama */
   main.section.container {
     padding-top: 42px;
     padding-bottom: 42px;
+  }
+
+  /* Tegaskan kembali padding header agar kembali seperti semula */
+  .site-header .nav-container {
+    padding-left: max(16px, env(safe-area-inset-left));
+    padding-right: max(16px, env(safe-area-inset-right));
   }
 }
