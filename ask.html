@@ -7,15 +7,14 @@
   <meta name="description" content="Kirim pertanyaan ke Kopi Feeling via WhatsApp. Cepat & mudah.">
   <link rel="canonical" href="https://bernadusbayu148-source.github.io/FeelsKop/ask.html" />
   <meta name="theme-color" content="#b5121b" />
-
   <!-- Fonts & Icons (sama seperti halaman lain) -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+  <!-- GANTI: Poppins -> Nunito + Plus Jakarta Sans -->
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet" />
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
   <!-- Main CSS -->
   <link rel="stylesheet" href="assets/css/style.css?v=ask-wa-1" />
-
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Tanya via WhatsApp — Kopi Feeling" />
@@ -54,17 +53,14 @@
       </a>
     </div>
   </header>
-
   <!-- MAIN -->
   <main class="section container" id="askPage">
     <h2 class="section-title">Tanya via WhatsApp</h2>
-
     <!-- Intro singkat -->
     <section class="service-intro" style="margin-bottom:14px">
       <h3>Ada yang ingin ditanyakan?</h3>
       <p>Tulis pertanyaanmu di bawah ini. Sistem akan merangkum otomatis dan membuka WhatsApp.</p>
     </section>
-
     <!-- FORM PERTANYAAN -->
     <form id="askForm" class="feedback-form" onsubmit="return false;" aria-label="Form pertanyaan via WhatsApp">
       <div class="feedback-grid">
@@ -84,10 +80,9 @@
           </select>
         </div>
       </div>
-
       <div class="feedback-grid">
         <div>
-          <label for="askPhone">Nomor HP<span class="req">*</label>
+          <label for="askPhone">Nomor HP<span class="req"></span></label>
           <input id="askPhone" name="phone" type="tel" inputmode="tel" pattern="\+?\d{9,15}" autocomplete="tel" placeholder="Opsional" />
         </div>
         <div>
@@ -95,7 +90,6 @@
           <input id="askEmail" name="email" type="email" autocomplete="email" placeholder="Opsional" />
         </div>
       </div>
-
       <div class="feedback-field">
         <label for="askMessage">Pertanyaan <span class="req">*</span></label>
         <textarea id="askMessage" name="message" rows="6" maxlength="1000" placeholder="Tulis pertanyaanmu di sini…" required></textarea>
@@ -103,7 +97,6 @@
           <span id="askCount">0</span>/1000 karakter
         </div>
       </div>
-
       <!-- Kirim -->
       <div class="send-actions">
         <a id="askSendBtn" class="btn btn-primary" href="#" target="_blank" rel="noopener" aria-disabled="true">
@@ -113,7 +106,6 @@
       </div>
     </form>
   </main>
-
   <!-- FOOTER (pakai footer versi barumu) -->
   <footer class="site-footer">
     <div class="container footer-grid">
@@ -157,86 +149,73 @@
       </div>
     </div>
   </footer>
-
   <!-- Scripts -->
   <script src="assets/js/main.js" defer></script>
-
   <!-- Inline JS: rangkum pertanyaan ke WhatsApp -->
   <script>
-    (function () {
-      // Ganti nomor WA tujuan jika perlu
-      var WA_NUMBER = '6281254913064';
-
-      var qs = function (s, r) { return (r || document).querySelector(s); };
-      var qsv = function (id) { var el = qs('#' + id); return el ? String(el.value || '').trim() : ''; };
-
-      var btn = qs('#askSendBtn');
-      var msgBox = qs('#askMessage');
-      var charCount = qs('#askCount');
-
-      function buildMessage() {
-        var name  = qsv('askName');
-        var phone = qsv('askPhone');
-        var email = qsv('askEmail');
-        var topic = qsv('askTopic');
-        var text  = qsv('askMessage');
-
-        var lines = [];
-        lines.push('*Pertanyaan — Kopi Feeling*');
-        if (topic) lines.push('Topik: ' + topic);
-        lines.push('');
-        lines.push('Pesan:');
-        lines.push(text || '(kosong)');
-        lines.push('');
-        lines.push('— Identitas —');
-        if (name)  lines.push('Nama: ' + name);
-        if (phone) lines.push('Nomor HP: ' + phone);
-        if (email) lines.push('Email: ' + email);
-        lines.push('');
-        lines.push('Terima kasih 🙏');
-
-        return lines.join('\n');
+  (function () {
+    // Ganti nomor WA tujuan jika perlu
+    var WA_NUMBER = '6281254913064';
+    var qs = function (s, r) { return (r || document).querySelector(s); };
+    var qsv = function (id) { var el = qs('#' + id); return el ? String(el.value || '').trim() : ''; };
+    var btn = qs('#askSendBtn');
+    var msgBox = qs('#askMessage');
+    var charCount = qs('#askCount');
+    function buildMessage() {
+      var name = qsv('askName');
+      var phone = qsv('askPhone');
+      var email = qsv('askEmail');
+      var topic = qsv('askTopic');
+      var text = qsv('askMessage');
+      var lines = [];
+      lines.push('*Pertanyaan — Kopi Feeling*');
+      if (topic) lines.push('Topik: ' + topic);
+      lines.push('');
+      lines.push('Pesan:');
+      lines.push(text || '(kosong)');
+      lines.push('');
+      lines.push('— Identitas —');
+      if (name) lines.push('Nama: ' + name);
+      if (phone) lines.push('Nomor HP: ' + phone);
+      if (email) lines.push('Email: ' + email);
+      lines.push('');
+      lines.push('Terima kasih 🙏');
+      return lines.join('\n');
+    }
+    function validate() {
+      // Wajib: Nama & Pesan
+      var ok = qsv('askName') && qsv('askMessage');
+      btn.setAttribute('aria-disabled', ok ? 'false' : 'true');
+      btn.href = ok
+        ? ('https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(buildMessage()))
+        : '#';
+    }
+    // Bind input untuk validasi & counter
+    ['askName','askTopic','askPhone','askEmail','askMessage'].forEach(function(id){
+      var el = qs('#' + id);
+      if (!el) return;
+      el.addEventListener('input', validate);
+      el.addEventListener('change', validate);
+    });
+    // Hitung karakter pesan
+    if (msgBox && charCount) {
+      var updateCount = function(){
+        charCount.textContent = String((msgBox.value || '').length);
+      };
+      msgBox.addEventListener('input', updateCount);
+      updateCount();
+    }
+    // Guard klik jika belum valid
+    btn.addEventListener('click', function(e){
+      if (btn.getAttribute('aria-disabled') === 'true') {
+        e.preventDefault();
+        e.stopPropagation();
       }
-
-      function validate() {
-        // Wajib: Nama & Pesan
-        var ok = qsv('askName') && qsv('askMessage');
-        btn.setAttribute('aria-disabled', ok ? 'false' : 'true');
-        btn.href = ok
-          ? ('https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(buildMessage()))
-          : '#';
-      }
-
-      // Bind input untuk validasi & counter
-      ['askName','askTopic','askPhone','askEmail','askMessage'].forEach(function(id){
-        var el = qs('#' + id);
-        if (!el) return;
-        el.addEventListener('input', validate);
-        el.addEventListener('change', validate);
-      });
-
-      // Hitung karakter pesan
-      if (msgBox && charCount) {
-        var updateCount = function(){
-          charCount.textContent = String((msgBox.value || '').length);
-        };
-        msgBox.addEventListener('input', updateCount);
-        updateCount();
-      }
-
-      // Guard klik jika belum valid
-      btn.addEventListener('click', function(e){
-        if (btn.getAttribute('aria-disabled') === 'true') {
-          e.preventDefault();
-          e.stopPropagation();
-        }
-      });
-
-      // Init
-      validate();
-    })();
+    });
+    // Init
+    validate();
+  })();
   </script>
-
   <noscript>Halaman ini bekerja optimal dengan JavaScript diaktifkan.</noscript>
 </body>
 </html>
