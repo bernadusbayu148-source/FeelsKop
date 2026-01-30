@@ -24,9 +24,9 @@
 html{scroll-behavior:smooth}
 body{
   margin:0;
-  /* GANTI: font-family Poppins -> Plus Jakarta Sans  */
+  /* Font: Plus Jakarta Sans untuk isi */
   font-family:"Plus Jakarta Sans",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
-  font-weight:400; /* Regular untuk isi */
+  font-weight:400;
   color:var(--text);
   background:var(--bg);
 }
@@ -417,3 +417,21 @@ body.modal-open{overflow:hidden !important;touch-action:none !important;}
 .site-footer .footer-logo{height:auto;width:auto;max-height:var(--footer-logo-h);object-fit:contain;}
 @media (min-width:1100px){.site-footer .footer-logo{max-height:36px;}}
 @media (max-width:700px){.site-footer .footer-logo{max-height:28px;}}
+
+/* === Mobile gutters: cegah konten menempel ke tepi layar === */
+@media (max-width: 768px) {
+  /* Naikkan padding sisi container di mobile + hormati safe-area iOS */
+  .container,
+  main.section.container,
+  .cta-strip .container,
+  .site-footer .container {
+    padding-left: max(20px, env(safe-area-inset-left));
+    padding-right: max(20px, env(safe-area-inset-right));
+  }
+
+  /* Tambah sedikit ruang vertikal pada main agar tetap lega */
+  main.section.container {
+    padding-top: 42px;
+    padding-bottom: 42px;
+  }
+}
