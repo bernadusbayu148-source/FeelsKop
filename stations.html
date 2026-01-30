@@ -33,7 +33,7 @@
     /* Bar tindakan tepat di bawah judul */
     .actions-bar{
       display:flex;
-      align-items:flex-start;      /* sejajarkan bagian atas tombol kiri & kanan */
+      align-items:center;          /* pastikan tombol kiri-kanan sejajar vertikal */
       justify-content:space-between;
       gap:12px;
       margin:8px 0 6px;
@@ -42,47 +42,49 @@
     .actions-left,
     .actions-right{
       display:flex;
-      align-items:flex-start;
+      align-items:center;
       gap:10px;
       flex-wrap:nowrap;
     }
 
     /* Tombol versi kecil (lebih mungil dari default) */
     .btn--sm{
-      padding:6px 10px;           /* lebih kecil dari 8x12 */
+      padding:6px 10px;            /* lebih kecil dari 8x12 */
       min-height:30px;
       font-size:12.5px;
       border-width:2px;
       border-radius:999px;
       line-height:1.15;
-      white-space:nowrap;         /* cegah patah baris di dalam tombol */
+      white-space:nowrap;          /* cegah patah baris di dalam tombol */
     }
     /* Ikon di dalam tombol punya jarak kecil */
     .btn--sm i{ font-size:14px; line-height:1; margin-right:6px; }
 
-    /* Live Station: label di atas, tombol di bawah, rata kanan */
+    /* Live Station: label di atas tombol, namun tidak mendorong tombol turun */
     .live-wrap{
+      position:relative;           /* wadah untuk posisi absolut label */
       display:flex;
-      flex-direction:column;
-      align-items:flex-end;
-      gap:4px;                    /* jarak label ke tombol */
-      min-width:0;
+      align-items:center;          /* pusatkan tombol secara vertikal */
     }
     .live-hint{
+      position:absolute;           /* keluarkan label dari aliran normal */
+      top:-16px;                   /* posisi di atas tombol */
+      right:0;
       color:#6b7280;
-      font-size:12px;             /* sedikit lebih kecil agar rapi */
+      font-size:12px;
       line-height:1;
       white-space:nowrap;
+      pointer-events:none;
     }
 
-    /* Responsif: upayakan tetap sebaris; jika mepet, beri prioritas shrink */
+    /* Responsif */
     .actions-left { flex:1 1 auto; min-width:0; }
     .actions-right{ flex:0 0 auto; }
 
     @media (max-width:480px){
       .actions-bar{ gap:10px; }
       .btn--sm{ padding:6px 9px; font-size:12px; }
-      .live-hint{ font-size:11.5px; }
+      .live-hint{ top:-14px; font-size:11.5px; }
     }
   </style>
 </head>
