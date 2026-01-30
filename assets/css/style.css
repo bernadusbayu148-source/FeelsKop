@@ -418,25 +418,25 @@ body.modal-open{overflow:hidden !important;touch-action:none !important;}
 @media (min-width:1100px){.site-footer .footer-logo{max-height:36px;}}
 @media (max-width:700px){.site-footer .footer-logo{max-height:28px;}}
 
-/* === Mobile gutters: cegah konten menempel ke tepi layar (tanpa mengubah header) === */
-@media (max-width: 768px) {
-  /* Terapkan hanya ke area konten, CTA, dan footer */
+/* === FIX: Gutter konten tanpa memengaruhi header (letakkan di PALING BAWAH) === */
+@media (max-width: 1024px) {
+  /* Header kembali ke padding default (tidak menyempit/melebar mengikuti .container) */
+  .site-header .nav-container {
+    padding-left: max(16px, env(safe-area-inset-left)) !important;
+    padding-right: max(16px, env(safe-area-inset-right)) !important;
+  }
+
+  /* Terapkan gutter hanya untuk area konten utama + CTA + footer */
   main.section.container,
   .cta-strip .container,
   .site-footer .container {
-    padding-left: max(20px, env(safe-area-inset-left));
-    padding-right: max(20px, env(safe-area-inset-right));
+    padding-left: max(20px, env(safe-area-inset-left)) !important;
+    padding-right: max(20px, env(safe-area-inset-right)) !important;
   }
 
   /* Ruang vertikal aman untuk konten utama */
   main.section.container {
-    padding-top: 42px;
-    padding-bottom: 42px;
-  }
-
-  /* Tegaskan kembali padding header agar kembali seperti semula */
-  .site-header .nav-container {
-    padding-left: max(16px, env(safe-area-inset-left));
-    padding-right: max(16px, env(safe-area-inset-right));
+    padding-top: 42px !important;
+    padding-bottom: 42px !important;
   }
 }
