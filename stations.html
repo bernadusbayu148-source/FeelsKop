@@ -7,20 +7,16 @@
   <meta name="description" content="Lokasi gerobak & jangkauan pengantaran Kopi Feeling. Antar cepat area Banjarmasin, Banjarbaru, Martapura.">
   <link rel="canonical" href="https://bernadusbayu148-source.github.io/FeelsKop/stations.html">
   <meta name="theme-color" content="#b5121b" />
-
   <!-- Fonts: Plus Jakarta Sans (400/600/700) + Nunito (700/800) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
     href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap"
     rel="stylesheet">
-
-  <!-- Font Awesome (agar ikon tampil) -->
+  <!-- Font Awesome (ikon) -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
-
   <!-- Main CSS -->
-  <link rel="stylesheet" href="assets/css/style.css?v=20260203a">
-
+  <link rel="stylesheet" href="assets/css/style.css?v=20260123f">
   <!-- Open Graph / Twitter -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="Lokasi & Coverage — Kopi Feeling">
@@ -38,11 +34,11 @@
     /* Bar tindakan tepat di bawah judul */
     .actions-bar{
       display:flex;
-      align-items:center;          /* sejajarkan vertikal kedua tombol */
+      align-items:center; /* sejajarkan vertikal kedua tombol */
       justify-content:space-between;
       gap:12px;
       margin:8px 0 6px;
-      flex-wrap:wrap;              /* kalau amat sempit, boleh turun baris */
+      flex-wrap:wrap; /* kalau amat sempit, boleh turun baris */
     }
     .actions-left,
     .actions-right{
@@ -51,7 +47,6 @@
       gap:10px;
       flex-wrap:nowrap;
     }
-
     /* Tombol versi kecil */
     .btn--sm{
       padding:6px 10px;
@@ -64,21 +59,20 @@
     }
     /* Ikon pada tombol */
     .btn--sm i{
-      display:inline-block;       /* pastikan ikon tampil lintas browser */
+      display:inline-block; /* pastikan ikon tampil lintas browser */
       font-size:14px;
       line-height:1;
       margin-right:6px;
     }
-
     /* Live Station: label di atas tombol, tidak mendorong tombol turun */
     .live-wrap{
-      position:relative;          /* anchor untuk label absolut */
+      position:relative; /* anchor untuk label absolut */
       display:flex;
-      align-items:center;         /* tombol center secara vertikal */
+      align-items:center; /* tombol center secara vertikal */
     }
     .live-hint{
       position:absolute;
-      top:-16px;                  /* muncul di atas tombol */
+      top:-16px; /* muncul di atas tombol */
       right:0;
       color:#6b7280;
       font-size:12px;
@@ -86,11 +80,9 @@
       white-space:nowrap;
       pointer-events:none;
     }
-
     /* Responsif */
     .actions-left { flex:1 1 auto; min-width:0; }
     .actions-right{ flex:0 0 auto; }
-
     @media (max-width:480px){
       .actions-bar{ gap:10px; }
       .btn--sm{ padding:6px 9px; font-size:12px; }
@@ -113,7 +105,7 @@
           <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
           <li class="nav-item"><a href="products.html" class="nav-link">Menu</a></li>
           <li class="nav-item"><a href="services.html" class="nav-link">Layanan</a></li>
-          <li class="nav-item"><a href="stations.html" class="nav-link active" aria-current="page">Station Kami</a></li>
+          <li class="nav-item"><a href="stations.html" class="nav-link active" aria-current="page">Lokasi & Coverage</a></li>
           <li class="nav-item"><a href="contact.html" class="nav-link">Komplain & Saran</a></li>
           <li class="nav-item"><a href="ask.html" class="nav-link">Tanya MinFeels</a></li>
         </ul>
@@ -127,22 +119,21 @@
   </header>
 
   <main class="section container">
-    <h2 class="section-title">Station Kami</h2>
+    <h2 class="section-title">Lokasi & Coverage</h2>
 
     <!-- ===== BAR TOMBOL: kiri = Pilih Regional; kanan = Live Station ===== -->
     <div class="actions-bar">
       <div class="actions-left">
         <!-- Tombol pemicu dropdown regional -->
         <button id="regionToggle"
-                class="btn btn-outline btn--sm"
-                type="button"
-                aria-expanded="false"
-                aria-controls="regionChooser">
+          class="btn btn-outline btn--sm"
+          type="button"
+          aria-expanded="false"
+          aria-controls="regionChooser">
           <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
           Pilih Regional
         </button>
       </div>
-
       <div class="actions-right">
         <div class="live-wrap">
           <div class="live-hint">Cek Status Station Disini Ya</div>
@@ -160,58 +151,148 @@
     <div id="regionChooser" hidden>
       <nav class="service-tabs" role="tablist" aria-label="Pilih Regional">
         <button class="tab is-active" role="tab" aria-selected="true"
-                aria-controls="panel-banjarbaru" id="tab-banjarbaru" data-tab="banjarbaru">
-          Banjarbaru <span class="count-badge">10</span>
+          aria-controls="panel-banjarbaru" id="tab-banjarbaru" data-tab="banjarbaru">
+          Banjarbaru <span class="count-badge">8</span>
         </button>
         <button class="tab" role="tab" aria-selected="false"
-                aria-controls="panel-banjarmasin" id="tab-banjarmasin" data-tab="banjarmasin">
+          aria-controls="panel-banjarmasin" id="tab-banjarmasin" data-tab="banjarmasin">
           Banjarmasin <span class="count-badge">5</span>
         </button>
         <button class="tab" role="tab" aria-selected="false"
-                aria-controls="panel-martapura" id="tab-martapura" data-tab="martapura">
-          Martapura <span class="count-badge">6</span>
+          aria-controls="panel-martapura" id="tab-martapura" data-tab="martapura">
+          Martapura <span class="count-badge">5</span>
         </button>
       </nav>
     </div>
 
-    <!-- ===== PANELS: konten station tetap sama ===== -->
+    <!-- ===== PANELS: konten station terbaru ===== -->
 
-    <!-- Banjarbaru (10) -->
+    <!-- Banjarbaru (8) -->
     <section class="tab-panel is-active" role="tabpanel" id="panel-banjarbaru" aria-labelledby="tab-banjarbaru">
       <div class="station-list">
-        <article class="station-item"><h4>Feeling Station — Mentaos</h4><p>JL. Irigasi No. 10, Mentaos, Banjarbaru Utara</p><a class="link" href="https://maps.google.com/?q=-3.438500,114.832700" target="_blank" rel="noopener">Buka di Google Maps →</a></article>
-        <article class="station-item"><h4>Feeling Station — Sungai Besar</h4><p>Jl. Ahmad Yani KM 34, Sungai Besar</p><a class="link" href="https://maps.google.com/?q=-3.441200,114.839900" target="_blank" rel="noopener">Buka di Google Maps →</a></article>
-        <article class="station-item"><h4>Feeling Station — Guntung Payung</h4><p>Jl. Trikora, Guntung Payung</p><a class="link" href="https://maps.google.com/?q=-3.442800,114.853100" target="_blank" rel="noopener">Buka di Google Maps →</a></article>
-        <article class="station-item"><h4>Feeling Station — Loktabat Utara</h4><p>Jl. Perdagangan, Loktabat Utara</p><a class="link" href="https://maps.google.com/?q=-3.442100,114.826900" target="_blank" rel="noopener">Buka di Google Maps →</a></article>
-        <article class="station-item"><h4>Feeling Station — Loktabat Selatan</h4><p>Jl. Karang Anyar, Loktabat Selatan</p><a class="link" href="https://maps.google.com/?q=-3.448600,114.826200" target="_blank" rel="noopener">Buka di Google Maps →</a></article>
-        <article class="station-item"><h4>Feeling Station — Landasan Ulin</h4><p>Jl. Sukamara, Landasan Ulin</p><a class="link" href="https://maps.google.com/?q=-3.453700,114.770800" target="_blank" rel="noopener">Buka di Google Maps →</a></article>
-        <article class="station-item"><h4>Feeling Station — Guntung Manggis</h4><p>Jl. Kebun Raya, Guntung Manggis</p><a class="link" href="https://maps.google.com/?q=-3.455900,114.789300" target="_blank" rel="noopener">Buka di Google Maps →</a></article>
-        <article class="station-item"><h4>Feeling Station — Syamsudin Noor</h4><p>Jl. Tjilik Riwut, Syamsudin Noor</p><a class="link" href="https://maps.google.com/?q=-3.460100,114.754400" target="_blank" rel="noopener">Buka di Google Maps →</a></article>
-        <article class="station-item"><h4>Feeling Station — Banjarbaru Tengah</h4><p>Jl. Panglima Batur, Banjarbaru Tengah</p><a class="link" href="https://maps.google.com/?q=-3.446800,114.831200" target="_blank" rel="noopener">Buka di Google Maps →</a></article>
-        <article class="station-item"><h4>Feeling Station — Banjarbaru Selatan</h4><p>Jl. Dharma Praja, Banjarbaru Selatan</p><a class="link" href="https://maps.google.com/?q=-3.457500,114.835500" target="_blank" rel="noopener">Buka di Google Maps →</a></article>
+
+        <article class="station-item">
+          <h4>Feeling Station — Panglima Batur</h4>
+          <p>Jl. Panglima Batur, Sebelum BIP Ponsel Banjarbaru</p>
+          <a class="link" href="https://maps.app.goo.gl/jjySQTxbjfgGbLbY6" target="_blank" rel="noopener">Buka di Google Maps →</a>
+        </article>
+
+        <article class="station-item">
+          <h4>Feeling Station — Karang Anyar</h4>
+          <p>Jl. Karang Anyar 1, Disamping Apotek Livina</p>
+          <a class="link" href="https://maps.app.goo.gl/PeERfuXUmLgMJ3s88" target="_blank" rel="noopener">Buka di Google Maps →</a>
+        </article>
+
+        <article class="station-item">
+          <h4>Feeling Station — Sungai Besar</h4>
+          <p>Jl. HM Mistar Cokrokusumo, Diseberang BAPELKES</p>
+          <a class="link" href="https://maps.app.goo.gl/C3uWHbXtF3imK19W7" target="_blank" rel="noopener">Buka di Google Maps →</a>
+        </article>
+
+        <article class="station-item">
+          <h4>Feeling Station — Intansari</h4>
+          <p>Jl. Intansari, Didepan Antung Ponsel</p>
+          <a class="link" href="https://maps.app.goo.gl/5Eu6yiKyS37kBHyf8" target="_blank" rel="noopener">Buka di Google Maps →</a>
+        </article>
+
+        <article class="station-item">
+          <h4>Feeling Station — Kampus Uniska BJB</h4>
+          <p>Jl. Salak, Didepan Warung Rokees Prasmanan</p>
+          <a class="link" href="https://maps.app.goo.gl/fU5y9faJx2z3SJgu6" target="_blank" rel="noopener">Buka di Google Maps →</a>
+        </article>
+
+        <article class="station-item">
+          <h4>Feeling Station — Kampus STMIK</h4>
+          <p>Jl. A. Yani, Diseberang Bank Mandiri Banjarbaru</p>
+          <a class="link" href="https://maps.app.goo.gl/Xx2FXtr6y3UL3StY8" target="_blank" rel="noopener">Buka di Google Maps →</a>
+        </article>
+
+        <article class="station-item">
+          <h4>Feeling Station — Bundaran Trikora, Palm</h4>
+          <p>Jl. Trikora, Bundaran Trikora Palm</p>
+          <a class="link" href="https://maps.app.goo.gl/SBBVkFtt5eybELnK6" target="_blank" rel="noopener">Buka di Google Maps →</a>
+        </article>
+
+        <article class="station-item">
+          <h4>Feeling Station — Landasan Ulin</h4>
+          <p>Jl. Hercules, Bundaran Hercules Kecil, Didepan Gereja</p>
+          <a class="link" href="https://maps.app.goo.gl/Nt9GGvACghrZV6Mj6" target="_blank" rel="noopener">Buka di Google Maps →</a>
+        </article>
+
       </div>
     </section>
 
     <!-- Banjarmasin (5) -->
     <section class="tab-panel" role="tabpanel" id="panel-banjarmasin" aria-labelledby="tab-banjarmasin" hidden>
       <div class="station-list">
-        <article class="station-item"><h4>Feeling Station — Banjarmasin Barat</h4><p>Jl. Hasan Basri, Banjarmasin Barat</p><a class="link" href="https://maps.google.com/?q=-3.319900,114.572300" target="_blank" rel="noopener">Buka di Google Maps →</a></article>
-        <article class="station-item"><h4>Feeling Station — Kayutangi</h4><p>Jl. Sultan Adam, Kayutangi</p><a class="link" href="https://maps.google.com/?q=-3.296700,114.595400" target="_blank" rel="noopener">Buka di Google Maps →</a></article>
-        <article class="station-item"><h4>Feeling Station — Antasan Besar</h4><p>Jl. Veteran, Antasan Besar</p><a class="link" href="https://maps.google.com/?q=-3.315800,114.603900" target="_blank" rel="noopener">Buka di Google Maps →</a></article>
-        <article class="station-item"><h4>Feeling Station — Sungai Jingah</h4><p>Jl. Sungai Jingah</p><a class="link" href="https://maps.google.com/?q=-3.300200,114.603000" target="_blank" rel="noopener">Buka di Google Maps →</a></article>
-        <article class="station-item"><h4>Feeling Station — Kertak Hanyar</h4><p>Jl. Trans Kalimantan, Kertak Hanyar</p><a class="link" href="https://maps.google.com/?q=-3.370200,114.664300" target="_blank" rel="noopener">Buka di Google Maps →</a></article>
+
+        <article class="station-item">
+          <h4>Feeling Station — Benua Anyar</h4>
+          <p>Jl. Pangeran Hidayatullah, Didepan Borneo Store BJM</p>
+          <a class="link" href="https://maps.app.goo.gl/DYgABfTYy7Vpc4oF8" target="_blank" rel="noopener">Buka di Google Maps →</a>
+        </article>
+
+        <article class="station-item">
+          <h4>Feeling Station — Sultan Adam</h4>
+          <p>Jl. Sultan Adam, Didepan Sweet Eight Sablon</p>
+          <a class="link" href="https://maps.app.goo.gl/5Nx1PCx86wauvcsu7" target="_blank" rel="noopener">Buka di Google Maps →</a>
+        </article>
+
+        <article class="station-item">
+          <h4>Feeling Station — HKSN</h4>
+          <p>Jl. Perdagangan, Komp. HKSN, Didepan Ken Barber Company</p>
+          <a class="link" href="https://maps.app.goo.gl/xxZroo26uxucku5YA" target="_blank" rel="noopener">Buka di Google Maps →</a>
+        </article>
+
+        <article class="station-item">
+          <h4>Feeling Station — Sutoyo</h4>
+          <p>Jl. Mayjen Sutoyo, Didepan Hotel Metro</p>
+          <a class="link" href="https://maps.app.goo.gl/ULheNVWS2jfn1vMn9" target="_blank" rel="noopener">Buka di Google Maps →</a>
+        </article>
+
+        <article class="station-item">
+          <h4>Feeling Station — Cendana</h4>
+          <p>Jl. Cendana 1, Diseberang Masjid Sirajul Huda</p>
+          <a class="link" href="https://maps.app.goo.gl/C8hxrR1ZKCFbVSqz6" target="_blank" rel="noopener">Buka di Google Maps →</a>
+        </article>
+
       </div>
     </section>
 
-    <!-- Martapura (6) -->
+    <!-- Martapura (5) -->
     <section class="tab-panel" role="tabpanel" id="panel-martapura" aria-labelledby="tab-martapura" hidden>
       <div class="station-list">
-        <article class="station-item"><h4>Feeling Station — Martapura Kota</h4><p>Jl. A. Yani KM 40, Martapura</p><a class="link" href="https://maps.google.com/?q=-3.417400,114.854900" target="_blank" rel="noopener">Buka di Google Maps →</a></article>
-        <article class="station-item"><h4>Feeling Station — Sekumpul</h4><p>Jl. Sekumpul, Martapura</p><a class="link" href="https://maps.google.com/?q=-3.412800,114.862300" target="_blank" rel="noopener">Buka di Google Maps →</a></article>
-        <article class="station-item"><h4>Feeling Station — Sungai Sipai</h4><p>Jl. Sungai Sipai</p><a class="link" href="https://maps.google.com/?q=-3.401600,114.842100" target="_blank" rel="noopener">Buka di Google Maps →</a></article>
-        <article class="station-item"><h4>Feeling Station — Indrasari</h4><p>Jl. Indrasari</p><a class="link" href="https://maps.google.com/?q=-3.409200,114.851400" target="_blank" rel="noopener">Buka di Google Maps →</a></article>
-        <article class="station-item"><h4>Feeling Station — Tambak Anyar</h4><p>Jl. Tambak Anyar</p><a class="link" href="https://maps.google.com/?q=-3.383500,114.830600" target="_blank" rel="noopener">Buka di Google Maps →</a></article>
-        <article class="station-item"><h4>Feeling Station — Keraton</h4><p>Jl. Keraton</p><a class="link" href="https://maps.google.com/?q=-3.420800,114.867700" target="_blank" rel="noopener">Buka di Google Maps →</a></article>
+
+        <article class="station-item">
+          <h4>Feeling Station — Pertokoan Syihab MTP</h4>
+          <p>Jl. A. Yani KM. 39,5, Area Pertokoan Syihab MTP</p>
+          <a class="link" href="https://maps.app.goo.gl/M3ooYzr5Q6bJC2DC7" target="_blank" rel="noopener">Buka di Google Maps →</a>
+        </article>
+
+        <article class="station-item">
+          <h4>Feeling Station — Alun‑Alun Martapura</h4>
+          <p>Alun‑Alun Martapura CBS, Diseberang Indomaret</p>
+          <a class="link" href="https://maps.app.goo.gl/EwBPJSfppXLsX5k98" target="_blank" rel="noopener">Buka di Google Maps →</a>
+        </article>
+
+        <article class="station-item">
+          <h4>Feeling Station — Guntung Alaban</h4>
+          <p>Jl. Guntung Alaban, Didepan Playground Happy Children</p>
+          <a class="link" href="https://maps.app.goo.gl/W3LqGJSCBFYgvgrD9" target="_blank" rel="noopener">Buka di Google Maps →</a>
+        </article>
+
+        <article class="station-item">
+          <h4>Feeling Station — Sungai Sipai</h4>
+          <p>Jl. Perjuangan, Didepan Toko Pakan Ternak Lina</p>
+          <a class="link" href="https://maps.app.goo.gl/GKuq4Ey1LWTWCqr78" target="_blank" rel="noopener">Buka di Google Maps →</a>
+        </article>
+
+        <article class="station-item">
+          <h4>Feeling Station — Sekumpul Ujung</h4>
+          <p>Jl. Pendidikan, Diseberang Gerbang SMKN 1 MTP</p>
+          <a class="link" href="https://maps.app.goo.gl/B5Y1vt1ZfLFnyEEz5" target="_blank" rel="noopener">Buka di Google Maps →</a>
+        </article>
+
       </div>
     </section>
   </main>
@@ -252,7 +333,7 @@
         <ul>
           <li><a href="products.html">Menu</a></li>
           <li><a href="services.html">Layanan</a></li>
-          <li><a href="stations.html">Station Kami</a></li>
+          <li><a href="stations.html">Lokasi & Coverage</a></li>
           <li><a href="contact.html">Komplain & Saran</a></li>
           <li class="nav-item"><a class="nav-link" href="ask.html">Tanya MinFeels</a></li>
         </ul>
@@ -270,15 +351,12 @@
 
   <!-- SCRIPTS -->
   <script src="assets/js/main.js" defer></script>
-
-  <!-- Inline JS: toggle pilihan regional (versimu) -->
+  <!-- Inline JS: toggle pilihan regional -->
   <script>
     (function () {
       var toggleBtn = document.getElementById('regionToggle');
       var chooser = document.getElementById('regionChooser');
-
       if (!toggleBtn || !chooser) return;
-
       function setOpen(open) {
         if (open) {
           chooser.removeAttribute('hidden');
@@ -288,12 +366,10 @@
           toggleBtn.setAttribute('aria-expanded', 'false');
         }
       }
-
       toggleBtn.addEventListener('click', function () {
         var open = toggleBtn.getAttribute('aria-expanded') === 'true';
         setOpen(!open);
       });
-
       // Tutup chooser setelah salah satu regional dipilih
       chooser.addEventListener('click', function (e) {
         var btn = e.target.closest('.service-tabs .tab');
@@ -301,8 +377,7 @@
           setTimeout(function(){ setOpen(false); }, 50);
         }
       });
-
-      // Jika hash berubah (mis. #banjarbaru), tetap tutup chooser
+      // Jika hash berubah (#banjarbaru), tetap tutup chooser
       window.addEventListener('hashchange', function(){
         setOpen(false);
       });
